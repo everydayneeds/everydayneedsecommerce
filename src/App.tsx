@@ -63,12 +63,14 @@ import {
 import { Product, User as UserType, Subscription } from './type';
 
 // Components
-const Navbar = ({ user, onLogin, onLogout, setView, currentView }: {
+const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOpenCart }: {
   user: UserType | null,
   onLogin: () => void,
   onLogout: () => void,
   setView: (view: string) => void,
-  currentView: string
+  currentView: string,
+  cartCount: number,
+  onOpenCart: () => void
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -88,6 +90,20 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView }: {
             <button onClick={() => setView('about')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">About</button>
             <button onClick={() => setView('partners')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">Partners</button>
             <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">Contact Us</button>
+
+            <div className="h-6 w-px bg-zinc-200 mx-2" />
+
+            <button
+              onClick={onOpenCart}
+              className="relative p-2 text-zinc-600 hover:text-emerald-600 transition-colors group"
+            >
+              <ShoppingCart size={24} />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                  {cartCount}
+                </span>
+              )}
+            </button>
 
             {user ? (
               <div className="flex items-center space-x-4">
@@ -109,7 +125,18 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView }: {
             )}
           </div>
 
-          <div className="md:hidden">
+          <div className="flex items-center space-x-4 md:hidden">
+            <button
+              onClick={onOpenCart}
+              className="relative p-2 text-zinc-600"
+            >
+              <ShoppingCart size={24} />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <button onClick={() => setIsOpen(!isOpen)} className="text-zinc-600">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -141,6 +168,134 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView }: {
     </nav>
   );
 };
+
+const CartDrawer = ({
+  isOpen,
+  onClose,
+  items,
+  onUpdateQuantity,
+  onRemove,
+  total,
+  onCheckout
+}: {
+  isOpen: boolean,
+  onClose: () => void,
+  items: CartItem[],
+  onUpdateQuantity: (id: number, delta: number) => void,
+  onRemove: (id: number) => void,
+  total: number,
+  onCheckout: () => void
+}) => (
+  <AnimatePresence>
+    {isOpen && (
+      <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
+        />
+        <motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+          className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-[70] flex flex-col"
+        >
+          <div className="p-6 border-b border-zinc-100 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+                <ShoppingCart size={20} />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900">Your Cart</h3>
+            </div>
+            <button onClick={onClose} className="p-2 hover:bg-zinc-100 rounded-lg text-zinc-400 transition-colors">
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            {items.length === 0 ? (
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-20 h-20 bg-zinc-50 rounded-full flex items-center justify-center text-zinc-300">
+                  <ShoppingBag size={40} />
+                </div>
+                <div>
+                  <p className="text-lg font-bold text-zinc-900">Your cart is empty</p>
+                  <p className="text-zinc-500">Looks like you haven't added anything yet.</p>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-all"
+                >
+                  Start Shopping
+                </button>
+              </div>
+            ) : (
+              items.map((item) => (
+                <div key={item.id} className="flex gap-4 group">
+                  <div className="w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
+                    <img src={item.image_url} alt={item.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="font-bold text-zinc-900 truncate pr-4">{item.name}</h4>
+                      <button
+                        onClick={() => onRemove(item.id)}
+                        className="text-zinc-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                    <p className="text-sm text-zinc-500 mb-3">₦{item.price.toLocaleString()}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center bg-zinc-100 rounded-lg px-2 py-1">
+                        <button
+                          onClick={() => onUpdateQuantity(item.id, -1)}
+                          className="p-1 hover:text-emerald-600 transition-colors"
+                        >
+                          <X size={14} className="rotate-45" />
+                        </button>
+                        <span className="w-8 text-center text-xs font-bold text-zinc-900">{item.quantity}</span>
+                        <button
+                          onClick={() => onUpdateQuantity(item.id, 1)}
+                          className="p-1 hover:text-emerald-600 transition-colors"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                      <p className="font-bold text-zinc-900">₦{(item.price * item.quantity).toLocaleString()}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {items.length > 0 && (
+            <div className="p-6 border-t border-zinc-100 bg-zinc-50/50 space-y-4">
+              <div className="flex justify-between items-center text-zinc-500">
+                <span className="text-sm font-medium">Subtotal</span>
+                <span className="text-lg font-bold text-zinc-900">₦{total.toLocaleString()}</span>
+              </div>
+              <button
+                onClick={onCheckout}
+                className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 flex items-center justify-center gap-2 group"
+              >
+                Checkout Now
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-center text-xs text-zinc-400">
+                Taxes and shipping calculated at checkout
+              </p>
+            </div>
+          )}
+        </motion.div>
+      </>
+    )}
+  </AnimatePresence>
+);
 
 const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => (
   <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
@@ -3036,6 +3191,10 @@ const Storage = {
   }
 };
 
+export interface CartItem extends Product {
+  quantity: number;
+}
+
 function App() {
   const [view, setView] = useState('home');
   const [user, setUser] = useState<UserType | null>(null);
@@ -3046,7 +3205,12 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Products');
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    const savedCart = localStorage.getItem('edn_cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [notification, setNotification] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
 
   const filteredProducts = products.filter(p => {
@@ -3056,10 +3220,38 @@ function App() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleAddToCart = (product: any) => {
-    setCart([...cart, product]);
-    // Show toast or notification
+  const handleAddToCart = (product: Product) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
+    setNotification(`${product.name} added to cart!`);
+    setTimeout(() => setNotification(null), 3000);
   };
+
+  const handleRemoveFromCart = (productId: number) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== productId));
+  };
+
+  const handleUpdateQuantity = (productId: number, delta: number) => {
+    setCart(prevCart => {
+      return prevCart.map(item => {
+        if (item.id === productId) {
+          const newQuantity = Math.max(1, item.quantity + delta);
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
+    });
+  };
+
+  const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleLike = (product: any) => {
     if (wishlist.includes(product.id)) {
@@ -3077,6 +3269,10 @@ function App() {
     // Handle checkout logic
     alert(`Proceeding to checkout for ${product.name}`);
   };
+
+  useEffect(() => {
+    localStorage.setItem('edn_cart', JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     fetch('/api/boxes')
@@ -3213,8 +3409,61 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] font-sans text-zinc-900">
-      <Navbar user={user} onLogin={() => setView('auth')} onLogout={handleLogout} setView={setView} currentView={view} />
+    <div className="min-h-screen bg-white font-sans text-zinc-900 selection:bg-emerald-100 selection:text-emerald-900">
+      <Navbar
+        user={user}
+        onLogin={() => setView('auth')}
+        onLogout={handleLogout}
+        setView={setView}
+        currentView={view}
+        cartCount={cartCount}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
+
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemove={handleRemoveFromCart}
+        total={cartTotal}
+        onCheckout={() => {
+          setIsCartOpen(false);
+          handleBuyNow(cart[0]); // Simplified for now, just trigger checkout flow
+        }}
+      />
+
+      <AnimatePresence>
+        {notification && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
+          >
+            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+              <Check size={18} />
+            </div>
+            <p className="font-bold">{notification}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {notification && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
+          >
+            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+              <Check size={18} />
+            </div>
+            <p className="font-bold">{notification}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main>
         <KYCModal
