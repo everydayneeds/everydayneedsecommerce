@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ShoppingBag,
@@ -159,7 +159,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
               Everything Your Home Needs. <span className="text-emerald-600">Delivered.</span>
             </h1>
             <p className="text-lg md:text-xl text-zinc-600 mb-10 leading-relaxed max-w-2xl">
-              From fresh farm produce to pantry essentials, baby care to home supplies — curated products delivered to your doorstep.
+              From fresh farm produce to pantry essentials, baby care to home supplies â€” curated products delivered to your doorstep.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <button
@@ -259,7 +259,7 @@ const ProductCard: React.FC<{
       <div className="flex items-center justify-between mt-auto">
         <div>
           <span className="text-xs text-zinc-400 block uppercase tracking-widest font-bold mb-1">Price</span>
-          <span className="text-2xl font-extrabold text-zinc-900">₦{product.price.toLocaleString()}</span>
+          <span className="text-2xl font-extrabold text-zinc-900">â‚¦{product.price.toLocaleString()}</span>
         </div>
         <div className="flex items-center gap-2">
           <button className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all">
@@ -414,7 +414,7 @@ const ProductDetail = ({
                   onClick={() => onBuyNow(product)}
                   className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100"
                 >
-                  Buy Now — ₦{product.price.toLocaleString()}
+                  Buy Now â€” â‚¦{product.price.toLocaleString()}
                 </button>
               </div>
             </div>
@@ -443,7 +443,7 @@ const ProductDetail = ({
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-zinc-900 text-lg">₦{calculatePrice(plan.id).toLocaleString()}</p>
+                      <p className="font-bold text-zinc-900 text-lg">â‚¦{calculatePrice(plan.id).toLocaleString()}</p>
                       {plan.discount > 0 && (
                         <p className="text-xs text-emerald-600 font-bold uppercase tracking-widest">Save {plan.discount}%</p>
                       )}
@@ -553,7 +553,7 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
             <input
               type="password"
               className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
-              placeholder="••••••••"
+              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
             />
           </div>
 
@@ -596,7 +596,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
   const plans = [
     {
       name: 'Monthly',
-      price: '₦0',
+      price: 'â‚¦0',
       desc: 'Pay as you go. No long-term commitment.',
       features: ['Standard delivery', 'Basic support', 'Cancel anytime'],
       id: 'monthly',
@@ -912,7 +912,7 @@ const ProductFormModal = ({
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Price (₦)</label>
+              <label className="block text-sm font-bold text-zinc-700 mb-2">Price (â‚¦)</label>
               <input
                 type="number"
                 value={formData.price}
@@ -1538,6 +1538,11 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
       .then(data => {
         setSubscriptions(data);
         setLoading(false);
+      })
+      .catch(() => {
+        console.log('Using mock subscriptions');
+        setSubscriptions(Storage.getSubscriptions(user.id));
+        setLoading(false);
       });
   }, [user.id]);
 
@@ -1551,7 +1556,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
               {[
                 { label: 'Active Subscriptions', value: subscriptions.length.toString(), color: 'text-emerald-600', icon: Package, bg: 'bg-emerald-50' },
                 { label: 'Next Delivery', value: subscriptions.length > 0 ? 'Mar 25' : 'N/A', color: 'text-blue-600', icon: Truck, bg: 'bg-blue-50' },
-                { label: 'Total Saved', value: '₦12,400', color: 'text-purple-600', icon: Wallet, bg: 'bg-purple-50' },
+                { label: 'Total Saved', value: 'â‚¦12,400', color: 'text-purple-600', icon: Wallet, bg: 'bg-purple-50' },
               ].map((stat, i) => (
                 <div key={i} className="p-5 bg-white rounded-xl border border-zinc-200 shadow-sm flex items-center gap-4">
                   <div className={`p-3 ${stat.bg} ${stat.color} rounded-lg`}>
@@ -1685,8 +1690,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#EN-9921', date: 'Feb 12, 2024', items: 'Fresh Farm Box', amount: '₦15,000', status: 'Delivered' },
-                    { id: '#EN-9918', date: 'Jan 12, 2024', items: 'Pantry Essentials', amount: '₦22,500', status: 'Delivered' },
+                    { id: '#EN-9921', date: 'Feb 12, 2024', items: 'Fresh Farm Box', amount: 'â‚¦15,000', status: 'Delivered' },
+                    { id: '#EN-9918', date: 'Jan 12, 2024', items: 'Pantry Essentials', amount: 'â‚¦22,500', status: 'Delivered' },
                   ].map((order, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                       <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -1834,7 +1839,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             {/* KPI Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: 'Total Sales', value: '₦450,000', trend: '+15%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                { label: 'Total Sales', value: 'â‚¦450,000', trend: '+15%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
                 { label: 'Active Orders', value: '12', trend: '+2', icon: ClipboardList, color: 'text-blue-600', bg: 'bg-blue-50' },
                 { label: 'Products', value: '8', trend: 'Stable', icon: ShoppingBag, color: 'text-purple-600', bg: 'bg-purple-50' },
                 { label: 'Store Rating', value: '4.8/5', trend: 'Top 5%', icon: Star, color: 'text-amber-600', bg: 'bg-amber-50' },
@@ -1870,9 +1875,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
                     {[
-                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
-                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
-                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: '₦18,000', status: 'Delivered' },
+                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: 'â‚¦15,000', status: 'Pending' },
+                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: 'â‚¦22,500', status: 'Shipped' },
+                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: 'â‚¦18,000', status: 'Delivered' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -1928,7 +1933,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     <p className="text-xs text-zinc-500">8 orders this week</p>
                   </div>
                   <div className="flex items-center justify-between pt-1">
-                    <span className="text-sm font-bold text-emerald-600">₦15,000</span>
+                    <span className="text-sm font-bold text-emerald-600">â‚¦15,000</span>
                     <div className="flex gap-2">
                       <button
                         onClick={() => {
@@ -2044,8 +2049,8 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#ORD-7721', date: 'Feb 12, 2024', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
-                    { id: '#ORD-7722', date: 'Jan 12, 2024', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
+                    { id: '#ORD-7721', date: 'Feb 12, 2024', product: 'Fresh Farm Box', amount: 'â‚¦15,000', status: 'Pending' },
+                    { id: '#ORD-7722', date: 'Jan 12, 2024', product: 'Pantry Essentials', amount: 'â‚¦22,500', status: 'Shipped' },
                   ].map((order, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                       <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -2072,9 +2077,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { label: 'Available Balance', value: '₦120,500', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { label: 'Pending Clearance', value: '₦45,000', icon: History, color: 'text-amber-600', bg: 'bg-amber-50' },
-                { label: 'Total Earned', value: '₦850,000', icon: BarChart3, color: 'text-blue-600', bg: 'bg-blue-50' },
+                { label: 'Available Balance', value: 'â‚¦120,500', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                { label: 'Pending Clearance', value: 'â‚¦45,000', icon: History, color: 'text-amber-600', bg: 'bg-amber-50' },
+                { label: 'Total Earned', value: 'â‚¦850,000', icon: BarChart3, color: 'text-blue-600', bg: 'bg-blue-50' },
               ].map((stat, i) => (
                 <div key={i} className="p-6 bg-white rounded-xl border border-zinc-200 shadow-sm">
                   <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center mb-4`}>
@@ -2102,9 +2107,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
                     {[
-                      { date: 'Feb 14, 2024', desc: 'Withdrawal to Bank', amount: '-₦50,000', status: 'Completed', type: 'debit' },
-                      { date: 'Feb 12, 2024', desc: 'Order #ORD-7721 Settlement', amount: '+₦15,000', status: 'Completed', type: 'credit' },
-                      { date: 'Feb 10, 2024', desc: 'Order #ORD-7720 Settlement', amount: '+₦20,000', status: 'Completed', type: 'credit' },
+                      { date: 'Feb 14, 2024', desc: 'Withdrawal to Bank', amount: '-â‚¦50,000', status: 'Completed', type: 'debit' },
+                      { date: 'Feb 12, 2024', desc: 'Order #ORD-7721 Settlement', amount: '+â‚¦15,000', status: 'Completed', type: 'credit' },
+                      { date: 'Feb 10, 2024', desc: 'Order #ORD-7720 Settlement', amount: '+â‚¦20,000', status: 'Completed', type: 'credit' },
                     ].map((tx, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-4 text-sm text-zinc-600">{tx.date}</td>
@@ -2214,7 +2219,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             {/* KPI Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: 'Monthly Revenue', value: '₦4.2M', trend: '+12.5%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                { label: 'Monthly Revenue', value: 'â‚¦4.2M', trend: '+12.5%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
                 { label: 'Active Subscribers', value: '1,240', trend: '+8.2%', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
                 { label: 'Pending Orders', value: '42', trend: '-3.1%', icon: AlertCircle, color: 'text-amber-600', bg: 'bg-amber-50' },
                 { label: 'Inventory Alerts', value: '5', trend: 'Critical', icon: Package, color: 'text-red-600', bg: 'bg-red-50' },
@@ -2263,7 +2268,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         axisLine={false}
                         tickLine={false}
                         tick={{ fontSize: 12, fill: '#94A3B8' }}
-                        tickFormatter={(value) => `₦${value}k`}
+                        tickFormatter={(value) => `â‚¦${value}k`}
                       />
                       <Tooltip
                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
@@ -2330,11 +2335,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
                     {[
-                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
-                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
-                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: '₦18,000', status: 'Delivered' },
-                      { id: '#ORD-7724', customer: 'David Okoro', product: 'Home Care Box', amount: '₦12,000', status: 'Delivered' },
-                      { id: '#ORD-7725', customer: 'Elena Gilbert', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
+                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: 'â‚¦15,000', status: 'Pending' },
+                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: 'â‚¦22,500', status: 'Shipped' },
+                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: 'â‚¦18,000', status: 'Delivered' },
+                      { id: '#ORD-7724', customer: 'David Okoro', product: 'Home Care Box', amount: 'â‚¦12,000', status: 'Delivered' },
+                      { id: '#ORD-7725', customer: 'Elena Gilbert', product: 'Fresh Farm Box', amount: 'â‚¦15,000', status: 'Pending' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-4 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -2392,10 +2397,10 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#ORD-001', customer: 'Alice Johnson', date: 'Feb 10, 2024', amount: '₦15,000', status: 'Delivered' },
-                    { id: '#ORD-002', customer: 'Bob Smith', date: 'Feb 11, 2024', amount: '₦22,500', status: 'Pending' },
-                    { id: '#ORD-003', customer: 'Catherine Lee', date: 'Feb 12, 2024', amount: '₦18,000', status: 'On Transit' },
-                    { id: '#ORD-004', customer: 'David Okoro', date: 'Feb 13, 2024', amount: '₦12,000', status: 'Delivered' },
+                    { id: '#ORD-001', customer: 'Alice Johnson', date: 'Feb 10, 2024', amount: 'â‚¦15,000', status: 'Delivered' },
+                    { id: '#ORD-002', customer: 'Bob Smith', date: 'Feb 11, 2024', amount: 'â‚¦22,500', status: 'Pending' },
+                    { id: '#ORD-003', customer: 'Catherine Lee', date: 'Feb 12, 2024', amount: 'â‚¦18,000', status: 'On Transit' },
+                    { id: '#ORD-004', customer: 'David Okoro', date: 'Feb 13, 2024', amount: 'â‚¦12,000', status: 'Delivered' },
                   ].map((order, i) => (
                     <tr
                       key={i}
@@ -2450,7 +2455,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 font-bold">U</div>
                       <div>
                         <p className="text-sm font-bold text-zinc-900">User {i}</p>
-                        <p className="text-xs text-zinc-500">Monthly Plan • Next delivery: Mar 1{i}</p>
+                        <p className="text-xs text-zinc-500">Monthly Plan â€¢ Next delivery: Mar 1{i}</p>
                       </div>
                     </div>
                     <button
@@ -2497,7 +2502,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     <img src={`https://picsum.photos/seed/admin-prod-${i}/300/300`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                   <h4 className="text-sm font-bold text-zinc-900 truncate">Product Name {i}</h4>
-                  <p className="text-xs text-zinc-500 mb-2">Category • ₦15,000</p>
+                  <p className="text-xs text-zinc-500 mb-2">Category â€¢ â‚¦15,000</p>
                   <div className="flex gap-2">
                     <button
                       onClick={() => {
@@ -2567,7 +2572,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </div>
                 <div className="flex-grow">
                   <h4 className="text-sm font-bold text-zinc-900">Supplier Name {i}</h4>
-                  <p className="text-xs text-zinc-500 mb-2">Fresh Produce • Lagos, Nigeria</p>
+                  <p className="text-xs text-zinc-500 mb-2">Fresh Produce â€¢ Lagos, Nigeria</p>
                   <div className="flex gap-4">
                     <span className="text-xs font-bold text-emerald-600">4.9 Rating</span>
                     <span className="text-xs font-bold text-zinc-400">124 Deliveries</span>
@@ -2601,11 +2606,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#TRX-9901', customer: 'Alice Johnson', amount: '₦15,000', method: 'Card', status: 'Successful', date: 'Feb 24, 2024', time: '14:30' },
-                    { id: '#TRX-9902', customer: 'Bob Smith', amount: '₦22,500', method: 'Transfer', status: 'Successful', date: 'Feb 24, 2024', time: '15:45' },
-                    { id: '#TRX-9903', customer: 'Catherine Lee', amount: '₦18,000', method: 'Card', status: 'Pending', date: 'Feb 24, 2024', time: '16:20' },
-                    { id: '#TRX-9904', customer: 'David Okoro', amount: '₦12,000', method: 'Card', status: 'Successful', date: 'Feb 23, 2024', time: '09:15' },
-                    { id: '#TRX-9905', customer: 'Elena Gilbert', amount: '₦15,000', method: 'Transfer', status: 'Failed', date: 'Feb 23, 2024', time: '11:30' },
+                    { id: '#TRX-9901', customer: 'Alice Johnson', amount: 'â‚¦15,000', method: 'Card', status: 'Successful', date: 'Feb 24, 2024', time: '14:30' },
+                    { id: '#TRX-9902', customer: 'Bob Smith', amount: 'â‚¦22,500', method: 'Transfer', status: 'Successful', date: 'Feb 24, 2024', time: '15:45' },
+                    { id: '#TRX-9903', customer: 'Catherine Lee', amount: 'â‚¦18,000', method: 'Card', status: 'Pending', date: 'Feb 24, 2024', time: '16:20' },
+                    { id: '#TRX-9904', customer: 'David Okoro', amount: 'â‚¦12,000', method: 'Card', status: 'Successful', date: 'Feb 23, 2024', time: '09:15' },
+                    { id: '#TRX-9905', customer: 'Elena Gilbert', amount: 'â‚¦15,000', method: 'Transfer', status: 'Failed', date: 'Feb 23, 2024', time: '11:30' },
                   ].map((trx, i) => (
                     <tr
                       key={i}
@@ -2663,7 +2668,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     </div>
                     <div>
                       <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Total Spent</p>
-                      <p className="text-sm font-bold text-emerald-600">₦{150 + i * 20},000</p>
+                      <p className="text-sm font-bold text-emerald-600">â‚¦{150 + i * 20},000</p>
                     </div>
                   </div>
                   <button className="w-full py-2 bg-zinc-100 text-zinc-900 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all">View Profile</button>
@@ -2719,10 +2724,10 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               </div>
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Average Order Value</h4>
-                <p className="text-2xl font-bold text-zinc-900">₦18,500</p>
+                <p className="text-2xl font-bold text-zinc-900">â‚¦18,500</p>
                 <div className="flex items-center gap-1 text-xs font-bold text-emerald-600 mt-1">
                   <TrendingUp size={12} />
-                  +₦1,200 from last month
+                  +â‚¦1,200 from last month
                 </div>
               </div>
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
@@ -2925,7 +2930,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Date & Time</p>
-                  <p className="text-sm font-bold text-zinc-900">{selectedPayment.date} • {selectedPayment.time}</p>
+                  <p className="text-sm font-bold text-zinc-900">{selectedPayment.date} â€¢ {selectedPayment.time}</p>
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Method</p>
@@ -2999,7 +3004,39 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
   );
 };
 
-export default function App() {
+const MOCK_BOXES: Product[] = [
+  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials for everyday cooking.", price: 34500, image_url: "https://picsum.photos/seed/pantry/800/600", category: "Pantry" },
+  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables sourced directly from farmers.", price: 14000, image_url: "https://picsum.photos/seed/farm/800/600", category: "Fresh" },
+  { id: 3, name: "Prime Cuts Box", description: "Quality protein essentials.", price: 26000, image_url: "https://picsum.photos/seed/meat/800/600", category: "Protein" },
+  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples for a great start.", price: 15500, image_url: "https://picsum.photos/seed/breakfast/800/600", category: "Breakfast" },
+  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal care and hygiene essentials.", price: 13900, image_url: "https://picsum.photos/seed/pamper/800/600", category: "Personal Care" },
+  { id: 6, name: "Little Bundle of Joy", description: "Everything for your little one.", price: 15000, image_url: "https://picsum.photos/seed/baby/800/600", category: "Baby" },
+  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Cleaning and home maintenance supplies.", price: 10200, image_url: "https://picsum.photos/seed/cleaning/800/600", category: "Home" },
+  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness essentials.", price: 10800, image_url: "https://picsum.photos/seed/wellness/800/600", category: "Wellness" },
+];
+
+const Storage = {
+  getUser: () => {
+    const data = localStorage.getItem('edn_user');
+    return data ? JSON.parse(data) : null;
+  },
+  setUser: (user: UserType | null) => {
+    if (user) localStorage.setItem('edn_user', JSON.stringify(user));
+    else localStorage.removeItem('edn_user');
+  },
+  getSubscriptions: (userId: number) => {
+    const data = localStorage.getItem(`edn_subs_${userId}`);
+    return data ? JSON.parse(data) : [];
+  },
+  addSubscription: (userId: number, sub: any) => {
+    const subs = Storage.getSubscriptions(userId);
+    const newSub = { ...sub, id: Date.now(), created_at: new Date().toISOString() };
+    localStorage.setItem(`edn_subs_${userId}`, JSON.stringify([...subs, newSub]));
+    return newSub;
+  }
+};
+
+function App() {
   const [view, setView] = useState('home');
   const [user, setUser] = useState<UserType | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -3047,29 +3084,50 @@ export default function App() {
       .then(data => {
         setProducts(data);
         setLoading(false);
+      })
+      .catch(() => {
+        console.log('Using mock products');
+        setProducts(MOCK_BOXES);
+        setLoading(false);
       });
+
+    const savedUser = Storage.getUser();
+    if (savedUser) setUser(savedUser);
   }, []);
 
   const handleLogin = async (email: string = 'user@example.com') => {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password: 'password' })
-    });
-    const data = await res.json();
-    setUser(data.user);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: 'password' })
+      });
+      const data = await res.json();
+      setUser(data.user);
+      Storage.setUser(data.user);
+    } catch (err) {
+      console.log('Login fallback');
+      const mockUser: UserType = { id: 1, email, name: email.split('@')[0], role: 'buyer' };
+      setUser(mockUser);
+      Storage.setUser(mockUser);
+    }
     if (view === 'home' || view === 'auth') setView('dashboard');
   };
 
   const handleLogout = () => {
     setUser(null);
+    Storage.setUser(null);
     setView('home');
   };
 
   const handleProductSelect = async (product: Product) => {
-    const res = await fetch(`/api/boxes/${product.id}`);
-    const data = await res.json();
-    setSelectedProduct(data);
+    try {
+      const res = await fetch(`/api/boxes/${product.id}`);
+      const data = await res.json();
+      setSelectedProduct(data);
+    } catch (err) {
+      setSelectedProduct({ ...product, products: [] });
+    }
     setView('product-detail');
   };
 
@@ -3079,17 +3137,28 @@ export default function App() {
       return;
     }
 
-    const res = await fetch('/api/subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: user.id,
-        boxId: selectedProduct.id,
-        plan
-      })
-    });
-
-    if (res.ok) {
+    try {
+      const res = await fetch('/api/subscriptions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: user.id,
+          boxId: selectedProduct.id,
+          plan
+        })
+      });
+      if (res.ok) setView('dashboard');
+    } catch (err) {
+      console.log('Subscribe fallback');
+      Storage.addSubscription(user.id, {
+        user_id: user.id,
+        box_id: selectedProduct.id,
+        box_name: selectedProduct.name,
+        image_url: selectedProduct.image_url,
+        plan,
+        status: 'active',
+        next_delivery_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+      });
       setView('dashboard');
     }
   };
@@ -3098,13 +3167,20 @@ export default function App() {
 
   const handleKYCSubmit = async (data: any) => {
     if (!user) return;
-    const res = await fetch('/api/auth/kyc', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: user.id, kycData: data })
-    });
-    const result = await res.json();
-    setUser(result.user);
+    try {
+      const res = await fetch('/api/auth/kyc', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id, kycData: data })
+      });
+      const result = await res.json();
+      setUser(result.user);
+      Storage.setUser(result.user);
+    } catch (err) {
+      const updatedUser = { ...user, is_seller_verified: true, role: 'seller', kyc_data: JSON.stringify(data) } as UserType;
+      setUser(updatedUser);
+      Storage.setUser(updatedUser);
+    }
     setIsKYCModalOpen(false);
     setView('seller-dashboard');
   };
@@ -3117,17 +3193,21 @@ export default function App() {
       return;
     }
 
-    const res = await fetch('/api/auth/switch-role', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: user.id, role: targetRole })
-    });
-    const result = await res.json();
-    setUser(result.user);
-
-    if (targetRole === 'seller') setView('seller-dashboard');
-    else if (targetRole === 'admin') setView('admin-dashboard');
-    else setView('dashboard');
+    try {
+      const res = await fetch('/api/auth/switch-role', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id, role: targetRole })
+      });
+      const data = await res.json();
+      setUser(data.user);
+      Storage.setUser(data.user);
+    } catch (err) {
+      const updatedUser = { ...user, role: targetRole } as UserType;
+      setUser(updatedUser);
+      Storage.setUser(updatedUser);
+    }
+    setView(targetRole === 'buyer' ? 'dashboard' : targetRole === 'seller' ? 'seller-dashboard' : 'admin-dashboard');
 
     setActiveTab('overview'); // Reset tab on role switch
   };
@@ -3187,7 +3267,7 @@ export default function App() {
                       <div className="space-y-12">
                         {[
                           { step: '01', title: 'Choose Your Box', desc: 'Select from our curated collections of pantry, farm, or home essentials.' },
-                          { step: '02', title: 'Subscribe', desc: 'Pick a plan that fits your household needs—monthly, quarterly, or annual.' },
+                          { step: '02', title: 'Subscribe', desc: 'Pick a plan that fits your household needsâ€”monthly, quarterly, or annual.' },
                           { step: '03', title: 'We Deliver', desc: 'Our team sources and packs your essentials with care and delivers them to your door.' },
                           { step: '04', title: 'Live Better', desc: 'Enjoy more time with family while we handle the heavy lifting.' },
                         ].map((step, i) => (
@@ -3216,7 +3296,7 @@ export default function App() {
                           {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-yellow-400 text-yellow-400" />)}
                         </div>
                         <p className="text-sm font-medium italic">"Everyday Needs has completely changed how I manage my home. No more last-minute store runs!"</p>
-                        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-zinc-400">— Sarah O., Lagos</p>
+                        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-zinc-400">â€” Sarah O., Lagos</p>
                       </div>
                     </div>
                   </div>
@@ -3417,7 +3497,7 @@ export default function App() {
                       Everyday Needs was born out of a simple observation: managing a household in Nigeria's fast-paced cities is a full-time job. Between traffic, work, and family, the "last-minute store run" was becoming a major stressor for families.
                     </p>
                     <p className="text-lg text-zinc-600 leading-relaxed">
-                      We realized that by curating the most essential items—from fresh farm produce to non-toxic home supplies—and delivering them on a predictable schedule, we could give families back their most precious resource: time.
+                      We realized that by curating the most essential itemsâ€”from fresh farm produce to non-toxic home suppliesâ€”and delivering them on a predictable schedule, we could give families back their most precious resource: time.
                     </p>
                   </div>
                   <div className="relative">
@@ -3450,7 +3530,7 @@ export default function App() {
                     <div className="lg:w-1/2 p-12 lg:p-20">
                       <h3 className="text-3xl font-bold text-white mb-6">Female-Driven Insight</h3>
                       <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                        Everyday Needs is built with a deep understanding of household management. We know that a home isn't just a place—it's an ecosystem that requires care, safety, and reliability.
+                        Everyday Needs is built with a deep understanding of household management. We know that a home isn't just a placeâ€”it's an ecosystem that requires care, safety, and reliability.
                       </p>
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-white">EN</div>
@@ -3504,10 +3584,10 @@ export default function App() {
                     <h3 className="text-2xl font-bold mb-4">Application Requirements</h3>
                     <p className="text-zinc-400 text-sm mb-6">To maintain our quality standards, all partners must provide:</p>
                     <ul className="space-y-3 text-sm text-zinc-300">
-                      <li>• Valid business registration (CAC)</li>
-                      <li>• Proof of production/farming capacity</li>
-                      <li>• Quality certifications (where applicable)</li>
-                      <li>• Bank account details for settlements</li>
+                      <li>â€¢ Valid business registration (CAC)</li>
+                      <li>â€¢ Proof of production/farming capacity</li>
+                      <li>â€¢ Quality certifications (where applicable)</li>
+                      <li>â€¢ Bank account details for settlements</li>
                     </ul>
                   </div>
                 </div>
@@ -3595,9 +3675,9 @@ export default function App() {
                     <h4 className="text-xl font-bold text-zinc-900 mb-4">Financial Highlights</h4>
                     <p className="text-zinc-600 leading-relaxed mb-4">We have maintained a steady 40% quarter-over-quarter growth, expanding our fulfillment centers across major cities.</p>
                     <ul className="space-y-2 text-sm text-zinc-500">
-                      <li>• $2M ARR as of Q4 2023</li>
-                      <li>• 92% Customer Retention Rate</li>
-                      <li>• 5,000+ Active Subscriptions</li>
+                      <li>â€¢ $2M ARR as of Q4 2023</li>
+                      <li>â€¢ 92% Customer Retention Rate</li>
+                      <li>â€¢ 5,000+ Active Subscriptions</li>
                     </ul>
                   </div>
                   <div className="bg-white p-8 rounded-3xl border border-black/5">
@@ -3704,7 +3784,7 @@ export default function App() {
             </div>
           </div>
           <div className="mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-zinc-400">© 2024 Everyday Needs. All rights reserved.</p>
+            <p className="text-xs text-zinc-400">Â© 2024 Everyday Needs. All rights reserved.</p>
             <div className="flex items-center space-x-6">
               <div className="w-8 h-8 bg-white rounded-full border border-black/5" />
               <div className="w-8 h-8 bg-white rounded-full border border-black/5" />
@@ -3716,3 +3796,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
