@@ -300,64 +300,79 @@ const CartDrawer = ({
 const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => (
   <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="flex flex-col lg:flex-row items-center gap-16">
-        <div className="lg:w-1/2 text-left">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-emerald-600 uppercase bg-emerald-50 rounded-full">
-              Nigeria's #1 Essentials Platform
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1]">
-              Everything Your Home Needs. <span className="text-emerald-600">Delivered.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-zinc-600 mb-10 leading-relaxed max-w-2xl">
-              From fresh farm produce to pantry essentials, baby care to home supplies, and curated products delivered directly to your doorstep.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <button
-                onClick={onStart}
-                className="w-full sm:w-auto bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group"
-              >
-                Start Your Subscription
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => setView('products')}
-                className="w-full sm:w-auto bg-white text-zinc-900 border border-zinc-200 px-8 py-4 rounded-full text-lg font-semibold hover:bg-zinc-50 transition-all"
-              >
-                Explore Our Products
-              </button>
-            </div>
-          </motion.div>
-        </div>
+            <span>Just In Time — Serving Lagos & Port Harcourt</span>
+          </div>
+          <h1 className="text-5xl lg:text-7xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
+            Everything your <span className="text-emerald-600">Home Needs</span>, Delivered.
+          </h1>
+          <p className="text-xl text-zinc-500 mb-10 leading-relaxed max-w-xl">
+            From farm-fresh produce to premium pantry essentials, we deliver curated boxes of everything you need, exactly when you need it.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => setView('products')}
+              className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 flex items-center justify-center gap-2 group"
+            >
+              Shop Collection
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={() => setView('about')}
+              className="bg-white text-zinc-900 border-2 border-zinc-100 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-zinc-50 transition-all flex items-center justify-center gap-2"
+            >
+              Our Story
+            </button>
+          </div>
+        </motion.div>
 
-        <div className="lg:w-1/2 relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl">
+            <img
+              src="/images/everyday needs-03.jpg.jpeg"
+              alt="Everyday Needs Box"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute -top-10 -right-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-50 -z-10" />
+          <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-zinc-100 rounded-full blur-3xl opacity-50 -z-10" />
+
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 gap-4"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -right-4 top-20 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 border border-zinc-100"
           >
-            <div className="space-y-4">
-              <img src="https://picsum.photos/seed/food1/400/500" alt="Fresh Produce" className="rounded-3xl w-full h-64 object-cover shadow-lg" referrerPolicy="no-referrer" />
-              <img src="https://picsum.photos/seed/food2/400/300" alt="Pantry" className="rounded-3xl w-full h-40 object-cover shadow-lg" referrerPolicy="no-referrer" />
+            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+              <Star size={24} fill="currentColor" />
             </div>
-            <div className="space-y-4 pt-8">
-              <img src="https://picsum.photos/seed/food3/400/300" alt="Meat" className="rounded-3xl w-full h-40 object-cover shadow-lg" referrerPolicy="no-referrer" />
-              <img src="https://picsum.photos/seed/food4/400/500" alt="Home" className="rounded-3xl w-full h-64 object-cover shadow-lg" referrerPolicy="no-referrer" />
+            <div>
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Top Rated</p>
+              <p className="text-sm font-bold text-zinc-900">4.9/5 Happy Homes</p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-black/5 pt-12"
+        className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-100 pt-12"
       >
         {[
           { label: 'Reliable', icon: Truck },
@@ -376,6 +391,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
     </div>
   </section>
 );
+
 
 const ProductCard: React.FC<{
   product: Product,
@@ -3160,14 +3176,16 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 };
 
 const MOCK_BOXES: Product[] = [
-  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials for everyday cooking.", price: 34500, image_url: "https://picsum.photos/seed/pantry/800/600", category: "Pantry" },
-  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables sourced directly from farmers.", price: 14000, image_url: "https://picsum.photos/seed/farm/800/600", category: "Fresh" },
-  { id: 3, name: "Prime Cuts Box", description: "Quality protein essentials.", price: 26000, image_url: "https://picsum.photos/seed/meat/800/600", category: "Protein" },
-  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples for a great start.", price: 15500, image_url: "https://picsum.photos/seed/breakfast/800/600", category: "Breakfast" },
-  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal care and hygiene essentials.", price: 13900, image_url: "https://picsum.photos/seed/pamper/800/600", category: "Personal Care" },
-  { id: 6, name: "Little Bundle of Joy", description: "Everything for your little one.", price: 15000, image_url: "https://picsum.photos/seed/baby/800/600", category: "Baby" },
-  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Cleaning and home maintenance supplies.", price: 10200, image_url: "https://picsum.photos/seed/cleaning/800/600", category: "Home" },
-  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness essentials.", price: 10800, image_url: "https://picsum.photos/seed/wellness/800/600", category: "Wellness" },
+  { id: 1, name: "Gourmet Pleasure (Beginner)", description: "Premium gourmet treats and artisanal delights.", price: 230000, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Gourmet" },
+  { id: 2, name: "Pantry Provision Box (Beginner)", description: "Essential pantry staples for a balanced home.", price: 65400, image_url: "/images/pantry.jpeg", category: "Pantry" },
+  { id: 3, name: "Farm Fresh Harvest Box", description: "Fresh farm produce delivered directly to you.", price: 156200, image_url: "/images/fresh.jpeg", category: "Fresh" },
+  { id: 4, name: "Sunrise Essentials (Beginner)", description: "Start your day with wholesome breakfast essentials.", price: 56200, image_url: "/images/everyday needs-02.jpg.jpeg", category: "Breakfast" },
+  { id: 5, name: "Protein Prime Cut (Classic)", description: "Quality protein selections for your family.", price: 106500, image_url: "/images/everyday needs-03.jpg.jpeg", category: "Protein" },
+  { id: 6, name: "Pure Bliss Pampers Kit (Beginner)", description: "Self-care and pampering essentials.", price: 73400, image_url: "/images/logo.jpeg", category: "Personal Care" },
+  { id: 7, name: "Little Bundle of Joy (Essentials)", description: "All the basics for your little one's comfort.", price: 55000, image_url: "/images/logo.jpeg", category: "Baby" },
+  { id: 8, name: "Radiant Glow (Beginner)", description: "Skincare and beauty essentials for a healthy glow.", price: 77000, image_url: "/images/logo.jpeg", category: "Skincare" },
+  { id: 9, name: "Sparkling Sanctuary (Essentials)", description: "Home cleaning and maintenance supplies.", price: 20900, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Home" },
+  { id: 10, name: "Zen Wellness Box", description: "Supplements and wellness products for vitality.", price: 25000, image_url: "/images/everyday needs-02.jpg.jpeg", category: "Wellness" },
 ];
 
 const Storage = {
@@ -3261,13 +3279,39 @@ function App() {
     }
   };
 
-  const handleBuyNow = (product: any) => {
+  const handleBuyNow = (product: any, amount?: number) => {
     if (!user) {
       setView('auth');
       return;
     }
-    // Handle checkout logic
-    alert(`Proceeding to checkout for ${product.name}`);
+
+    const finalAmount = amount || product.price;
+
+    // @ts-ignore
+    const handler = window.PaystackPop.setup({
+      key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Replace with real key
+      email: user.email,
+      amount: finalAmount * 100, // Convert to kobo
+      currency: 'NGN',
+      metadata: {
+        custom_fields: [
+          {
+            display_name: "Product Name",
+            variable_name: "product_name",
+            value: product.name
+          }
+        ]
+      },
+      callback: function (response: any) {
+        alert('Payment successful! Reference: ' + response.reference);
+        // Clear cart or handle post-payment logic
+      },
+      onClose: function () {
+        alert('Transaction was not completed.');
+      }
+    });
+
+    handler.openIframe();
   };
 
   useEffect(() => {
