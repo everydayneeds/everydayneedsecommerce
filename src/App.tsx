@@ -46,7 +46,11 @@ import {
   Trash2,
   Camera,
   Download,
-  UserPlus
+  UserPlus,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin
 } from 'lucide-react';
 import {
   AreaChart,
@@ -344,7 +348,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
         >
           <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl">
             <img
-              src="/images/everyday needs-03.jpg.jpeg"
+              src="/images/hero_main.jpeg"
               alt="Everyday Needs Box"
               className="w-full h-full object-cover"
             />
@@ -433,7 +437,10 @@ const ProductCard: React.FC<{
           <span className="text-2xl font-extrabold text-zinc-900">₦{product.price.toLocaleString()}</span>
         </div>
         <div className="flex items-center gap-2">
-          <button className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all">
+          <button
+            onClick={(e) => { e.stopPropagation(); onSelect(product); }}
+            className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all"
+          >
             <ShoppingCart size={20} />
           </button>
         </div>
@@ -456,7 +463,7 @@ const ProductDetail = ({
   product: any,
   onSubscribe: (plan: string) => void,
   onAddToCart: (p: any) => void,
-  onBuyNow: (p: any) => void,
+  onBuyNow: (p: any, amount?: number) => void,
   onBack: () => void,
   suggestions: Product[],
   onSelectProduct: (p: Product) => void,
@@ -465,6 +472,7 @@ const ProductDetail = ({
 }) => {
   const [selectedPlan, setSelectedPlan] = useState('monthly');
   const [activeTab, setActiveTab] = useState('details');
+  const [quantity, setQuantity] = useState(1);
 
   const plans = [
     { id: 'monthly', name: 'Monthly', discount: 0, period: 'month' },
@@ -573,19 +581,37 @@ const ProductDetail = ({
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6">
+                <div className="flex items-center bg-zinc-100 rounded-2xl px-6 py-4">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2 hover:text-emerald-600 transition-colors"
+                  >
+                    <Plus size={20} className="rotate-45" />
+                  </button>
+                  <span className="w-12 text-center text-xl font-bold text-zinc-900">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-2 hover:text-emerald-600 transition-colors"
+                  >
+                    <Plus size={20} />
+                  </button>
+                </div>
                 <button
-                  onClick={() => onAddToCart(product)}
-                  className="flex-1 bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-zinc-800 transition-all flex items-center justify-center gap-2"
+                  onClick={() => {
+                    for (let i = 0; i < quantity; i++) onAddToCart(product);
+                    setQuantity(1);
+                  }}
+                  className="flex-[2] bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-zinc-800 transition-all flex items-center justify-center gap-2"
                 >
                   <ShoppingCart size={20} />
                   Add to Cart
                 </button>
                 <button
-                  onClick={() => onBuyNow(product)}
-                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100"
+                  onClick={() => onBuyNow(product, calculatePrice(selectedPlan) * quantity)}
+                  className="flex-[2] bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100"
                 >
-                  Buy Now — ₦{product.price.toLocaleString()}
+                  Buy Now — ₦{(calculatePrice(selectedPlan) * quantity).toLocaleString()}
                 </button>
               </div>
             </div>
@@ -3176,16 +3202,18 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 };
 
 const MOCK_BOXES: Product[] = [
-  { id: 1, name: "Gourmet Pleasure (Beginner)", description: "Premium gourmet treats and artisanal delights.", price: 230000, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Gourmet" },
-  { id: 2, name: "Pantry Provision Box (Beginner)", description: "Essential pantry staples for a balanced home.", price: 65400, image_url: "/images/pantry.jpeg", category: "Pantry" },
-  { id: 3, name: "Farm Fresh Harvest Box", description: "Fresh farm produce delivered directly to you.", price: 156200, image_url: "/images/fresh.jpeg", category: "Fresh" },
-  { id: 4, name: "Sunrise Essentials (Beginner)", description: "Start your day with wholesome breakfast essentials.", price: 56200, image_url: "/images/everyday needs-02.jpg.jpeg", category: "Breakfast" },
-  { id: 5, name: "Protein Prime Cut (Classic)", description: "Quality protein selections for your family.", price: 106500, image_url: "/images/everyday needs-03.jpg.jpeg", category: "Protein" },
-  { id: 6, name: "Pure Bliss Pampers Kit (Beginner)", description: "Self-care and pampering essentials.", price: 73400, image_url: "/images/logo.jpeg", category: "Personal Care" },
-  { id: 7, name: "Little Bundle of Joy (Essentials)", description: "All the basics for your little one's comfort.", price: 55000, image_url: "/images/logo.jpeg", category: "Baby" },
-  { id: 8, name: "Radiant Glow (Beginner)", description: "Skincare and beauty essentials for a healthy glow.", price: 77000, image_url: "/images/logo.jpeg", category: "Skincare" },
-  { id: 9, name: "Sparkling Sanctuary (Essentials)", description: "Home cleaning and maintenance supplies.", price: 20900, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Home" },
-  { id: 10, name: "Zen Wellness Box", description: "Supplements and wellness products for vitality.", price: 25000, image_url: "/images/everyday needs-02.jpg.jpeg", category: "Wellness" },
+  { id: 1, name: "Gourmet Pleasure (Beginner)", description: "Premium gourmet treats and artisanal delights.", price: 230000, image_url: "/images/hero_main.jpeg", category: "Gourmet" },
+  { id: 2, name: "Pantry Provision Box (Beginner)", description: "Essential pantry staples for a balanced home.", price: 65400, image_url: "/images/pantry_premium.jpeg", category: "Pantry" },
+  { id: 3, name: "Farm Fresh Harvest Box", description: "Fresh farm produce delivered directly to you.", price: 156200, image_url: "/images/fresh_harvest.jpeg", category: "Fresh" },
+  { id: 4, name: "Sunrise Essentials (Beginner)", description: "Start your day with wholesome breakfast essentials.", price: 56200, image_url: "/images/breakfast_essentials.jpeg", category: "Breakfast" },
+  { id: 5, name: "Protein Prime Cut (Classic)", description: "Quality protein selections for your family.", price: 106500, image_url: "/images/meat_prime.jpg", category: "Protein" },
+  { id: 6, name: "Pure Bliss Pampers Kit (Beginner)", description: "Self-care and pampering essentials.", price: 73400, image_url: "/images/pamper_kit.jpeg", category: "Personal Care" },
+  { id: 7, name: "Little Bundle of Joy (Essentials)", description: "All the basics for your little one's comfort.", price: 55000, image_url: "/images/baby_joy.jpeg", category: "Baby" },
+  { id: 8, name: "Radiant Glow (Beginner)", description: "Skincare and beauty essentials for a healthy glow.", price: 77000, image_url: "/images/pampers_mini.jpeg", category: "Skincare" },
+  { id: 9, name: "Sparkling Sanctuary (Essentials)", description: "Home cleaning and maintenance supplies.", price: 20900, image_url: "/images/cleaning_sanctuary.jpeg", category: "Home" },
+  { id: 10, name: "Zen Wellness Box", description: "Supplements and wellness products for vitality.", price: 25000, image_url: "/images/wellness_box.jpeg", category: "Wellness" },
+  { id: 11, name: "Classic Harvest Box", description: "The classic selection of fresh produce.", price: 85000, image_url: "/images/harvest_box_classic.jpeg", category: "Fresh" },
+  { id: 12, name: "Luxury Breakfast Essentials", description: "Gourmet breakfast items for a perfect morning.", price: 95000, image_url: "/images/breakfast_luxury.jpeg", category: "Breakfast" },
 ];
 
 const Storage = {
@@ -3683,7 +3711,11 @@ function App() {
                 onAddToCart={handleAddToCart}
                 onBuyNow={handleBuyNow}
                 onBack={() => setView('products')}
-                suggestions={products.filter(p => p.id !== selectedProduct.id)}
+                suggestions={products.filter(p => p.id !== selectedProduct.id).sort((a, b) => {
+                  if (a.category === selectedProduct.category) return -1;
+                  if (b.category === selectedProduct.category) return 1;
+                  return 0;
+                })}
                 onSelectProduct={handleProductSelect}
                 isLiked={wishlist.includes(selectedProduct.id)}
                 onLike={handleLike}
@@ -4079,9 +4111,18 @@ function App() {
           <div className="mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-zinc-400">© 2024 Everyday Needs. All rights reserved.</p>
             <div className="flex items-center space-x-6">
-              <div className="w-8 h-8 bg-white rounded-full border border-black/5" />
-              <div className="w-8 h-8 bg-white rounded-full border border-black/5" />
-              <div className="w-8 h-8 bg-white rounded-full border border-black/5" />
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+                <Facebook size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+                <Instagram size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+                <MessageSquare size={18} />
+              </a>
+              <a href="mailto:hello@everydayneeds.ng" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+                <Mail size={18} />
+              </a>
             </div>
           </div>
         </div>
