@@ -462,7 +462,7 @@ const ProductDetail = ({
 }: {
   product: any,
   onSubscribe: (plan: string) => void,
-  onAddToCart: (p: any) => void,
+  onAddToCart: (p: any, q?: number) => void,
   onBuyNow: (p: any, amount?: number) => void,
   onBack: () => void,
   suggestions: Product[],
@@ -599,7 +599,7 @@ const ProductDetail = ({
                 </div>
                 <button
                   onClick={() => {
-                    for (let i = 0; i < quantity; i++) onAddToCart(product);
+                    onAddToCart(product, quantity);
                     setQuantity(1);
                   }}
                   className="flex-[2] bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-zinc-800 transition-all flex items-center justify-center gap-2"
@@ -3266,17 +3266,17 @@ function App() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === product.id);
       if (existingItem) {
         return prevCart.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
         );
       }
-      return [...prevCart, { ...product, quantity: 1 }];
+      return [...prevCart, { ...product, quantity }];
     });
-    setNotification(`${product.name} added to cart!`);
+    setNotification(`${quantity} x ${product.name} added to cart!`);
     setTimeout(() => setNotification(null), 3000);
   };
 
@@ -3501,25 +3501,11 @@ function App() {
         total={cartTotal}
         onCheckout={() => {
           setIsCartOpen(false);
-          handleBuyNow(cart[0]); // Simplified for now, just trigger checkout flow
+          if (cart.length > 0) {
+            handleBuyNow({ name: 'Everyday Needs Cart Bundle' }, cartTotal);
+          }
         }}
       />
-
-      <AnimatePresence>
-        {notification && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
-          >
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <Check size={18} />
-            </div>
-            <p className="font-bold">{notification}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <AnimatePresence>
         {notification && (
@@ -4109,7 +4095,7 @@ function App() {
             </div>
           </div>
           <div className="mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-zinc-400">© 2024 Everyday Needs. All rights reserved.</p>
+            <p className="text-xs text-zinc-400">© 2026 Everyday Needs. All rights reserved designed by airealcom.</p>
             <div className="flex items-center space-x-6">
               <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
                 <Facebook size={18} />
