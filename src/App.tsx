@@ -3258,6 +3258,11 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [pendingAction, setPendingAction] = useState<{ type: 'buy' | 'subscribe', payload: any } | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [view, selectedProduct]);
 
   const filteredProducts = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -3309,6 +3314,7 @@ function App() {
 
   const handleBuyNow = (product: any, amount?: number) => {
     if (!user) {
+      setPendingAction({ type: 'buy', payload: { product, amount } });
       setView('auth');
       return;
     }
@@ -3380,6 +3386,15 @@ function App() {
       Storage.setUser(mockUser);
     }
     if (view === 'home' || view === 'auth') setView('dashboard');
+
+    if (pendingAction) {
+      if (pendingAction.type === 'buy') {
+        handleBuyNow(pendingAction.payload.product, pendingAction.payload.amount);
+      } else if (pendingAction.type === 'subscribe') {
+        handleSubscribe(pendingAction.payload.plan);
+      }
+      setPendingAction(null);
+    }
   };
 
   const handleLogout = () => {
@@ -3401,6 +3416,7 @@ function App() {
 
   const handleSubscribe = async (plan: string) => {
     if (!user) {
+      setPendingAction({ type: 'subscribe', payload: { plan } });
       setView('auth');
       return;
     }
