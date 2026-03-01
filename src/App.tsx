@@ -515,7 +515,7 @@ const ProductDetail = ({
           <div className="flex gap-4">
             {[1, 2, 3].map(i => (
               <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-emerald-600 transition-all">
-                <img src={`https://picsum.photos/seed/prod-thumb-${i}/200/200`} alt="Thumb" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src={`/images/thumb_${i}.jpg`} alt="Thumb" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             ))}
           </div>
