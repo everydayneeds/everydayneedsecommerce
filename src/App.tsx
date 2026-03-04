@@ -86,24 +86,24 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer" onClick={() => setView('home')}>
-            <span className="text-2xl font-bold tracking-tighter text-emerald-600">Everyday Needs</span>
+            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">Products</button>
-            <button onClick={() => setView('about')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">About</button>
-            <button onClick={() => setView('partners')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">Partners</button>
-            <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-emerald-600 transition-colors">Contact Us</button>
+            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Products</button>
+            <button onClick={() => setView('about')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">About</button>
+            <button onClick={() => setView('partners')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Partners</button>
+            <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Contact Us</button>
 
             <div className="h-6 w-px bg-zinc-200 mx-2" />
 
             <button
               onClick={onOpenCart}
-              className="relative p-2 text-zinc-600 hover:text-emerald-600 transition-colors group"
+              className="relative p-2 text-zinc-600 hover:text-[#6F7E57] transition-colors group"
             >
               <ShoppingCart size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
                   {cartCount}
                 </span>
               )}
@@ -122,7 +122,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             ) : (
               <button
                 onClick={() => setView('auth')}
-                className="bg-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-emerald-700 transition-all shadow-sm hover:shadow-md"
+                className="bg-[#6F7E57] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#6F7E57]/90 transition-all shadow-sm hover:shadow-md"
               >
                 Login / Register
               </button>
@@ -136,7 +136,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             >
               <ShoppingCart size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               )}
@@ -163,13 +163,14 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
               <button onClick={() => { setView('partners'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Partners</button>
               <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Contact Us</button>
               {!user && (
-                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-4 block w-full text-center bg-emerald-600 text-white px-3 py-4 rounded-xl font-medium">Login / Register</button>
+                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-4 block w-full text-center bg-[#6F7E57] text-white px-3 py-4 rounded-xl font-medium">Login / Register</button>
               )}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
+
   );
 };
 
@@ -209,7 +210,7 @@ const CartDrawer = ({
         >
           <div className="p-6 border-b border-zinc-100 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+              <div className="p-2 bg-brand-alt-2/20 text-[#6F7E57] rounded-xl">
                 <ShoppingCart size={20} />
               </div>
               <h3 className="text-xl font-bold text-zinc-900">Your Cart</h3>
@@ -231,7 +232,7 @@ const CartDrawer = ({
                 </div>
                 <button
                   onClick={onClose}
-                  className="bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-all"
+                  className="bg-[#6F7E57] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all"
                 >
                   Start Shopping
                 </button>
@@ -257,14 +258,14 @@ const CartDrawer = ({
                       <div className="flex items-center bg-zinc-100 rounded-lg px-2 py-1">
                         <button
                           onClick={() => onUpdateQuantity(item.id, -1)}
-                          className="p-1 hover:text-emerald-600 transition-colors"
+                          className="p-1 hover:text-[#6F7E57] transition-colors"
                         >
                           <X size={14} className="rotate-45" />
                         </button>
                         <span className="w-8 text-center text-xs font-bold text-zinc-900">{item.quantity}</span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, 1)}
-                          className="p-1 hover:text-emerald-600 transition-colors"
+                          className="p-1 hover:text-[#6F7E57] transition-colors"
                         >
                           <Plus size={14} />
                         </button>
@@ -285,7 +286,7 @@ const CartDrawer = ({
               </div>
               <button
                 onClick={onCheckout}
-                className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 flex items-center justify-center gap-2 group"
+                className="w-full bg-[#6F7E57] text-white py-4 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/10 flex items-center justify-center gap-2 group"
               >
                 Checkout Now
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -299,99 +300,83 @@ const CartDrawer = ({
       </>
     )}
   </AnimatePresence>
-);
+)
+  ;
 
 const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => (
-  <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
+  <section className="relative min-h-screen overflow-hidden">
+    {/* Full-bleed background image */}
+    <div className="absolute inset-0 z-0">
+      <img
+        src="/images/front page.jpeg"
+        alt="Everyday Needs Box"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5]/95 via-[#F8F0E5]/80 to-transparent" />
+    </div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-40 pb-32">
+      <div className="max-w-2xl">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          <div className="inline-flex items-center space-x-2 bg-[#6F7E57]/10 text-[#6F7E57] px-4 py-2 rounded-full text-sm font-bold mb-6">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6F7E57]/40 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6F7E57]"></span>
             </span>
             <span>Just In Time — Serving Lagos & Port Harcourt</span>
           </div>
-          <h1 className="text-5xl lg:text-7xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
-            Everything your <span className="text-emerald-600">Home Needs</span>, Delivered.
+          <h1 className="font-serif text-5xl lg:text-7xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
+            Everything Your <span className="text-[#6F7E57]">Home Needs</span>. Delivered.
           </h1>
-          <p className="text-xl text-zinc-500 mb-10 leading-relaxed max-w-xl">
-            From farm-fresh produce to premium pantry essentials, we deliver curated boxes of everything you need, exactly when you need it.
+          <p className="text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            From fresh farm produce to pantry essentials, baby care to home supplies — Everyday Needs delivers curated boxes of trusted essentials directly to your doorstep.
+          </p>
+          <p className="text-lg font-semibold mb-10" style={{ color: '#6F7E57' }}>
+            No stress. No last-minute shopping. Just reliable living.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => setView('products')}
-              className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 flex items-center justify-center gap-2 group"
+              className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
             >
-              Shop Collection
+              Start Your Subscription
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
-              onClick={() => setView('about')}
-              className="bg-white text-zinc-900 border-2 border-zinc-100 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-zinc-50 transition-all flex items-center justify-center gap-2"
+              onClick={() => setView('products')}
+              className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
             >
-              Our Story
+              Explore Our Boxes
             </button>
           </div>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative"
-        >
-          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl">
-            <img
-              src="/images/hero_main.jpeg"
-              alt="Everyday Needs Box"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute -top-10 -right-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-50 -z-10" />
-          <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-zinc-100 rounded-full blur-3xl opacity-50 -z-10" />
-
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -right-4 top-20 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 border border-zinc-100"
-          >
-            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
-              <Star size={24} fill="currentColor" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Top Rated</p>
-              <p className="text-sm font-bold text-zinc-900">4.9/5 Happy Homes</p>
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
+    </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-100 pt-12"
-      >
-        {[
-          { label: 'Reliable', icon: Truck },
-          { label: 'Safe', icon: ShieldCheck },
-          { label: 'Thoughtfully Sourced', icon: Heart },
-          { label: 'Trusted', icon: CheckCircle2 },
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center space-y-2">
-            <div className="p-3 bg-emerald-50 rounded-2xl text-emerald-600">
-              <item.icon size={24} />
+    {/* Trust Bar */}
+    <div className="relative z-10 bg-[#F8F0E5]/90 backdrop-blur-sm border-t border-black/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { label: 'Reliable', icon: Truck },
+            { label: 'Safe', icon: ShieldCheck },
+            { label: 'Thoughtfully Sourced', icon: Heart },
+            { label: 'Trusted', icon: CheckCircle2 },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col items-center space-y-2">
+              <div className="p-3 bg-[#6F7E57]/10 rounded-2xl text-[#6F7E57]">
+                <item.icon size={24} />
+              </div>
+              <span className="text-sm font-medium text-zinc-600">{item.label}</span>
             </div>
-            <span className="text-sm font-medium text-zinc-500">{item.label}</span>
-          </div>
-        ))}
-      </motion.div>
+          ))}
+        </div>
+        <p className="text-center text-sm text-zinc-500 mt-6 italic">Reliable. Safe. Thoughtfully sourced. Trusted by modern households.</p>
+      </div>
     </div>
   </section>
 );
@@ -416,7 +401,7 @@ const ProductCard: React.FC<{
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-4 left-4">
-        <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-emerald-600 rounded-full shadow-sm">
+        <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-full shadow-sm">
           {product.category}
         </span>
       </div>
@@ -429,17 +414,17 @@ const ProductCard: React.FC<{
       </button>
     </div>
     <div className="p-8 flex flex-col flex-grow">
-      <h3 className="text-xl font-bold text-zinc-900 mb-2">{product.name}</h3>
+      <h3 className="font-serif text-xl font-bold text-zinc-900 mb-2">{product.name}</h3>
       <p className="text-sm text-zinc-500 mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
       <div className="flex items-center justify-between mt-auto">
         <div>
-          <span className="text-xs text-zinc-400 block uppercase tracking-widest font-bold mb-1">Price</span>
-          <span className="text-2xl font-extrabold text-zinc-900">₦{product.price.toLocaleString()}</span>
+          <span className="text-2xl font-extrabold text-zinc-900" style={{ fontFamily: 'Montserrat, sans-serif' }}>₦{product.price.toLocaleString()}</span>
+          <span className="block text-xs text-[#6F7E57] font-semibold mt-1">Delivered Monthly</span>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={(e) => { e.stopPropagation(); onSelect(product); }}
-            className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all"
+            className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-[#6F7E57] hover:text-white transition-all"
           >
             <ShoppingCart size={20} />
           </button>
@@ -447,6 +432,7 @@ const ProductCard: React.FC<{
       </div>
     </div>
   </motion.div>
+
 );
 
 const ProductDetail = ({
@@ -514,7 +500,7 @@ const ProductDetail = ({
 
           <div className="flex gap-4">
             {[1, 2, 3].map(i => (
-              <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-emerald-600 transition-all">
+              <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] transition-all">
                 <img src={`/images/thumb_${i}.jpg`} alt="Thumb" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             ))}
@@ -524,7 +510,7 @@ const ProductDetail = ({
         <div className="space-y-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-emerald-50 text-emerald-600 text-xs font-bold uppercase tracking-widest rounded-full">
+              <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-bold uppercase tracking-widest rounded-full">
                 {product.category}
               </span>
               <div className="flex items-center gap-1 text-amber-400">
@@ -539,19 +525,19 @@ const ProductDetail = ({
           <div className="flex items-center gap-4 p-1 bg-zinc-100 rounded-2xl w-fit">
             <button
               onClick={() => setActiveTab('details')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'details' ? 'bg-white shadow-sm text-emerald-600' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'details' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Details
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-emerald-600' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Subscription Plans
             </button>
             <button
               onClick={() => setActiveTab('reviews')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-emerald-600' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Reviews
             </button>
@@ -560,39 +546,69 @@ const ProductDetail = ({
           {activeTab === 'details' && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="bg-white rounded-3xl border border-black/5 p-8">
-                <h3 className="text-xl font-bold mb-6">What's inside this product?</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {(product.products || [
+                <h3 className="font-serif text-xl font-bold mb-6">What's inside this box?</h3>
+                {(() => {
+                  const items = product.products || [
                     { name: 'Organic Tomatoes', quantity: 2 },
                     { name: 'Fresh Spinach', quantity: 1 },
                     { name: 'Farm Eggs', quantity: 12 },
                     { name: 'Local Honey', quantity: 1 }
-                  ]).map((item: any, i: number) => (
-                    <div key={i} className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-black/5">
-                      <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                        <Package size={20} className="text-emerald-600" />
+                  ];
+                  if (items.length > 2) {
+                    return (
+                      <div className="space-y-4">
+                        <select className="w-full px-6 py-4 bg-[#F8F0E5] border border-zinc-200 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all appearance-none cursor-pointer" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <option value="">Select an item to view — {items.length} items included</option>
+                          {items.map((item: any, i: number) => (
+                            <option key={i} value={item.name}>{item.name} (Qty: {item.quantity})</option>
+                          ))}
+                        </select>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                          {items.map((item: any, i: number) => (
+                            <div key={i} className="flex items-center gap-3 p-3 bg-[#F8F0E5] rounded-xl border border-black/5">
+                              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm shrink-0">
+                                <Package size={16} className="text-[#6F7E57]" />
+                              </div>
+                              <div>
+                                <p className="font-bold text-xs text-zinc-900">{item.name}</p>
+                                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Qty: {item.quantity}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-bold text-sm text-zinc-900">{item.name}</p>
-                        <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Qty: {item.quantity}</p>
-                      </div>
+                    );
+                  }
+                  return (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {items.map((item: any, i: number) => (
+                        <div key={i} className="flex items-center gap-4 p-4 bg-[#F8F0E5] rounded-2xl border border-black/5">
+                          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                            <Package size={20} className="text-[#6F7E57]" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-sm text-zinc-900">{item.name}</p>
+                            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Qty: {item.quantity}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  );
+                })()}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex items-center bg-zinc-100 rounded-2xl px-6 py-4">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:text-emerald-600 transition-colors"
+                    className="p-2 hover:text-[#6F7E57] transition-colors"
                   >
                     <Plus size={20} className="rotate-45" />
                   </button>
                   <span className="w-12 text-center text-xl font-bold text-zinc-900">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:text-emerald-600 transition-colors"
+                    className="p-2 hover:text-[#6F7E57] transition-colors"
                   >
                     <Plus size={20} />
                   </button>
@@ -609,7 +625,7 @@ const ProductDetail = ({
                 </button>
                 <button
                   onClick={() => onBuyNow(product, calculatePrice(selectedPlan) * quantity)}
-                  className="flex-[2] bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100"
+                  className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20"
                 >
                   Buy Now — ₦{(calculatePrice(selectedPlan) * quantity).toLocaleString()}
                 </button>
@@ -625,12 +641,12 @@ const ProductDetail = ({
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id)}
                     className={`flex items-center justify-between p-6 rounded-3xl border-2 transition-all ${selectedPlan === plan.id
-                      ? 'border-emerald-600 bg-emerald-50/50'
+                      ? 'border-[#6F7E57] bg-[#6F7E57]/10'
                       : 'border-black/5 bg-white hover:border-zinc-200'
                       }`}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.id ? 'border-emerald-600 bg-emerald-600' : 'border-zinc-300'
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.id ? 'border-[#6F7E57] bg-[#6F7E57]' : 'border-zinc-300'
                         }`}>
                         {selectedPlan === plan.id && <div className="w-2 h-2 bg-white rounded-full" />}
                       </div>
@@ -642,7 +658,7 @@ const ProductDetail = ({
                     <div className="text-right">
                       <p className="font-bold text-zinc-900 text-lg">₦{calculatePrice(plan.id).toLocaleString()}</p>
                       {plan.discount > 0 && (
-                        <p className="text-xs text-emerald-600 font-bold uppercase tracking-widest">Save {plan.discount}%</p>
+                        <p className="text-xs text-[#6F7E57] font-bold uppercase tracking-widest">Save {plan.discount}%</p>
                       )}
                     </div>
                   </button>
@@ -650,7 +666,7 @@ const ProductDetail = ({
               </div>
               <button
                 onClick={() => onSubscribe(selectedPlan)}
-                className="w-full bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-emerald-600 transition-all shadow-xl flex items-center justify-center gap-2"
+                className="w-full bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl flex items-center justify-center gap-2"
               >
                 <Calendar size={20} />
                 Start Subscription Plan
@@ -662,7 +678,7 @@ const ProductDetail = ({
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold text-zinc-900">Customer Reviews</h3>
-                <button className="text-sm font-bold text-emerald-600 hover:underline">Write a Review</button>
+                <button className="text-sm font-bold text-[#6F7E57] hover:underline">Write a Review</button>
               </div>
               <div className="space-y-4">
                 {reviews.map((rev, i) => (
@@ -684,6 +700,19 @@ const ProductDetail = ({
             </div>
           )}
         </div>
+      </div>
+
+      {/* Reference Images */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        {[
+          { src: '/images/thumb_1.jpg', alt: 'Shelf' },
+          { src: '/images/thumb_2.jpg', alt: 'Veggie 1' },
+          { src: '/images/thumb_3.jpg', alt: 'Veggie 2' }
+        ].map((img, i) => (
+          <div key={i} className="aspect-video rounded-[2.5rem] overflow-hidden border border-black/5 shadow-sm">
+            <img src={img.src} alt={img.alt} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          </div>
+        ))}
       </div>
 
       {/* Suggestions */}
@@ -710,14 +739,14 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-zinc-50">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F8F0E5]">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="max-w-md w-full bg-white rounded-[2.5rem] shadow-xl border border-black/5 p-10"
       >
         <div className="text-center mb-10">
-          <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-6">
+          <div className="w-16 h-16 bg-brand-alt-2/20 rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6">
             <ShoppingBag size={32} />
           </div>
           <h2 className="text-3xl font-bold text-zinc-900">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
@@ -731,7 +760,7 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
+              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
               placeholder="name@example.com"
             />
           </div>
@@ -740,7 +769,7 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
               <label className="block text-sm font-bold text-zinc-700 mb-2">Full Name</label>
               <input
                 type="text"
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
                 placeholder="John Doe"
               />
             </div>
@@ -749,14 +778,14 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
             <label className="block text-sm font-bold text-zinc-700 mb-2">Password</label>
             <input
               type="password"
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
+              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
               placeholder="••••••••"
             />
           </div>
 
           <button
-            onClick={() => onLogin(email || 'demo@example.com')}
-            className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200"
+            onClick={() => onLogin(email || 'user@example.com')}
+            className="w-full bg-[#693311] text-white py-4 rounded-2xl font-bold hover:bg-[#693311]/90 transition-all shadow-lg"
           >
             {isLogin ? 'Sign In' : 'Create Account'}
           </button>
@@ -779,7 +808,7 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
         <div className="mt-10 text-center">
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm font-bold text-emerald-600 hover:underline"
+            className="text-sm font-bold text-[#693311] hover:underline"
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
@@ -806,7 +835,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       features: ['Priority delivery', 'Standard support', 'Flexible pausing', '5% discount'],
       id: 'quarterly',
       popular: true,
-      color: 'bg-emerald-50'
+      color: 'bg-[#6F7E57]/10'
     },
     {
       name: 'Annual',
@@ -833,7 +862,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
             className={`p-10 rounded-[3rem] border border-black/5 flex flex-col h-full relative ${plan.color}`}
           >
             {plan.popular && (
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+              <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#6F7E57] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                 Most Popular
               </span>
             )}
@@ -847,7 +876,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
             <ul className="space-y-4 mb-10 flex-grow">
               {plan.features.map((f, j) => (
                 <li key={j} className="flex items-center gap-3 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-emerald-500" />
+                  <CheckCircle2 size={18} className="text-[#6F7E57]" />
                   <span>{f}</span>
                 </li>
               ))}
@@ -856,8 +885,8 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
             <button
               onClick={() => onSelect(plan.id)}
               className={`w-full py-4 rounded-2xl font-bold transition-all ${plan.id === 'annual'
-                ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                : 'bg-zinc-900 text-white hover:bg-emerald-600'
+                ? 'bg-[#6F7E57] text-white hover:bg-[#6F7E57]/90'
+                : 'bg-zinc-900 text-white hover:bg-[#6F7E57]'
                 }`}
             >
               Select {plan.name}
@@ -898,10 +927,10 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
         <div className="mb-10">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-3xl font-bold text-zinc-900">Seller Verification</h3>
-            <span className="text-sm font-bold text-emerald-600">Step {step} of 2</span>
+            <span className="text-sm font-bold text-[#6F7E57]">Step {step} of 2</span>
           </div>
           <div className="w-full bg-zinc-100 h-2 rounded-full overflow-hidden">
-            <div className={`h-full bg-emerald-600 transition-all duration-500 ${step === 1 ? 'w-1/2' : 'w-full'}`} />
+            <div className={`h-full bg-[#6F7E57] transition-all duration-500 ${step === 1 ? 'w-1/2' : 'w-full'}`} />
           </div>
         </div>
 
@@ -913,8 +942,8 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
                 type="text"
                 value={formData.businessName}
                 onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                placeholder="Green Pastures Farm"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                placeholder="Everyday Farms"
               />
             </div>
             <div>
@@ -922,7 +951,7 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
               >
                 <option>Farmer</option>
                 <option>Manufacturer</option>
@@ -939,7 +968,7 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
               </button>
               <button
                 onClick={() => setStep(2)}
-                className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-emerald-600 transition-all"
+                className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all"
               >
                 Continue
               </button>
@@ -953,7 +982,7 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
                 type="text"
                 value={formData.cacNumber}
                 onChange={(e) => setFormData({ ...formData, cacNumber: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="RC1234567"
               />
             </div>
@@ -962,7 +991,7 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
               <textarea
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500 h-32"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
                 placeholder="123 Farm Road, Lagos"
               />
             </div>
@@ -975,7 +1004,7 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
               </button>
               <button
                 onClick={() => onSubmit(formData)}
-                className="flex-[2] bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200"
+                className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20"
               >
                 Submit Verification
               </button>
@@ -1014,7 +1043,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
               }
             }}
             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeFilter === f.id
-              ? 'bg-white text-emerald-600 shadow-sm'
+              ? 'bg-white text-[#6F7E57] shadow-sm'
               : 'text-zinc-500 hover:text-zinc-900'
               }`}
           >
@@ -1033,7 +1062,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
                 type="date"
                 value={customDates.start}
                 onChange={(e) => setCustomDates({ ...customDates, start: e.target.value })}
-                className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20"
               />
             </div>
             <div>
@@ -1042,7 +1071,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
                 type="date"
                 value={customDates.end}
                 onChange={(e) => setCustomDates({ ...customDates, end: e.target.value })}
-                className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20"
               />
             </div>
             <button
@@ -1050,7 +1079,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
                 onFilterChange('custom', customDates);
                 setShowDatePicker(false);
               }}
-              className="w-full py-2 bg-emerald-600 text-white rounded-lg text-xs font-bold hover:bg-emerald-700 transition-all"
+              className="w-full py-2 bg-[#6F7E57] text-white rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all"
             >
               Apply Range
             </button>
@@ -1104,7 +1133,7 @@ const ProductFormModal = ({
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="Organic Tomato Box"
               />
             </div>
@@ -1114,7 +1143,7 @@ const ProductFormModal = ({
                 type="number"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="15000"
               />
             </div>
@@ -1126,7 +1155,7 @@ const ProductFormModal = ({
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
               >
                 <option>Fresh Farm</option>
                 <option>Pantry Essentials</option>
@@ -1140,7 +1169,7 @@ const ProductFormModal = ({
                 type="number"
                 value={formData.stock}
                 onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="100"
               />
             </div>
@@ -1151,7 +1180,7 @@ const ProductFormModal = ({
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500 h-32"
+              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
               placeholder="Describe your product..."
             />
           </div>
@@ -1159,7 +1188,7 @@ const ProductFormModal = ({
           <div>
             <label className="block text-sm font-bold text-zinc-700 mb-2">Product Images</label>
             <div className="grid grid-cols-4 gap-4">
-              <button className="aspect-square bg-zinc-50 border-2 border-dashed border-zinc-200 rounded-2xl flex flex-col items-center justify-center text-zinc-400 hover:border-emerald-500 hover:text-emerald-600 transition-all">
+              <button className="aspect-square bg-zinc-50 border-2 border-dashed border-zinc-200 rounded-2xl flex flex-col items-center justify-center text-zinc-400 hover:border-[#6F7E57]/50 hover:text-[#6F7E57] transition-all">
                 <Plus size={24} />
                 <span className="text-xs font-bold mt-1 uppercase tracking-widest">Add Image</span>
               </button>
@@ -1173,7 +1202,7 @@ const ProductFormModal = ({
 
           <div className="flex gap-4 pt-4">
             <button onClick={onClose} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Cancel</button>
-            <button onClick={() => onSubmit(formData)} className="flex-[2] bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all">
+            <button onClick={() => onSubmit(formData)} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20">
               {initialData ? 'Save Changes' : 'Add Product'}
             </button>
           </div>
@@ -1215,7 +1244,7 @@ const OrderDetailsModal = ({
         </button>
 
         <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600">
+          <div className="w-12 h-12 bg-brand-alt-2/20 rounded-2xl flex items-center justify-center text-[#6F7E57]">
             <ClipboardList size={24} />
           </div>
           <div>
@@ -1242,7 +1271,7 @@ const OrderDetailsModal = ({
               </div>
               <div className="flex justify-between text-sm pt-2 border-t border-zinc-200">
                 <span className="font-bold text-zinc-900">Total</span>
-                <span className="font-bold text-emerald-600">{order.amount}</span>
+                <span className="font-bold text-[#6F7E57]">{order.amount}</span>
               </div>
             </div>
           </div>
@@ -1256,7 +1285,7 @@ const OrderDetailsModal = ({
                 key={s}
                 onClick={() => setStatus(s)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${status === s
-                  ? (s === 'Rejected' ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white')
+                  ? (s === 'Rejected' ? 'bg-red-600 text-white' : 'bg-[#6F7E57] text-white')
                   : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
                   }`}
               >
@@ -1266,34 +1295,34 @@ const OrderDetailsModal = ({
           </div>
 
           {status === 'On Transit' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-emerald-50 rounded-2xl border border-emerald-100 animate-in fade-in slide-in-from-top-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-[#6F7E57]/10 rounded-2xl border border-[#6F7E57]/20 animate-in fade-in slide-in-from-top-2">
               <div>
-                <label className="block text-xs font-bold text-emerald-700 uppercase tracking-widest mb-1.5">Tracking Code</label>
+                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Tracking Code</label>
                 <input
                   type="text"
                   value={transitDetails.trackingCode}
                   onChange={(e) => setTransitDetails({ ...transitDetails, trackingCode: e.target.value })}
-                  className="w-full px-4 py-2 bg-white border border-emerald-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full px-4 py-2 bg-white border border-[#6F7E57]/20 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20"
                   placeholder="TRK-123456"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-emerald-700 uppercase tracking-widest mb-1.5">Courier Phone</label>
+                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Courier Phone</label>
                 <input
                   type="text"
                   value={transitDetails.phone}
                   onChange={(e) => setTransitDetails({ ...transitDetails, phone: e.target.value })}
-                  className="w-full px-4 py-2 bg-white border border-emerald-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full px-4 py-2 bg-white border border-[#6F7E57]/20 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20"
                   placeholder="+234..."
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-emerald-700 uppercase tracking-widest mb-1.5">Company Name</label>
+                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Company Name</label>
                 <input
                   type="text"
                   value={transitDetails.company}
                   onChange={(e) => setTransitDetails({ ...transitDetails, company: e.target.value })}
-                  className="w-full px-4 py-2 bg-white border border-emerald-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full px-4 py-2 bg-white border border-[#6F7E57]/20 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20"
                   placeholder="GIG Logistics"
                 />
               </div>
@@ -1304,7 +1333,7 @@ const OrderDetailsModal = ({
             <button onClick={onClose} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Close</button>
             <button
               onClick={() => onUpdateStatus(order.id, status, status === 'On Transit' ? transitDetails : null)}
-              className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-emerald-600 transition-all"
+              className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all"
             >
               Update Order
             </button>
@@ -1334,18 +1363,18 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   key={plan}
                   onClick={() => setSelectedPlan(plan)}
                   className={`w-full p-4 rounded-2xl border transition-all flex items-center justify-between ${selectedPlan === plan
-                    ? 'border-emerald-500 bg-emerald-50'
-                    : 'border-zinc-200 hover:border-emerald-200'
+                    ? 'border-[#6F7E57]/50 bg-[#6F7E57]/10'
+                    : 'border-zinc-200 hover:border-[#6F7E57]/20'
                     }`}
                 >
                   <span className="text-sm font-bold text-zinc-900">{plan} Plan</span>
-                  {selectedPlan === plan && <div className="w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center"><Check size={10} className="text-white" /></div>}
+                  {selectedPlan === plan && <div className="w-4 h-4 bg-[#6F7E57]/100 rounded-full flex items-center justify-center"><Check size={10} className="text-white" /></div>}
                 </button>
               ))}
             </div>
             <div className="flex gap-4 pt-4">
               <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Back</button>
-              <button onClick={() => { alert('Plan updated! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700">Update Plan</button>
+              <button onClick={() => { alert('Plan updated! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Update Plan</button>
             </div>
           </div>
         );
@@ -1377,7 +1406,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
             </div>
             <div className="flex gap-4 pt-4">
               <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Go Back</button>
-              <button onClick={() => { alert('Subscription cancelled! Notification sent to user.'); setView('main'); onClose(); }} className="flex-[2] bg-red-600 text-white py-4 rounded-2xl font-bold hover:bg-red-700 transition-all">Confirm Cancellation</button>
+              <button onClick={() => { alert('Subscription cancelled! Notification sent to user.'); setView('main'); onClose(); }} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Confirm Cancellation</button>
             </div>
           </div>
         );
@@ -1388,15 +1417,15 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
             <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
               <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Current Status</p>
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full uppercase tracking-wider">Active</span>
+                <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-bold rounded-full uppercase tracking-wider">Active</span>
                 <span className="text-sm font-bold text-zinc-900">{subscription.plan || 'Monthly'} Plan</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-3">
-              <button onClick={() => setView('change-plan')} className="w-full flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-2xl hover:border-emerald-500 transition-all group">
+              <button onClick={() => setView('change-plan')} className="w-full flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-2xl hover:border-[#6F7E57] transition-all group">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                  <div className="p-2 bg-brand-alt-2/20 text-[#6F7E57] rounded-lg group-hover:bg-[#6F7E57] group-hover:text-white transition-colors">
                     <Calendar size={18} />
                   </div>
                   <span className="text-sm font-bold text-zinc-700">Change Billing Plan</span>
@@ -1424,7 +1453,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
             </div>
-            <button onClick={onClose} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-emerald-600 transition-all mt-4">Done</button>
+            <button onClick={onClose} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-[#6F7E57] transition-all mt-4">Done</button>
           </div>
         );
     }
@@ -1548,7 +1577,7 @@ const DashboardLayout = ({
       buyerSidebarGroups;
 
   return (
-    <div className="flex h-screen bg-[#F4F7FE] overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#693311] overflow-hidden font-sans">
       {/* Sidebar */}
       <aside
         className={`bg-white border-r border-zinc-200 flex flex-col h-full transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-20' : 'w-[240px]'
@@ -1557,12 +1586,12 @@ const DashboardLayout = ({
         <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-100 shrink-0">
           {!isSidebarCollapsed && (
             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('home')}>
-              <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
+              <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-bold">E</div>
               <span className="text-lg font-bold tracking-tight text-zinc-900">Everyday</span>
             </div>
           )}
           {isSidebarCollapsed && (
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto">E</div>
+            <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-bold mx-auto">E</div>
           )}
           <button
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
@@ -1586,11 +1615,11 @@ const DashboardLayout = ({
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all group ${activeTab === item.id
-                      ? 'bg-emerald-50 text-emerald-600'
+                      ? 'bg-brand-alt-2/20 text-[#6F7E57]'
                       : 'text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900'
                       }`}
                   >
-                    <item.icon size={18} className={activeTab === item.id ? 'text-emerald-600' : 'text-zinc-400 group-hover:text-zinc-900'} />
+                    <item.icon size={18} className={activeTab === item.id ? 'text-[#6F7E57]' : 'text-zinc-400 group-hover:text-zinc-900'} />
                     {!isSidebarCollapsed && <span>{item.label}</span>}
                   </button>
                 ))}
@@ -1603,7 +1632,7 @@ const DashboardLayout = ({
           {user.role === 'seller' && !isSidebarCollapsed && (
             <button
               onClick={() => onSwitchRole('buyer')}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition-all group mb-2"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-[#6F7E57] bg-brand-alt-2/20 hover:bg-brand-alt-2/30 transition-all group mb-2"
             >
               <Users size={18} />
               <span>Switch to Buyer</span>
@@ -1650,10 +1679,10 @@ const DashboardLayout = ({
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 >
                   <div className="text-right hidden lg:block">
-                    <p className="text-xs font-bold text-zinc-900 group-hover:text-emerald-600 transition-colors">{user.name}</p>
+                    <p className="text-xs font-bold text-zinc-900 group-hover:text-[#6F7E57] transition-colors">{user.name}</p>
                     <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{user.role}</p>
                   </div>
-                  <div className="w-9 h-9 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 font-bold text-sm hover:bg-emerald-200 transition-colors">
+                  <div className="w-9 h-9 bg-brand-alt-2/20 rounded-xl flex items-center justify-center text-[#6F7E57] font-bold text-sm hover:bg-brand-alt-2/30 transition-colors">
                     {user.name[0]}
                   </div>
                 </div>
@@ -1668,21 +1697,21 @@ const DashboardLayout = ({
                     <div className="px-2 space-y-1">
                       <button
                         onClick={() => { onSwitchRole('buyer'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'buyer' ? 'bg-emerald-50 text-emerald-600' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'buyer' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <Users size={14} />
                         Buyer Mode
                       </button>
                       <button
                         onClick={() => { onSwitchRole('seller'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'seller' ? 'bg-emerald-50 text-emerald-600' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'seller' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <ShoppingBag size={14} />
                         Seller Mode
                       </button>
                       <button
                         onClick={() => { onSwitchRole('admin'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'admin' ? 'bg-emerald-50 text-emerald-600' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'admin' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <Shield size={14} />
                         Admin Mode
@@ -1706,7 +1735,7 @@ const DashboardLayout = ({
         </header>
 
         {/* Content */}
-        <div className="flex-grow overflow-y-auto bg-[#F4F7FE]">
+        <div className="flex-grow overflow-y-auto bg-[#F8F0E5]">
           <div className="max-w-[1200px] mx-auto px-6 py-8">
             {children}
           </div>
@@ -1751,9 +1780,9 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
             {/* KPI Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { label: 'Active Subscriptions', value: subscriptions.length.toString(), color: 'text-emerald-600', icon: Package, bg: 'bg-emerald-50' },
-                { label: 'Next Delivery', value: subscriptions.length > 0 ? 'Mar 25' : 'N/A', color: 'text-blue-600', icon: Truck, bg: 'bg-blue-50' },
-                { label: 'Total Saved', value: '₦12,400', color: 'text-purple-600', icon: Wallet, bg: 'bg-purple-50' },
+                { label: 'Active Subscriptions', value: subscriptions.length.toString(), color: 'text-[#6F7E57]', icon: Package, bg: 'bg-brand-alt-2/20' },
+                { label: 'Next Delivery', value: subscriptions.length > 0 ? 'Mar 25' : 'N/A', color: 'text-brand-alt-1', icon: Truck, bg: 'bg-brand-alt-1/10' },
+                { label: 'Total Saved', value: '₦12,400', color: 'text-brand-secondary', icon: Wallet, bg: 'bg-brand-secondary/10' },
               ].map((stat, i) => (
                 <div key={i} className="p-5 bg-white rounded-xl border border-zinc-200 shadow-sm flex items-center gap-4">
                   <div className={`p-3 ${stat.bg} ${stat.color} rounded-lg`}>
@@ -1770,7 +1799,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Activity</h3>
-                <button className="text-xs font-bold text-emerald-600 hover:underline">View All</button>
+                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="divide-y divide-zinc-100">
                 {subscriptions.slice(0, 3).map((sub, i) => (
@@ -1801,7 +1830,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-zinc-900">My Subscriptions</h3>
-              <button onClick={() => setView('products')} className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition-all">Add New</button>
+              <button onClick={() => setView('products')} className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all">Add New</button>
             </div>
             <div className="p-5">
               {loading ? (
@@ -1823,7 +1852,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                               <Calendar size={12} />
                               Next: {new Date(sub.next_delivery_date).toLocaleDateString()}
                             </span>
-                            <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">
+                            <span className="text-xs font-bold text-[#6F7E57] uppercase tracking-widest">
                               {sub.plan}
                             </span>
                           </div>
@@ -1839,7 +1868,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                         >
                           Manage
                         </button>
-                        <span className="px-2 py-1 bg-emerald-100 text-xs font-bold uppercase tracking-wider text-emerald-700 rounded-lg">
+                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
                           {sub.status}
                         </span>
                       </div>
@@ -1855,7 +1884,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                   <p className="text-xs text-zinc-500 mb-6 max-w-[240px] mx-auto">Start your journey by choosing one of our curated essential products.</p>
                   <button
                     onClick={() => setView('products')}
-                    className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-emerald-700 transition-all"
+                    className="bg-[#6F7E57] text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-[#6F7E57]/90 transition-all"
                   >
                     Browse Products
                   </button>
@@ -1871,7 +1900,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
               <h3 className="text-sm font-bold text-zinc-900">Order History</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -1896,7 +1925,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                       <td className="px-6 text-sm text-zinc-600">{order.items}</td>
                       <td className="px-6 text-sm font-bold text-zinc-900">{order.amount}</td>
                       <td className="px-6">
-                        <span className="px-2 py-1 bg-emerald-100 text-xs font-bold uppercase tracking-wider text-emerald-700 rounded-lg">
+                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
                           {order.status}
                         </span>
                       </td>
@@ -1924,38 +1953,38 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                 <div>
                   <h4 className="text-sm font-bold text-zinc-900">Profile Picture</h4>
                   <p className="text-xs text-zinc-500 mt-1">PNG, JPG up to 5MB</p>
-                  <button className="mt-2 text-xs font-bold text-emerald-600 hover:underline">Upload New</button>
+                  <button className="mt-2 text-xs font-bold text-[#6F7E57] hover:underline">Upload New</button>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Full Name</label>
-                  <input type="text" defaultValue={user.name} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" />
+                  <input type="text" defaultValue={user.name} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Email Address</label>
-                  <input type="email" defaultValue={user.email} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" />
+                  <input type="email" defaultValue={user.email} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Delivery Address</label>
-                <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20 h-24" placeholder="Enter your delivery address..."></textarea>
+                <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20 h-24" placeholder="Enter your delivery address..."></textarea>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Phone Number</label>
-                  <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" placeholder="+234..." />
+                  <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="+234..." />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">City</label>
-                  <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" placeholder="Lagos" />
+                  <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="Lagos" />
                 </div>
               </div>
 
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-600 transition-all">Save Changes</button>
+              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57] transition-all">Save Changes</button>
             </div>
           </div>
         );
@@ -1964,12 +1993,12 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-emerald-600">Mark all as read</button>
+              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
-                { title: 'Subscription Renewed', time: '2 days ago', icon: Package, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { title: 'New Product Suggestion', time: '1 week ago', icon: ShoppingBag, color: 'text-blue-600', bg: 'bg-blue-50' },
+                { title: 'Subscription Renewed', time: '2 days ago', icon: Package, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
+                { title: 'New Product Suggestion', time: '1 week ago', icon: ShoppingBag, color: 'text-brand-alt-1', bg: 'bg-brand-alt-1/10' },
               ].map((n, i) => (
                 <div key={i} className="p-4 flex gap-4 hover:bg-zinc-50 transition-colors cursor-pointer">
                   <div className={`w-10 h-10 ${n.bg} ${n.color} rounded-xl flex items-center justify-center shrink-0`}>
@@ -2036,9 +2065,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             {/* KPI Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: 'Total Sales', value: '₦450,000', trend: '+15%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { label: 'Active Orders', value: '12', trend: '+2', icon: ClipboardList, color: 'text-blue-600', bg: 'bg-blue-50' },
-                { label: 'Products', value: '8', trend: 'Stable', icon: ShoppingBag, color: 'text-purple-600', bg: 'bg-purple-50' },
+                { label: 'Total Sales', value: '₦450,000', trend: '+15%', icon: Wallet, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
+                { label: 'Active Orders', value: '12', trend: '+2', icon: ClipboardList, color: 'text-brand-alt-1', bg: 'bg-brand-alt-1/10' },
+                { label: 'Products', value: '8', trend: 'Stable', icon: ShoppingBag, color: 'text-brand-secondary', bg: 'bg-brand-secondary/10' },
                 { label: 'Store Rating', value: '4.8/5', trend: 'Top 5%', icon: Star, color: 'text-amber-600', bg: 'bg-amber-50' },
               ].map((stat, i) => (
                 <div key={i} className="p-5 bg-white rounded-xl border border-zinc-200 shadow-sm">
@@ -2046,7 +2075,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     <div className={`p-2 ${stat.bg} ${stat.color} rounded-lg`}>
                       <stat.icon size={20} />
                     </div>
-                    <div className="text-xs font-bold text-emerald-600">{stat.trend}</div>
+                    <div className="text-xs font-bold text-[#6F7E57]">{stat.trend}</div>
                   </div>
                   <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">{stat.label}</p>
                   <p className="text-xl font-bold text-zinc-900">{stat.value}</p>
@@ -2057,7 +2086,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button className="text-xs font-bold text-emerald-600 hover:underline">View All</button>
+                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -2084,7 +2113,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                         <td className="px-6">
                           <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
-                              'bg-emerald-100 text-emerald-700'
+                              'bg-brand-alt-2/20 text-[#6F7E57]'
                             }`}>
                             {order.status}
                           </span>
@@ -2105,7 +2134,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 <h3 className="text-sm font-bold text-zinc-900">My Products</h3>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                  <input type="text" placeholder="Search my products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                  <input type="text" placeholder="Search my products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
               </div>
               <button
@@ -2113,7 +2142,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   setEditingProduct(null);
                   setIsProductModalOpen(true);
                 }}
-                className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-2"
+                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <Plus size={14} />
                 Add Product
@@ -2130,14 +2159,14 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     <p className="text-xs text-zinc-500">8 orders this week</p>
                   </div>
                   <div className="flex items-center justify-between pt-1">
-                    <span className="text-sm font-bold text-emerald-600">₦15,000</span>
+                    <span className="text-sm font-bold text-[#6F7E57]">₦15,000</span>
                     <div className="flex gap-2">
                       <button
                         onClick={() => {
                           setEditingProduct({ id: i, name: `Fresh Produce Box #${i}`, price: 15000, category: 'Fresh Farm', image_url: `https://picsum.photos/seed/seller-prod-${i}/400/300` });
                           setIsProductModalOpen(true);
                         }}
-                        className="text-xs font-bold text-zinc-400 hover:text-emerald-600 transition-colors"
+                        className="text-xs font-bold text-zinc-400 hover:text-[#6F7E57] transition-colors"
                       >
                         Edit
                       </button>
@@ -2166,17 +2195,17 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 <div>
                   <h4 className="text-sm font-bold text-zinc-900">Store Logo</h4>
                   <p className="text-xs text-zinc-500 mt-1">Recommended size: 512x512px</p>
-                  <button className="mt-2 text-xs font-bold text-emerald-600 hover:underline">Upload Logo</button>
+                  <button className="mt-2 text-xs font-bold text-[#6F7E57] hover:underline">Upload Logo</button>
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Store Name</label>
-                <input type="text" defaultValue={`${user.name}'s Farm`} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" />
+                <input type="text" defaultValue={`${user.name}'s Farm`} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
               </div>
               <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Store Description</label>
-                <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20 h-24" placeholder="Tell customers about your store..."></textarea>
+                <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20 h-24" placeholder="Tell customers about your store..."></textarea>
               </div>
 
               <div className="pt-4 border-t border-zinc-100">
@@ -2184,16 +2213,16 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Address</label>
-                    <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" placeholder="Farm Address" />
+                    <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="Farm Address" />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Contact Phone</label>
-                    <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" placeholder="+234..." />
+                    <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="+234..." />
                   </div>
                 </div>
               </div>
 
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-600 transition-all">Save Store Info</button>
+              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57] transition-all">Save Store Info</button>
             </div>
           </div>
         );
@@ -2202,12 +2231,12 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-emerald-600">Mark all as read</button>
+              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
-                { title: 'New Order Received', time: '2 mins ago', icon: ShoppingBag, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { title: 'Payout Successful', time: '1 day ago', icon: Wallet, color: 'text-blue-600', bg: 'bg-blue-50' },
+                { title: 'New Order Received', time: '2 mins ago', icon: ShoppingBag, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
+                { title: 'Payout Successful', time: '1 day ago', icon: Wallet, color: 'text-brand-alt-1', bg: 'bg-brand-alt-1/10' },
               ].map((n, i) => (
                 <div key={i} className="p-4 flex gap-4 hover:bg-zinc-50 transition-colors cursor-pointer">
                   <div className={`w-10 h-10 ${n.bg} ${n.color} rounded-xl flex items-center justify-center shrink-0`}>
@@ -2230,7 +2259,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
               <h3 className="text-sm font-bold text-zinc-900">Manage Orders</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -2257,7 +2286,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       <td className="px-6">
                         <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                           order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
-                            'bg-emerald-100 text-emerald-700'
+                            'bg-brand-alt-2/20 text-[#6F7E57]'
                           }`}>
                           {order.status}
                         </span>
@@ -2274,9 +2303,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { label: 'Available Balance', value: '₦120,500', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                { label: 'Available Balance', value: '₦120,500', icon: Wallet, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
                 { label: 'Pending Clearance', value: '₦45,000', icon: History, color: 'text-amber-600', bg: 'bg-amber-50' },
-                { label: 'Total Earned', value: '₦850,000', icon: BarChart3, color: 'text-blue-600', bg: 'bg-blue-50' },
+                { label: 'Total Earned', value: '₦850,000', icon: BarChart3, color: 'text-brand-alt-1', bg: 'bg-brand-alt-1/10' },
               ].map((stat, i) => (
                 <div key={i} className="p-6 bg-white rounded-xl border border-zinc-200 shadow-sm">
                   <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center mb-4`}>
@@ -2290,7 +2319,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Transactions</h3>
-                <button className="text-xs font-bold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-lg hover:bg-emerald-100 transition-colors">Withdraw Funds</button>
+                <button className="text-xs font-bold text-[#6F7E57] bg-brand-alt-2/20 px-4 py-2 rounded-lg hover:bg-brand-alt-2/30 transition-colors">Withdraw Funds</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -2311,9 +2340,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-4 text-sm text-zinc-600">{tx.date}</td>
                         <td className="px-4 text-sm text-zinc-900">{tx.desc}</td>
-                        <td className={`px-4 text-sm font-bold ${tx.type === 'credit' ? 'text-emerald-600' : 'text-zinc-900'}`}>{tx.amount}</td>
+                        <td className={`px-4 text-sm font-bold ${tx.type === 'credit' ? 'text-[#6F7E57]' : 'text-zinc-900'}`}>{tx.amount}</td>
                         <td className="px-4">
-                          <span className="px-2 py-1 bg-emerald-100 text-xs font-bold uppercase tracking-wider text-emerald-700 rounded-lg">
+                          <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
                             {tx.status}
                           </span>
                         </td>
@@ -2406,7 +2435,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
     { name: 'Quarterly', value: 300 },
     { name: 'Annual', value: 300 },
   ];
-  const COLORS = ['#10B981', '#3B82F6', '#8B5CF6'];
+  const COLORS = ['#704723', '#283d45', '#7495ad'];
 
   const renderContent = () => {
     switch (activeTab) {
@@ -2416,8 +2445,8 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             {/* KPI Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { label: 'Monthly Revenue', value: '₦4.2M', trend: '+12.5%', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { label: 'Active Subscribers', value: '1,240', trend: '+8.2%', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
+                { label: 'Monthly Revenue', value: '₦4.2M', trend: '+12.5%', icon: Wallet, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
+                { label: 'Active Subscribers', value: '1,240', trend: '+8.2%', icon: Users, color: 'text-brand-alt-1', bg: 'bg-brand-alt-1/10' },
                 { label: 'Pending Orders', value: '42', trend: '-3.1%', icon: AlertCircle, color: 'text-amber-600', bg: 'bg-amber-50' },
                 { label: 'Inventory Alerts', value: '5', trend: 'Critical', icon: Package, color: 'text-red-600', bg: 'bg-red-50' },
               ].map((stat, i) => (
@@ -2426,7 +2455,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     <div className={`p-2 ${stat.bg} ${stat.color} rounded-lg`}>
                       <stat.icon size={20} />
                     </div>
-                    <div className={`flex items-center gap-1 text-xs font-bold ${stat.trend.startsWith('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                    <div className={`flex items-center gap-1 text-xs font-bold ${stat.trend.startsWith('+') ? 'text-[#6F7E57]' : 'text-red-500'}`}>
                       {stat.trend.startsWith('+') ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
                       {stat.trend}
                     </div>
@@ -2442,15 +2471,15 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="col-span-12 lg:col-span-8 bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-sm font-bold text-zinc-900">Revenue Overview</h3>
-                  <button className="text-xs font-bold text-emerald-600 hover:underline">Download Report</button>
+                  <button className="text-xs font-bold text-[#6F7E57] hover:underline">Download Report</button>
                 </div>
                 <div className="h-[320px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={revenueData}>
                       <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10B981" stopOpacity={0.1} />
-                          <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
+                          <stop offset="5%" stopColor="#704723" stopOpacity={0.1} />
+                          <stop offset="95%" stopColor="#704723" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
@@ -2470,7 +2499,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <Tooltip
                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                       />
-                      <Area type="monotone" dataKey="value" stroke="#10B981" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
+                      <Area type="monotone" dataKey="value" stroke="#704723" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
@@ -2516,7 +2545,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button className="text-xs font-bold text-emerald-600 hover:underline">View All Orders</button>
+                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All Orders</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -2546,7 +2575,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         <td className="px-4">
                           <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
-                              'bg-emerald-100 text-emerald-700'
+                              'bg-brand-alt-2/20 text-[#6F7E57]'
                             }`}>
                             {order.status}
                           </span>
@@ -2572,13 +2601,13 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="flex gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                  <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                  <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
                 <button className="px-3 py-1.5 bg-zinc-100 rounded-lg text-xs font-bold text-zinc-600 flex items-center gap-2 hover:bg-zinc-200 transition-all">
                   <Filter size={14} />
                   Filter
                 </button>
-                <button className="px-3 py-1.5 bg-emerald-600 rounded-lg text-xs font-bold text-white hover:bg-emerald-700 transition-all">Export</button>
+                <button className="px-3 py-1.5 bg-[#6F7E57] rounded-lg text-xs font-bold text-white hover:bg-[#6F7E57]/90 transition-all">Export</button>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -2612,7 +2641,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <td className="px-4 text-sm text-zinc-600">{order.date}</td>
                       <td className="px-4 text-sm font-bold text-zinc-900">{order.amount}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Delivered' ? 'bg-emerald-100 text-emerald-700' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Delivered' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'On Transit' ? 'bg-blue-100 text-blue-700' :
                               'bg-red-100 text-red-700'
@@ -2631,14 +2660,14 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: 'Monthly Plan', users: 450, growth: '+12%', color: 'border-emerald-500' },
-              { name: 'Quarterly Plan', users: 320, growth: '+5%', color: 'border-blue-500' },
-              { name: 'Annual Plan', users: 180, growth: '+20%', color: 'border-purple-500' },
+              { name: 'Monthly Plan', users: 450, growth: '+12%', color: 'border-[#6F7E57]' },
+              { name: 'Quarterly Plan', users: 320, growth: '+5%', color: 'border-brand-alt-1' },
+              { name: 'Annual Plan', users: 180, growth: '+20%', color: 'border-brand-alt-2' },
             ].map((plan, i) => (
               <div key={i} className={`p-6 bg-white rounded-xl border-l-4 ${plan.color} shadow-sm`}>
                 <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">{plan.name}</h4>
                 <p className="text-2xl font-bold text-zinc-900">{plan.users}</p>
-                <p className="text-xs text-emerald-600 font-bold mt-2">{plan.growth} growth</p>
+                <p className="text-xs text-[#6F7E57] font-bold mt-2">{plan.growth} growth</p>
               </div>
             ))}
             <div className="md:col-span-3 bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
@@ -2649,7 +2678,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 {[1, 2, 3].map(i => (
                   <div key={i} className="flex items-center justify-between p-4 bg-zinc-50 rounded-xl border border-zinc-100">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 font-bold">U</div>
+                      <div className="w-10 h-10 bg-brand-alt-2/20 rounded-lg flex items-center justify-center text-[#6F7E57] font-bold">U</div>
                       <div>
                         <p className="text-sm font-bold text-zinc-900">User {i}</p>
                         <p className="text-xs text-zinc-500">Monthly Plan • Next delivery: Mar 1{i}</p>
@@ -2660,7 +2689,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         setSelectedSub({ id: i, user: `User ${i}` });
                         setIsSubModalOpen(true);
                       }}
-                      className="text-xs font-bold text-emerald-600 hover:underline"
+                      className="text-xs font-bold text-[#6F7E57] hover:underline"
                     >
                       Manage
                     </button>
@@ -2678,7 +2707,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 <h3 className="text-sm font-bold text-zinc-900">Product Catalog</h3>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                  <input type="text" placeholder="Search products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                  <input type="text" placeholder="Search products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
               </div>
               <button
@@ -2686,7 +2715,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   setEditingProduct(null);
                   setIsProductModalOpen(true);
                 }}
-                className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-2"
+                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <Plus size={14} />
                 Add New Product
@@ -2744,7 +2773,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <td className="px-4 text-sm font-bold text-zinc-900">{item.name}</td>
                       <td className="px-4 text-sm text-zinc-600">{item.stock} units</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${item.status === 'Healthy' ? 'bg-emerald-100 text-emerald-700' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${item.status === 'Healthy' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           item.status === 'Low' ? 'bg-amber-100 text-amber-700' :
                             'bg-red-100 text-red-700'
                           }`}>
@@ -2771,7 +2800,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   <h4 className="text-sm font-bold text-zinc-900">Supplier Name {i}</h4>
                   <p className="text-xs text-zinc-500 mb-2">Fresh Produce • Lagos, Nigeria</p>
                   <div className="flex gap-4">
-                    <span className="text-xs font-bold text-emerald-600">4.9 Rating</span>
+                    <span className="text-xs font-bold text-[#6F7E57]">4.9 Rating</span>
                     <span className="text-xs font-bold text-zinc-400">124 Deliveries</span>
                   </div>
                 </div>
@@ -2787,7 +2816,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <h3 className="text-sm font-bold text-zinc-900">Payment Transactions</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                <input type="text" placeholder="Search payments..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-48" />
+                <input type="text" placeholder="Search payments..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -2822,7 +2851,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <td className="px-4 text-sm font-bold text-zinc-900">{trx.amount}</td>
                       <td className="px-4 text-sm text-zinc-500">{trx.method}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${trx.status === 'Successful' ? 'bg-emerald-100 text-emerald-700' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${trx.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           trx.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             'bg-red-100 text-red-700'
                           }`}>
@@ -2843,7 +2872,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <h3 className="text-sm font-bold text-zinc-900">Customer Directory</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                <input type="text" placeholder="Search customers..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-emerald-500/20 w-64" />
+                <input type="text" placeholder="Search customers..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-64" />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -2865,7 +2894,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     </div>
                     <div>
                       <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Total Spent</p>
-                      <p className="text-sm font-bold text-emerald-600">₦{150 + i * 20},000</p>
+                      <p className="text-sm font-bold text-[#6F7E57]">₦{150 + i * 20},000</p>
                     </div>
                   </div>
                   <button className="w-full py-2 bg-zinc-100 text-zinc-900 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all">View Profile</button>
@@ -2884,7 +2913,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   {['Daily Sales Summary', 'Monthly Revenue Report', 'Product Performance', 'Category Breakdown'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
                       <span className="text-xs font-bold text-zinc-700">{report}</span>
-                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-emerald-600 transition-colors">
+                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
                     </div>
@@ -2897,7 +2926,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   {['Stock Level Audit', 'Low Stock Alerts', 'Supplier Performance', 'Inventory Turnover'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
                       <span className="text-xs font-bold text-zinc-700">{report}</span>
-                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-emerald-600 transition-colors">
+                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
                     </div>
@@ -2914,7 +2943,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Conversion Rate</h4>
                 <p className="text-2xl font-bold text-zinc-900">3.4%</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-emerald-600 mt-1">
+                <div className="flex items-center gap-1 text-xs font-bold text-[#6F7E57] mt-1">
                   <TrendingUp size={12} />
                   +0.5% from last month
                 </div>
@@ -2922,7 +2951,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Average Order Value</h4>
                 <p className="text-2xl font-bold text-zinc-900">₦18,500</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-emerald-600 mt-1">
+                <div className="flex items-center gap-1 text-xs font-bold text-[#6F7E57] mt-1">
                   <TrendingUp size={12} />
                   +₦1,200 from last month
                 </div>
@@ -2954,7 +2983,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   setEditingAdminUser(null);
                   setIsAdminUserModalOpen(true);
                 }}
-                className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-600 transition-all flex items-center gap-2"
+                className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <UserPlus size={14} />
                 Add Admin User
@@ -2982,7 +3011,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       <td className="px-4 text-sm text-zinc-600">{admin.email}</td>
                       <td className="px-4 text-sm text-zinc-600">{admin.role}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${admin.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 'bg-zinc-100 text-zinc-500'
+                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${admin.status === 'Active' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'bg-zinc-100 text-zinc-500'
                           }`}>
                           {admin.status}
                         </span>
@@ -3004,11 +3033,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-emerald-600">Mark all as read</button>
+              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
-                { title: 'New Order Received', time: '2 mins ago', icon: ShoppingBag, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                { title: 'New Order Received', time: '2 mins ago', icon: ShoppingBag, color: 'text-[#6F7E57]', bg: 'bg-brand-alt-2/20' },
                 { title: 'Inventory Alert: Low Stock', time: '1 hour ago', icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50' },
                 { title: 'New Supplier Application', time: '3 hours ago', icon: Truck, color: 'text-blue-600', bg: 'bg-blue-50' },
                 { title: 'System Update Completed', time: '5 hours ago', icon: Settings, color: 'text-zinc-600', bg: 'bg-zinc-50' },
@@ -3037,11 +3066,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Platform Name</label>
-                  <input type="text" defaultValue="Everyday Needs" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" />
+                  <input type="text" defaultValue="Everyday Needs" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Support Email</label>
-                  <input type="email" defaultValue="support@everydayneeds.ng" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20" />
+                  <input type="email" defaultValue="support@everydayneeds.ng" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
               </div>
               <div>
@@ -3053,7 +3082,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   <span className="text-sm text-zinc-600">Off</span>
                 </div>
               </div>
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-emerald-600 transition-all">Save Settings</button>
+              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57]/90 transition-all">Save Settings</button>
             </div>
           </div>
         );
@@ -3107,7 +3136,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <X size={24} />
             </button>
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600">
+              <div className="w-12 h-12 bg-brand-alt-2/20 rounded-2xl flex items-center justify-center text-[#6F7E57]">
                 <CreditCard size={24} />
               </div>
               <div>
@@ -3123,7 +3152,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Amount</p>
-                  <p className="text-sm font-bold text-emerald-600">{selectedPayment.amount}</p>
+                  <p className="text-sm font-bold text-[#6F7E57]">{selectedPayment.amount}</p>
                 </div>
                 <div>
                   <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Date & Time</p>
@@ -3136,14 +3165,14 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               </div>
               <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
                 <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Status</p>
-                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${selectedPayment.status === 'Successful' ? 'bg-emerald-100 text-emerald-700' :
+                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${selectedPayment.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                   selectedPayment.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                     'bg-red-100 text-red-700'
                   }`}>
                   {selectedPayment.status}
                 </span>
               </div>
-              <button onClick={() => setIsPaymentModalOpen(false)} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-emerald-600 transition-all">Close</button>
+              <button onClick={() => setIsPaymentModalOpen(false)} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Close</button>
             </div>
           </motion.div>
         </div>
@@ -3163,15 +3192,15 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-zinc-700 mb-2">Full Name</label>
-                <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500" placeholder="John Doe" />
+                <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="John Doe" />
               </div>
               <div>
                 <label className="block text-sm font-bold text-zinc-700 mb-2">Email Address</label>
-                <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500" placeholder="admin@farmly.com" />
+                <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="admin@everydayneeds.ng" />
               </div>
               <div>
                 <label className="block text-sm font-bold text-zinc-700 mb-2">Role</label>
-                <select className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500">
+                <select className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]">
                   <option>Super Admin</option>
                   <option>Editor</option>
                   <option>Support</option>
@@ -3179,7 +3208,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               </div>
               <div className="flex gap-4 pt-4">
                 <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Cancel</button>
-                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-[2] bg-emerald-600 text-white py-4 rounded-2xl font-bold hover:bg-emerald-700 transition-all">
+                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">
                   {editingAdminUser ? 'Save Changes' : 'Create User'}
                 </button>
               </div>
@@ -3202,18 +3231,16 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 };
 
 const MOCK_BOXES: Product[] = [
-  { id: 1, name: "Gourmet Pleasure (Beginner)", description: "Premium gourmet treats and artisanal delights.", price: 230000, image_url: "/images/hero_main.jpeg", category: "Gourmet" },
-  { id: 2, name: "Pantry Provision Box (Beginner)", description: "Essential pantry staples for a balanced home.", price: 65400, image_url: "/images/pantry_premium.jpeg", category: "Pantry" },
-  { id: 3, name: "Farm Fresh Harvest Box", description: "Fresh farm produce delivered directly to you.", price: 156200, image_url: "/images/fresh_harvest.jpeg", category: "Fresh" },
-  { id: 4, name: "Sunrise Essentials (Beginner)", description: "Start your day with wholesome breakfast essentials.", price: 56200, image_url: "/images/breakfast_essentials.jpeg", category: "Breakfast" },
-  { id: 5, name: "Protein Prime Cut (Classic)", description: "Quality protein selections for your family.", price: 106500, image_url: "/images/meat_prime.jpg", category: "Protein" },
-  { id: 6, name: "Pure Bliss Pampers Kit (Beginner)", description: "Self-care and pampering essentials.", price: 73400, image_url: "/images/pamper_kit.jpeg", category: "Personal Care" },
-  { id: 7, name: "Little Bundle of Joy (Essentials)", description: "All the basics for your little one's comfort.", price: 55000, image_url: "/images/baby_joy.jpeg", category: "Baby" },
-  { id: 8, name: "Radiant Glow (Beginner)", description: "Skincare and beauty essentials for a healthy glow.", price: 77000, image_url: "/images/pampers_mini.jpeg", category: "Skincare" },
-  { id: 9, name: "Sparkling Sanctuary (Essentials)", description: "Home cleaning and maintenance supplies.", price: 20900, image_url: "/images/cleaning_sanctuary.jpeg", category: "Home" },
-  { id: 10, name: "Zen Wellness Box", description: "Supplements and wellness products for vitality.", price: 25000, image_url: "/images/wellness_box.jpeg", category: "Wellness" },
-  { id: 11, name: "Classic Harvest Box", description: "The classic selection of fresh produce.", price: 85000, image_url: "/images/harvest_box_classic.jpeg", category: "Fresh" },
-  { id: 12, name: "Luxury Breakfast Essentials", description: "Gourmet breakfast items for a perfect morning.", price: 95000, image_url: "/images/breakfast_luxury.jpeg", category: "Breakfast" },
+  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/front page.jpeg", category: "Pantry Essentials" },
+  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/fresh_harvest.jpeg", category: "Fresh Farm" },
+  { id: 3, name: 'Prime Cuts Box', description: 'Quality meats and protein essentials.', image_url: '/images/meat_prime.jpg', price: 22000, category: 'Prime Protein' },
+  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/breakfast_essentials.jpeg", category: "Pantry Essentials" },
+  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/pamper_kit.jpeg", category: "Beauty & Wellness" },
+  { id: 6, name: "Little Bundle of Joy", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/baby_joy.jpeg", category: "Baby & Kids" },
+  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Home cleaning and sanitation essentials.", price: 40900, image_url: "/images/cleaning_sanctuary.jpeg", category: "Home Care" },
+  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness products for vitality.", price: 25000, image_url: "/images/wellness_box.jpeg", category: "Beauty & Wellness" },
+  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Gourmet" },
+  { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/pamper_kit.jpeg", category: "Beauty & Wellness" },
 ];
 
 const Storage = {
@@ -3497,7 +3524,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-zinc-900 selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-white font-sans text-zinc-900 selection:bg-brand-alt-2 selection:text-[#6F7E57]">
       <Navbar
         user={user}
         onLogin={() => setView('auth')}
@@ -3531,7 +3558,7 @@ function App() {
             exit={{ opacity: 0, y: 50 }}
             className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
           >
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center">
               <Check size={18} />
             </div>
             <p className="font-bold">{notification}</p>
@@ -3555,74 +3582,274 @@ function App() {
             >
               <Hero onStart={() => setView('pricing')} setView={setView} />
 
-              {/* Features Section */}
-              <section className="py-24 bg-white">
+              {/* Our Difference Section */}
+              <section className="py-24 bg-[#6F7E57] overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Our Difference</h2>
-                    <p className="text-zinc-500 max-w-2xl mx-auto">We're more than just a delivery service. We're your partner in building a better home.</p>
+                    <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[#F8F0E5]">Thoughtfully sourced. Reliably delivered. Designed for real homes.</h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
-                      { title: 'Farm Partnerships', desc: 'Direct sourcing from local farmers ensures freshness and fair pricing.', icon: Truck },
+                      { title: 'Farm Partnerships', desc: 'Sourced directly from farmers for superior freshness.', icon: Truck },
                       { title: 'Non-Toxic Priority', desc: 'Every product is vetted for safety and environmental impact.', icon: ShieldCheck },
                       { title: 'Subscription Reliability', desc: 'Never run out of essentials with our automated delivery system.', icon: Calendar },
                       { title: 'Woman-Driven Insight', desc: 'Built with a deep understanding of household management.', icon: Heart },
                     ].map((feature, i) => (
-                      <div key={i} className="p-8 bg-zinc-50 rounded-3xl border border-black/5 hover:border-emerald-200 transition-colors group">
-                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                      <div key={i} className="p-8 bg-white/10 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors group">
+                        <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-[#F8F0E5] shadow-sm mb-6 group-hover:bg-[#F8F0E5] group-hover:text-[#6F7E57] transition-colors">
                           <feature.icon size={24} />
                         </div>
-                        <h3 className="text-lg font-bold mb-3">{feature.title}</h3>
-                        <p className="text-sm text-zinc-500 leading-relaxed">{feature.desc}</p>
+                        <h3 className="text-lg font-bold mb-3 text-[#F8F0E5]">{feature.title}</h3>
+                        <p className="text-sm text-[#F8F0E5]/70 leading-relaxed">{feature.desc}</p>
                       </div>
                     ))}
+                  </div>
+                  <div className="mt-20 max-w-3xl mx-auto text-center">
+                    <span className="text-zinc-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">Our Difference</span>
+                    <p className="text-xl text-[#F8F0E5]/90 leading-relaxed max-w-2xl mx-auto">
+                      <strong className="text-[#F8F0E5]">Everyday Needs is built differently.</strong> We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
+                    </p>
+                    <p className="mt-6 text-[#F8F0E5]/90 leading-relaxed">We prioritize:</p>
+                    <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest" style={{ color: '#F8F0E5' }}>
+                      <span>• Farm-fresh produce sourced directly from farmers</span>
+                      <span>• Homegrown Nigerian brands and products</span>
+                      <span>• Non-toxic and safer home and personal care products</span>
+                      <span>• High-quality pantry and household essentials</span>
+                    </div>
+                    <p className="mt-10 text-lg italic text-[#F8F0E5]/80" style={{ fontFamily: 'Montserrat, sans-serif' }}>Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Female-Driven Insight Section */}
+              <section className="py-24 bg-brand-secondary overflow-hidden relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">Female-Driven Insight</span>
+                  <div className="flex flex-col lg:flex-row items-center gap-16">
+                    <div className="lg:w-1/2">
+                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8 text-[#F8F0E5]">Built by Women Who Understand Real Homes</h2>
+                      <div className="space-y-6 text-lg text-[#F8F0E5]/80 leading-relaxed">
+                        <p className="text-[#F8F0E5]">Everyday Needs is proudly woman-driven.</p>
+                        <p className="text-[#F8F0E5]/80">Created from real household experience, Everyday Needs understands the daily realities of running homes, managing families, balancing careers, and caring for loved ones.</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+                          <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                            <p className="text-[#F8F0E5] font-bold">We know what runs out.</p>
+                          </div>
+                          <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                            <p className="text-[#F8F0E5] font-bold">We know what gets forgotten.</p>
+                          </div>
+                          <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                            <p className="text-[#F8F0E5] font-bold">We know what homes truly need.</p>
+                          </div>
+                        </div>
+                        <p className="pt-6 font-medium text-[#F8F0E5]">This insight shapes everything we deliver. Not guesswork. Real understanding.</p>
+                      </div>
+                    </div>
+                    <div className="lg:w-1/2 relative">
+                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700">
+                        <img src="/images/Women in the kitchen.JPG" alt="Woman-driven insight" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
               {/* How It Works */}
-              <section className="py-24 bg-zinc-900 text-white overflow-hidden relative">
+              <section className="py-24 bg-[#FAF5EF] overflow-hidden relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                  <span className="text-zinc-600 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">How It Works</span>
                   <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2">
-                      <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">How It Works</h2>
+                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900">Simple. Reliable. Seamless.</h2>
                       <div className="space-y-12">
                         {[
-                          { step: '01', title: 'Choose Your Box', desc: 'Select from our curated collections of pantry, farm, or home essentials.' },
-                          { step: '02', title: 'Subscribe', desc: 'Pick a plan that fits your household needs, from monthly, quarterly, to annual options.' },
-                          { step: '03', title: 'We Deliver', desc: 'Our team sources and packs your essentials with care and delivers them to your door.' },
-                          { step: '04', title: 'Live Better', desc: 'Enjoy more time with family while we handle the heavy lifting.' },
+                          { step: '01', title: 'Choose Your Box', desc: 'Select from our curated essential boxes based on your lifestyle and needs.' },
+                          { step: '02', title: 'Subscribe', desc: 'Choose monthly, quarterly, or annual delivery plans.' },
+                          { step: '03', title: 'We Deliver', desc: 'Your Everyday Needs box arrives at your doorstep.' },
+                          { step: '04', title: 'Live Better', desc: 'Enjoy convenience, peace of mind, and uninterrupted home living.' },
                         ].map((step, i) => (
                           <div key={i} className="flex gap-6">
-                            <span className="text-4xl font-bold text-emerald-500 opacity-50 font-mono">{step.step}</span>
+                            <span className="text-4xl font-bold text-[#6F7E57] opacity-60 font-mono">{step.step}</span>
                             <div>
-                              <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                              <p className="text-zinc-400 leading-relaxed">{step.desc}</p>
+                              <h3 className="text-xl font-bold mb-2 text-zinc-900">{step.title}</h3>
+                              <p className="text-zinc-700 leading-relaxed">{step.desc}</p>
                             </div>
                           </div>
                         ))}
                       </div>
                       <button
                         onClick={() => setView('products')}
-                        className="mt-12 bg-emerald-600 text-white px-8 py-4 rounded-full font-bold hover:bg-emerald-700 transition-all shadow-lg"
+                        className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-4 rounded-full font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg"
                       >
                         Subscribe Now
                       </button>
                     </div>
                     <div className="lg:w-1/2 relative">
                       <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3">
-                        <img src="https://picsum.photos/seed/delivery/800/800" alt="Delivery" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                      </div>
-                      <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-2xl text-zinc-900 max-w-xs -rotate-3">
-                        <div className="flex items-center gap-2 mb-4">
-                          {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-yellow-400 text-yellow-400" />)}
-                        </div>
-                        <p className="text-sm font-medium italic">"Everyday Needs has completely changed how I manage my home. No more last-minute store runs!"</p>
-                        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-zinc-400">— Sarah O., Lagos</p>
+                        <img src="/images/harvest_box_classic.jpeg" alt="Delivery" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
+                </div>
+              </section>
+
+              {/* Our Boxes Section */}
+              <section className="py-24 bg-[#F8F0E5]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+                    <div className="max-w-xl">
+                      <h2 className="font-serif text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-4">Curated Boxes for Every Essential Need</h2>
+                      <p className="text-lg text-zinc-500">Quality, reliability, and peace of mind delivered in every box.</p>
+                    </div>
+                    <button
+                      onClick={() => setView('products')}
+                      className="bg-[#6F7E57] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg"
+                    >
+                      View All Boxes
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {MOCK_BOXES.slice(0, 4).map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onSelect={handleProductSelect}
+                        onLike={(e) => {
+                          e.stopPropagation();
+                          handleLike(product);
+                        }}
+                        isLiked={wishlist.includes(product.id)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Our Sourcing Promise Section */}
+              <section className="py-24 bg-[#6F7E57]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">Our Sourcing Promise</span>
+                  <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-8">
+                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-[#F8F0E5]">Thoughtful Sourcing. Superior Living.</h2>
+                      <div className="space-y-6">
+                        <p className="text-xl text-[#F8F0E5]/90 leading-relaxed">
+                          Our sourcing model is our strength. We work directly with:
+                        </p>
+                        <div className="grid grid-cols-2 gap-4">
+                          {[
+                            'Farmers',
+                            'Trusted manufacturers',
+                            'Homegrown Nigerian brands',
+                            'Verified suppliers'
+                          ].map((item, i) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <CheckCircle2 size={20} className="text-[#F8F0E5]" />
+                              <span className="font-bold text-[#F8F0E5]">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <p className="font-bold text-[#F8F0E5]">This ensures:</p>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          {[
+                            'Fresher products',
+                            'Safer ingredients',
+                            'Reliable quality',
+                            'Stronger local economic support'
+                          ].map((item, i) => (
+                            <div key={i} className="flex items-center gap-2 text-[#F8F0E5]/80">
+                              <Star size={14} className="text-[#c5a059]" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-lg italic text-[#F8F0E5]/70">
+                        We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8 items-stretch">
+                      <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg mt-12 bg-zinc-100">
+                        <img
+                          src="/images/sourcing.JPG"
+                          alt="Farm Fresh"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg bg-zinc-100">
+                        <img
+                          src="/images/sourcing 2.JPG"
+                          alt="Quality Brands"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Why Customers Choose Section */}
+              <section className="py-24 bg-[#F8F0E5]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="text-center mb-16">
+                    <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-4 text-zinc-900">The Smarter Way to Supply Your Home</h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    {[
+                      { title: 'Convenience', desc: 'No more emergency store runs.', icon: ShoppingCart },
+                      { title: 'Reliability', desc: 'Never run out of essentials.', icon: Calendar },
+                      { title: 'Safety & Quality', desc: 'Trusted sourcing standards.', icon: ShieldCheck },
+                      { title: 'Time Saving', desc: 'Focus on what matters most.', icon: Truck },
+                      { title: 'Cost Efficiency', desc: 'Bundled value and savings.', icon: Wallet },
+                      { title: 'Peace of Mind', desc: 'Your home runs smoothly.', icon: Heart }
+                    ].map((reason, i) => (
+                      <div key={i} className="p-8 bg-white rounded-[2rem] border border-black/5 hover:border-[#6F7E57]/20 transition-all text-center group">
+                        <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm">
+                          <reason.icon size={20} />
+                        </div>
+                        <h4 className="font-bold text-zinc-900 mb-2">{reason.title}</h4>
+                        <p className="text-xs text-zinc-500 leading-relaxed">{reason.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Testimonial Section */}
+              <section className="py-24 bg-[#693311] overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <h2 className="font-serif text-3xl font-bold text-center mb-16 text-[#F8F0E5]">Trusted by Modern Households</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    {[
+                      { quote: "Everyday Needs has removed the stress of managing my household supplies.", author: "Ada, Lagos" },
+                      { quote: "This service saves me valuable time every month.", author: "Tunde, Abuja" },
+                      { quote: "The quality and reliability are unmatched.", author: "Chioma, Port Harcourt" }
+                    ].map((t, i) => (
+                      <div key={i} className="relative p-10 bg-white/5 rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-colors">
+                        <div className="flex gap-1 mb-6">
+                          {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-amber-400 text-amber-400" />)}
+                        </div>
+                        <p className="text-xl font-medium italic leading-relaxed mb-8 text-[#F8F0E5]">"{t.quote}"</p>
+                        <p className="text-[#c5a059] font-bold uppercase tracking-widest text-sm">— {t.author}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Call to Action Section */}
+              <section className="py-24 bg-[#F8F0E5]">
+                <div className="max-w-4xl mx-auto text-center px-4">
+                  <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8">Simplify Your Home Today</h2>
+                  <p className="text-xl text-zinc-500 mb-10 leading-relaxed">Join thousands of households using Everyday Needs.</p>
+                  <button
+                    onClick={() => setView('products')}
+                    className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44]/90 transition-all shadow-xl shadow-black/10"
+                  >
+                    Start Your Subscription
+                  </button>
                 </div>
               </section>
             </motion.div>
@@ -3638,7 +3865,7 @@ function App() {
             >
               <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
                 <div className="max-w-xl">
-                  <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-4">Explore Our Products</h2>
+                  <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-4">Explore Our Boxes</h2>
                   <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
                 </div>
 
@@ -3649,11 +3876,11 @@ function App() {
                       type="text"
                       placeholder="Search products..."
                       value={searchQuery}
-                      className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500 transition-all shadow-sm"
+                      className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
                   </div>
-                  <button className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-black/5 rounded-2xl font-bold text-zinc-600 hover:text-emerald-600 transition-all shadow-sm">
+                  <button className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-black/5 rounded-2xl font-bold text-zinc-600 hover:text-[#6F7E57] transition-all shadow-sm">
                     <Filter size={20} />
                     <span>Filters</span>
                   </button>
@@ -3666,8 +3893,8 @@ function App() {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-8 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === cat
-                      ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-100'
-                      : 'bg-white border-zinc-200 text-zinc-500 hover:border-emerald-600 hover:text-emerald-600'
+                      ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg shadow-black/10'
+                      : 'bg-white border-zinc-200 text-zinc-500 hover:border-[#6F7E57] hover:text-[#6F7E57]'
                       }`}
                   >
                     {cat}
@@ -3807,70 +4034,61 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5]"
             >
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
-                  <h3 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story & Mission</h3>
-                  <p className="text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed">
-                    Simplifying household management for the modern Nigerian family through curated, reliable, and safe essential boxes.
+                  <h3 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story</h3>
+                  <p className="text-xl text-zinc-500 max-w-3xl mx-auto leading-relaxed italic">
+                    Born from the reality of busy Nigerians, Everyday Needs was created to solve the "last-minute store run" stress.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
-                  <div className="space-y-6">
-                    <h3 className="text-3xl font-bold text-zinc-900">Why We Started</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
-                      Everyday Needs was born out of a simple observation: managing a household in Nigeria's fast-paced cities is a full-time job. Between traffic, work, and family, the "last-minute store run" was becoming a major stressor for families.
-                    </p>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
-                      We realized that by curating the most essential items—from fresh farm produce to non-toxic home supplies—and delivering them on a predictable schedule, we could give families back their most precious resource: time.
-                    </p>
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4" style={{ color: '#69701d' }}>Our Mission</h3>
+                      <p className="text-lg text-zinc-600 leading-relaxed">
+                        To simplify household management through curated, reliable, and safe essential boxes.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4" style={{ color: '#69701d' }}>Our Vision</h3>
+                      <p className="text-lg text-zinc-600 leading-relaxed">
+                        To be the most reliable household partner in Africa, empowering families to live better through seamless supply.
+                      </p>
+                    </div>
                   </div>
                   <div className="relative">
-                    <img src="https://picsum.photos/seed/about-story/800/600" alt="Our Story" className="rounded-[3rem] shadow-2xl rotate-2" referrerPolicy="no-referrer" />
-                    <div className="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-8 rounded-3xl shadow-xl max-w-xs -rotate-2">
-                      <p className="text-2xl font-bold mb-2">5,000+</p>
-                      <p className="text-sm font-medium opacity-90">Households served across Lagos and Abuja.</p>
-                    </div>
+                    <img src="/images/fresh_harvest.jpeg" alt="Our Vision" className="rounded-[3rem] shadow-2xl rotate-2" />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-                  {[
-                    { title: 'Quality First', desc: 'We partner directly with farmers and verified manufacturers to ensure every item meets our rigorous safety standards.', icon: ShieldCheck },
-                    { title: 'Community Driven', desc: 'Our platform supports local farmers and small-scale manufacturers, keeping the value within our local economy.', icon: Users },
-                    { title: 'Sustainable Future', desc: 'We prioritize eco-friendly packaging and non-toxic products to protect both your family and our environment.', icon: Heart },
-                  ].map((item, i) => (
-                    <div key={i} className="p-10 bg-white rounded-[2.5rem] border border-black/5 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
-                        <item.icon size={28} />
-                      </div>
-                      <h4 className="text-xl font-bold text-zinc-900 mb-4">{item.title}</h4>
-                      <p className="text-zinc-500 leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="bg-zinc-900 rounded-[3rem] overflow-hidden">
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="lg:w-1/2 p-12 lg:p-20">
-                      <h3 className="text-3xl font-bold text-white mb-6">Female-Driven Insight</h3>
-                      <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                        Everyday Needs is built with a deep understanding of household management. We know that a home isn't just a place—it's an ecosystem that requires care, safety, and reliability.
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-white">EN</div>
-                        <div>
-                          <p className="text-white font-bold">The Founding Team</p>
-                          <p className="text-zinc-500 text-sm">Everyday Needs Nigeria</p>
+                <div className="mb-24">
+                  <h3 className="text-3xl font-bold text-center mb-12 text-[#6F7E57]">The Everyday Needs Advantage</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {[
+                      { title: 'Farm-to-Table Freshness', desc: 'Eliminating middlemen to ensure the freshest produce reaches you.', icon: Truck },
+                      { title: 'Non-Toxic Focus', desc: 'Prioritizing personal and home care products that are safe for your family.', icon: ShieldCheck },
+                      { title: 'Predictable Convenience', desc: 'Predictive delivery so you never have to think about "running out" again.', icon: Calendar },
+                    ].map((item, i) => (
+                      <div key={i} className="p-10 bg-white rounded-[2.5rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 transition-all group shadow-sm text-center">
+                        <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
+                          <item.icon size={28} />
                         </div>
+                        <h4 className="text-xl font-bold text-zinc-900 mb-4">{item.title}</h4>
+                        <p className="text-zinc-500 leading-relaxed">{item.desc}</p>
                       </div>
-                    </div>
-                    <div className="lg:w-1/2 relative min-h-[400px]">
-                      <img src="https://picsum.photos/seed/about-team/800/800" alt="Team" className="absolute inset-0 w-full h-full object-cover" referrerPolicy="no-referrer" />
-                    </div>
+                    ))}
                   </div>
+                </div>
+
+                <div className="bg-brand-secondary rounded-[3rem] p-12 lg:p-20 text-white text-center">
+                  <h3 className="text-3xl font-bold mb-6">Designed for Real Homes</h3>
+                  <p className="text-[#F8F0E5]/80 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+                    Everyday Needs is built with a deep understanding of household management. We know that a home isn't just a place—it's an ecosystem that requires care, safety, and reliability.
+                  </p>
+                  <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-10 py-4 rounded-2xl font-bold hover:bg-[#F8F0E5] transition-all shadow-lg">Start Your Journey</button>
                 </div>
               </div>
             </motion.div>
@@ -3886,49 +4104,39 @@ function App() {
             >
               <div className="text-center mb-16">
                 <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Partner With Us</h3>
-                <p className="text-zinc-500 max-w-2xl mx-auto">Join our ecosystem of verified suppliers and farmers to reach thousands of households.</p>
+                <p className="text-zinc-500 max-w-2xl mx-auto italic">Scale your impact with a partner that values quality and reliability.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
-                  <div className="bg-white p-8 rounded-[2.5rem] border border-black/5 shadow-sm">
-                    <h3 className="text-2xl font-bold mb-4">Why Partner With Us?</h3>
+                  <div className="bg-white p-10 rounded-[2.5rem] border border-black/5 shadow-sm">
+                    <h3 className="text-2xl font-bold mb-6 text-[#6F7E57]">Why Partner With Everyday Needs?</h3>
                     <ul className="space-y-4">
                       {[
-                        'Access to a growing customer base across Nigeria',
-                        'Reliable and timely payments',
-                        'Logistics and fulfillment handled by our team',
-                        'Marketing and brand exposure',
-                        'Data-driven insights into customer demand'
+                        'Consistent demand and reliable volume',
+                        'Streamlined logistics and fulfillment',
+                        'Direct connection to modern households',
+                        'Marketing and visibility for your brand'
                       ].map((benefit, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <CheckCircle2 size={20} className="text-emerald-500 mt-1 shrink-0" />
-                          <span className="text-zinc-600 font-medium">{benefit}</span>
+                        <li key={i} className="flex items-start gap-4">
+                          <CheckCircle2 size={24} className="text-[#6F7E57] mt-1 shrink-0" />
+                          <span className="text-zinc-700 font-medium text-lg">{benefit}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-zinc-900 text-white p-8 rounded-[2.5rem]">
-                    <h3 className="text-2xl font-bold mb-4">Application Requirements</h3>
-                    <p className="text-zinc-400 text-sm mb-6">To maintain our quality standards, all partners must provide:</p>
-                    <ul className="space-y-3 text-sm text-zinc-300">
-                      <li>• Valid business registration (CAC)</li>
-                      <li>• Proof of production/farming capacity</li>
-                      <li>• Quality certifications (where applicable)</li>
-                      <li>• Bank account details for settlements</li>
-                    </ul>
-                  </div>
                 </div>
-                <div className="bg-emerald-600 rounded-[3rem] p-12 text-white shadow-2xl shadow-emerald-200">
-                  <h3 className="text-3xl font-bold mb-6">Apply as a Partner</h3>
-                  <p className="mb-8 text-emerald-100 leading-relaxed">
-                    Ready to grow your business with Everyday Needs? Fill out our partnership application form and our team will get back to you within 3-5 business days.
+                <div className="bg-[#6F7E57] rounded-[3rem] p-12 text-white shadow-2xl shadow-brand-primary/10">
+                  <h3 className="text-3xl font-bold mb-6">Partner Application</h3>
+                  <p className="mb-10 leading-relaxed text-lg" style={{ color: '#F8F0E5' }}>
+                    Are you a farmer, a manufacturer of homegrown goods, or a supplier of quality home essentials? Let's grow together.
                   </p>
-                  <button className="w-full bg-white text-emerald-600 py-4 rounded-2xl font-bold hover:bg-emerald-50 transition-all shadow-lg">
-                    Start Application
+                  <button className="w-full bg-white text-[#6F7E57] py-5 rounded-2xl font-bold text-lg hover:bg-brand-alt-2 transition-all shadow-lg">
+                    Submit Partnership Inquiry
                   </button>
-                  <p className="mt-6 text-center text-xs text-emerald-200">
-                    Questions? Email us at partners@everydayneeds.ng
-                  </p>
+                  <div className="mt-8 pt-8 border-t border-white/10 text-center">
+                    <p className="text-sm opacity-80 mb-2">Our team typically responds within 3-5 business days.</p>
+                    <p className="font-bold">partners@everydayneeds.ng</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -3945,40 +4153,43 @@ function App() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                   <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Get In Touch</h3>
-                  <p className="text-zinc-500">We're here to help with any questions or feedback.</p>
+                  <p className="text-zinc-500 italic">We're here to support your home management journey.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
                   {[
-                    { title: 'Email', value: 'hello@everydayneeds.ng', icon: Heart },
-                    { title: 'Phone', value: '+234 800 123 4567', icon: Truck },
-                    { title: 'Office', value: 'Lagos, Nigeria', icon: ShieldCheck },
+                    { title: 'Customer Support', value: 'support@everydayneeds.com', icon: Mail },
+                    { title: 'Partnerships', value: 'partners@everydayneeds.com', icon: Users },
+                    { title: 'Investments', value: 'investors@everydayneeds.com', icon: TrendingUp },
+                    { title: 'Phone', value: '+234 803 565 7616', icon: User },
                   ].map((item, i) => (
-                    <div key={i} className="p-8 bg-white rounded-3xl border border-black/5 text-center">
-                      <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-4">
-                        <item.icon size={24} />
+                    <div key={i} className="p-8 bg-white rounded-[2.5rem] border border-[#6F7E57]/10 text-center group hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
+                      <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white group-hover:text-[#6F7E57] transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
+                        <item.icon size={20} />
                       </div>
-                      <h4 className="font-bold text-zinc-900 mb-1">{item.title}</h4>
-                      <p className="text-sm text-zinc-500">{item.value}</p>
+                      <h4 className="font-bold mb-2">{item.title}</h4>
+                      <p className="text-sm opacity-80 break-words font-medium">{item.value}</p>
                     </div>
                   ))}
                 </div>
-                <div className="bg-white rounded-[3rem] border border-black/5 p-12 shadow-sm">
+                <p className="text-center text-zinc-400 text-sm">Response time is usually within 24 hours.</p>
+
+                <div className="mt-16 bg-white rounded-[3rem] border border-black/5 p-12 shadow-sm">
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-zinc-700 mb-2">Name</label>
-                        <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Your Name" />
+                        <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium" placeholder="Your Name" />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-zinc-700 mb-2">Email</label>
-                        <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Your Email" />
+                        <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium" placeholder="Your Email" />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-zinc-700 mb-2">Message</label>
-                      <textarea className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500 h-40" placeholder="How can we help?"></textarea>
+                      <textarea className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40" placeholder="How can we help?"></textarea>
                     </div>
-                    <button className="w-full bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-emerald-600 transition-all">Send Message</button>
+                    <button className="w-full bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-brand-secondary transition-all shadow-lg">Send Message</button>
                   </form>
                 </div>
               </div>
@@ -3993,27 +4204,51 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             >
-              <div className="max-w-4xl mx-auto text-center">
-                <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Investor Relations</h3>
-                <p className="text-zinc-500 mb-16">Join us in shaping the future of household essentials in Nigeria.</p>
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-16">
+                  <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Investor Relations</h3>
+                  <p className="text-zinc-500 max-w-2xl mx-auto italic">Building a legacy of reliability and efficiency in African retail.</p>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                  <div className="bg-white p-8 rounded-3xl border border-black/5">
-                    <h4 className="text-xl font-bold text-zinc-900 mb-4">Financial Highlights</h4>
-                    <p className="text-zinc-600 leading-relaxed mb-4">We have maintained a steady 40% quarter-over-quarter growth, expanding our fulfillment centers across major cities.</p>
-                    <ul className="space-y-2 text-sm text-zinc-500">
-                      <li>• $2M ARR as of Q4 2023</li>
-                      <li>• 92% Customer Retention Rate</li>
-                      <li>• 5,000+ Active Subscriptions</li>
-                    </ul>
+                <div className="grid md:grid-cols-2 gap-12 mb-24">
+                  <div className="bg-brand-secondary text-white p-12 rounded-[3.5rem] shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-8 italic">Our Vision for Growth</h3>
+                    <p className="text-lg text-zinc-300 leading-relaxed mb-8">Everyday Needs is more than a delivery service; it is a data-driven infrastructure company built to own the relationship with the modern Nigerian household.</p>
+                    <div className="space-y-4">
+                      {[
+                        'Scalable direct-to-consumer model',
+                        'Optimized regional sourcing network',
+                        'Proprietary household demand data',
+                        'Long-term customer retention focus'
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <CheckCircle2 size={20} className="text-brand-alt-2" />
+                          <span className="font-medium">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="bg-white p-8 rounded-3xl border border-black/5">
-                    <h4 className="text-xl font-bold text-zinc-900 mb-4">Contact Our Team</h4>
-                    <p className="text-zinc-600 leading-relaxed mb-6">For investment inquiries and detailed financial reports, please get in touch with our investor relations team.</p>
-                    <button className="bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-all">
-                      Request Pitch Deck
-                    </button>
+                  <div className="space-y-8 py-8">
+                    <h3 className="text-3xl font-bold text-zinc-900">Investment Fundamentals</h3>
+                    <p className="text-lg text-zinc-600 leading-relaxed">We focus on high-frequency, essential consumption categories, ensuring consistent cash flow and strong defensive characteristics in any economic climate.</p>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="p-6 bg-zinc-50 rounded-3xl border border-black/5">
+                        <p className="text-[#6F7E57] font-black text-2xl mb-1">Reliability</p>
+                        <p className="text-xs text-zinc-500 uppercase tracking-widest font-bold">The Core Metric</p>
+                      </div>
+                      <div className="p-6 bg-zinc-50 rounded-3xl border border-black/5">
+                        <p className="text-[#6F7E57] font-black text-2xl mb-1">Efficiency</p>
+                        <p className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Operational Edge</p>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                <div className="text-center p-16 bg-zinc-100 rounded-[3.5rem] border border-black/5">
+                  <h3 className="text-2xl font-bold mb-6">Explore the Future of Everyday Needs</h3>
+                  <p className="text-zinc-500 mb-10 max-w-xl mx-auto text-lg leading-relaxed">For professional inquiries, pitch decks, and performance data, please contact our investment relations team.</p>
+                  <button className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-extrabold text-lg hover:bg-brand-secondary transition-all shadow-xl">Contact Investment Team</button>
+                  <p className="mt-8 font-bold text-sm">legacy@everydayneeds.ng</p>
                 </div>
               </div>
             </motion.div>
@@ -4087,7 +4322,8 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="col-span-1 md:col-span-2">
-              <span className="text-2xl font-bold tracking-tighter text-emerald-600 mb-6 block">Everyday Needs</span>
+              <span className="text-2xl font-bold tracking-tighter text-[#6F7E57] mb-2 block">Everyday Needs</span>
+              <p className="text-zinc-600 font-serif italic text-lg mb-6">Everything Your Home Needs. Delivered.</p>
               <p className="text-zinc-500 max-w-sm leading-relaxed">
                 Nigeria's most trusted essentials subscription platform. Delivering quality, reliability, and peace of mind to your doorstep.
               </p>
@@ -4095,34 +4331,37 @@ function App() {
             <div>
               <h4 className="font-bold text-zinc-400 uppercase tracking-widest text-xs mb-6">Company</h4>
               <ul className="space-y-4 text-sm font-medium text-zinc-600">
-                <li><button onClick={() => setView('about')} className="hover:text-emerald-600">About Us</button></li>
-                <li><button onClick={() => setView('partners')} className="hover:text-emerald-600">Partners</button></li>
-                <li><button onClick={() => setView('investors')} className="hover:text-emerald-600">Investors</button></li>
-                <li><button onClick={() => setView('contact')} className="hover:text-emerald-600">Contact</button></li>
+                <li><button onClick={() => setView('home')} className="hover:text-[#6F7E57]">Home</button></li>
+                <li><button onClick={() => setView('about')} className="hover:text-[#6F7E57]">About Us</button></li>
+                <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Our Boxes</button></li>
+                <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Subscribe</button></li>
+                <li><button onClick={() => setView('partners')} className="hover:text-[#6F7E57]">Partners</button></li>
+                <li><button onClick={() => setView('investors')} className="hover:text-[#6F7E57]">Investors</button></li>
+                <li><button onClick={() => setView('contact')} className="hover:text-[#6F7E57]">Contact</button></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-zinc-400 uppercase tracking-widest text-xs mb-6">Legal</h4>
               <ul className="space-y-4 text-sm font-medium text-zinc-600">
-                <li><button onClick={() => setView('privacy')} className="hover:text-emerald-600">Privacy Policy</button></li>
-                <li><button onClick={() => setView('terms')} className="hover:text-emerald-600">Terms of Service</button></li>
-                <li><button onClick={() => setView('delivery')} className="hover:text-emerald-600">Delivery Policy</button></li>
+                <li><button onClick={() => setView('privacy')} className="hover:text-[#6F7E57]">Privacy Policy</button></li>
+                <li><button onClick={() => setView('terms')} className="hover:text-[#6F7E57]">Terms of Service</button></li>
+                <li><button onClick={() => setView('delivery')} className="hover:text-[#6F7E57]">Delivery Policy</button></li>
               </ul>
             </div>
           </div>
           <div className="mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-zinc-400">© 2026 Everyday Needs. All rights reserved designed by airealcom.</p>
             <div className="flex items-center space-x-6">
-              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-[#6F7E57] hover:border-[#6F7E57] transition-all">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-[#6F7E57] hover:border-[#6F7E57] transition-all">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+              <a href="#" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-[#6F7E57] hover:border-[#6F7E57] transition-all">
                 <MessageSquare size={18} />
               </a>
-              <a href="mailto:hello@everydayneeds.ng" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-emerald-600 hover:border-emerald-600 transition-all">
+              <a href="mailto:hello@everydayneeds.ng" className="w-10 h-10 bg-white rounded-full border border-black/5 flex items-center justify-center text-zinc-400 hover:text-[#6F7E57] hover:border-[#6F7E57] transition-all">
                 <Mail size={18} />
               </a>
             </div>
