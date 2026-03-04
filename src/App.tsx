@@ -304,19 +304,19 @@ const CartDrawer = ({
   ;
 
 const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => (
-  <section className="relative min-h-screen overflow-hidden">
+  <section className="relative min-h-screen overflow-hidden flex items-center">
     {/* Full-bleed background image */}
     <div className="absolute inset-0 z-0">
       <img
-        src="/images/front page.jpeg"
+        src="/images/front page enhanced.jpg"
         alt="Everyday Needs Box"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-right"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5]/95 via-[#F8F0E5]/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5]/95 via-[#F8F0E5]/60 to-transparent" />
     </div>
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-40 pb-32">
-      <div className="max-w-2xl">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
+      <div className="max-w-2xl text-left">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -329,13 +329,13 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
             </span>
             <span>Just In Time — Serving Lagos & Port Harcourt</span>
           </div>
-          <h1 className="font-serif text-5xl lg:text-7xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
             Everything Your <span className="text-[#6F7E57]">Home Needs</span>. Delivered.
           </h1>
-          <p className="text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="font-sans text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl">
             From fresh farm produce to pantry essentials, baby care to home supplies — Everyday Needs delivers curated boxes of trusted essentials directly to your doorstep.
           </p>
-          <p className="text-lg font-semibold mb-10" style={{ color: '#6F7E57' }}>
+          <p className="font-sans text-lg font-semibold mb-10 text-[#6F7E57]">
             No stress. No last-minute shopping. Just reliable living.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -375,7 +375,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
             </div>
           ))}
         </div>
-        <p className="text-center text-sm text-zinc-500 mt-6 italic">Reliable. Safe. Thoughtfully sourced. Trusted by modern households.</p>
+        <p className="text-center text-sm text-zinc-500 mt-6 ">Reliable. Safe. Thoughtfully sourced. Trusted by modern households.</p>
       </div>
     </div>
   </section>
@@ -418,7 +418,7 @@ const ProductCard: React.FC<{
       <p className="text-sm text-zinc-500 mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
       <div className="flex items-center justify-between mt-auto">
         <div>
-          <span className="text-2xl font-extrabold text-zinc-900" style={{ fontFamily: 'Montserrat, sans-serif' }}>₦{product.price.toLocaleString()}</span>
+          <span className="text-2xl font-bold font-sans text-zinc-900">₦{product.price.toLocaleString()}</span>
           <span className="block text-xs text-[#6F7E57] font-semibold mt-1">Delivered Monthly</span>
         </div>
         <div className="flex items-center gap-2">
@@ -557,7 +557,7 @@ const ProductDetail = ({
                   if (items.length > 2) {
                     return (
                       <div className="space-y-4">
-                        <select className="w-full px-6 py-4 bg-[#F8F0E5] border border-zinc-200 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all appearance-none cursor-pointer" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        <select className="w-full px-6 py-4 bg-[#F8F0E5] border border-zinc-200 rounded-2xl text-sm font-bold font-sans outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all appearance-none cursor-pointer">
                           <option value="">Select an item to view — {items.length} items included</option>
                           {items.map((item: any, i: number) => (
                             <option key={i} value={item.name}>{item.name} (Qty: {item.quantity})</option>
@@ -1576,8 +1576,18 @@ const DashboardLayout = ({
     user.role === 'seller' ? sellerSidebarGroups :
       buyerSidebarGroups;
 
+  const getTheme = () => {
+    switch (user.role) {
+      case 'seller': return { primary: '#693311', secondary: '#f7ebc3' };
+      case 'admin': return { primary: '#575B44', secondary: '#F8F0E5' };
+      case 'buyer':
+      default: return { primary: '#6F7E57', secondary: '#FAF5EF' };
+    }
+  };
+  const theme = getTheme();
+
   return (
-    <div className="flex h-screen bg-[#693311] overflow-hidden font-sans">
+    <div className="flex h-screen overflow-hidden font-sans" style={{ backgroundColor: theme.primary }}>
       {/* Sidebar */}
       <aside
         className={`bg-white border-r border-zinc-200 flex flex-col h-full transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-20' : 'w-[240px]'
@@ -1735,7 +1745,7 @@ const DashboardLayout = ({
         </header>
 
         {/* Content */}
-        <div className="flex-grow overflow-y-auto bg-[#F8F0E5]">
+        <div className="flex-grow overflow-y-auto" style={{ backgroundColor: theme.secondary }}>
           <div className="max-w-[1200px] mx-auto px-6 py-8">
             {children}
           </div>
@@ -1818,7 +1828,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                 ))}
                 {subscriptions.length === 0 && (
                   <div className="p-10 text-center">
-                    <p className="text-sm text-zinc-500 italic">No recent activity found.</p>
+                    <p className="text-sm text-zinc-500 ">No recent activity found.</p>
                   </div>
                 )}
               </div>
@@ -2359,14 +2369,14 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
               <h3 className="text-sm font-bold text-zinc-900 mb-6">Store Performance</h3>
-              <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 italic">
+              <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 ">
                 Seller Analytics Chart Visualization
               </div>
             </div>
           </div>
         );
       default:
-        return <div className="p-20 text-center text-zinc-400 italic">Section coming soon...</div>;
+        return <div className="p-20 text-center text-zinc-400 ">Section coming soon...</div>;
     }
   };
 
@@ -2967,7 +2977,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             </div>
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
               <h3 className="text-sm font-bold text-zinc-900 mb-6">User Traffic Analytics</h3>
-              <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 italic">
+              <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 ">
                 Traffic Chart Visualization
               </div>
             </div>
@@ -3087,7 +3097,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
           </div>
         );
       default:
-        return <div className="p-20 text-center text-zinc-400 italic">Admin section coming soon...</div>;
+        return <div className="p-20 text-center text-zinc-400 ">Admin section coming soon...</div>;
     }
   };
 
@@ -3586,7 +3596,8 @@ function App() {
               <section className="py-24 bg-[#6F7E57] overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
-                    <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[#F8F0E5]">Thoughtfully sourced. Reliably delivered. Designed for real homes.</h2>
+                    <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-[#F8F0E5]">Our Difference</h2>
+                    <p className="font-sans text-xl text-[#F8F0E5]/90 mt-4 max-w-2xl mx-auto">Thoughtfully sourced. Reliably delivered. Designed for real homes.</p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
@@ -3605,8 +3616,7 @@ function App() {
                     ))}
                   </div>
                   <div className="mt-20 max-w-3xl mx-auto text-center">
-                    <span className="text-zinc-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">Our Difference</span>
-                    <p className="text-xl text-[#F8F0E5]/90 leading-relaxed max-w-2xl mx-auto">
+                    <p className="font-sans text-xl text-[#F8F0E5]/90 leading-relaxed max-w-2xl mx-auto">
                       <strong className="text-[#F8F0E5]">Everyday Needs is built differently.</strong> We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
                     </p>
                     <p className="mt-6 text-[#F8F0E5]/90 leading-relaxed">We prioritize:</p>
@@ -3616,7 +3626,7 @@ function App() {
                       <span>• Non-toxic and safer home and personal care products</span>
                       <span>• High-quality pantry and household essentials</span>
                     </div>
-                    <p className="mt-10 text-lg italic text-[#F8F0E5]/80" style={{ fontFamily: 'Montserrat, sans-serif' }}>Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.</p>
+                    <p className="mt-10 text-lg font-sans text-[#F8F0E5]/80">Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.</p>
                   </div>
                 </div>
               </section>
@@ -3766,7 +3776,7 @@ function App() {
                           ))}
                         </div>
                       </div>
-                      <p className="text-lg italic text-[#F8F0E5]/70">
+                      <p className="text-lg  text-[#F8F0E5]/70">
                         We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
                       </p>
                     </div>
@@ -3831,7 +3841,7 @@ function App() {
                         <div className="flex gap-1 mb-6">
                           {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-amber-400 text-amber-400" />)}
                         </div>
-                        <p className="text-xl font-medium italic leading-relaxed mb-8 text-[#F8F0E5]">"{t.quote}"</p>
+                        <p className="text-xl font-medium  leading-relaxed mb-8 text-[#F8F0E5]">"{t.quote}"</p>
                         <p className="text-[#c5a059] font-bold uppercase tracking-widest text-sm">— {t.author}</p>
                       </div>
                     ))}
@@ -4039,7 +4049,7 @@ function App() {
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
                   <h3 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story</h3>
-                  <p className="text-xl text-zinc-500 max-w-3xl mx-auto leading-relaxed italic">
+                  <p className="text-xl text-zinc-500 max-w-3xl mx-auto leading-relaxed ">
                     Born from the reality of busy Nigerians, Everyday Needs was created to solve the "last-minute store run" stress.
                   </p>
                 </div>
@@ -4104,7 +4114,7 @@ function App() {
             >
               <div className="text-center mb-16">
                 <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Partner With Us</h3>
-                <p className="text-zinc-500 max-w-2xl mx-auto italic">Scale your impact with a partner that values quality and reliability.</p>
+                <p className="text-zinc-500 max-w-2xl mx-auto ">Scale your impact with a partner that values quality and reliability.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
@@ -4148,12 +4158,12 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5] rounded-[3rem] mt-12 mb-12 shadow-sm border border-[#575B44]/10"
             >
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                   <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Get In Touch</h3>
-                  <p className="text-zinc-500 italic">We're here to support your home management journey.</p>
+                  <p className="text-zinc-500 ">We're here to support your home management journey.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
                   {[
@@ -4162,7 +4172,7 @@ function App() {
                     { title: 'Investments', value: 'investors@everydayneeds.com', icon: TrendingUp },
                     { title: 'Phone', value: '+234 803 565 7616', icon: User },
                   ].map((item, i) => (
-                    <div key={i} className="p-8 bg-white rounded-[2.5rem] border border-[#6F7E57]/10 text-center group hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
+                    <div key={i} className="p-8 bg-white rounded-[2.5rem] border border-[#575B44]/20 text-center group hover:bg-[#6F7E57] hover:text-white transition-all shadow-md">
                       <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white group-hover:text-[#6F7E57] transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
                         <item.icon size={20} />
                       </div>
@@ -4173,7 +4183,7 @@ function App() {
                 </div>
                 <p className="text-center text-zinc-400 text-sm">Response time is usually within 24 hours.</p>
 
-                <div className="mt-16 bg-white rounded-[3rem] border border-black/5 p-12 shadow-sm">
+                <div className="mt-16 bg-[#f7ebc3] rounded-[3rem] border border-[#575B44]/20 p-12 shadow-lg">
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -4189,7 +4199,7 @@ function App() {
                       <label className="block text-sm font-bold text-zinc-700 mb-2">Message</label>
                       <textarea className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40" placeholder="How can we help?"></textarea>
                     </div>
-                    <button className="w-full bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-brand-secondary transition-all shadow-lg">Send Message</button>
+                    <button className="w-full bg-[#575B44] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl">Send Message</button>
                   </form>
                 </div>
               </div>
@@ -4207,12 +4217,12 @@ function App() {
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
                   <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Investor Relations</h3>
-                  <p className="text-zinc-500 max-w-2xl mx-auto italic">Building a legacy of reliability and efficiency in African retail.</p>
+                  <p className="text-zinc-500 max-w-2xl mx-auto ">Building a legacy of reliability and efficiency in African retail.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 mb-24">
                   <div className="bg-brand-secondary text-white p-12 rounded-[3.5rem] shadow-2xl">
-                    <h3 className="text-3xl font-bold mb-8 italic">Our Vision for Growth</h3>
+                    <h3 className="text-3xl font-bold mb-8 ">Our Vision for Growth</h3>
                     <p className="text-lg text-zinc-300 leading-relaxed mb-8">Everyday Needs is more than a delivery service; it is a data-driven infrastructure company built to own the relationship with the modern Nigerian household.</p>
                     <div className="space-y-4">
                       {[
@@ -4323,7 +4333,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="col-span-1 md:col-span-2">
               <span className="text-2xl font-bold tracking-tighter text-[#6F7E57] mb-2 block">Everyday Needs</span>
-              <p className="text-zinc-600 font-serif italic text-lg mb-6">Everything Your Home Needs. Delivered.</p>
+              <p className="text-zinc-600 font-serif  text-lg mb-6">Everything Your Home Needs. Delivered.</p>
               <p className="text-zinc-500 max-w-sm leading-relaxed">
                 Nigeria's most trusted essentials subscription platform. Delivering quality, reliability, and peace of mind to your doorstep.
               </p>
