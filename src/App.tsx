@@ -303,83 +303,136 @@ const CartDrawer = ({
 )
   ;
 
-const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => (
-  <section className="relative min-h-screen overflow-hidden flex items-center">
-    {/* Full-bleed background image */}
-    <div className="absolute inset-0 z-0">
-      <img
-        src="/images/front page enhanced.jpg"
-        alt="Everyday Needs Box"
-        className="w-full h-full object-cover object-right"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5]/95 via-[#F8F0E5]/60 to-transparent" />
-    </div>
+const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) => void }) => {
+  const [expandedTrustIdx, setExpandedTrustIdx] = useState<number | null>(null);
 
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
-      <div className="max-w-2xl text-left">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-flex items-center space-x-2 bg-[#6F7E57]/10 text-[#6F7E57] px-4 py-2 rounded-full text-sm font-bold mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6F7E57]/40 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6F7E57]"></span>
-            </span>
-            <span>Just In Time — Serving Lagos & Port Harcourt</span>
-          </div>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
-            Everything Your <span className="text-[#6F7E57]">Home Needs</span>. Delivered.
-          </h1>
-          <p className="font-sans text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl">
-            From fresh farm produce to pantry essentials, baby care to home supplies — Everyday Needs delivers curated boxes of trusted essentials directly to your doorstep.
-          </p>
-          <p className="font-sans text-lg font-semibold mb-10 text-[#6F7E57]">
-            No stress. No last-minute shopping. Just reliable living.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button
-              onClick={() => setView('products')}
-              className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
-            >
-              Start Your Subscription
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={() => setView('products')}
-              className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
-            >
-              Explore Our Boxes
-            </button>
-          </div>
-        </motion.div>
+  const trustItems = [
+    {
+      label: 'Reliable',
+      icon: Truck,
+      detail: 'Consistent monthly deliveries scheduled to your preference, ensuring you never run out of home essentials.'
+    },
+    {
+      label: 'Safe',
+      icon: ShieldCheck,
+      detail: 'Every product is strictly vetted for safety, non-toxicity, and quality before it reaches your doorstep.'
+    },
+    {
+      label: 'Thoughtfully Sourced',
+      icon: Heart,
+      detail: 'We partner directly with farmers and trusted homegrown brands to ensure freshness and support the local economy.'
+    },
+    {
+      label: 'Trusted',
+      icon: CheckCircle2,
+      detail: 'Join thousands of modern Nigerian households who rely on our seamless and responsible essential service.'
+    },
+  ];
+
+  return (
+    <section className="relative min-h-screen overflow-hidden flex flex-col justify-center">
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/front page enhanced.jpg"
+          alt="Everyday Needs Box"
+          className="w-full h-full object-cover object-[80%_center]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5] via-[#F8F0E5]/80 to-transparent" />
       </div>
-    </div>
 
-    {/* Trust Bar */}
-    <div className="relative z-10 bg-[#F8F0E5]/90 backdrop-blur-sm border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: 'Reliable', icon: Truck },
-            { label: 'Safe', icon: ShieldCheck },
-            { label: 'Thoughtfully Sourced', icon: Heart },
-            { label: 'Trusted', icon: CheckCircle2 },
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center space-y-2">
-              <div className="p-3 bg-[#6F7E57]/10 rounded-2xl text-[#6F7E57]">
-                <item.icon size={24} />
-              </div>
-              <span className="text-sm font-medium text-zinc-600">{item.label}</span>
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 pb-16">
+        <div className="max-w-2xl text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center space-x-2 bg-[#6F7E57]/10 text-[#6F7E57] px-4 py-2 rounded-full text-sm font-bold mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6F7E57]/40 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6F7E57]"></span>
+              </span>
+              <span>Just In Time — Serving Lagos & Port Harcourt</span>
             </div>
-          ))}
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
+              Everything Your <span className="text-[#6F7E57]">Home Needs</span>. Delivered.
+            </h1>
+            <p className="font-sans text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl">
+              From fresh farm produce to pantry essentials, baby care to home supplies — Everyday Needs delivers curated boxes of trusted essentials directly to your doorstep.
+            </p>
+            <p className="font-sans text-lg font-semibold mb-10 text-[#6F7E57]">
+              No stress. No last-minute shopping. Just reliable living.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={() => setView('products')}
+                className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
+              >
+                Start Your Subscription
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => setView('products')}
+                className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
+              >
+                Explore Our Boxes
+              </button>
+            </div>
+          </motion.div>
         </div>
-        <p className="text-center text-sm text-zinc-500 mt-6 ">Reliable. Safe. Thoughtfully sourced. Trusted by modern households.</p>
       </div>
-    </div>
-  </section>
-);
+
+      {/* Trust Bar Refined */}
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pb-12 mt-auto">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-[#FAF5EF]/40 backdrop-blur-md rounded-[2.5rem] border border-[#6F7E57]/10 p-4 md:p-6 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {trustItems.map((item, i) => (
+                <div key={i} className="relative">
+                  <button
+                    onClick={() => setExpandedTrustIdx(expandedTrustIdx === i ? null : i)}
+                    className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all border ${expandedTrustIdx === i
+                      ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-md'
+                      : 'bg-white/60 border-transparent text-[#6F7E57] hover:bg-white hover:border-[#6F7E57]/20 shadow-sm'
+                      }`}
+                  >
+                    <div className={`p-2 rounded-xl shrink-0 transition-colors ${expandedTrustIdx === i ? 'bg-white/20' : 'bg-[#6F7E57]/10'
+                      }`}>
+                      <item.icon size={22} />
+                    </div>
+                    <div className="flex-grow text-left">
+                      <p className="text-sm font-bold tracking-tight">{item.label}</p>
+                    </div>
+                    <ChevronDown size={18} className={`transition-transform duration-300 ${expandedTrustIdx === i ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {expandedTrustIdx === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden z-20"
+                      >
+                        <div className="pt-2 px-1">
+                          <div className="p-4 bg-white rounded-2xl border border-[#6F7E57]/10 text-[#6F7E57] text-xs font-medium leading-relaxed shadow-sm">
+                            {item.detail}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 
 const ProductCard: React.FC<{
@@ -3597,7 +3650,7 @@ function App() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
                     <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-[#F8F0E5]">Our Difference</h2>
-                    <p className="font-sans text-xl text-[#F8F0E5]/90 mt-4 max-w-2xl mx-auto">Thoughtfully sourced. Reliably delivered. Designed for real homes.</p>
+                    <p className="font-sans text-xl text-[#F8F0E5]/90 mt-4 max-w-2xl mx-auto leading-relaxed">Thoughtfully sourced. Reliably delivered. Designed for real homes.</p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
@@ -3606,27 +3659,41 @@ function App() {
                       { title: 'Subscription Reliability', desc: 'Never run out of essentials with our automated delivery system.', icon: Calendar },
                       { title: 'Woman-Driven Insight', desc: 'Built with a deep understanding of household management.', icon: Heart },
                     ].map((feature, i) => (
-                      <div key={i} className="p-8 bg-white/10 rounded-3xl border border-white/10 hover:bg-white/15 transition-colors group">
-                        <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-[#F8F0E5] shadow-sm mb-6 group-hover:bg-[#F8F0E5] group-hover:text-[#6F7E57] transition-colors">
-                          <feature.icon size={24} />
+                      <div key={i} className="p-8 bg-white/10 rounded-[2.5rem] border border-white/10 hover:bg-white/15 transition-colors group">
+                        <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-[#F8F0E5] shadow-sm mb-6 group-hover:bg-[#F8F0E5] group-hover:text-[#6F7E57] transition-colors">
+                          <feature.icon size={28} />
                         </div>
-                        <h3 className="text-lg font-bold mb-3 text-[#F8F0E5]">{feature.title}</h3>
-                        <p className="text-sm text-[#F8F0E5]/70 leading-relaxed">{feature.desc}</p>
+                        <h3 className="text-xl font-bold mb-3 text-[#F8F0E5]">{feature.title}</h3>
+                        <p className="text-sm text-[#F8F0E5]/80 leading-relaxed font-sans">{feature.desc}</p>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-20 max-w-3xl mx-auto text-center">
-                    <p className="font-sans text-xl text-[#F8F0E5]/90 leading-relaxed max-w-2xl mx-auto">
+                  <div className="mt-20 max-w-4xl mx-auto text-center bg-white/5 p-12 rounded-[3rem] border border-white/10">
+                    <p className="font-sans text-xl text-[#F8F0E5] leading-relaxed mb-8">
                       <strong className="text-[#F8F0E5]">Everyday Needs is built differently.</strong> We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
                     </p>
-                    <p className="mt-6 text-[#F8F0E5]/90 leading-relaxed">We prioritize:</p>
-                    <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest" style={{ color: '#F8F0E5' }}>
-                      <span>• Farm-fresh produce sourced directly from farmers</span>
-                      <span>• Homegrown Nigerian brands and products</span>
-                      <span>• Non-toxic and safer home and personal care products</span>
-                      <span>• High-quality pantry and household essentials</span>
+                    <p className="text-[#F8F0E5]/90 leading-relaxed mb-6 font-sans text-lg">We prioritize:</p>
+                    <div className="flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-widest text-[#F8F0E5] mb-10">
+                      <span className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
+                        Farm-fresh produce sourced directly from farmers
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
+                        Homegrown Nigerian brands and products
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
+                        Non-toxic and safer home and personal care products
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
+                        High-quality pantry and household essentials
+                      </span>
                     </div>
-                    <p className="mt-10 text-lg font-sans text-[#F8F0E5]/80">Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.</p>
+                    <p className="text-lg font-sans text-[#F8F0E5]/90 leading-relaxed max-w-3xl mx-auto">
+                      Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                    </p>
                   </div>
                 </div>
               </section>
@@ -3739,14 +3806,14 @@ function App() {
               <section className="py-24 bg-[#6F7E57]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">Our Sourcing Promise</span>
-                  <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-8">
-                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-[#F8F0E5]">Thoughtful Sourcing. Superior Living.</h2>
+                  <div className="grid lg:grid-cols-2 gap-16 items-start">
+                    <div className="space-y-10">
+                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-[#F8F0E5] leading-tight">Thoughtful Sourcing. Superior Living.</h2>
                       <div className="space-y-6">
-                        <p className="text-xl text-[#F8F0E5]/90 leading-relaxed">
+                        <p className="text-xl text-[#F8F0E5] leading-relaxed font-sans">
                           Our sourcing model is our strength. We work directly with:
                         </p>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-6">
                           {[
                             'Farmers',
                             'Trusted manufacturers',
@@ -3754,41 +3821,41 @@ function App() {
                             'Verified suppliers'
                           ].map((item, i) => (
                             <div key={i} className="flex items-center gap-3">
-                              <CheckCircle2 size={20} className="text-[#F8F0E5]" />
-                              <span className="font-bold text-[#F8F0E5]">{item}</span>
+                              <div className="w-2 h-2 bg-[#F8F0E5] rounded-full" />
+                              <span className="font-bold text-[#F8F0E5] font-sans">{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
-                      <div className="space-y-4">
-                        <p className="font-bold text-[#F8F0E5]">This ensures:</p>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="space-y-6 bg-white/5 p-8 rounded-[2rem] border border-white/10">
+                        <p className="font-bold text-[#F8F0E5] text-lg font-sans">This ensures:</p>
+                        <div className="grid grid-cols-2 gap-6">
                           {[
                             'Fresher products',
                             'Safer ingredients',
                             'Reliable quality',
                             'Stronger local economic support'
                           ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-2 text-[#F8F0E5]/80">
-                              <Star size={14} className="text-[#c5a059]" />
-                              <span>{item}</span>
+                            <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
+                              <CheckCircle2 size={18} className="text-[#F8F0E5]" />
+                              <span className="font-sans font-medium">{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
-                      <p className="text-lg  text-[#F8F0E5]/70">
+                      <p className="text-lg font-sans text-[#F8F0E5]/90 leading-relaxed">
                         We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
                       </p>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 items-stretch">
-                      <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg mt-12 bg-zinc-100">
+                    <div className="grid grid-cols-2 gap-8 items-stretch pt-12 lg:pt-0">
+                      <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500">
                         <img
                           src="/images/sourcing.JPG"
                           alt="Farm Fresh"
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg bg-zinc-100">
+                      <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500 mt-12">
                         <img
                           src="/images/sourcing 2.JPG"
                           alt="Quality Brands"
@@ -3819,8 +3886,8 @@ function App() {
                         <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm">
                           <reason.icon size={20} />
                         </div>
-                        <h4 className="font-bold text-zinc-900 mb-2">{reason.title}</h4>
-                        <p className="text-xs text-zinc-500 leading-relaxed">{reason.desc}</p>
+                        <h4 className="font-bold text-zinc-900 mb-2 font-sans">{reason.title}</h4>
+                        <p className="text-sm text-zinc-500 leading-relaxed font-sans">{reason.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -3841,8 +3908,8 @@ function App() {
                         <div className="flex gap-1 mb-6">
                           {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-amber-400 text-amber-400" />)}
                         </div>
-                        <p className="text-xl font-medium  leading-relaxed mb-8 text-[#F8F0E5]">"{t.quote}"</p>
-                        <p className="text-[#c5a059] font-bold uppercase tracking-widest text-sm">— {t.author}</p>
+                        <p className="text-xl font-medium leading-relaxed mb-8 text-[#F8F0E5] font-sans">"{t.quote}"</p>
+                        <p className="text-[#f7ebc3] font-bold uppercase tracking-widest text-sm font-sans">— {t.author}</p>
                       </div>
                     ))}
                   </div>
@@ -3853,7 +3920,7 @@ function App() {
               <section className="py-24 bg-[#F8F0E5]">
                 <div className="max-w-4xl mx-auto text-center px-4">
                   <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8">Simplify Your Home Today</h2>
-                  <p className="text-xl text-zinc-500 mb-10 leading-relaxed">Join thousands of households using Everyday Needs.</p>
+                  <p className="text-xl text-zinc-500 mb-10 leading-relaxed font-sans">Join thousands of households using Everyday Needs.</p>
                   <button
                     onClick={() => setView('products')}
                     className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44]/90 transition-all shadow-xl shadow-black/10"
@@ -4049,7 +4116,7 @@ function App() {
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
                   <h3 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story</h3>
-                  <p className="text-xl text-zinc-500 max-w-3xl mx-auto leading-relaxed ">
+                  <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-sans">
                     Born from the reality of busy Nigerians, Everyday Needs was created to solve the "last-minute store run" stress.
                   </p>
                 </div>
@@ -4086,8 +4153,8 @@ function App() {
                         <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
                           <item.icon size={28} />
                         </div>
-                        <h4 className="text-xl font-bold text-zinc-900 mb-4">{item.title}</h4>
-                        <p className="text-zinc-500 leading-relaxed">{item.desc}</p>
+                        <h4 className="text-xl font-bold text-zinc-900 mb-4 font-sans">{item.title}</h4>
+                        <p className="text-zinc-600 leading-relaxed font-sans">{item.desc}</p>
                       </div>
                     ))}
                   </div>
