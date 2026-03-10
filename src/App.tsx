@@ -93,6 +93,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Products</button>
             <button onClick={() => setView('about')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">About</button>
             <button onClick={() => setView('partners')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Partners</button>
+            <button onClick={() => setView('gift-a-box')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Gift a Box</button>
             <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Contact Us</button>
 
             <div className="h-6 w-px bg-zinc-200 mx-2" />
@@ -161,6 +162,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
               <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Products</button>
               <button onClick={() => { setView('about'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">About</button>
               <button onClick={() => { setView('partners'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Partners</button>
+              <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Gift a Box</button>
               <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Contact Us</button>
               {!user && (
                 <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-4 block w-full text-center bg-[#6F7E57] text-white px-3 py-4 rounded-xl font-medium">Login / Register</button>
@@ -552,9 +554,13 @@ const ProductDetail = ({
           </div>
 
           <div className="flex gap-4">
-            {[1, 2, 3].map(i => (
+            {[
+              '/images/PANTRY PROVISION.jpeg',
+              '/images/PROTEIN PRIME CUT.jpeg',
+              '/images/SPARKLING SANCTUARY.jpeg'
+            ].map((src, i) => (
               <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] transition-all">
-                <img src={`/images/thumb_${i}.jpg`} alt="Thumb" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             ))}
           </div>
@@ -758,9 +764,9 @@ const ProductDetail = ({
       {/* Reference Images */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
         {[
-          { src: '/images/thumb_1.jpg', alt: 'Shelf' },
-          { src: '/images/thumb_2.jpg', alt: 'Veggie 1' },
-          { src: '/images/thumb_3.jpg', alt: 'Veggie 2' }
+          { src: '/images/FARM FRESH PRODUCTS.jpeg', alt: 'Farm Fresh Products' },
+          { src: '/images/PANTRY PROVISION (2).jpeg', alt: 'Pantry Provision' },
+          { src: '/images/WELLNESS WONDER.jpeg', alt: 'Wellness Products' }
         ].map((img, i) => (
           <div key={i} className="aspect-video rounded-[2.5rem] overflow-hidden border border-black/5 shadow-sm">
             <img src={img.src} alt={img.alt} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -3294,16 +3300,16 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 };
 
 const MOCK_BOXES: Product[] = [
-  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/front page.jpeg", category: "Pantry Essentials" },
-  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/fresh_harvest.jpeg", category: "Fresh Farm" },
-  { id: 3, name: 'Prime Cuts Box', description: 'Quality meats and protein essentials.', image_url: '/images/meat_prime.jpg', price: 22000, category: 'Prime Protein' },
-  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/breakfast_essentials.jpeg", category: "Pantry Essentials" },
-  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/pamper_kit.jpeg", category: "Beauty & Wellness" },
-  { id: 6, name: "Little Bundle of Joy", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/baby_joy.jpeg", category: "Baby & Kids" },
-  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Home cleaning and sanitation essentials.", price: 40900, image_url: "/images/cleaning_sanctuary.jpeg", category: "Home Care" },
-  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness products for vitality.", price: 25000, image_url: "/images/wellness_box.jpeg", category: "Beauty & Wellness" },
-  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/everyday needs-01.jpg.jpeg", category: "Gourmet" },
-  { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/pamper_kit.jpeg", category: "Beauty & Wellness" },
+  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/PANTRY PROVISION.jpeg", category: "Pantry Essentials" },
+  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/FARM FRESH PRODUCTS.jpeg", category: "Fresh Farm" },
+  { id: 3, name: 'Prime Cuts Box', description: 'Quality meats and protein essentials.', image_url: '/images/PROTEIN PRIME CUT.jpeg', price: 22000, category: 'Prime Protein' },
+  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/SUNRISE ESSENTIALS.jpeg", category: "Pantry Essentials" },
+  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
+  { id: 6, name: "Little Bundle of Joy", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/LITTLE BUNDLE OF JOY.jpeg", category: "Baby & Kids" },
+  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Home cleaning and sanitation essentials.", price: 40900, image_url: "/images/SPARKLING SANCTUARY.jpeg", category: "Home Care" },
+  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness products for vitality.", price: 25000, image_url: "/images/WELLNESS WONDER.jpeg", category: "Beauty & Wellness" },
+  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/GOURMET PLEASURE BOX.jpeg", category: "Gourmet" },
+  { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
 ];
 
 const Storage = {
@@ -3645,55 +3651,68 @@ function App() {
             >
               <Hero onStart={() => setView('pricing')} setView={setView} />
 
-              {/* Our Difference Section */}
-              <section className="py-24 bg-[#6F7E57] overflow-hidden">
+              {/* Our Difference Section - Inverted: cream bg, green text */}
+              <section className="py-24 bg-[#F8F0E5] overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
-                    <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-[#F8F0E5]">Our Difference</h2>
-                    <p className="font-sans text-xl text-[#F8F0E5]/90 mt-4 max-w-2xl mx-auto leading-relaxed">Thoughtfully sourced. Reliably delivered. Designed for real homes.</p>
+                    <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-[#6F7E57]">Our Difference</h2>
+                    <p className="font-sans text-xl text-zinc-600 mt-4 max-w-2xl mx-auto leading-relaxed">Thoughtfully sourced. Reliably delivered. Designed for real homes.</p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                  {/* Feature cards */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
                     {[
                       { title: 'Farm Partnerships', desc: 'Sourced directly from farmers for superior freshness.', icon: Truck },
                       { title: 'Non-Toxic Priority', desc: 'Every product is vetted for safety and environmental impact.', icon: ShieldCheck },
                       { title: 'Subscription Reliability', desc: 'Never run out of essentials with our automated delivery system.', icon: Calendar },
                       { title: 'Woman-Driven Insight', desc: 'Built with a deep understanding of household management.', icon: Heart },
                     ].map((feature, i) => (
-                      <div key={i} className="p-8 bg-white/10 rounded-[2.5rem] border border-white/10 hover:bg-white/15 transition-colors group">
-                        <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-[#F8F0E5] shadow-sm mb-6 group-hover:bg-[#F8F0E5] group-hover:text-[#6F7E57] transition-colors">
+                      <div key={i} className="p-8 bg-[#6F7E57]/10 rounded-[2.5rem] border border-[#6F7E57]/15 hover:bg-[#6F7E57]/15 transition-colors group">
+                        <div className="w-14 h-14 bg-[#6F7E57]/15 rounded-2xl flex items-center justify-center text-[#6F7E57] shadow-sm mb-6 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors">
                           <feature.icon size={28} />
                         </div>
-                        <h3 className="text-xl font-bold mb-3 text-[#F8F0E5]">{feature.title}</h3>
-                        <p className="text-sm text-[#F8F0E5]/80 leading-relaxed font-sans">{feature.desc}</p>
+                        <h3 className="text-xl font-bold mb-3 text-[#6F7E57]">{feature.title}</h3>
+                        <p className="text-sm text-zinc-600 leading-relaxed font-sans">{feature.desc}</p>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-20 max-w-4xl mx-auto text-center bg-white/5 p-12 rounded-[3rem] border border-white/10">
-                    <p className="font-sans text-xl text-[#F8F0E5] leading-relaxed mb-8">
-                      <strong className="text-[#F8F0E5]">Everyday Needs is built differently.</strong> We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
-                    </p>
-                    <p className="text-[#F8F0E5]/90 leading-relaxed mb-6 font-sans text-lg">We prioritize:</p>
-                    <div className="flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-widest text-[#F8F0E5] mb-10">
-                      <span className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
-                        Farm-fresh produce sourced directly from farmers
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
-                        Homegrown Nigerian brands and products
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
-                        Non-toxic and safer home and personal care products
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#F8F0E5] rounded-full" />
-                        High-quality pantry and household essentials
-                      </span>
+
+                  {/* Main body: text + image side by side */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-sm p-10 lg:p-16">
+                    {/* Text column */}
+                    <div className="space-y-6">
+                      <h3 className="font-serif text-2xl font-bold text-[#6F7E57]">Everyday Needs is built differently.</h3>
+                      <p className="font-sans text-base text-zinc-700 leading-relaxed text-justify">
+                        We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
+                      </p>
+                      <p className="font-sans text-base text-zinc-700 leading-relaxed text-justify font-semibold">We prioritize:</p>
+                      <ul className="space-y-3">
+                        {[
+                          'Farm-fresh produce sourced directly from farmers',
+                          'Homegrown Nigerian brands and products',
+                          'Non-toxic and safer home and personal care products',
+                          'High-quality pantry and household essentials',
+                        ].map((item, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="text-[#6F7E57] text-lg font-bold shrink-0">✓</span>
+                            <span className="font-sans text-base text-zinc-700 leading-relaxed text-justify">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="font-sans text-base text-zinc-700 leading-relaxed text-justify">
+                        Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                      </p>
                     </div>
-                    <p className="text-lg font-sans text-[#F8F0E5]/90 leading-relaxed max-w-3xl mx-auto">
-                      Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
-                    </p>
+                    {/* Image column */}
+                    <div className="relative">
+                      <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-xl">
+                        <img
+                          src="/images/Thoughtful Sourcing. Superior Living2.jpeg"
+                          alt="Thoughtful sourcing at Everyday Needs"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -4137,7 +4156,12 @@ function App() {
                     </div>
                   </div>
                   <div className="relative">
-                    <img src="/images/fresh_harvest.jpeg" alt="Our Vision" className="rounded-[3rem] shadow-2xl rotate-2" />
+                    <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
+                      <img src="/images/FARM FRESH PRODUCTS.jpeg" alt="Our Mission" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="absolute -bottom-5 -right-5 w-36 h-36 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
+                      <img src="/images/Built by Women Who Understand Real Homes.png" alt="Our Vision" className="w-full h-full object-cover" />
+                    </div>
                   </div>
                 </div>
 
@@ -4182,6 +4206,20 @@ function App() {
               <div className="text-center mb-16">
                 <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Partner With Us</h3>
                 <p className="text-zinc-500 max-w-2xl mx-auto ">Scale your impact with a partner that values quality and reliability.</p>
+              </div>
+
+              {/* Partners banner image */}
+              <div className="relative h-64 rounded-[2.5rem] overflow-hidden mb-16 shadow-xl">
+                <img
+                  src="/images/Thoughtful Sourcing. Superior Living..jpeg"
+                  alt="Partner with Everyday Needs"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6F7E57]/70 to-transparent flex items-center px-12">
+                  <p className="text-white font-serif text-2xl md:text-3xl font-bold max-w-md leading-snug">
+                    Growing together with Nigeria's finest farmers and brands.
+                  </p>
+                </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
@@ -4270,6 +4308,161 @@ function App() {
                   </form>
                 </div>
               </div>
+            </motion.div>
+          )}
+
+          {view === 'gift-a-box' && (
+            <motion.div
+              key="gift-a-box"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              {/* Hero Banner */}
+              <div className="relative h-72 md:h-96 overflow-hidden">
+                <img
+                  src="/images/Everyday essentials in organized boxes.png"
+                  alt="Gift a Box Hero"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#6F7E57]/60 to-[#6F7E57]/80" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                  <h2 className="font-serif text-4xl md:text-6xl font-black text-white mb-4 drop-shadow-lg">
+                    Gift a Box
+                  </h2>
+                  <p className="text-white/90 text-lg md:text-xl max-w-2xl font-sans">
+                    Spread joy, love, and care — one box at a time.
+                  </p>
+                </div>
+              </div>
+
+              {/* Main Content */}
+              <section className="py-20 bg-[#F8F0E5]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+                    {/* Description Text */}
+                    <div className="space-y-6">
+                      <span className="inline-block text-[#6F7E57] font-bold uppercase tracking-[0.3em] text-sm">
+                        The Joy of Giving
+                      </span>
+                      <h3 className="font-serif text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
+                        Make Someone's Day Extraordinary
+                      </h3>
+                      <p className="font-sans text-lg text-zinc-700 leading-relaxed text-justify">
+                        At Everyday Needs we believe in the joy of giving! Our Gift a Box section allows you to send a thoughtful surprise to your favourite orphanage, show appreciation to your staff, celebrate birthdays, or simply spread kindness in your community.
+                      </p>
+                      <p className="font-sans text-lg text-zinc-700 leading-relaxed text-justify">
+                        Whether it's a token of appreciation, an act of kindness, or a celebration, each box is filled with love and care, making every moment special. Join us in making a difference today!
+                      </p>
+                      <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                        <button
+                          onClick={() => setView('products')}
+                          className="bg-[#6F7E57] text-white px-10 py-4 rounded-2xl font-bold text-base hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2 group"
+                        >
+                          <Heart size={18} />
+                          Select a Gift Box
+                          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button
+                          onClick={() => setView('contact')}
+                          className="bg-white text-[#6F7E57] border-2 border-[#6F7E57]/30 px-10 py-4 rounded-2xl font-bold text-base hover:border-[#6F7E57] transition-all"
+                        >
+                          Custom Gifting Enquiry
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Featured Gift Box Image */}
+                    <div className="relative">
+                      <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
+                        <img
+                          src="/images/Everyday essentials in labeled box A.png"
+                          alt="Everyday Needs Gift Box"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                        <img
+                          src="/images/Everyday essentials in labeled box D.png"
+                          alt="Gift Box Detail"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Occasions Grid */}
+                  <div className="mb-20">
+                    <h3 className="font-serif text-3xl font-bold text-center text-zinc-900 mb-12">
+                      Perfect for Every Occasion
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {[
+                        { title: 'Orphanage Donations', desc: 'Bring smiles to children in need with a box full of essential joy.', icon: Heart },
+                        { title: 'Staff Appreciation', desc: 'Celebrate your team with thoughtful, curated boxes of quality essentials.', icon: Users },
+                        { title: 'Birthday Celebrations', desc: 'Make birthdays memorable with a premium gift box delivered to their door.', icon: Star },
+                        { title: 'Random Acts of Kindness', desc: 'Spread love in your community with a simple, heartfelt gesture.', icon: ShieldCheck },
+                      ].map((occasion, i) => (
+                        <div key={i} className="p-8 bg-white rounded-[2rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 hover:shadow-md transition-all text-center group">
+                          <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-5 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm">
+                            <occasion.icon size={24} />
+                          </div>
+                          <h4 className="font-bold text-zinc-900 mb-3 text-base">{occasion.title}</h4>
+                          <p className="text-sm text-zinc-500 leading-relaxed">{occasion.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 3 Gallery Images */}
+                  <div className="mb-16">
+                    <h3 className="font-serif text-3xl font-bold text-center text-zinc-900 mb-12">
+                      Inside Every Gift Box
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      {[
+                        { src: '/images/Everyday essentials in labeled box B.png', caption: 'Pantry Essentials Box', desc: 'A curated selection of premium pantry staples.' },
+                        { src: '/images/Everyday essentials in labeled box C.png', caption: 'Family Needs Box', desc: 'Everything a home needs, beautifully packaged.' },
+                        { src: '/images/Everyday essentials in labeled box E.png', caption: 'Wellness & Care Box', desc: 'Non-toxic, quality products for body and home.' },
+                      ].map((img, i) => (
+                        <div key={i} className="group cursor-pointer">
+                          <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-lg mb-4 border border-black/5">
+                            <img
+                              src={img.src}
+                              alt={img.caption}
+                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                          <h4 className="font-bold text-zinc-900 text-center mb-1">{img.caption}</h4>
+                          <p className="text-sm text-zinc-500 text-center">{img.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA Banner */}
+                  <div className="bg-[#6F7E57] rounded-[3rem] p-12 lg:p-16 text-center">
+                    <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">Ready to Gift a Box?</h3>
+                    <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
+                      Choose from our curated boxes or contact us for a fully customised gifting experience tailored to your occasion.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <button
+                        onClick={() => setView('products')}
+                        className="bg-white text-[#6F7E57] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#F8F0E5] transition-all shadow-lg"
+                      >
+                        Browse Gift Boxes
+                      </button>
+                      <button
+                        onClick={() => setView('contact')}
+                        className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all"
+                      >
+                        Contact Us
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </motion.div>
           )}
 
@@ -4412,6 +4605,7 @@ function App() {
                 <li><button onClick={() => setView('about')} className="hover:text-[#6F7E57]">About Us</button></li>
                 <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Our Boxes</button></li>
                 <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Subscribe</button></li>
+                <li><button onClick={() => setView('gift-a-box')} className="hover:text-[#6F7E57]">Gift a Box</button></li>
                 <li><button onClick={() => setView('partners')} className="hover:text-[#6F7E57]">Partners</button></li>
                 <li><button onClick={() => setView('investors')} className="hover:text-[#6F7E57]">Investors</button></li>
                 <li><button onClick={() => setView('contact')} className="hover:text-[#6F7E57]">Contact</button></li>
