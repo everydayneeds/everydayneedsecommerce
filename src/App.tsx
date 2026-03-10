@@ -222,62 +222,69 @@ const CartDrawer = ({
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
-            {items.length === 0 ? (
-              <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-20 h-20 bg-zinc-50 rounded-full flex items-center justify-center text-zinc-300">
-                  <ShoppingBag size={40} />
-                </div>
-                <div>
-                  <p className="text-lg font-bold text-zinc-900">Your cart is empty</p>
-                  <p className="text-zinc-500">Looks like you haven't added anything yet.</p>
-                </div>
-                <button
-                  onClick={onClose}
-                  className="bg-[#6F7E57] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all"
-                >
-                  Start Shopping
-                </button>
-              </div>
-            ) : (
-              items.map((item) => (
-                <div key={item.id} className="flex gap-4 group">
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
-                    <img src={item.image_url} alt={item.name} className="w-full h-full object-cover" />
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 relative">
+            {/* faint background image for cart */}
+            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+              <img src="/images/A HEALTHIER HOME STARTS HERE.jpeg" alt="Cart Background" className="w-full h-full object-cover" />
+            </div>
+
+            <div className="relative z-10">
+              {items.length === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="w-20 h-20 bg-zinc-50 rounded-full flex items-center justify-center text-zinc-300">
+                    <ShoppingBag size={40} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start mb-1">
-                      <h4 className="font-bold text-zinc-900 truncate pr-4">{item.name}</h4>
-                      <button
-                        onClick={() => onRemove(item.id)}
-                        className="text-zinc-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
-                      >
-                        <Trash2 size={18} />
-                      </button>
+                  <div>
+                    <p className="text-lg font-bold text-zinc-900">Your cart is empty</p>
+                    <p className="text-zinc-500">Looks like you haven't added anything yet.</p>
+                  </div>
+                  <button
+                    onClick={onClose}
+                    className="bg-[#6F7E57] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all"
+                  >
+                    Start Shopping
+                  </button>
+                </div>
+              ) : (
+                items.map((item) => (
+                  <div key={item.id} className="flex gap-4 group">
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
+                      <img src={item.image_url} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-                    <p className="text-sm text-zinc-500 mb-3">₦{item.price.toLocaleString()}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center bg-zinc-100 rounded-lg px-2 py-1">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start mb-1">
+                        <h4 className="font-bold text-zinc-900 truncate pr-4">{item.name}</h4>
                         <button
-                          onClick={() => onUpdateQuantity(item.id, -1)}
-                          className="p-1 hover:text-[#6F7E57] transition-colors"
+                          onClick={() => onRemove(item.id)}
+                          className="text-zinc-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
                         >
-                          <X size={14} className="rotate-45" />
-                        </button>
-                        <span className="w-8 text-center text-xs font-bold text-zinc-900">{item.quantity}</span>
-                        <button
-                          onClick={() => onUpdateQuantity(item.id, 1)}
-                          className="p-1 hover:text-[#6F7E57] transition-colors"
-                        >
-                          <Plus size={14} />
+                          <Trash2 size={18} />
                         </button>
                       </div>
-                      <p className="font-bold text-zinc-900">₦{(item.price * item.quantity).toLocaleString()}</p>
+                      <p className="text-sm text-zinc-500 mb-3">₦{item.price.toLocaleString()}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center bg-zinc-100 rounded-lg px-2 py-1">
+                          <button
+                            onClick={() => onUpdateQuantity(item.id, -1)}
+                            className="p-1 hover:text-[#6F7E57] transition-colors"
+                          >
+                            <X size={14} className="rotate-45" />
+                          </button>
+                          <span className="w-8 text-center text-xs font-bold text-zinc-900">{item.quantity}</span>
+                          <button
+                            onClick={() => onUpdateQuantity(item.id, 1)}
+                            className="p-1 hover:text-[#6F7E57] transition-colors"
+                          >
+                            <Plus size={14} />
+                          </button>
+                        </div>
+                        <p className="font-bold text-zinc-900">₦{(item.price * item.quantity).toLocaleString()}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
 
           {items.length > 0 && (
@@ -336,7 +343,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/front page enhanced.jpg"
+          src="/images/front page Main.jpg"
           alt="Everyday Needs Box"
           className="w-full h-full object-cover object-[80%_center]"
         />
@@ -452,7 +459,7 @@ const ProductCard: React.FC<{
       <img
         src={product.image_url}
         alt={product.name}
-        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+        className="w-full h-full object-contain bg-white transform group-hover:scale-110 transition-transform duration-700"
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-4 left-4">
@@ -542,8 +549,8 @@ const ProductDetail = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
         <div className="space-y-8">
-          <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative group">
-            <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative group bg-white">
+            <img src={product.image_url} alt={product.name} className="w-full h-full object-contain p-4" referrerPolicy="no-referrer" />
             <button
               onClick={() => onLike(product)}
               className={`absolute top-6 right-6 p-4 rounded-3xl backdrop-blur-md transition-all shadow-xl ${isLiked ? 'bg-red-500 text-white' : 'bg-white/80 text-zinc-400 hover:text-red-500'
@@ -559,8 +566,8 @@ const ProductDetail = ({
               '/images/PROTEIN PRIME CUT.jpeg',
               '/images/SPARKLING SANCTUARY.jpeg'
             ].map((src, i) => (
-              <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] transition-all">
-                <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] bg-white transition-all">
+                <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-contain p-2" referrerPolicy="no-referrer" />
               </div>
             ))}
           </div>
@@ -3304,12 +3311,13 @@ const MOCK_BOXES: Product[] = [
   { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/FARM FRESH PRODUCTS.jpeg", category: "Fresh Farm" },
   { id: 3, name: 'Prime Cuts Box', description: 'Quality meats and protein essentials.', image_url: '/images/PROTEIN PRIME CUT.jpeg', price: 22000, category: 'Prime Protein' },
   { id: 4, name: "Morning Essentials Box", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/SUNRISE ESSENTIALS.jpeg", category: "Pantry Essentials" },
-  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
+  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Pure Bliss Pamper kit.jpeg", category: "Beauty & Wellness" },
   { id: 6, name: "Little Bundle of Joy", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/LITTLE BUNDLE OF JOY.jpeg", category: "Baby & Kids" },
   { id: 7, name: "Sparkling Sanctuary Solutions", description: "Home cleaning and sanitation essentials.", price: 40900, image_url: "/images/SPARKLING SANCTUARY.jpeg", category: "Home Care" },
   { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness products for vitality.", price: 25000, image_url: "/images/WELLNESS WONDER.jpeg", category: "Beauty & Wellness" },
-  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/GOURMET PLEASURE BOX.jpeg", category: "Gourmet" },
+  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/Gourmet Pleasure N230K -N370k.jpeg", category: "Gourmet" },
   { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
+  { id: 11, name: "The Founders Box", description: "The ultimate curated experience hand-selected by the founders.", price: 350000, image_url: "/images/THE FOUNDERS BOX.jpeg", category: "Exclusive" },
 ];
 
 const Storage = {
@@ -3357,8 +3365,8 @@ function App() {
   const [pendingAction, setPendingAction] = useState<{ type: 'buy' | 'subscribe', payload: any } | null>(null);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [view, selectedProduct]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [view, selectedProduct, activeTab]);
 
   const filteredProducts = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -3743,7 +3751,7 @@ function App() {
                     </div>
                     <div className="lg:w-1/2 relative">
                       <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700">
-                        <img src="/images/Women in the kitchen.JPG" alt="Woman-driven insight" className="w-full h-full object-cover" />
+                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
@@ -3782,7 +3790,7 @@ function App() {
                     </div>
                     <div className="lg:w-1/2 relative">
                       <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3">
-                        <img src="/images/harvest_box_classic.jpeg" alt="Delivery" className="w-full h-full object-cover" />
+                        <img src="/images/Everyday essentials in organized boxes.png" alt="Delivery" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
@@ -3869,14 +3877,14 @@ function App() {
                     <div className="grid grid-cols-2 gap-8 items-stretch pt-12 lg:pt-0">
                       <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500">
                         <img
-                          src="/images/sourcing.JPG"
+                          src="/images/Thoughtful Sourcing. Superior Living..jpeg"
                           alt="Farm Fresh"
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500 mt-12">
                         <img
-                          src="/images/sourcing 2.JPG"
+                          src="/images/PANTRY PROVISION.jpeg"
                           alt="Quality Brands"
                           className="w-full h-full object-cover"
                         />
@@ -3957,69 +3965,71 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+              className="pt-32 pb-24 mx-auto bg-[#F8F0E5] min-h-screen"
             >
-              <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
-                <div className="max-w-xl">
-                  <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-4">Explore Our Boxes</h2>
-                  <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                  <div className="relative flex-grow sm:w-80">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
-                    <input
-                      type="text"
-                      placeholder="Search products..."
-                      value={searchQuery}
-                      className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+                  <div className="max-w-xl">
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-4">Explore Our Boxes</h2>
+                    <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
                   </div>
-                  <button className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-black/5 rounded-2xl font-bold text-zinc-600 hover:text-[#6F7E57] transition-all shadow-sm">
-                    <Filter size={20} />
-                    <span>Filters</span>
-                  </button>
+
+                  <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                    <div className="relative flex-grow sm:w-80">
+                      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                      <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={searchQuery}
+                        className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                    </div>
+                    <button className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-black/5 rounded-2xl font-bold text-zinc-600 hover:text-[#6F7E57] transition-all shadow-sm">
+                      <Filter size={20} />
+                      <span>Filters</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex gap-3 overflow-x-auto pb-8 no-scrollbar">
-                {['All Products', 'Fresh Farm', 'Pantry Essentials', 'Home Care', 'Baby & Kids', 'Beauty & Wellness'].map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-8 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === cat
-                      ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg shadow-black/10'
-                      : 'bg-white border-zinc-200 text-zinc-500 hover:border-[#6F7E57] hover:text-[#6F7E57]'
-                      }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {[1, 2, 3, 4, 5, 6].map(i => (
-                    <div key={i} className="aspect-[4/5] bg-zinc-100 animate-pulse rounded-[2.5rem]" />
+                <div className="flex gap-3 overflow-x-auto pb-8 no-scrollbar">
+                  {['All Products', 'Fresh Farm', 'Pantry Essentials', 'Home Care', 'Baby & Kids', 'Beauty & Wellness'].map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`px-8 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === cat
+                        ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg shadow-black/10'
+                        : 'bg-white border-zinc-200 text-zinc-500 hover:border-[#6F7E57] hover:text-[#6F7E57]'
+                        }`}
+                    >
+                      {cat}
+                    </button>
                   ))}
                 </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {filteredProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onSelect={handleProductSelect}
-                      onLike={(e) => {
-                        e.stopPropagation();
-                        handleLike(product);
-                      }}
-                      isLiked={wishlist.includes(product.id)}
-                    />
-                  ))}
-                </div>
-              )}
+
+                {loading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {[1, 2, 3, 4, 5, 6].map(i => (
+                      <div key={i} className="aspect-[4/5] bg-zinc-100 animate-pulse rounded-[2.5rem]" />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {filteredProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onSelect={handleProductSelect}
+                        onLike={(e) => {
+                          e.stopPropagation();
+                          handleLike(product);
+                        }}
+                        isLiked={wishlist.includes(product.id)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </motion.div>
           )}
 
@@ -4211,7 +4221,7 @@ function App() {
               {/* Partners banner image */}
               <div className="relative h-64 rounded-[2.5rem] overflow-hidden mb-16 shadow-xl">
                 <img
-                  src="/images/Thoughtful Sourcing. Superior Living..jpeg"
+                  src="/images/WE PARTNER WITH LOCAL FARMERS.jpeg"
                   alt="Partner with Everyday Needs"
                   className="w-full h-full object-cover"
                 />
@@ -4425,16 +4435,25 @@ function App() {
                         { src: '/images/Everyday essentials in labeled box C.png', caption: 'Family Needs Box', desc: 'Everything a home needs, beautifully packaged.' },
                         { src: '/images/Everyday essentials in labeled box E.png', caption: 'Wellness & Care Box', desc: 'Non-toxic, quality products for body and home.' },
                       ].map((img, i) => (
-                        <div key={i} className="group cursor-pointer">
-                          <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-lg mb-4 border border-black/5">
+                        <div key={i} className="group cursor-pointer flex flex-col h-full bg-white rounded-[3rem] border border-black/5 shadow-sm hover:shadow-xl transition-all p-6">
+                          <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-sm mb-6 bg-zinc-100">
                             <img
                               src={img.src}
                               alt={img.caption}
-                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                              className="w-full h-full object-contain p-4 transform group-hover:scale-105 transition-transform duration-500"
                             />
                           </div>
-                          <h4 className="font-bold text-zinc-900 text-center mb-1">{img.caption}</h4>
-                          <p className="text-sm text-zinc-500 text-center">{img.desc}</p>
+                          <div className="flex flex-col flex-grow">
+                            <h4 className="font-bold text-zinc-900 text-center text-xl mb-2">{img.caption}</h4>
+                            <p className="text-sm text-zinc-500 text-center mb-6 leading-relaxed flex-grow">{img.desc}</p>
+                            <button
+                              onClick={() => setView('products')}
+                              className="w-full bg-[#F8F0E5] text-[#6F7E57] py-4 rounded-2xl font-bold hover:bg-[#6F7E57] hover:text-white transition-all flex items-center justify-center gap-2 mt-auto"
+                            >
+                              <ShoppingCart size={18} />
+                              Select Box
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
