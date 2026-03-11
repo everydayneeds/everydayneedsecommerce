@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ShoppingBag,
@@ -3708,16 +3708,16 @@ function App() {
                         ))}
                       </ul>
                       <p className="font-sans text-base text-zinc-700 leading-relaxed text-justify">
-                        Every product is selected with care, intention, and responsibility. Because what enters your home matters. We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                        Every product is selected with care, intention, and responsibility. Because what enters your home matters.
                       </p>
                     </div>
                     {/* Image column */}
-                    <div className="relative">
-                      <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-xl">
+                    <div className="relative flex justify-center lg:justify-end">
+                      <div className="w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-xl bg-white">
                         <img
                           src="/images/Thoughtful Sourcing. Superior Living2.jpeg"
                           alt="Thoughtful sourcing at Everyday Needs"
-                          className="w-full h-full object-cover"
+                          className="w-full h-auto block"
                         />
                       </div>
                     </div>
@@ -3908,6 +3908,13 @@ function App() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                    {/* Additional Sourcing Text moved from Our Difference */}
+                    <div className="pt-16 text-center border-t border-[#F8F0E5]/20 mt-16">
+                       <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-3xl mx-auto">
+                        We prioritize safer, non-toxic, and wellness-aligned products wherever possible. <br className="hidden md:block" />
+                        Everyday Needs is not just convenient. It is responsible.
+                      </p>
                     </div>
                   </div>
                 </div>
