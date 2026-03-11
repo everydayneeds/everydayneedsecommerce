@@ -3830,40 +3830,81 @@ function App() {
               </section>
 
               {/* Our Sourcing Promise Section */}
-              <section className="py-24 bg-[#6F7E57]">
+              <section className="py-24 bg-[#6F7E57] relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">Our Sourcing Promise</span>
-                  <div className="grid lg:grid-cols-2 gap-16 items-start">
-                    <div className="space-y-10">
-                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-[#F8F0E5] leading-tight">Thoughtful Sourcing. Superior Living.</h2>
+                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block text-center">Our Sourcing Promise</span>
 
-                      <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-justify">
-                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans mb-6">
-                          Our sourcing model is our strength. We work directly with: Farmers, Trusted manufacturers, Homegrown Nigerian brands, Verified suppliers;
-                        </p>
-                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans mb-6">
-                          This ensures: Fresher products, Safer ingredients, Reliable quality, Stronger local economic support;
-                        </p>
-                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans font-bold">
-                          We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                  <div className="space-y-24">
+                    {/* Row 1 */}
+                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                      <div className="lg:w-1/2 space-y-6">
+                        <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
+                          Thoughtful Sourcing.<br />Superior Living.
+                        </h2>
+                        <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4">
+                          We prioritize safer, non-toxic, and wellness-aligned products wherever possible.<br className="hidden md:block" /> Everyday Needs is not just convenient. It is responsible.
                         </p>
                       </div>
-
+                      <div className="lg:w-1/2 w-full">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-6">
+                          <img
+                            src="/images/Thoughtful Sourcing. Superior Living..jpeg"
+                            alt="Thoughtful Sourcing"
+                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-12 pt-12 lg:pt-0">
-                      <div className="w-full h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white flex items-center justify-center p-6 transition-transform hover:scale-[1.02] duration-500">
-                        <img
-                          src="/images/Thoughtful Sourcing. Superior Living..jpeg"
-                          alt="Farm Fresh"
-                          className="w-full h-full object-contain"
-                        />
+
+                    {/* Row 2 */}
+                    <div className="flex flex-col-reverse lg:flex-row items-center gap-16 pt-16">
+                      <div className="lg:w-1/2 w-full border-t lg:border-t-0 border-[#F8F0E5]/10 pt-16 lg:pt-0">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-6">
+                          <img
+                            src="/images/PANTRY PROVISION.jpeg"
+                            alt="Quality Brands"
+                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
+                          />
+                        </div>
                       </div>
-                      <div className="w-full h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white flex items-center justify-center p-6 transition-transform hover:scale-[1.02] duration-500">
-                        <img
-                          src="/images/PANTRY PROVISION.jpeg"
-                          alt="Quality Brands"
-                          className="w-full h-full object-contain"
-                        />
+                      <div className="lg:w-1/2 space-y-8">
+                        <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
+                          Our Sourcing Model Is Our Strength
+                        </h3>
+
+                        <div className="space-y-6 pt-2">
+                          <p className="font-bold text-[#F8F0E5] text-xl font-sans">We work directly with:</p>
+                          <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
+                            {[
+                              'Farmers',
+                              'Trusted manufacturers',
+                              'Homegrown Nigerian brands',
+                              'Verified suppliers'
+                            ].map((item, i) => (
+                              <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
+                                <Check size={24} className="text-[#F8F0E5] shrink-0" />
+                                <span className="font-sans text-lg">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-6 pt-4">
+                          <p className="font-bold text-[#F8F0E5] text-xl font-sans">This ensures:</p>
+                          <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
+                            {[
+                              'Fresher products',
+                              'Safer ingredients',
+                              'Reliable quality',
+                              'Stronger local economic support'
+                            ].map((item, i) => (
+                              <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
+                                <Check size={24} className="text-[#F8F0E5] shrink-0" />
+                                <span className="font-sans text-lg">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
