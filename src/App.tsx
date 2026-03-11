@@ -3834,9 +3834,9 @@ function App() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block text-center">Our Sourcing Promise</span>
 
-                  <div className="space-y-24">
+                  <div className="flex flex-col gap-y-16">
                     {/* Row 1 */}
-                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                    <div className="flex flex-col lg:flex-row items-center gap-10">
                       <div className="lg:w-1/2 space-y-6">
                         <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Thoughtful Sourcing.<br />Superior Living.
@@ -3846,7 +3846,7 @@ function App() {
                         </p>
                       </div>
                       <div className="lg:w-1/2 w-full">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-6">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
                           <img
                             src="/images/Thoughtful Sourcing. Superior Living..jpeg"
                             alt="Thoughtful Sourcing"
@@ -3856,10 +3856,12 @@ function App() {
                       </div>
                     </div>
 
+                    <div className="w-full h-px bg-[#F8F0E5]/20" />
+
                     {/* Row 2 */}
-                    <div className="flex flex-col-reverse lg:flex-row items-center gap-16 pt-16">
-                      <div className="lg:w-1/2 w-full border-t lg:border-t-0 border-[#F8F0E5]/10 pt-16 lg:pt-0">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-6">
+                    <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
+                      <div className="lg:w-1/2 w-full">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
                           <img
                             src="/images/PANTRY PROVISION.jpeg"
                             alt="Quality Brands"
