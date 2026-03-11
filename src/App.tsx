@@ -156,16 +156,16 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-black/5 overflow-hidden"
+            className="md:hidden bg-[#FAF5EF] border-t border-[#6F7E57]/10 overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Products</button>
-              <button onClick={() => { setView('about'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">About</button>
-              <button onClick={() => { setView('partners'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Partners</button>
-              <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Gift a Box</button>
-              <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-3 py-4 text-base font-medium text-zinc-600">Contact Us</button>
+            <div className="px-4 pt-4 pb-6 space-y-2">
+              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Products</button>
+              <button onClick={() => { setView('about'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">About</button>
+              <button onClick={() => { setView('partners'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Partners</button>
+              <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Gift a Box</button>
+              <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Contact Us</button>
               {!user && (
-                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-4 block w-full text-center bg-[#6F7E57] text-white px-3 py-4 rounded-xl font-medium">Login / Register</button>
+                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-6 block w-full text-center bg-[#6F7E57] text-white px-3 py-4 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-md">Login / Register</button>
               )}
             </div>
           </motion.div>
@@ -208,26 +208,21 @@ const CartDrawer = ({
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-[70] flex flex-col"
+          className="fixed top-0 right-0 h-full w-full max-w-md bg-[#F8F0E5] shadow-2xl z-[70] flex flex-col"
         >
-          <div className="p-6 border-b border-zinc-100 flex items-center justify-between">
+          <div className="p-6 bg-[#6F7E57] border-b border-[#6F7E57]/20 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-brand-alt-2/20 text-[#6F7E57] rounded-xl">
+              <div className="p-2 bg-white/20 text-white rounded-xl">
                 <ShoppingCart size={20} />
               </div>
-              <h3 className="text-xl font-bold text-zinc-900">Your Cart</h3>
+              <h3 className="text-xl font-bold text-white">Your Cart</h3>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-zinc-100 rounded-lg text-zinc-400 transition-colors">
+            <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg text-white/80 transition-colors">
               <X size={24} />
             </button>
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 space-y-6 relative">
-            {/* faint background image for cart */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
-              <img src="/images/A HEALTHIER HOME STARTS HERE.jpeg" alt="Cart Background" className="w-full h-full object-cover" />
-            </div>
-
             <div className="relative z-10">
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
@@ -247,9 +242,9 @@ const CartDrawer = ({
                 </div>
               ) : (
                 items.map((item) => (
-                  <div key={item.id} className="flex gap-4 group">
-                    <div className="w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
-                      <img src={item.image_url} alt={item.name} className="w-full h-full object-cover" />
+                  <div key={item.id} className="flex gap-4 group bg-white p-4 rounded-[2rem] shadow-sm border border-[#6F7E57]/5">
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden bg-zinc-50 shrink-0 p-2 border border-zinc-100">
+                      <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start mb-1">
@@ -288,10 +283,10 @@ const CartDrawer = ({
           </div>
 
           {items.length > 0 && (
-            <div className="p-6 border-t border-zinc-100 bg-zinc-50/50 space-y-4">
-              <div className="flex justify-between items-center text-zinc-500">
-                <span className="text-sm font-medium">Subtotal</span>
-                <span className="text-lg font-bold text-zinc-900">₦{total.toLocaleString()}</span>
+            <div className="p-6 border-t border-[#6F7E57]/10 bg-[#FAF5EF] space-y-4 rounded-b-2xl">
+              <div className="flex justify-between items-center text-zinc-600">
+                <span className="text-sm font-bold">Subtotal</span>
+                <span className="text-xl font-black text-zinc-900">₦{total.toLocaleString()}</span>
               </div>
               <button
                 onClick={onCheckout}
@@ -2132,6 +2127,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
 }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const renderContent = () => {
     switch (activeTab) {
@@ -2210,7 +2206,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 <h3 className="text-sm font-bold text-zinc-900">My Products</h3>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                  <input type="text" placeholder="Search my products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
+                  <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search my products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
               </div>
               <button
@@ -2225,32 +2221,34 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
               </button>
             </div>
             <div className="p-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="p-3 border border-zinc-200 rounded-xl space-y-3 hover:shadow-md transition-all">
-                  <div className="aspect-video bg-zinc-100 rounded-lg overflow-hidden border border-zinc-100">
-                    <img src={`https://picsum.photos/seed/seller-prod-${i}/400/300`} alt="Product" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-zinc-900 truncate">Fresh Produce Box #{i}</h4>
-                    <p className="text-xs text-zinc-500">8 orders this week</p>
-                  </div>
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="text-sm font-bold text-[#6F7E57]">₦15,000</span>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => {
-                          setEditingProduct({ id: i, name: `Fresh Produce Box #${i}`, price: 15000, category: 'Fresh Farm', image_url: `https://picsum.photos/seed/seller-prod-${i}/400/300` });
-                          setIsProductModalOpen(true);
-                        }}
-                        className="text-xs font-bold text-zinc-400 hover:text-[#6F7E57] transition-colors"
-                      >
-                        Edit
-                      </button>
-                      <button className="text-xs font-bold text-zinc-400 hover:text-red-600 transition-colors">Delete</button>
+              {[1, 2, 3, 4]
+                .filter(i => MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name.toLowerCase().includes(searchQuery.toLowerCase()))
+                .map(i => (
+                  <div key={i} className="p-3 border border-zinc-200 rounded-xl space-y-3 hover:shadow-md transition-all">
+                    <div className="aspect-video bg-zinc-100 rounded-lg overflow-hidden border border-zinc-100 flex items-center justify-center p-2">
+                      <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} alt="Product" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
+                      <p className="text-xs text-zinc-500">8 orders this week</p>
+                    </div>
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-sm font-bold text-[#6F7E57]">₦15,000</span>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => {
+                            setEditingProduct({ id: i, name: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name, price: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price, category: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category, image_url: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url });
+                            setIsProductModalOpen(true);
+                          }}
+                          className="text-xs font-bold text-zinc-400 hover:text-[#6F7E57] transition-colors"
+                        >
+                          Edit
+                        </button>
+                        <button className="text-xs font-bold text-zinc-400 hover:text-red-600 transition-colors">Delete</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         );
@@ -2495,6 +2493,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isAdminUserModalOpen, setIsAdminUserModalOpen] = useState(false);
   const [editingAdminUser, setEditingAdminUser] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const revenueData = [
     { name: 'Jan', value: 4000 },
@@ -2779,11 +2778,10 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <h3 className="text-sm font-bold text-zinc-900">Product Catalog</h3>
+              <div className="flex gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
-                  <input type="text" placeholder="Search products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
+                  <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
               </div>
               <button
@@ -2798,27 +2796,29 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                <div key={i} className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm hover:shadow-md transition-all">
-                  <div className="aspect-square bg-zinc-100 rounded-lg mb-3 overflow-hidden">
-                    <img src={`https://picsum.photos/seed/admin-prod-${i}/300/300`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              {[1, 2, 3, 4, 5, 6, 7, 8]
+                .filter(i => MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name.toLowerCase().includes(searchQuery.toLowerCase()))
+                .map(i => (
+                  <div key={i} className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm hover:shadow-md transition-all">
+                    <div className="aspect-square bg-zinc-100 rounded-lg mb-3 overflow-hidden flex items-center justify-center p-4">
+                      <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                    </div>
+                    <h4 className="text-sm font-bold text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
+                    <p className="text-xs text-zinc-500 mb-2">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category} • ₦{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price.toLocaleString()}</p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setEditingProduct({ id: i, name: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name, price: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price, category: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category, image_url: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url });
+                          setIsProductModalOpen(true);
+                        }}
+                        className="flex-1 py-1.5 bg-zinc-100 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all"
+                      >
+                        Edit
+                      </button>
+                      <button className="flex-1 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold hover:bg-red-100 transition-all">Delete</button>
+                    </div>
                   </div>
-                  <h4 className="text-sm font-bold text-zinc-900 truncate">Product Name {i}</h4>
-                  <p className="text-xs text-zinc-500 mb-2">Category • ₦15,000</p>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => {
-                        setEditingProduct({ id: i, name: `Product Name ${i}`, price: 15000, category: 'Fresh Farm', image_url: `https://picsum.photos/seed/admin-prod-${i}/300/300` });
-                        setIsProductModalOpen(true);
-                      }}
-                      className="flex-1 py-1.5 bg-zinc-100 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all"
-                    >
-                      Edit
-                    </button>
-                    <button className="flex-1 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold hover:bg-red-100 transition-all">Delete</button>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         );
@@ -3750,8 +3750,8 @@ function App() {
                       </div>
                     </div>
                     <div className="lg:w-1/2 relative">
-                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700">
-                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-cover" />
+                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700 bg-white">
+                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-contain p-6" />
                       </div>
                     </div>
                   </div>
@@ -3836,57 +3836,33 @@ function App() {
                   <div className="grid lg:grid-cols-2 gap-16 items-start">
                     <div className="space-y-10">
                       <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-[#F8F0E5] leading-tight">Thoughtful Sourcing. Superior Living.</h2>
-                      <div className="space-y-6">
-                        <p className="text-xl text-[#F8F0E5] leading-relaxed font-sans">
-                          Our sourcing model is our strength. We work directly with:
+
+                      <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-justify">
+                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans mb-6">
+                          Our sourcing model is our strength. We work directly with: Farmers, Trusted manufacturers, Homegrown Nigerian brands, Verified suppliers;
                         </p>
-                        <div className="grid grid-cols-2 gap-6">
-                          {[
-                            'Farmers',
-                            'Trusted manufacturers',
-                            'Homegrown Nigerian brands',
-                            'Verified suppliers'
-                          ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                              <div className="w-2 h-2 bg-[#F8F0E5] rounded-full" />
-                              <span className="font-bold text-[#F8F0E5] font-sans">{item}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans mb-6">
+                          This ensures: Fresher products, Safer ingredients, Reliable quality, Stronger local economic support;
+                        </p>
+                        <p className="text-lg text-[#F8F0E5]/90 leading-relaxed font-sans font-bold">
+                          We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                        </p>
                       </div>
-                      <div className="space-y-6 bg-white/5 p-8 rounded-[2rem] border border-white/10">
-                        <p className="font-bold text-[#F8F0E5] text-lg font-sans">This ensures:</p>
-                        <div className="grid grid-cols-2 gap-6">
-                          {[
-                            'Fresher products',
-                            'Safer ingredients',
-                            'Reliable quality',
-                            'Stronger local economic support'
-                          ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
-                              <CheckCircle2 size={18} className="text-[#F8F0E5]" />
-                              <span className="font-sans font-medium">{item}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-lg font-sans text-[#F8F0E5]/90 leading-relaxed">
-                        We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
-                      </p>
+
                     </div>
-                    <div className="grid grid-cols-2 gap-8 items-stretch pt-12 lg:pt-0">
-                      <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500">
+                    <div className="flex flex-col gap-12 pt-12 lg:pt-0">
+                      <div className="w-full h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white flex items-center justify-center p-6 transition-transform hover:scale-[1.02] duration-500">
                         <img
                           src="/images/Thoughtful Sourcing. Superior Living..jpeg"
                           alt="Farm Fresh"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
-                      <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl bg-zinc-100 transition-transform hover:scale-[1.02] duration-500 mt-12">
+                      <div className="w-full h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white flex items-center justify-center p-6 transition-transform hover:scale-[1.02] duration-500">
                         <img
                           src="/images/PANTRY PROVISION.jpeg"
                           alt="Quality Brands"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     </div>
