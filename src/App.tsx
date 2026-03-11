@@ -3856,7 +3856,7 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="w-full h-px bg-[#F8F0E5]/20" />
+                    <div className="w-full h-1 bg-[#F8F0E5]/20" />
 
                     {/* Row 2 */}
                     <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
