@@ -338,11 +338,11 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/front page Main.jpg"
+          src="/images/MAIN HERO.png"
           alt="Everyday Needs Box"
-          className="w-full h-full object-cover object-[80%_center]"
+          className="w-full h-full object-cover object-[center_20%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5] via-[#F8F0E5]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F8F0E5] via-[#F8F0E5]/60 to-transparent" />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 pb-16">
@@ -3660,7 +3660,7 @@ function App() {
               <Hero onStart={() => setView('pricing')} setView={setView} />
 
               {/* Our Difference Section - Inverted: cream bg, green text */}
-              <section className="py-24 bg-[#F8F0E5] overflow-hidden">
+              <section className="py-12 bg-[#F8F0E5] overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
                     <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-[#6F7E57]">Our Difference</h2>
@@ -3713,11 +3713,11 @@ function App() {
                     </div>
                     {/* Image column */}
                     <div className="relative flex justify-center lg:justify-end">
-                      <div className="w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-xl bg-white">
+                      <div className="w-full max-w-md rounded-[2.5rem] overflow-hidden shadow-xl bg-white border border-[#6F7E57]/5">
                         <img
                           src="/images/Thoughtful Sourcing. Superior Living2.jpeg"
                           alt="Thoughtful sourcing at Everyday Needs"
-                          className="w-full h-auto block"
+                          className="w-full h-auto block transform hover:scale-105 transition-transform duration-700"
                         />
                       </div>
                     </div>
@@ -3797,6 +3797,88 @@ function App() {
                 </div>
               </section>
 
+              {/* The Founders Box - Special Section */}
+              <section className="py-20 bg-[#693311] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#6F7E57]/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+                
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                  <div className="bg-[#f7ebc3]/5 border border-white/10 rounded-[3rem] p-8 md:p-16 backdrop-blur-sm">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="space-y-8 order-2 lg:order-1">
+                        <div>
+                          <span className="inline-block px-4 py-1.5 bg-[#6F7E57] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">
+                            Exclusive Edition
+                          </span>
+                          <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#F8F0E5] mb-6 leading-tight">
+                            The Founders Box
+                          </h2>
+                          <p className="text-xl text-[#F8F0E5]/80 leading-relaxed font-sans">
+                            The ultimate curated experience hand-selected by the founders. A masterclass in home management, featuring our most premium, non-toxic, and farm-fresh selections in one signature collection.
+                          </p>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-4 text-[#F8F0E5]">
+                            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                              <Star size={24} className="text-[#f7ebc3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold">Premium Selection</p>
+                              <p className="text-sm text-[#F8F0E5]/60">Only the best of our vetted products.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-4 text-[#F8F0E5]">
+                            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                              <ShieldCheck size={24} className="text-[#f7ebc3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold">Founder Verified</p>
+                              <p className="text-sm text-[#F8F0E5]/60">Hand-picked for quality and safety.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="pt-8 flex flex-col sm:flex-row items-center gap-6">
+                          <div className="text-left w-full sm:w-auto">
+                            <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-1">Price</p>
+                            <p className="text-4xl font-black text-[#F8F0E5]">₦350,000</p>
+                          </div>
+                          <div className="flex gap-4 w-full">
+                            <button 
+                              onClick={() => handleAddToCart(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
+                              className="flex-1 bg-white text-[#693311] py-5 rounded-2xl font-bold hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-2"
+                            >
+                              <ShoppingCart size={20} />
+                              Add to Cart
+                            </button>
+                            <button 
+                              onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
+                              className="flex-1 bg-[#6F7E57] text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-black/20"
+                            >
+                              Buy Now
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="order-1 lg:order-2">
+                        <div className="relative group">
+                          <div className="absolute inset-0 bg-[#f7ebc3] rounded-[3rem] rotate-3 group-hover:rotate-1 transition-transform duration-500" />
+                          <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl bg-white p-4 transition-transform group-hover:-translate-y-2 duration-500">
+                            <img 
+                              src="/images/THE FOUNDERS BOX.jpeg" 
+                              alt="The Founders Box" 
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               {/* Our Boxes Section */}
               <section className="py-24 bg-[#F8F0E5]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -3830,7 +3912,7 @@ function App() {
               </section>
 
               {/* Our Sourcing Promise Section */}
-              <section className="py-24 bg-[#6F7E57] relative">
+              <section className="py-16 bg-[#6F7E57] relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block text-center">Our Sourcing Promise</span>
 
@@ -3841,9 +3923,11 @@ function App() {
                         <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Thoughtful Sourcing.<br />Superior Living.
                         </h2>
-                        <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4">
-                          We prioritize safer, non-toxic, and wellness-aligned products wherever possible.<br className="hidden md:block" /> Everyday Needs is not just convenient. It is responsible.
-                        </p>
+                        <div className="max-w-xl">
+                          <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4 text-justify">
+                            We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                          </p>
+                        </div>
                       </div>
                       <div className="lg:w-1/2 w-full">
                         <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
@@ -3858,17 +3942,8 @@ function App() {
 
                     <div className="w-full h-1 bg-[#F8F0E5]/20" />
 
-                    {/* Row 2 */}
-                    <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
-                      <div className="lg:w-1/2 w-full">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
-                          <img
-                            src="/images/PANTRY PROVISION.jpeg"
-                            alt="Quality Brands"
-                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
-                          />
-                        </div>
-                      </div>
+                    {/* Row 2 - Standardized to Text Left / Image Right */}
+                    <div className="flex flex-col lg:flex-row items-center gap-10">
                       <div className="lg:w-1/2 space-y-8">
                         <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Our Sourcing Model Is Our Strength
@@ -3906,6 +3981,15 @@ function App() {
                               </div>
                             ))}
                           </div>
+                        </div>
+                      </div>
+                      <div className="lg:w-1/2 w-full">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
+                          <img
+                            src="/images/PANTRY PROVISION.jpeg"
+                            alt="Quality Brands"
+                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
+                          />
                         </div>
                       </div>
                     </div>
