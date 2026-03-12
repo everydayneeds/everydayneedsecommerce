@@ -472,7 +472,7 @@ const ProductCard: React.FC<{
     </div>
     <div className="p-8 flex flex-col flex-grow">
       <h3 className="font-serif text-xl font-bold text-zinc-900 mb-2">{product.name}</h3>
-      <p className="text-sm text-zinc-500 mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
+      <p className="text-sm text-[#575B44] font-medium mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
       <div className="flex items-center justify-between mt-auto bg-[#F8F0E5]/50 -mx-8 -mb-8 p-8 rounded-b-[2.5rem] border-t border-black/5">
         <div>
           <span className="text-2xl font-black font-sans text-[#6F7E57]">₦{product.price.toLocaleString()}</span>
@@ -4104,27 +4104,32 @@ function App() {
                         <div className="pt-10 flex flex-col sm:flex-row items-center gap-8 border-t border-white/10 w-full">
                           <div className="text-left w-full sm:w-auto pr-8 border-r border-white/10 hidden sm:block">
                             <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Total Price</p>
-                            <p className="text-5xl font-black text-[#F8F0E5]">₦350,000</p>
+                            <p className="text-2xl font-black text-[#F8F0E5]">₦350,000</p>
                           </div>
                           
-                          <div className="flex flex-col sm:flex-row gap-4 flex-grow w-full">
+                          <div className="flex flex-col sm:flex-row gap-6 flex-grow w-full">
                             <button 
                               onClick={() => handleAddToCart(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                              className="flex-1 min-h-[72px] bg-white text-[#693311] px-10 rounded-2xl font-black text-lg hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-3 shadow-xl"
+                              className="flex-1 min-h-[140px] bg-white text-[#693311] px-10 rounded-3xl font-black text-lg hover:bg-[#F8F0E5] transition-all flex flex-col items-center justify-center gap-3 shadow-xl group"
                             >
-                              <ShoppingCart size={22} />
-                              Add to Cart
+                              <div className="p-4 bg-[#693311]/5 rounded-2xl group-hover:bg-[#693311]/10 transition-colors">
+                                <ShoppingCart size={40} />
+                              </div>
+                              <span className="block">Add to Cart</span>
                             </button>
                             <button 
                               onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                              className="flex-1 min-h-[72px] bg-[#6F7E57] text-white px-10 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-2xl shadow-black/40"
+                              className="flex-1 min-h-[140px] bg-[#6F7E57] text-white px-10 rounded-3xl font-black text-lg hover:bg-[#575B44] transition-all flex flex-col items-center justify-center gap-3 shadow-2xl shadow-black/40 group border-2 border-white/10"
                             >
-                              Buy Now
+                              <div className="p-4 bg-white/10 rounded-2xl group-hover:bg-white/20 transition-colors">
+                                <ShieldCheck size={40} />
+                              </div>
+                              <span className="block">Buy Now</span>
                             </button>
                           </div>
 
                           <div className="sm:hidden w-full text-center pt-4">
-                             <p className="text-4xl font-black text-[#F8F0E5]">₦350,000</p>
+                             <p className="text-2xl font-black text-[#F8F0E5]">₦350,000</p>
                           </div>
                         </div>
                       </div>
