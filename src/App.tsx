@@ -3841,9 +3841,9 @@ function App() {
                         <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Thoughtful Sourcing.<br />Superior Living.
                         </h2>
-                        <div className="max-w-xl">
+                        <div className="max-w-2xl">
                           <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4 text-justify">
-                            We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
+                            We prioritize safer, non-toxic, and wellness-aligned products wherever possible.<br className="hidden md:block" /> Everyday Needs is not just convenient. It is responsible.
                           </p>
                         </div>
                       </div>
@@ -3913,7 +3913,7 @@ function App() {
                     </div>
                     {/* Additional Sourcing Text moved from Our Difference */}
                     <div className="pt-16 text-center border-t border-[#F8F0E5]/20 mt-16">
-                       <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-2xl mx-auto text-justify px-4">
+                       <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-4xl mx-auto text-justify px-4">
                         We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
                       </p>
                     </div>
@@ -4001,87 +4001,6 @@ function App() {
                     <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
                   </div>
 
-                  {/* The Founders Box - Relocated Section */}
-                  <div className="mb-20">
-                    <section className="bg-[#693311] relative overflow-hidden rounded-[3rem]">
-                      <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-                      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#6F7E57]/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-                      
-                      <div className="relative z-10 p-8 md:p-16">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                          <div className="space-y-8 order-2 lg:order-1">
-                            <div>
-                              <span className="inline-block px-4 py-1.5 bg-[#6F7E57] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">
-                                Exclusive Edition
-                              </span>
-                              <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#F8F0E5] mb-6 leading-tight">
-                                The Founders Box
-                              </h2>
-                              <p className="text-xl text-[#F8F0E5]/80 leading-relaxed font-sans">
-                                The ultimate curated experience hand-selected by the founders. A masterclass in home management, featuring our most premium, non-toxic, and farm-fresh selections in one signature collection.
-                              </p>
-                            </div>
-
-                            <div className="space-y-4">
-                              <div className="flex items-center gap-4 text-[#F8F0E5]">
-                                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
-                                  <Star size={24} className="text-[#f7ebc3]" />
-                                </div>
-                                <div>
-                                  <p className="font-bold">Premium Selection</p>
-                                  <p className="text-sm text-[#F8F0E5]/60">Only the best of our vetted products.</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-4 text-[#F8F0E5]">
-                                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
-                                  <ShieldCheck size={24} className="text-[#f7ebc3]" />
-                                </div>
-                                <div>
-                                  <p className="font-bold">Founder Verified</p>
-                                  <p className="text-sm text-[#F8F0E5]/60">Hand-picked for quality and safety.</p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="pt-8 flex flex-col sm:flex-row items-center gap-6">
-                              <div className="text-left w-full sm:w-auto">
-                                <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-1">Price</p>
-                                <p className="text-4xl font-black text-[#F8F0E5]">₦350,000</p>
-                              </div>
-                              <div className="flex gap-4 w-full">
-                                <button 
-                                  onClick={() => handleAddToCart(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                                  className="flex-1 bg-white text-[#693311] py-5 rounded-2xl font-bold hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-2"
-                                >
-                                  <ShoppingCart size={20} />
-                                  Add to Cart
-                                </button>
-                                <button 
-                                  onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                                  className="flex-1 bg-[#6F7E57] text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-black/20"
-                                >
-                                  Buy Now
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="order-1 lg:order-2">
-                            <div className="relative group">
-                              <div className="absolute inset-0 bg-[#f7ebc3] rounded-[3rem] rotate-3 group-hover:rotate-1 transition-transform duration-500" />
-                              <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl bg-white p-4 transition-transform group-hover:-translate-y-2 duration-500">
-                                <img 
-                                  src="/images/THE FOUNDERS BOX.jpeg" 
-                                  alt="The Founders Box" 
-                                  className="w-full h-full object-contain"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                     <div className="relative flex-grow sm:w-80">
@@ -4138,6 +4057,88 @@ function App() {
                     ))}
                   </div>
                 )}
+              </div>
+
+              {/* The Founders Box - Repositioned to Bottom of Products */}
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 mb-12">
+                <section className="bg-[#693311] relative overflow-hidden rounded-[3rem] shadow-2xl">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#6F7E57]/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+                  
+                  <div className="relative z-10 p-8 md:p-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div className="space-y-10 order-2 lg:order-1">
+                        <div>
+                          <span className="inline-block px-5 py-2 bg-[#6F7E57] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-8">
+                            Exclusive Edition
+                          </span>
+                          <h2 className="font-serif text-4xl md:text-7xl font-bold text-[#F8F0E5] mb-8 leading-tight">
+                            The Founders Box
+                          </h2>
+                          <p className="text-xl md:text-2xl text-[#F8F0E5]/80 leading-relaxed font-sans max-w-2xl">
+                            The ultimate curated experience hand-selected by the founders. A masterclass in home management, featuring our most premium selections in one signature collection.
+                          </p>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 gap-8">
+                          <div className="flex items-center gap-5 text-[#F8F0E5]">
+                            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                              <Star size={28} className="text-[#f7ebc3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-lg">Premium Selection</p>
+                              <p className="text-sm text-[#F8F0E5]/60">Only our vetted top-tier products.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-5 text-[#F8F0E5]">
+                            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                              <ShieldCheck size={28} className="text-[#f7ebc3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-lg">Founder Verified</p>
+                              <p className="text-sm text-[#F8F0E5]/60">Hand-picked for quality.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="pt-10 flex flex-col md:flex-row items-center gap-8 border-t border-white/10">
+                          <div className="text-left w-full md:w-auto">
+                            <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Price</p>
+                            <p className="text-5xl font-black text-[#F8F0E5]">₦350,000</p>
+                          </div>
+                          <div className="flex gap-4 w-full">
+                            <button 
+                              onClick={() => handleAddToCart(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
+                              className="flex-1 bg-white text-[#693311] py-6 rounded-2xl font-black text-lg hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-3 shadow-xl"
+                            >
+                              <ShoppingCart size={22} />
+                              Add to Cart
+                            </button>
+                            <button 
+                              onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
+                              className="flex-1 bg-[#6F7E57] text-white py-6 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-2xl shadow-black/40"
+                            >
+                              Buy Now
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="order-1 lg:order-2">
+                        <div className="relative group">
+                          <div className="absolute inset-0 bg-[#f7ebc3] rounded-[4rem] rotate-3 group-hover:rotate-1 transition-transform duration-700 blur-sm opacity-50" />
+                          <div className="relative aspect-square rounded-[3.5rem] overflow-hidden shadow-2xl bg-white p-8 transition-transform group-hover:-translate-y-4 duration-700">
+                            <img 
+                              src="/images/THE FOUNDERS BOX.jpeg" 
+                              alt="The Founders Box" 
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </motion.div>
           )}
