@@ -473,10 +473,10 @@ const ProductCard: React.FC<{
     <div className="p-8 flex flex-col flex-grow">
       <h3 className="font-serif text-xl font-bold text-zinc-900 mb-2">{product.name}</h3>
       <p className="text-sm text-zinc-500 mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
-      <div className="flex items-center justify-between mt-auto">
+      <div className="flex items-center justify-between mt-auto bg-[#F8F0E5]/50 -mx-8 -mb-8 p-8 rounded-b-[2.5rem] border-t border-black/5">
         <div>
-          <span className="text-2xl font-bold font-sans text-zinc-900">₦{product.price.toLocaleString()}</span>
-          <span className="block text-xs text-[#6F7E57] font-semibold mt-1">Delivered Monthly</span>
+          <span className="text-2xl font-black font-sans text-[#6F7E57]">₦{product.price.toLocaleString()}</span>
+          <span className="block text-xs text-[#6F7E57]/70 font-bold mt-1 uppercase tracking-wider">Delivered Monthly</span>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -3841,8 +3841,8 @@ function App() {
                         <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Thoughtful Sourcing.<br />Superior Living.
                         </h2>
-                        <div className="max-w-2xl">
-                          <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4 text-justify">
+                        <div className="max-w-3xl mx-auto">
+                          <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4 text-center">
                             We prioritize safer, non-toxic, and wellness-aligned products wherever possible.<br className="hidden md:block" /> Everyday Needs is not just convenient. It is responsible.
                           </p>
                         </div>
@@ -3913,7 +3913,7 @@ function App() {
                     </div>
                     {/* Additional Sourcing Text moved from Our Difference */}
                     <div className="pt-16 text-center border-t border-[#F8F0E5]/20 mt-16">
-                       <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-4xl mx-auto text-justify px-4">
+                       <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-4xl mx-auto text-center px-4">
                         We prioritize safer, non-toxic, and wellness-aligned products wherever possible. Everyday Needs is not just convenient. It is responsible.
                       </p>
                     </div>
@@ -4101,25 +4101,30 @@ function App() {
                           </div>
                         </div>
 
-                        <div className="pt-10 flex flex-col md:flex-row items-center gap-8 border-t border-white/10">
-                          <div className="text-left w-full md:w-auto">
-                            <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Price</p>
+                        <div className="pt-10 flex flex-col sm:flex-row items-center gap-8 border-t border-white/10 w-full">
+                          <div className="text-left w-full sm:w-auto pr-8 border-r border-white/10 hidden sm:block">
+                            <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Total Price</p>
                             <p className="text-5xl font-black text-[#F8F0E5]">₦350,000</p>
                           </div>
-                          <div className="flex gap-4 w-full">
+                          
+                          <div className="flex flex-col sm:flex-row gap-4 flex-grow w-full">
                             <button 
                               onClick={() => handleAddToCart(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                              className="flex-1 bg-white text-[#693311] py-6 rounded-2xl font-black text-lg hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-3 shadow-xl"
+                              className="flex-1 min-h-[72px] bg-white text-[#693311] px-10 rounded-2xl font-black text-lg hover:bg-[#F8F0E5] transition-all flex items-center justify-center gap-3 shadow-xl"
                             >
                               <ShoppingCart size={22} />
                               Add to Cart
                             </button>
                             <button 
                               onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
-                              className="flex-1 bg-[#6F7E57] text-white py-6 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-2xl shadow-black/40"
+                              className="flex-1 min-h-[72px] bg-[#6F7E57] text-white px-10 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-2xl shadow-black/40"
                             >
                               Buy Now
                             </button>
+                          </div>
+
+                          <div className="sm:hidden w-full text-center pt-4">
+                             <p className="text-4xl font-black text-[#F8F0E5]">₦350,000</p>
                           </div>
                         </div>
                       </div>
