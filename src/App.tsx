@@ -77,9 +77,17 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
   onOpenCart: () => void
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showAboutDropdown, setShowAboutDropdown] = useState(false);
 
   // Hide navbar in authenticated dashboard views
   if (currentView === 'dashboard' || currentView === 'seller-dashboard' || currentView === 'admin-dashboard') return null;
+
+  const aboutLinks = [
+    { name: 'About Us', view: 'about' },
+    { name: 'Partners', view: 'partners' },
+    { name: 'Investors', view: 'investors' },
+    { name: 'Subscription', view: 'subscription' }
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
@@ -91,7 +99,40 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
 
           <div className="hidden md:flex items-center space-x-8">
             <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Products</button>
-            <button onClick={() => setView('about')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">About</button>
+            <div 
+              className="relative group"
+              onMouseEnter={() => setShowAboutDropdown(true)}
+              onMouseLeave={() => setShowAboutDropdown(false)}
+            >
+              <button 
+                onClick={() => setView('about')}
+                className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors flex items-center gap-1"
+              >
+                About
+                <ChevronDown size={14} className={`transition-transform duration-200 ${showAboutDropdown ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <AnimatePresence>
+                {showAboutDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-48 mt-2 bg-white rounded-2xl border border-zinc-100 shadow-xl overflow-hidden py-2"
+                  >
+                    {aboutLinks.map((link) => (
+                      <button
+                        key={link.view}
+                        onClick={() => { setView(link.view); setShowAboutDropdown(false); }}
+                        className="block w-full text-left px-4 py-2.5 text-sm font-medium text-zinc-600 hover:text-[#6F7E57] hover:bg-[#FAF5EF] transition-all"
+                      >
+                        {link.name}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <button onClick={() => setView('gift-a-box')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Gift a Box</button>
             <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Contact Us</button>
 
@@ -159,7 +200,35 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
               <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Products</button>
-              <button onClick={() => { setView('about'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">About</button>
+              <div className="space-y-1">
+                <button 
+                  onClick={() => setShowAboutDropdown(!showAboutDropdown)}
+                  className="flex items-center justify-between w-full px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors"
+                >
+                  About
+                  <ChevronDown size={18} className={`transition-transform duration-200 ${showAboutDropdown ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {showAboutDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="pl-6 space-y-1 overflow-hidden"
+                    >
+                      {aboutLinks.map((link) => (
+                        <button
+                          key={link.view}
+                          onClick={() => { setView(link.view); setIsOpen(false); }}
+                          className="block w-full text-left px-4 py-2 text-sm font-bold text-zinc-600 hover:text-[#6F7E57] transition-colors"
+                        >
+                          {link.name}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Gift a Box</button>
               <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Contact Us</button>
               {!user && (
@@ -4261,26 +4330,6 @@ function App() {
               className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5]"
             >
               <div className="max-w-5xl mx-auto">
-                {/* Dropbox for Navigation */}
-                <div className="mb-12 flex justify-center">
-                  <div className="relative w-full max-w-xs">
-                    <select 
-                      onChange={(e) => {
-                        if (e.target.value) setView(e.target.value);
-                      }}
-                      className="w-full px-6 py-4 bg-white border-2 border-[#6F7E57]/20 rounded-2xl text-zinc-900 font-bold outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all appearance-none cursor-pointer shadow-sm"
-                    >
-                      <option value="">Explore More...</option>
-                      <option value="partners">Partners</option>
-                      <option value="investors">Investors</option>
-                      <option value="subscription">Subscription</option>
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#6F7E57]">
-                      <ChevronDown size={20} />
-                    </div>
-                  </div>
-                </div>
-
                 <div className="text-center mb-16">
                   <h3 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story</h3>
                   <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-sans">
@@ -4349,11 +4398,11 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5]"
+              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#FAF5EF]"
             >
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
-                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#6F7E57] mb-6">Choose Your Plan</h2>
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Plan</h2>
                   <p className="text-xl text-zinc-600">Tailored subscriptions for your home's unique needs.</p>
                 </div>
 
@@ -4363,8 +4412,8 @@ function App() {
                     { title: 'Quarterly Plan', desc: 'Better value and savings.', icon: TrendingUp },
                     { title: 'Annual Plan', desc: 'Maximum convenience and savings.', icon: ShieldCheck },
                   ].map((plan, i) => (
-                    <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-[#6F7E57]/10 text-center hover:border-[#6F7E57]/30 transition-all shadow-sm">
-                      <div className="w-16 h-16 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6 shadow-sm">
+                    <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-[#693311]/10 text-center hover:border-[#693311]/30 transition-all shadow-sm hover:shadow-md">
+                      <div className="w-16 h-16 bg-[#FAF5EF] rounded-2xl flex items-center justify-center text-[#693311] mx-auto mb-6 shadow-sm">
                         <plan.icon size={32} />
                       </div>
                       <h3 className="text-2xl font-bold text-zinc-900 mb-4">{plan.title}</h3>
@@ -4373,8 +4422,8 @@ function App() {
                   ))}
                 </div>
 
-                <div className="bg-white rounded-[3rem] p-12 lg:p-16 border border-[#6F7E57]/10 shadow-sm mb-20">
-                  <h3 className="text-3xl font-bold text-center mb-12 text-[#6F7E57]">Subscription Benefits</h3>
+                <div className="bg-white rounded-[3rem] p-12 lg:p-16 border border-[#693311]/10 shadow-sm mb-20 transition-transform hover:scale-[1.01] duration-300">
+                  <h3 className="text-3xl font-bold text-center mb-12 text-[#693311]">Subscription Benefits</h3>
                   <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
                     {[
                       'Guaranteed monthly essentials',
@@ -4384,7 +4433,7 @@ function App() {
                       'Reliable home supply'
                     ].map((benefit, i) => (
                       <div key={i} className="flex items-center gap-4">
-                        <CheckCircle2 size={24} className="text-[#6F7E57] shrink-0" />
+                        <CheckCircle2 size={24} className="text-[#693311] shrink-0" />
                         <span className="text-lg text-zinc-700 font-medium">{benefit}</span>
                       </div>
                     ))}
@@ -4392,7 +4441,7 @@ function App() {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() => setView('products')} className="bg-[#6F7E57] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#575B44] transition-all shadow-xl">
+                  <button onClick={() => setView('products')} className="bg-[#693311] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#52280d] transition-all shadow-xl hover:shadow-[#693311]/20">
                     Subscribe Now
                   </button>
                 </div>
@@ -4417,7 +4466,7 @@ function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                  <div className="bg-white p-10 rounded-[3rem] border border-[#6F7E57]/10 shadow-sm">
+                  <div className="bg-white p-10 rounded-[3rem] border border-[#6F7E57]/10 shadow-sm transition-transform hover:scale-[1.01] duration-300">
                     <h3 className="text-2xl font-bold mb-8 text-[#6F7E57]">Partner Benefits</h3>
                     <ul className="space-y-6">
                       {[
@@ -4437,7 +4486,7 @@ function App() {
                     </ul>
                   </div>
 
-                  <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl">
+                  <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl transition-transform hover:scale-[1.01] duration-300">
                     <h3 className="text-2xl font-bold mb-8">Partnership Model</h3>
                     <div className="space-y-8">
                       <div>
@@ -4462,7 +4511,7 @@ function App() {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() => setView('contact')} className="bg-[#6F7E57] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#575B44] transition-all shadow-xl">
+                  <button onClick={() => setView('contact')} className="bg-[#6F7E57] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#575B44] transition-all shadow-xl hover:shadow-[#6F7E57]/20">
                     Become a Partner
                   </button>
                 </div>
@@ -4694,12 +4743,12 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5]"
+              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#f7ebc3]"
             >
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
-                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#6F7E57] mb-6">Investment Opportunity</h2>
-                  <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed">
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#575B44] mb-6">Investment Opportunity</h2>
+                  <p className="text-xl text-zinc-700 max-w-3xl mx-auto leading-relaxed">
                     Everyday Needs is Nigeria’s first comprehensive everyday essentials subscription platform. Built for scale, reliability, and recurring revenue.
                   </p>
                 </div>
@@ -4710,8 +4759,8 @@ function App() {
                     { title: 'Recurring Revenue', desc: 'Monthly subscription income provides predictable revenue.', icon: TrendingUp },
                     { title: 'Large Market Opportunity', desc: 'Millions of households across Nigeria.', icon: Users },
                   ].map((item, i) => (
-                    <div key={i} className="p-10 bg-white rounded-[2.5rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 transition-all shadow-sm">
-                      <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#6F7E57] shadow-sm">
+                    <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-[#575B44]/10 hover:border-[#575B44]/30 transition-all shadow-sm hover:shadow-md group">
+                      <div className="w-14 h-14 bg-[#f7ebc3] rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#575B44] shadow-sm group-hover:bg-[#575B44] group-hover:text-white transition-colors">
                         <item.icon size={28} />
                       </div>
                       <h4 className="text-xl font-bold text-zinc-900 mb-4">{item.title}</h4>
@@ -4721,28 +4770,28 @@ function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-                  <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl">
+                  <div className="bg-[#575B44] text-[#FAF5EF] p-10 rounded-[3rem] shadow-xl transition-transform hover:scale-[1.01] duration-300">
                     <h3 className="text-2xl font-bold mb-6">Strategic Advantages</h3>
                     <ul className="space-y-6">
                       <li className="flex gap-4">
                         <Star className="text-brand-alt-2 shrink-0" />
                         <div>
                           <p className="font-bold text-lg">First-Mover Advantage</p>
-                          <p className="opacity-80">Category-defining platform.</p>
+                          <p className="opacity-80 text-zinc-200">Category-defining platform.</p>
                         </div>
                       </li>
                       <li className="flex gap-4">
                         <Layout className="text-brand-alt-2 shrink-0" />
                         <div>
                           <p className="font-bold text-lg">Scalable Infrastructure</p>
-                          <p className="opacity-80">Technology-enabled growth.</p>
+                          <p className="opacity-80 text-zinc-200">Technology-enabled growth.</p>
                         </div>
                       </li>
                     </ul>
                   </div>
 
-                  <div className="bg-white p-10 rounded-[3rem] border border-[#6F7E57]/10 shadow-sm flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-[#6F7E57]">Growth Vision</h3>
+                  <div className="bg-white p-10 rounded-[3rem] border border-[#575B44]/10 shadow-sm flex flex-col justify-center transition-transform hover:scale-[1.01] duration-300">
+                    <h3 className="text-2xl font-bold mb-4 text-[#575B44]">Growth Vision</h3>
                     <p className="text-lg text-zinc-600 leading-relaxed">
                       Scaling across Nigeria’s major cities, serving millions of homes. We are building the future of household retail in Africa.
                     </p>
@@ -4750,7 +4799,7 @@ function App() {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() => setView('contact')} className="bg-[#6F7E57] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#575B44] transition-all shadow-xl">
+                  <button onClick={() => setView('contact')} className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#434636] transition-all shadow-xl hover:shadow-[#575B44]/20">
                     Contact Investor Relations
                   </button>
                 </div>
