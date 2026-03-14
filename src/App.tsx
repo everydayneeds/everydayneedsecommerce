@@ -3899,22 +3899,19 @@ function App() {
               {/* Our Sourcing Promise Section */}
               <section className="py-16 bg-[#6F7E57] relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block text-center">Our Sourcing Promise</span>
 
                   <div className="flex flex-col gap-y-16">
                     {/* Row 1 */}
                     <div className="flex flex-col lg:flex-row items-center gap-10">
-                      <div className="lg:w-1/2 space-y-6">
-                        <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
+                      <div className="lg:w-1/2 space-y-4">
+                        <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-2">
+                          Our Sourcing Promise
+                        </h3>
+                        <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Thoughtful Sourcing.<br />Superior Living.
                         </h2>
-                        <div className="max-w-3xl mx-auto">
-                          <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans pt-4 text-center">
-                            We prioritize safer, non-toxic, and wellness-aligned products wherever possible.<br className="hidden md:block" /> Everyday Needs is not just convenient. It is responsible.
-                          </p>
-                        </div>
                       </div>
-                      <div className="lg:w-1/2 w-full">
+                      <div className="lg:w-1/2 w-full flex items-center justify-center">
                         <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
                           <img
                             src="/images/Thoughtful Sourcing. Superior Living..jpeg"
@@ -3927,57 +3924,48 @@ function App() {
 
                     <div className="w-full h-1 bg-[#F8F0E5]/20" />
 
-                    {/* Row 2 - Standardized to Text Left / Image Right */}
-                    <div className="flex flex-col lg:flex-row items-center gap-10">
+                    {/* Row 2 - Image Left / Text Right */}
+                    <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
                       <div className="lg:w-1/2 space-y-8">
                         <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Our Sourcing Model Is Our Strength
                         </h3>
 
-                        <div className="space-y-6 pt-2">
-                          <p className="font-bold text-[#F8F0E5] text-xl font-sans">We work directly with:</p>
-                          <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
-                            {[
-                              'Farmers',
-                              'Trusted manufacturers',
-                              'Homegrown Nigerian brands',
-                              'Verified suppliers'
-                            ].map((item, i) => (
-                              <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
-                                <Check size={24} className="text-[#F8F0E5] shrink-0" />
-                                <span className="font-sans text-lg">{item}</span>
-                              </div>
-                            ))}
+                        <div className="grid sm:grid-cols-1 gap-8 pt-2">
+                          <div className="space-y-4">
+                            <p className="font-black text-[#f7ebc3] uppercase tracking-[0.2em] text-xs">Direct Partnerships</p>
+                            <p className="text-[#F8F0E5] font-bold text-xl font-sans">We work directly with:</p>
+                            <ul className="space-y-2 text-[#F8F0E5]/90 font-sans font-medium text-lg">
+                              <li>• Farmers & Smallholders</li>
+                              <li>• Trusted Manufacturers</li>
+                              <li>• Homegrown Nigerian Brands</li>
+                              <li>• Verified Ethical Suppliers</li>
+                            </ul>
                           </div>
-                        </div>
 
-                        <div className="space-y-6 pt-4">
-                          <p className="font-bold text-[#F8F0E5] text-xl font-sans">This ensures:</p>
-                          <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
-                            {[
-                              'Fresher products',
-                              'Safer ingredients',
-                              'Reliable quality',
-                              'Stronger local economic support'
-                            ].map((item, i) => (
-                              <div key={i} className="flex items-center gap-3 text-[#F8F0E5]/90">
-                                <Check size={24} className="text-[#F8F0E5] shrink-0" />
-                                <span className="font-sans text-lg">{item}</span>
-                              </div>
-                            ))}
+                          <div className="space-y-4 pt-4 border-t border-[#F8F0E5]/10">
+                            <p className="font-black text-[#f7ebc3] uppercase tracking-[0.2em] text-xs">The Everyday Advantage</p>
+                            <p className="text-[#F8F0E5] font-bold text-xl font-sans">This ensures:</p>
+                            <ul className="space-y-2 text-[#F8F0E5]/90 font-sans font-medium text-lg">
+                              <li>• Peak Freshness & Quality</li>
+                              <li>• Non-Toxic & Safer Standards</li>
+                              <li>• Reliable & Consistent Supply</li>
+                              <li>• Support for Local Economy</li>
+                            </ul>
                           </div>
                         </div>
                       </div>
-                      <div className="lg:w-1/2 w-full">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
+                      <div className="lg:w-1/2 w-full flex items-center justify-center">
+                        <div className="w-full h-[450px] overflow-hidden rounded-[3rem] shadow-2xl bg-white flex items-center justify-center p-4">
                           <img
                             src="/images/PANTRY PROVISION.jpeg"
-                            alt="Quality Brands"
-                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
+                            alt="Quality Sourcing"
+                            className="w-full h-full object-contain hover:scale-110 transition-transform duration-1000"
                           />
                         </div>
                       </div>
                     </div>
+
                     {/* Additional Sourcing Text moved from Our Difference */}
                     <div className="pt-16 text-center border-t border-[#F8F0E5]/20 mt-16">
                        <p className="text-xl text-[#F8F0E5]/90 leading-relaxed font-sans max-w-4xl mx-auto text-center px-4">
@@ -3992,7 +3980,7 @@ function App() {
               <section className="py-24 bg-[#F8F0E5]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-16">
-                    <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-4 text-zinc-900">The Smarter Way to Supply Your Home</h2>
+                    <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-4 text-zinc-900">The Smarter Way to Supply Your Home</h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {[
@@ -4018,7 +4006,7 @@ function App() {
               {/* Testimonial Section */}
               <section className="py-24 bg-[#693311] overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <h2 className="font-serif text-3xl font-bold text-center mb-16 text-[#F8F0E5]">Trusted by Modern Households</h2>
+                  <h2 className="font-serif text-3xl md:text-5xl font-black text-center mb-16 text-[#F8F0E5] tracking-tight">Trusted by Modern Households</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                       { quote: "Everyday Needs has removed the stress of managing my household supplies.", author: "Ada, Lagos" },
@@ -4327,66 +4315,105 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#F8F0E5]"
+              className="pt-32 pb-24 mx-auto bg-[#F8F0E5] min-h-screen"
             >
-              <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-16">
-                  <h3 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Story</h3>
-                  <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-sans">
-                    Born from the reality of busy Nigerians, Everyday Needs was created to solve the "last-minute store run" stress.
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Brand Story - Centered */}
+                <div className="text-center mb-24 max-w-4xl mx-auto">
+                  <h2 className="font-serif text-5xl md:text-7xl font-black tracking-tight text-[#6F7E57] mb-8">Our Story</h2>
+                  <p className="text-xl text-zinc-700 leading-relaxed font-sans">
+                    Everyday Needs was born from a simple observation: managing a household shouldn't be a source of stress. We saw busy families struggling with inconsistent supplies, poor quality products, and the constant mental load of "running out."
+                  </p>
+                  <p className="text-xl text-zinc-700 leading-relaxed font-sans mt-4">
+                    We decided to build a platform that acts as a reliable partner for every Nigerian home.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
-                  <div className="space-y-8">
-                    <div>
-                      <h3 className="text-2xl font-bold mb-4" style={{ color: '#69701d' }}>Our Mission</h3>
-                      <p className="text-lg text-zinc-600 leading-relaxed">
-                        To simplify household management through curated, reliable, and safe essential boxes.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-4" style={{ color: '#69701d' }}>Our Vision</h3>
-                      <p className="text-lg text-zinc-600 leading-relaxed">
-                        To be the most reliable household partner in Africa, empowering families to live better through seamless supply.
-                      </p>
-                    </div>
-                  </div>
+                {/* Main Content Section with Images and Overlays */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                   <div className="relative">
-                    <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
-                      <img src="/images/FARM FRESH PRODUCTS.jpeg" alt="Our Mission" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="absolute -bottom-5 -right-5 w-24 h-24 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
-                      <img src="/images/Built by Women Who Understand Real Homes.png" alt="Our Vision" className="w-full h-full object-cover" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-24">
-                  <h3 className="text-3xl font-bold text-center mb-12 text-[#6F7E57]">The Everyday Needs Advantage</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {[
-                      { title: 'Farm-to-Table Freshness', desc: 'Eliminating middlemen to ensure the freshest produce reaches you.', icon: Truck },
-                      { title: 'Non-Toxic Focus', desc: 'Prioritizing personal and home care products that are safe for your family.', icon: ShieldCheck },
-                      { title: 'Predictable Convenience', desc: 'Predictive delivery so you never have to think about "running out" again.', icon: Calendar },
-                    ].map((item, i) => (
-                      <div key={i} className="p-10 bg-white rounded-[2.5rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 transition-all group shadow-sm text-center">
-                        <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
-                          <item.icon size={28} />
+                    <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl bg-white border border-black/5">
+                      <img src="/images/FARM FRESH PRODUCTS.jpeg" alt="Our Sourcing" className="w-full h-full object-cover" />
+                      
+                      {/* Sourcing Model - At the Top */}
+                      <div className="absolute top-10 left-0 right-0 px-8">
+                        <div className="bg-[#575B44]/95 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl">
+                          <h3 className="text-[#f7ebc3] font-bold text-xl mb-2">Our Sourcing Model</h3>
+                          <p className="text-white/90 text-sm leading-relaxed">
+                            We work directly with farmers and trusted manufacturers to ensure every item in your box is fresh, safe, and of the highest quality.
+                          </p>
                         </div>
-                        <h4 className="text-xl font-bold text-zinc-900 mb-4 font-sans">{item.title}</h4>
-                        <p className="text-zinc-600 leading-relaxed font-sans">{item.desc}</p>
                       </div>
-                    ))}
+
+                      {/* Why it Matters - At the Center */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%]">
+                        <div className="bg-[#693311]/95 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/20 shadow-2xl text-center">
+                          <h3 className="text-[#f7ebc3] font-bold text-2xl mb-3">Why Everyday Needs Matters</h3>
+                          <p className="text-white/90 text-base leading-relaxed font-medium">
+                            A well-supplied home is a peaceful home. We handle the logistics so you can focus on what truly matters: your family and your life.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-12">
+                     <div className="p-10 bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-sm">
+                        <h3 className="text-3xl font-bold text-[#6F7E57] mb-6">Built for Reliability</h3>
+                        <p className="text-lg text-zinc-600 leading-relaxed mb-6 font-sans">
+                          Everyday Needs isn't just a delivery service; it's a commitment to your household's stability. Our predictive model ensures you stay stocked without lifting a finger.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            'Vetted High-Quality Products',
+                            'Direct-from-Source Freshness',
+                            'Safe & Non-Toxic Priority',
+                            'Consistent Delivery Schedule'
+                          ].map((item, i) => (
+                            <li key={i} className="flex items-center gap-3 text-zinc-800 font-bold font-sans">
+                              <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                     </div>
+                     
+                     <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl">
+                        <h3 className="text-2xl font-bold mb-4">The Subscription Advantage</h3>
+                        <p className="opacity-90 mb-8 font-sans">Join thousands of households enjoying the peace of mind that comes with Everyday Needs.</p>
+                        <button onClick={() => setView('subscription')} className="bg-[#f7ebc3] text-[#693311] px-8 py-4 rounded-2xl font-black hover:bg-white transition-all shadow-lg active:scale-95">
+                           Explore Subscription Plans
+                        </button>
+                     </div>
                   </div>
                 </div>
 
-                <div className="bg-brand-secondary rounded-[3rem] p-12 lg:p-20 text-white text-center">
-                  <h3 className="text-3xl font-bold mb-6">Designed for Real Homes</h3>
-                  <p className="text-[#F8F0E5]/80 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-                    Everyday Needs is built with a deep understanding of household management. We know that a home isn't just a place—it's an ecosystem that requires care, safety, and reliability.
-                  </p>
-                  <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-10 py-4 rounded-2xl font-bold hover:bg-[#F8F0E5] transition-all shadow-lg">Start Your Journey</button>
+                {/* Mission & Core Values - Below main content */}
+                <div className="bg-[#FAF5EF] rounded-[4rem] p-12 lg:p-20 border border-black/5 shadow-inner">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div>
+                      <h3 className="text-3xl font-bold text-[#575B44] mb-6 font-serif">Our Mission</h3>
+                      <p className="text-xl text-zinc-600 leading-relaxed italic font-sans">
+                        "To empower every Nigerian household through reliable, safe, and convenient essential supply chains, fostering healthier and more productive lives."
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-[#575B44] mb-6 font-serif">Core Values</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {[
+                          { title: 'Trust', desc: 'In every product we source.' },
+                          { title: 'Reliability', desc: 'In every delivery we make.' },
+                          { title: 'Responsibility', desc: 'To our community and environment.' },
+                          { title: 'Integrity', desc: 'In our sourcing and business.' }
+                        ].map((v, i) => (
+                          <div key={i} className="group">
+                            <p className="font-black text-[#693311] uppercase tracking-widest text-xs mb-1 group-hover:text-[#6F7E57] transition-colors">{v.title}</p>
+                            <p className="text-sm text-zinc-500 font-sans">{v.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
