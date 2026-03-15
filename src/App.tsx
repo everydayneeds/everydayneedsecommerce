@@ -624,9 +624,9 @@ const ProductDetail = ({
 
           <div className="flex gap-4">
             {[
-              '/images/PANTRY PROVISION.jpeg',
-              '/images/PROTEIN PRIME CUT.jpeg',
-              '/images/SPARKLING SANCTUARY.jpeg'
+              "/images/PANTRY PROVISION N65400 - N377500.jpeg",
+              "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg",
+              "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg"
             ].map((src, i) => (
               <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] bg-white transition-all">
                 <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-contain p-2" referrerPolicy="no-referrer" />
@@ -3374,17 +3374,17 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 };
 
 const MOCK_BOXES: Product[] = [
-  { id: 1, name: "Pantry Provisions Box", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/PANTRY PROVISION.jpeg", category: "Pantry Essentials" },
-  { id: 2, name: "Farm Fresh Harvest Box", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/FARM FRESH PRODUCTS.jpeg", category: "Fresh Farm" },
-  { id: 3, name: 'Prime Cuts Box', description: 'Quality meats and protein essentials.', image_url: '/images/PROTEIN PRIME CUT.jpeg', price: 22000, category: 'Prime Protein' },
-  { id: 4, name: "Morning Essentials Box", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/SUNRISE ESSENTIALS.jpeg", category: "Pantry Essentials" },
-  { id: 5, name: "Pure Bliss Pamper Kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Pure Bliss Pamper kit.jpeg", category: "Beauty & Wellness" },
-  { id: 6, name: "Little Bundle of Joy", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/LITTLE BUNDLE OF JOY.jpeg", category: "Baby & Kids" },
-  { id: 7, name: "Sparkling Sanctuary Solutions", description: "Home cleaning and sanitation essentials.", price: 40900, image_url: "/images/SPARKLING SANCTUARY.jpeg", category: "Home Care" },
-  { id: 8, name: "Zen Wellness Wonders", description: "Health and wellness products for vitality.", price: 25000, image_url: "/images/WELLNESS WONDER.jpeg", category: "Beauty & Wellness" },
-  { id: 9, name: "Gourmet Pleasure Box", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/Gourmet Pleasure N230K -N370k.jpeg", category: "Gourmet" },
+  { id: 1, name: "PANTRY PROVISION N65400 - N377500", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/PANTRY PROVISION N65400 - N377500.jpeg", category: "Pantry Essentials" },
+  { id: 2, name: "FARM FRESH HARVEST N156200", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/FARM FRESH HARVEST N156200.jpeg", category: "Fresh Farm" },
+  { id: 3, name: "PROTEIN PRIME CUT N56400 - N207200", description: "Quality meats and protein essentials.", image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg", price: 56400, category: "Prime Protein" },
+  { id: 4, name: "SUNRISE ESSENTIALS N56200 - N202700", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/SUNRISE ESSENTIALS N56200 - N202700.jpeg", category: "Pantry Essentials" },
+  { id: 5, name: "Pure Bliss Pamper kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Pure Bliss Pamper kit.jpeg", category: "Beauty & Wellness" },
+  { id: 6, name: "LITTLE BUNDLE OF JOY", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/LITTLE BUNDLE OF JOY.jpeg", category: "Baby & Kids" },
+  { id: 7, name: "SPARKLING SANCTUARY N27000 -N46900", description: "Home cleaning and sanitation essentials.", price: 27000, image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg", category: "Home Care" },
+  { id: 8, name: "WELLNESS WONDER", description: "Health and wellness products.", price: 42000, image_url: "/images/WELLNESS WONDER.jpeg", category: "Beauty & Wellness" },
+  { id: 9, name: "Gourmet Pleasure Box N230K -N370k", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg", category: "Gourmet" },
   { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
-  { id: 11, name: "The Founders Box", description: "The ultimate curated experience hand-selected by the founders.", price: 350000, image_url: "/images/THE FOUNDERS BOX.jpeg", category: "Exclusive" },
+  { id: 11, name: "THE FOUNDERS BOX", description: "The ultimate curated experience hand-selected by the founders.", price: 350000, image_url: "/images/THE FOUNDERS BOX.jpeg", category: "Exclusive" },
 ];
 
 const Storage = {
@@ -3857,7 +3857,7 @@ function App() {
                     </div>
                     <div className="lg:w-1/2 relative">
                       <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3">
-                        <img src="/images/Everyday essentials in organized boxes.png" alt="Delivery" className="w-full h-full object-cover" />
+                        <img src="/images/HOW IT WORKS.jpeg" alt="How it Works" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
@@ -3958,8 +3958,8 @@ function App() {
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
                         <div className="w-full h-[450px] overflow-hidden rounded-[3rem] shadow-2xl bg-white flex items-center justify-center p-4">
                           <img
-                            src="/images/PANTRY PROVISION.jpeg"
-                            alt="Quality Sourcing"
+                            src="/images/Our Sourcing Model Is Our Strength.png"
+                            alt="Our Sourcing Model Is Our Strength"
                             className="w-full h-full object-contain hover:scale-110 transition-transform duration-1000"
                           />
                         </div>
@@ -4333,7 +4333,7 @@ function App() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                   <div className="relative">
                     <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl bg-white border border-black/5">
-                      <img src="/images/FARM FRESH PRODUCTS.jpeg" alt="Our Sourcing" className="w-full h-full object-cover" />
+                      <img src="/images/FARM FRESH HARVEST N156200.jpeg" alt="Our Sourcing" className="w-full h-full object-cover" />
                       
                       {/* Sourcing Model - At the Top */}
                       <div className="absolute top-10 left-0 right-0 px-8">
@@ -4610,7 +4610,7 @@ function App() {
               {/* Hero Banner */}
               <div className="relative h-72 md:h-96 overflow-hidden">
                 <img
-                  src="/images/Everyday essentials in organized boxes.png"
+                  src="/images/WHATS INSIDE YOUR BOX.jpeg"
                   alt="Gift a Box Hero"
                   className="w-full h-full object-cover object-center"
                 />
@@ -4665,14 +4665,14 @@ function App() {
                     <div className="relative">
                       <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
                         <img
-                          src="/images/Everyday essentials in labeled box A.png"
+                          src="/images/Everyday essentials in organized boxes.png"
                           alt="Everyday Needs Gift Box"
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-3xl overflow-hidden shadow-xl border-4 border-white">
                         <img
-                          src="/images/Everyday essentials in labeled box D.png"
+                          src="/images/Built by Women Who Understand Real Homes.png"
                           alt="Gift Box Detail"
                           className="w-full h-full object-cover"
                         />
@@ -4710,9 +4710,9 @@ function App() {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                       {[
-                        { src: '/images/Everyday essentials in labeled box B.png', caption: 'Pantry Essentials Box', desc: 'A curated selection of premium pantry staples.' },
-                        { src: '/images/Everyday essentials in labeled box C.png', caption: 'Family Needs Box', desc: 'Everything a home needs, beautifully packaged.' },
-                        { src: '/images/Everyday essentials in labeled box E.png', caption: 'Wellness & Care Box', desc: 'Non-toxic, quality products for body and home.' },
+                        { src: "/images/PANTRY PROVISION N65400 - N377500.jpeg", caption: "Pantry Provisions Box", desc: "A curated selection of premium pantry staples." },
+                        { src: "/images/FARM FRESH HARVEST N156200.jpeg", caption: "Farm Fresh Harvest Box", desc: "Fresh vegetables and fruits sourced directly from trusted farmers." },
+                        { src: "/images/WELLNESS WONDER.jpeg", caption: "Zen Wellness Wonders", desc: "Health and wellness products for vitality." },
                       ].map((img, i) => (
                         <div key={i} className="group cursor-pointer flex flex-col h-full bg-white rounded-[3rem] border border-black/5 shadow-sm hover:shadow-xl transition-all p-6">
                           <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-sm mb-6 bg-zinc-100">
