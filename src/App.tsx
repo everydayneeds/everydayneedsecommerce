@@ -98,7 +98,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Products</button>
+            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
             <div 
               className="relative group"
               onMouseEnter={() => setShowAboutDropdown(true)}
@@ -507,57 +507,91 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
 
 
 const ProductCard: React.FC<{
-  product: Product,
-  onSelect: (product: Product) => any,
-  onLike: (e: React.MouseEvent, product: Product) => void,
+  product: BoxProduct,
+  onSelect: (product: BoxProduct) => any,
+  onLike: (e: React.MouseEvent, product: BoxProduct) => void,
   isLiked: boolean
-}> = ({ product, onSelect, onLike, isLiked }) => (
-  <motion.div
-    whileHover={{ y: -8 }}
-    onClick={() => onSelect(product)}
-    className="bg-white rounded-[2.5rem] border border-black/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer group"
-  >
-    <div className="relative aspect-[4/3] overflow-hidden">
-      <img
-        src={product.image_url}
-        alt={product.name}
-        className="w-full h-full object-contain bg-white transform group-hover:scale-110 transition-transform duration-700"
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute top-4 left-4">
-        <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-full shadow-sm">
-          {product.category}
-        </span>
+}> = ({ product, onSelect, onLike, isLiked }) => {
+  const lowestPlan = product.plans ? product.plans.reduce((a, b) => a.price < b.price ? a : b) : null;
+  const tiers = product.plans ? [...new Set(product.plans.map(p => {
+    if (p.tier.includes('essentials')) return 'Essentials';
+    if (p.tier.includes('classic')) return 'Classic';
+    if (p.tier.includes('premium')) return 'Premium';
+    if (p.tier === 'weekly') return 'Weekly';
+    if (p.tier === 'monthly') return 'Monthly';
+    if (p.tier === 'exclusive') return 'Exclusive';
+    return p.label;
+  }))] : [];
+
+  return (
+    <motion.div
+      whileHover={{ y: -8 }}
+      onClick={() => onSelect(product)}
+      className="bg-white rounded-[2.5rem] border border-black/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer group"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden bg-white">
+        <img
+          src={product.image_url}
+          alt={product.name}
+          className="w-full h-full object-contain p-4 transform group-hover:scale-105 transition-transform duration-700"
+          referrerPolicy="no-referrer"
+        />
+        {product.deliveryType === 'weekly_or_monthly' && (
+          <div className="absolute top-4 left-4">
+            <span className="px-3 py-1 bg-[#6F7E57] text-white text-xs font-bold rounded-full shadow-md flex items-center gap-1">
+              📦 Weekly or Monthly
+            </span>
+          </div>
+        )}
+        {product.deliveryType !== 'weekly_or_monthly' && (
+          <div className="absolute top-4 left-4">
+            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-full shadow-sm">
+              {product.category}
+            </span>
+          </div>
+        )}
+        <button
+          onClick={(e) => onLike(e, product)}
+          className={`absolute top-4 right-4 p-2.5 rounded-2xl backdrop-blur-md transition-all ${isLiked ? 'bg-red-500 text-white' : 'bg-white/80 text-zinc-400 hover:text-red-500'}`}
+        >
+          <HeartIcon size={18} fill={isLiked ? 'currentColor' : 'none'} />
+        </button>
       </div>
-      <button
-        onClick={(e) => onLike(e, product)}
-        className={`absolute top-4 right-4 p-2.5 rounded-2xl backdrop-blur-md transition-all ${isLiked ? 'bg-red-500 text-white' : 'bg-white/80 text-zinc-400 hover:text-red-500'
-          }`}
-      >
-        <HeartIcon size={18} fill={isLiked ? 'currentColor' : 'none'} />
-      </button>
-    </div>
-    <div className="p-8 flex flex-col flex-grow">
-      <h3 className="font-serif text-xl font-bold text-zinc-900 mb-2">{product.name}</h3>
-      <p className="text-sm text-[#575B44] font-medium mb-6 line-clamp-2 flex-grow leading-relaxed">{product.description}</p>
-      <div className="flex items-center justify-between mt-auto bg-[#F8F0E5]/50 -mx-8 -mb-8 p-8 rounded-b-[2.5rem] border-t border-black/5">
-        <div>
-          <span className="text-2xl font-black font-sans text-[#6F7E57]">₦{product.price.toLocaleString()}</span>
-          <span className="block text-xs text-[#6F7E57]/70 font-bold mt-1 uppercase tracking-wider">Delivered Monthly</span>
-        </div>
-        <div className="flex items-center gap-2">
+
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="font-serif text-lg font-bold text-zinc-900 mb-1 leading-tight">{product.name}</h3>
+        <p className="text-sm text-[#575B44] font-medium mb-3 line-clamp-1 leading-relaxed">{product.shortDesc}</p>
+
+        {/* Tier tags */}
+        {tiers.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {tiers.map((tier, i) => (
+              <span key={i} className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-[#6F7E57]/30 text-[#575B44] bg-[#FAF5EF]">
+                {tier}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-auto pt-4 border-t border-black/5 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider mb-0.5">Starting from</p>
+            <span className="text-xl font-black font-sans text-[#6F7E57]">
+              ₦{(lowestPlan?.price ?? product.price).toLocaleString()}
+            </span>
+            <span className="text-xs text-[#6F7E57]/70 font-bold ml-1">/ {lowestPlan?.frequency ?? 'month'}</span>
+          </div>
           <button
             onClick={(e) => { e.stopPropagation(); onSelect(product); }}
-            className="p-3 bg-zinc-100 text-zinc-900 rounded-2xl hover:bg-[#6F7E57] hover:text-white transition-all"
+            className="bg-[#6F7E57] text-white px-5 py-2.5 rounded-2xl text-sm font-bold hover:bg-[#575B44] transition-all whitespace-nowrap shadow-sm"
           >
-            <ShoppingCart size={20} />
+            View Box
           </button>
         </div>
       </div>
-    </div>
-  </motion.div>
-
-);
+    </motion.div>
+  );
+};
 
 const ProductDetail = ({
   product,
@@ -570,30 +604,49 @@ const ProductDetail = ({
   isLiked,
   onLike
 }: {
-  product: any,
+  product: BoxProduct,
   onSubscribe: (plan: string) => void,
   onAddToCart: (p: any, q?: number) => void,
   onBuyNow: (p: any, amount?: number) => void,
   onBack: () => void,
-  suggestions: Product[],
-  onSelectProduct: (p: Product) => void,
+  suggestions: BoxProduct[],
+  onSelectProduct: (p: BoxProduct) => void,
   isLiked: boolean,
   onLike: (product: any) => void
 }) => {
-  const [selectedPlan, setSelectedPlan] = useState('monthly');
+  const productPlans = product.plans ?? [];
+  const householdOptions = product.householdOptions ?? [];
+  const hasHousehold = householdOptions.length > 0;
+  const [selectedHousehold, setSelectedHousehold] = useState(householdOptions[0] ?? '');
+  const [selectedFrequency, setSelectedFrequency] = useState<'Monthly' | 'Quarterly'>('Monthly');
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState('details');
   const [quantity, setQuantity] = useState(1);
 
-  const plans = [
-    { id: 'monthly', name: 'Monthly', discount: 0, period: 'month' },
-    { id: 'quarterly', name: 'Quarterly', discount: 5, period: '3 months' },
-    { id: 'annual', name: 'Annual', discount: 15, period: 'year' },
-  ];
+  const visiblePlans = hasHousehold
+    ? productPlans.filter(p => !p.householdType || p.householdType === selectedHousehold)
+    : productPlans;
 
-  const calculatePrice = (planId: string) => {
-    const plan = plans.find(p => p.id === planId);
-    if (!plan) return product.price;
-    return product.price * (1 - plan.discount / 100);
+  const defaultPlan = visiblePlans[0];
+  const [selectedTier, setSelectedTier] = useState(defaultPlan?.tier ?? '');
+
+  // Re-select tier when household changes
+  const currentVisiblePlans = hasHousehold
+    ? productPlans.filter(p => !p.householdType || p.householdType === selectedHousehold)
+    : productPlans;
+
+  const activePlan = currentVisiblePlans.find(p => p.tier === selectedTier) ?? currentVisiblePlans[0];
+
+  const addOnTotal = (product.addOns ?? [])
+    .filter(a => selectedAddOns.includes(a.name))
+    .reduce((sum, a) => sum + a.price, 0);
+
+  const basePrice = activePlan?.price ?? product.price;
+  const frequencyMultiplier = selectedFrequency === 'Quarterly' ? 3 * 0.95 : 1;
+  const totalPrice = Math.round((basePrice * frequencyMultiplier) + addOnTotal);
+
+  const toggleAddOn = (name: string) => {
+    setSelectedAddOns(prev => prev.includes(name) ? prev.filter(a => a !== name) : [...prev, name]);
   };
 
   const reviews = [
@@ -676,7 +729,7 @@ const ProductDetail = ({
               <div className="bg-white rounded-3xl border border-black/5 p-8">
                 <h3 className="font-serif text-xl font-bold mb-6">What's inside this box?</h3>
                 {(() => {
-                  const items = product.products || [
+                  const items = [
                     { name: 'Organic Tomatoes', quantity: 2 },
                     { name: 'Fresh Spinach', quantity: 1 },
                     { name: 'Farm Eggs', quantity: 12 },
@@ -725,80 +778,106 @@ const ProductDetail = ({
                 })()}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6">
-                <div className="flex items-center bg-zinc-100 rounded-2xl px-6 py-4">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:text-[#6F7E57] transition-colors"
+              <div className="space-y-4">
+                {/* Household Toggle */}
+                {hasHousehold && (
+                  <div>
+                    <p className="text-sm font-bold text-zinc-700 mb-2">Household Size</p>
+                    <div className="flex gap-2 p-1 bg-zinc-100 rounded-2xl w-fit">
+                      {householdOptions.map(opt => (
+                        <button key={opt} onClick={() => { setSelectedHousehold(opt); setSelectedTier(productPlans.filter(p => !p.householdType || p.householdType === opt)[0]?.tier ?? ''); }}
+                          className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${selectedHousehold === opt ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Plan Selector */}
+                <div>
+                  <p className="text-sm font-bold text-zinc-700 mb-2">Select Plan</p>
+                  <select
+                    value={selectedTier}
+                    onChange={e => setSelectedTier(e.target.value)}
+                    className="w-full px-5 py-4 bg-[#FAF5EF] border border-[#6F7E57]/20 rounded-2xl font-bold text-zinc-800 outline-none focus:ring-2 focus:ring-[#6F7E57]/30 appearance-none cursor-pointer"
                   >
-                    <Plus size={20} className="rotate-45" />
-                  </button>
-                  <span className="w-12 text-center text-xl font-bold text-zinc-900">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:text-[#6F7E57] transition-colors"
-                  >
-                    <Plus size={20} />
-                  </button>
+                    {currentVisiblePlans.map(plan => (
+                      <option key={plan.tier} value={plan.tier}>
+                        {plan.label} — ₦{plan.price.toLocaleString()} / {plan.frequency}{plan.badge ? ` ⭐ ${plan.badge}` : ''}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+
+                {/* Frequency */}
+                <div>
+                  <p className="text-sm font-bold text-zinc-700 mb-2">Frequency</p>
+                  <div className="flex gap-2 p-1 bg-zinc-100 rounded-2xl w-fit">
+                    {(['Monthly', 'Quarterly'] as const).map(freq => (
+                      <button key={freq} onClick={() => setSelectedFrequency(freq)}
+                        className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${selectedFrequency === freq ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}>
+                        {freq} {freq === 'Quarterly' ? '(Save 5%)' : ''}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Add-Ons */}
+                {(product.addOns ?? []).length > 0 && (
+                  <div>
+                    <p className="text-sm font-bold text-zinc-700 mb-2">Optional Add-Ons</p>
+                    <div className="space-y-2">
+                      {(product.addOns ?? []).map(addOn => (
+                        <button key={addOn.name} onClick={() => toggleAddOn(addOn.name)}
+                          className={`flex items-center justify-between w-full p-4 rounded-2xl border-2 transition-all text-left ${selectedAddOns.includes(addOn.name) ? 'border-[#6F7E57] bg-[#6F7E57]/10' : 'border-black/5 bg-white hover:border-[#6F7E57]/30'}`}>
+                          <span className="font-bold text-sm text-zinc-800">{addOn.name}</span>
+                          <span className="text-sm font-bold text-[#6F7E57]">+₦{addOn.price.toLocaleString()}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Price Summary */}
+                <div className="bg-[#F8F0E5] rounded-2xl p-5 space-y-2">
+                  <div className="flex justify-between text-sm font-medium text-zinc-600">
+                    <span>Selected plan</span>
+                    <span>₦{(activePlan?.price ?? product.price).toLocaleString()} / {activePlan?.frequency ?? 'month'}</span>
+                  </div>
+                  {selectedAddOns.length > 0 && (
+                    <div className="flex justify-between text-sm font-medium text-zinc-600">
+                      <span>Add-ons</span>
+                      <span>+₦{addOnTotal.toLocaleString()}</span>
+                    </div>
+                  )}
+                  {selectedFrequency === 'Quarterly' && (
+                    <div className="flex justify-between text-sm font-medium text-[#6F7E57]">
+                      <span>Quarterly discount (5%)</span>
+                      <span>–₦{Math.round(basePrice * 3 * 0.05).toLocaleString()}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between font-black text-zinc-900 text-lg border-t border-black/5 pt-2">
+                    <span>Total</span>
+                    <span>₦{totalPrice.toLocaleString()} / {selectedFrequency === 'Quarterly' ? 'quarter' : 'month'}</span>
+                  </div>
+                </div>
+
                 <button
-                  onClick={() => {
-                    onAddToCart(product, quantity);
-                    setQuantity(1);
-                  }}
-                  className="flex-[2] bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-zinc-800 transition-all flex items-center justify-center gap-2"
+                  onClick={() => onSubscribe(selectedTier)}
+                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
                 >
-                  <ShoppingCart size={20} />
+                  <Calendar size={20} />
+                  Subscribe Now
+                </button>
+                <button
+                  onClick={() => onAddToCart(product, quantity)}
+                  className="w-full bg-[#F8F0E5] text-[#575B44] py-4 rounded-2xl font-bold hover:bg-[#f7ebc3] transition-all flex items-center justify-center gap-2"
+                >
+                  <ShoppingCart size={18} />
                   Add to Cart
                 </button>
-                <button
-                  onClick={() => onBuyNow(product, calculatePrice(selectedPlan) * quantity)}
-                  className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20"
-                >
-                  Buy Now — ₦{(calculatePrice(selectedPlan) * quantity).toLocaleString()}
-                </button>
               </div>
-            </div>
-          )}
-
-          {activeTab === 'subscription' && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="grid grid-cols-1 gap-4">
-                {plans.map((plan) => (
-                  <button
-                    key={plan.id}
-                    onClick={() => setSelectedPlan(plan.id)}
-                    className={`flex items-center justify-between p-6 rounded-3xl border-2 transition-all ${selectedPlan === plan.id
-                      ? 'border-[#6F7E57] bg-[#6F7E57]/10'
-                      : 'border-black/5 bg-white hover:border-zinc-200'
-                      }`}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.id ? 'border-[#6F7E57] bg-[#6F7E57]' : 'border-zinc-300'
-                        }`}>
-                        {selectedPlan === plan.id && <div className="w-2 h-2 bg-white rounded-full" />}
-                      </div>
-                      <div className="text-left">
-                        <p className="font-bold text-zinc-900">{plan.name}</p>
-                        <p className="text-xs text-zinc-500">Delivered every {plan.period}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-zinc-900 text-lg">₦{calculatePrice(plan.id).toLocaleString()}</p>
-                      {plan.discount > 0 && (
-                        <p className="text-xs text-[#6F7E57] font-bold uppercase tracking-widest">Save {plan.discount}%</p>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => onSubscribe(selectedPlan)}
-                className="w-full bg-zinc-900 text-white py-5 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl flex items-center justify-center gap-2"
-              >
-                <Calendar size={20} />
-                Start Subscription Plan
-              </button>
             </div>
           )}
 
@@ -3373,18 +3452,217 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
   );
 };
 
-const MOCK_BOXES: Product[] = [
-  { id: 1, name: "PANTRY PROVISION N65400 - N377500", description: "Core pantry essentials. Rice, cereals, pasta, canned goods, cooking basics.", price: 65400, image_url: "/images/PANTRY PROVISION N65400 - N377500.jpeg", category: "Pantry Essentials" },
-  { id: 2, name: "FARM FRESH HARVEST N156200", description: "Fresh vegetables and fruits sourced directly from trusted farmers.", price: 156200, image_url: "/images/FARM FRESH HARVEST N156200.jpeg", category: "Fresh Farm" },
-  { id: 3, name: "PROTEIN PRIME CUT N56400 - N207200", description: "Quality meats and protein essentials.", image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg", price: 56400, category: "Prime Protein" },
-  { id: 4, name: "SUNRISE ESSENTIALS N56200 - N202700", description: "Breakfast staples including cereals, beverages, oats, and spreads.", price: 56200, image_url: "/images/SUNRISE ESSENTIALS N56200 - N202700.jpeg", category: "Pantry Essentials" },
-  { id: 5, name: "Pure Bliss Pamper kit", description: "Personal hygiene, toiletries, and care essentials.", price: 73400, image_url: "/images/Pure Bliss Pamper kit.jpeg", category: "Beauty & Wellness" },
-  { id: 6, name: "LITTLE BUNDLE OF JOY", description: "Baby care essentials including diapers, wipes, and baby toiletries.", price: 136000, image_url: "/images/LITTLE BUNDLE OF JOY.jpeg", category: "Baby & Kids" },
-  { id: 7, name: "SPARKLING SANCTUARY N27000 -N46900", description: "Home cleaning and sanitation essentials.", price: 27000, image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg", category: "Home Care" },
-  { id: 8, name: "WELLNESS WONDER", description: "Health and wellness products.", price: 42000, image_url: "/images/WELLNESS WONDER.jpeg", category: "Beauty & Wellness" },
-  { id: 9, name: "Gourmet Pleasure Box N230K -N370k", description: "Exclusive selection of gourmet delights and premium treats.", price: 230000, image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg", category: "Gourmet" },
-  { id: 10, name: "Radiant Glow Kit", description: "Premium beauty and skincare essentials for a healthy glow.", price: 77000, image_url: "/images/Radiant Glow Kit.jpeg", category: "Beauty & Wellness" },
-  { id: 11, name: "THE FOUNDERS BOX", description: "The ultimate curated experience hand-selected by the founders.", price: 350000, image_url: "/images/THE FOUNDERS BOX.jpeg", category: "Exclusive" },
+interface PricingPlan {
+  tier: string;
+  label: string;
+  price: number;
+  frequency: string;
+  badge?: string;
+  householdType?: string;
+}
+
+interface BoxProduct extends Product {
+  shortDesc: string;
+  startingFrom: number;
+  plans: PricingPlan[];
+  shopCategory: string;
+  deliveryType: 'monthly' | 'weekly_or_monthly';
+  householdOptions?: string[];
+  addOns?: { name: string; price: number }[];
+}
+
+const MOCK_BOXES: BoxProduct[] = [
+  {
+    id: 1,
+    name: "PANTRY PROVISION BOX",
+    description: "Monthly home staple supply. Core pantry essentials including rice, cereals, pasta, canned goods, and cooking basics.",
+    shortDesc: "Monthly home staple supply",
+    price: 65400,
+    startingFrom: 65400,
+    image_url: "/images/PANTRY PROVISION N65400 - N377500.jpeg",
+    category: "Pantry Essentials",
+    shopCategory: "Food & Pantry",
+    deliveryType: "monthly",
+    householdOptions: ["Single", "Family"],
+    plans: [
+      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single", badge: "Single Plans" },
+      { tier: "premium-single", label: "Premium (Single)", price: 240000, frequency: "month", householdType: "Single" },
+      { tier: "essentials-family", label: "Essentials (Family)", price: 65400, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "classic-family", label: "Classic (Family)", price: 201000, frequency: "month", householdType: "Family" },
+      { tier: "premium-family", label: "Premium (Family)", price: 377500, frequency: "month", householdType: "Family" },
+    ]
+  },
+  {
+    id: 2,
+    name: "FARM FRESH HARVEST BOX",
+    description: "Fresh produce delivered weekly or monthly. Seasonal vegetables, fruits, and farm essentials sourced directly from trusted local farmers.",
+    shortDesc: "Fresh produce delivered weekly or monthly",
+    price: 40000,
+    startingFrom: 40000,
+    image_url: "/images/FARM FRESH HARVEST N156200.jpeg",
+    category: "Fresh Farm",
+    shopCategory: "Food & Pantry",
+    deliveryType: "weekly_or_monthly",
+    addOns: [
+      { name: "Add Protein", price: 56400 },
+      { name: "Add Pantry Essentials", price: 65400 },
+    ],
+    plans: [
+      { tier: "weekly", label: "Weekly Fresh Box", price: 40000, frequency: "week", badge: "Most Flexible" },
+      { tier: "monthly", label: "Monthly Harvest Box", price: 156200, frequency: "month", badge: "Best Value" },
+    ]
+  },
+  {
+    id: 3,
+    name: "PROTEIN PRIME CUT",
+    description: "Premium protein selection. Quality meats, poultry, and fish handled with the highest safety standards.",
+    shortDesc: "Premium protein selection",
+    price: 56000,
+    startingFrom: 56000,
+    image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg",
+    category: "Prime Protein",
+    shopCategory: "Food & Pantry",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56000, frequency: "week", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 106500, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
+    ]
+  },
+  {
+    id: 4,
+    name: "SUNRISE ESSENTIALS",
+    description: "Breakfast & morning routine. Everything needed for a healthy start: cereals, milk, tea, juice, oats, and spreads.",
+    shortDesc: "Breakfast & morning routine",
+    price: 56200,
+    startingFrom: 56200,
+    image_url: "/images/SUNRISE ESSENTIALS N56200 - N202700.jpeg",
+    category: "Pantry Essentials",
+    shopCategory: "Food & Pantry",
+    deliveryType: "monthly",
+    householdOptions: ["Individual", "Family"],
+    plans: [
+      { tier: "classic-individual", label: "Classic (Individual)", price: 91700, frequency: "month", householdType: "Individual" },
+      { tier: "premium-individual", label: "Premium (Individual)", price: 138200, frequency: "month", householdType: "Individual" },
+      { tier: "essentials-family", label: "Essentials (Family)", price: 56200, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "classic-family", label: "Classic (Family)", price: 124700, frequency: "month", householdType: "Family" },
+      { tier: "premium-family", label: "Premium (Family)", price: 202700, frequency: "month", householdType: "Family" },
+    ]
+  },
+  {
+    id: 5,
+    name: "PUREBLISS PAMPER KIT",
+    description: "Self-care & spa experience. Curated wellness and body care products for a rejuvenating home spa experience.",
+    shortDesc: "Self-care & spa experience",
+    price: 73400,
+    startingFrom: 73400,
+    image_url: "/images/Pure Bliss Pamper kit.jpeg",
+    category: "Beauty & Wellness",
+    shopCategory: "Lifestyle & Care",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 73400, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 119900, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 228000, frequency: "month" },
+    ]
+  },
+  {
+    id: 6,
+    name: "LITTLE BUNDLE OF JOY",
+    description: "Baby care essentials. Safe, premium essentials for your little ones, from nutrition to gentle care products.",
+    shortDesc: "Baby care essentials",
+    price: 55000,
+    startingFrom: 55000,
+    image_url: "/images/LITTLE BUNDLE OF JOY.jpeg",
+    category: "Baby & Kids",
+    shopCategory: "Family",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 136000, frequency: "month", badge: "Family Favourite" },
+      { tier: "premium", label: "Premium", price: 266500, frequency: "month" },
+    ]
+  },
+  {
+    id: 7,
+    name: "SPARKLING SANCTUARY",
+    description: "Cleaning & home care. Eco-friendly and non-toxic home cleaning solutions for a safe and sparkling sanctuary.",
+    shortDesc: "Cleaning & home care",
+    price: 20900,
+    startingFrom: 20900,
+    image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg",
+    category: "Home Care",
+    shopCategory: "Lifestyle & Care",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "⭐ Best Start" },
+      { tier: "classic", label: "Classic", price: 40900, frequency: "month" },
+    ]
+  },
+  {
+    id: 8,
+    name: "WELLNESS BOX",
+    description: "Health & wellness essentials. Natural supplements, vitamins, and health-boosting products for a balanced lifestyle.",
+    shortDesc: "Health & wellness essentials",
+    price: 25000,
+    startingFrom: 25000,
+    image_url: "/images/WELLNESS WONDER.jpeg",
+    category: "Beauty & Wellness",
+    shopCategory: "Lifestyle & Care",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "⭐ Best Start" },
+      { tier: "classic", label: "Classic", price: 48000, frequency: "month" },
+    ]
+  },
+  {
+    id: 9,
+    name: "GOURMET PLEASURE BOX",
+    description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
+    shortDesc: "Premium dining & curated indulgence",
+    price: 230000,
+    startingFrom: 230000,
+    image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg",
+    category: "Gourmet",
+    shopCategory: "Food & Pantry",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 307000, frequency: "month" },
+    ]
+  },
+  {
+    id: 10,
+    name: "RADIANT GLOW KIT",
+    description: "Beauty & skincare essentials. Premium beauty and skincare products for a healthy, radiant glow every day.",
+    shortDesc: "Beauty & skincare essentials",
+    price: 77000,
+    startingFrom: 77000,
+    image_url: "/images/Radiant Glow Kit.jpeg",
+    category: "Beauty & Wellness",
+    shopCategory: "Lifestyle & Care",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 77000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 128000, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 252500, frequency: "month" },
+    ]
+  },
+  {
+    id: 11,
+    name: "THE FOUNDERS BOX",
+    description: "The ultimate curated experience hand-selected by the founders. A masterclass in premium Nigerian home management.",
+    shortDesc: "The ultimate curated premium experience",
+    price: 350000,
+    startingFrom: 350000,
+    image_url: "/images/THE FOUNDERS BOX.jpeg",
+    category: "Exclusive",
+    shopCategory: "Exclusive",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "exclusive", label: "Exclusive Edition", price: 350000, frequency: "month", badge: "Limited" },
+    ]
+  },
 ];
 
 const Storage = {
@@ -4050,68 +4328,156 @@ function App() {
               className="pt-32 pb-24 mx-auto bg-[#F8F0E5] min-h-screen"
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
-                  <div className="max-w-xl mb-12">
-                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-4">Explore Our Boxes</h2>
-                    <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
+                {/* Header */}
+                <div className="mb-10">
+                  <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-2">Shop Now</h2>
+                  <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
+                </div>
+
+                {/* Search + Filters Row */}
+                <div className="flex flex-col lg:flex-row gap-4 mb-8">
+                  <div className="relative flex-grow">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                    <input
+                      type="text"
+                      placeholder="Search boxes..."
+                      value={searchQuery}
+                      className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                   </div>
 
+                  {/* Filter Pills */}
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { label: 'All', value: 'All Products' },
+                      { label: '🌾 Food & Pantry', value: 'Food & Pantry' },
+                      { label: '💆 Lifestyle & Care', value: 'Lifestyle & Care' },
+                      { label: '👶 Family', value: 'Family' },
+                    ].map(f => (
+                      <button key={f.value} onClick={() => setSelectedCategory(f.value)}
+                        className={`px-5 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === f.value ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57] hover:text-[#6F7E57]'}`}>
+                        {f.label}
+                      </button>
+                    ))}
+                    <select value={selectedCategory.startsWith('price:') ? selectedCategory : ''}
+                      onChange={e => e.target.value && setSelectedCategory(e.target.value)}
+                      className="px-5 py-3 rounded-full text-sm font-bold border bg-white border-zinc-200 text-zinc-600 outline-none cursor-pointer hover:border-[#6F7E57] transition-all appearance-none">
+                      <option value="">Price Range</option>
+                      <option value="price:0-50000">₦0 – ₦50,000</option>
+                      <option value="price:50000-150000">₦50,000 – ₦150,000</option>
+                      <option value="price:150000+">₦150,000+</option>
+                    </select>
+                    <select onChange={e => e.target.value && setSelectedCategory(e.target.value === 'weekly' ? 'delivery:weekly' : 'delivery:monthly')}
+                      className="px-5 py-3 rounded-full text-sm font-bold border bg-white border-zinc-200 text-zinc-600 outline-none cursor-pointer hover:border-[#6F7E57] transition-all appearance-none">
+                      <option value="">Delivery Type</option>
+                      <option value="weekly">Weekly Available</option>
+                      <option value="monthly">Monthly</option>
+                    </select>
+                  </div>
+                </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                    <div className="relative flex-grow sm:w-80">
-                      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
-                      <input
-                        type="text"
-                        placeholder="Search products..."
-                        value={searchQuery}
-                        className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
+                {/* Tier Filter Tabs */}
+                <div className="flex gap-2 overflow-x-auto pb-2 mb-10 no-scrollbar">
+                  {['All Tiers', 'Essentials', 'Classic', 'Premium'].map(tier => {
+                    const key = `tier:${tier}`;
+                    const active = selectedCategory === key || (tier === 'All Tiers' && !selectedCategory.startsWith('tier:'));
+                    return (
+                      <button key={tier}
+                        onClick={() => setSelectedCategory(tier === 'All Tiers' ? 'All Products' : key)}
+                        className={`px-6 py-2.5 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${active ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-md' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57] hover:text-[#6F7E57]'}`}>
+                        {tier}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Product Listings */}
+                {(() => {
+                  const allBoxes = MOCK_BOXES.filter(b => b.id !== 11);
+
+                  const filterBox = (box: BoxProduct): boolean => {
+                    const q = searchQuery.toLowerCase();
+                    const matchSearch = !q || box.name.toLowerCase().includes(q) || box.shortDesc.toLowerCase().includes(q);
+                    if (!matchSearch) return false;
+                    if (selectedCategory === 'All Products') return true;
+                    if (selectedCategory === 'Food & Pantry') return box.shopCategory === 'Food & Pantry';
+                    if (selectedCategory === 'Lifestyle & Care') return box.shopCategory === 'Lifestyle & Care';
+                    if (selectedCategory === 'Family') return box.shopCategory === 'Family';
+                    if (selectedCategory.startsWith('price:')) {
+                      const range = selectedCategory.replace('price:', '');
+                      const min = box.startingFrom;
+                      if (range === '0-50000') return min <= 50000;
+                      if (range === '50000-150000') return min > 50000 && min <= 150000;
+                      if (range === '150000+') return min > 150000;
+                    }
+                    if (selectedCategory.startsWith('delivery:')) {
+                      const type = selectedCategory.replace('delivery:', '');
+                      if (type === 'weekly') return box.deliveryType === 'weekly_or_monthly';
+                      if (type === 'monthly') return box.deliveryType === 'monthly';
+                    }
+                    if (selectedCategory.startsWith('tier:')) {
+                      const tier = selectedCategory.replace('tier:', '').toLowerCase();
+                      return box.plans.some(p => p.tier.includes(tier));
+                    }
+                    return true;
+                  };
+
+                  const filtered = allBoxes.filter(filterBox);
+                  const isGrouped = selectedCategory === 'All Products' || selectedCategory === 'All Tiers';
+
+                  const shopGroups = [
+                    { label: '🌾 Food & Pantry', emoji: '🌾', cat: 'Food & Pantry' },
+                    { label: '💆 Lifestyle & Care', emoji: '💆', cat: 'Lifestyle & Care' },
+                    { label: '👶 Family', emoji: '👶', cat: 'Family' },
+                  ];
+
+                  if (isGrouped) {
+                    return (
+                      <div className="space-y-16">
+                        {shopGroups.map(group => {
+                          const groupBoxes = filtered.filter(b => b.shopCategory === group.cat);
+                          if (groupBoxes.length === 0) return null;
+                          return (
+                            <div key={group.cat}>
+                              <div className="flex items-center gap-3 mb-6">
+                                <h3 className="text-2xl font-bold text-[#575B44]">{group.label}</h3>
+                                <div className="flex-1 h-px bg-[#6F7E57]/20" />
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {groupBoxes.map(box => (
+                                  <ProductCard key={box.id} product={box} onSelect={handleProductSelect}
+                                    onLike={(e) => { e.stopPropagation(); handleLike(box); }}
+                                    isLiked={wishlist.includes(box.id)} />
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div>
+                      {filtered.length === 0 ? (
+                        <div className="text-center py-24">
+                          <p className="text-2xl font-bold text-zinc-400 mb-4">No boxes found</p>
+                          <button onClick={() => { setSelectedCategory('All Products'); setSearchQuery(''); }}
+                            className="text-[#6F7E57] font-bold hover:underline">Clear filters</button>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                          {filtered.map(box => (
+                            <ProductCard key={box.id} product={box} onSelect={handleProductSelect}
+                              onLike={(e) => { e.stopPropagation(); handleLike(box); }}
+                              isLiked={wishlist.includes(box.id)} />
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    <button className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-black/5 rounded-2xl font-bold text-zinc-600 hover:text-[#6F7E57] transition-all shadow-sm">
-                      <Filter size={20} />
-                      <span>Filters</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex gap-3 overflow-x-auto pb-8 no-scrollbar">
-                  {['All Products', 'Fresh Farm', 'Pantry Essentials', 'Home Care', 'Baby & Kids', 'Beauty & Wellness'].map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setSelectedCategory(cat)}
-                      className={`px-8 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === cat
-                        ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg shadow-black/10'
-                        : 'bg-white border-zinc-200 text-zinc-500 hover:border-[#6F7E57] hover:text-[#6F7E57]'
-                        }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-
-                {loading ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {[1, 2, 3, 4, 5, 6].map(i => (
-                      <div key={i} className="aspect-[4/5] bg-zinc-100 animate-pulse rounded-[2.5rem]" />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {filteredProducts.map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        onSelect={handleProductSelect}
-                        onLike={(e) => {
-                          e.stopPropagation();
-                          handleLike(product);
-                        }}
-                        isLiked={wishlist.includes(product.id)}
-                      />
-                    ))}
-                  </div>
-                )}
+                  );
+                })()}
               </div>
 
               {/* The Founders Box - Repositioned to Bottom of Products */}
