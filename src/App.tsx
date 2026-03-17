@@ -641,9 +641,17 @@ const ProductDetail = ({
     .filter(a => selectedAddOns.includes(a.name))
     .reduce((sum, a) => sum + a.price, 0);
 
+  const isWeekly = activePlan?.frequency === 'week';
+  const periodMultiplier = isWeekly ? 4 : 1; // 4 weeks in a month
   const basePrice = activePlan?.price ?? product.price;
-  const frequencyMultiplier = selectedFrequency === 'Quarterly' ? 3 * 0.95 : 1;
-  const totalPrice = Math.round((basePrice * frequencyMultiplier) + addOnTotal);
+  
+  // For quarterly, multiply the monthly baseline by 3
+  const frequencyMultiplier = selectedFrequency === 'Quarterly' ? (periodMultiplier * 3) : periodMultiplier;
+  const discountMultiplier = selectedFrequency === 'Quarterly' ? 0.95 : 1;
+  
+  // Total price applies the multiplier to both base and add-ons
+  const subtotal = (basePrice + addOnTotal) * frequencyMultiplier;
+  const totalPrice = Math.round(subtotal * discountMultiplier);
 
   const toggleAddOn = (name: string) => {
     setSelectedAddOns(prev => prev.includes(name) ? prev.filter(a => a !== name) : [...prev, name]);
@@ -3880,7 +3888,10 @@ function App() {
           plan
         })
       });
-      if (res.ok) setView('dashboard');
+      if (res.ok) {
+        setView('dashboard');
+        setActiveTab('subscriptions');
+      }
     } catch (err) {
       console.log('Subscribe fallback');
       Storage.addSubscription(user.id, {
@@ -3893,6 +3904,7 @@ function App() {
         next_delivery_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
       });
       setView('dashboard');
+      setActiveTab('subscriptions');
     }
   };
 
@@ -5127,6 +5139,138 @@ function App() {
                   </div>
                 </div>
               </section>
+            </motion.div>
+          )}
+
+          {view === 'subscription' && (
+            <motion.div
+              key="subscription"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="pt-32 pb-24 min-h-screen bg-[#FAF5EF]"
+            >
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Plan</h2>
+                  <p className="text-xl text-[#575B44] max-w-2xl mx-auto leading-relaxed">
+                    Select the delivery frequency that best fits your lifestyle and enjoy peace of mind with our automated schedules.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                  <div className="bg-white p-10 rounded-[2.5rem] border border-black/5 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all">
+                    <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center text-[#6F7E57] mb-6">
+                      <Calendar size={28} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-zinc-900 mb-4">Monthly Plan</h3>
+                    <p className="text-zinc-600 mb-8 leading-relaxed">Flexible monthly delivery. Manage your home easily every month without long-term commitment.</p>
+                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#6F7E57] text-white rounded-2xl font-bold hover:bg-[#575B44] transition-colors">
+                      Subscribe Now
+                    </button>
+                  </div>
+
+                  <div className="bg-[#575B44] text-white p-10 rounded-[2.5rem] border border-[#575B44] flex flex-col items-center text-center shadow-2xl relative transform hover:-translate-y-2 transition-transform">
+                    <div className="absolute top-0 right-0 p-4">
+                      <span className="bg-[#f7ebc3] text-[#693311] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">Popular</span>
+                    </div>
+                    <div className="w-16 h-16 bg-white/10 rounded-3xl flex items-center justify-center text-[#f7ebc3] mb-6">
+                      <TrendingUp size={28} />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">Quarterly Plan</h3>
+                    <p className="text-white/80 mb-8 leading-relaxed">Better value and savings. Save 5% when you prepay for 3 months of seamless supply.</p>
+                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#f7ebc3] text-[#693311] rounded-2xl font-bold hover:bg-white transition-colors">
+                      Subscribe Now
+                    </button>
+                  </div>
+
+                  <div className="bg-white p-10 rounded-[2.5rem] border border-black/5 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all">
+                    <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center text-[#6F7E57] mb-6">
+                      <ShieldCheck size={28} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-zinc-900 mb-4">Annual Plan</h3>
+                    <p className="text-zinc-600 mb-8 leading-relaxed">Maximum convenience and savings. One payment, 12 months of ultimate peace of mind.</p>
+                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#6F7E57] text-white rounded-2xl font-bold hover:bg-[#575B44] transition-colors">
+                      Subscribe Now
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-[#F8F0E5] rounded-[3rem] p-12 lg:p-16">
+                  <div className="max-w-3xl mx-auto">
+                    <h3 className="font-serif text-3xl font-bold text-[#693311] text-center mb-10">Subscription Benefits</h3>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                      {[
+                        "Guaranteed monthly essentials",
+                        "Priority delivery",
+                        "Exclusive subscriber pricing",
+                        "Flexible customization",
+                        "Reliable home supply"
+                      ].map((benefit, i) => (
+                        <li key={i} className="flex items-center gap-4 text-lg text-[#575B44] font-medium">
+                          <div className="w-8 h-8 rounded-full bg-[#6F7E57] flex items-center justify-center text-white shrink-0 shadow-sm">
+                            <Check size={16} />
+                          </div>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {view === 'partners' && (
+            <motion.div
+              key="partners"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="pt-32 pb-24 min-h-screen bg-white"
+            >
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="inline-block px-5 py-2 bg-[#F8F0E5] text-[#6F7E57] text-sm font-bold uppercase tracking-widest rounded-full mb-8">
+                  Collaborate with Us
+                </div>
+                <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-8 leading-tight">
+                  Partner With Everyday Needs
+                </h2>
+                <p className="text-xl text-[#575B44] leading-relaxed mb-16">
+                  Everyday Needs provides brands and suppliers direct access to thousands of modern households across Nigeria. Reach loyal customers consistently by featuring your highest quality products in our curated boxes.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
+                  <div className="p-10 bg-[#FAF5EF] rounded-[2.5rem] border border-[#F8F0E5] hover:shadow-xl transition-all">
+                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#6F7E57] mb-6 shadow-sm">
+                      <Store size={28} />
+                    </div>
+                    <h4 className="text-2xl font-bold text-[#693311] mb-4">For Brands & Suppliers</h4>
+                    <p className="text-zinc-600 leading-relaxed mb-6">
+                      Join our network of premium, verified suppliers. We prioritize safer, non-toxic, and wellness-aligned products, giving you a platform to showcase your best to a ready market.
+                    </p>
+                    <button className="text-[#6F7E57] font-bold hover:underline">Apply to supply &rarr;</button>
+                  </div>
+
+                  <div className="p-10 bg-[#f7ebc3] rounded-[2.5rem] hover:shadow-xl transition-all">
+                    <div className="w-14 h-14 bg-white/50 rounded-2xl flex items-center justify-center text-[#575B44] mb-6 shadow-sm">
+                      <Handshake size={28} />
+                    </div>
+                    <h4 className="text-2xl font-bold text-[#693311] mb-4">For Corporate Partners</h4>
+                    <p className="text-[#575B44]/90 leading-relaxed mb-6">
+                      Provide ultimate peace of mind for your employees. Bulk subscription plans and custom gifting designed to support modern professionals.
+                    </p>
+                    <button className="text-[#575B44] font-bold hover:underline">Corporate inquiries &rarr;</button>
+                  </div>
+                </div>
+
+                <div className="bg-[#6F7E57] p-12 rounded-[3rem] text-center shadow-2xl">
+                  <h3 className="text-3xl font-bold text-white mb-6">Ready to grow together?</h3>
+                  <button onClick={() => setView('contact')} className="bg-white text-[#693311] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#F8F0E5] transition-colors shadow-lg">
+                    Contact Partnerships Team
+                  </button>
+                </div>
+              </div>
             </motion.div>
           )}
 
