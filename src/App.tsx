@@ -83,7 +83,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
   if (currentView === 'dashboard' || currentView === 'seller-dashboard' || currentView === 'admin-dashboard') return null;
 
   const aboutLinks = [
-    { name: 'About Us', view: 'about' },
+    { name: 'Why We Exist', view: 'about' },
     { name: 'Partners', view: 'partners' },
     { name: 'Investors', view: 'investors' },
     { name: 'Subscription', view: 'subscription' }
@@ -380,22 +380,18 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
   const trustItems = [
     {
       label: 'Reliable',
-      icon: Truck,
       detail: 'Consistent monthly deliveries scheduled to your preference, ensuring you never run out of home essentials.'
     },
     {
       label: 'Safe',
-      icon: ShieldCheck,
       detail: 'Every product is strictly vetted for safety, non-toxicity, and quality before it reaches your doorstep.'
     },
     {
       label: 'Thoughtfully Sourced',
-      icon: Heart,
       detail: 'We partner directly with farmers and trusted homegrown brands to ensure freshness and support the local economy.'
     },
     {
       label: 'Trusted',
-      icon: CheckCircle2,
       detail: 'Join thousands of modern Nigerian households who rely on our seamless and responsible essential service.'
     },
   ];
@@ -468,10 +464,6 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
                       : 'bg-white/60 border-transparent text-[#6F7E57] hover:bg-white hover:border-[#6F7E57]/20 shadow-sm'
                       }`}
                   >
-                    <div className={`p-2 rounded-xl shrink-0 transition-colors ${expandedTrustIdx === i ? 'bg-white/20' : 'bg-[#6F7E57]/10'
-                      }`}>
-                      <item.icon size={22} />
-                    </div>
                     <div className="flex-grow text-left">
                       <p className="text-sm font-bold tracking-tight">{item.label}</p>
                     </div>
@@ -506,6 +498,77 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
 };
 
 
+const Dropbox: React.FC<{
+  options: { value: string, label: string, price?: number, badge?: string }[],
+  value: string,
+  onChange: (value: string) => void,
+  label?: string
+}> = ({ options, value, onChange, label }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectedOption = options.find(o => o.value === value) || options[0];
+
+  return (
+    <div className="relative">
+      {label && <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">{label}</label>}
+      <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full bg-white border-2 border-black/5 rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:border-[#6F7E57]/30 transition-all shadow-sm group"
+      >
+        <div className="flex flex-col text-left">
+          <span className="text-sm font-bold text-zinc-900 flex items-center gap-2">
+            {selectedOption.label}
+            {selectedOption.badge && (
+              <span className="px-2 py-0.5 bg-[#FAF5EF] text-[#6F7E57] text-[10px] font-black rounded-full border border-[#6F7E57]/10">
+                {selectedOption.badge}
+              </span>
+            )}
+          </span>
+          {selectedOption.price && (
+            <span className="text-xs text-[#6F7E57] font-bold">₦{selectedOption.price.toLocaleString()}</span>
+          )}
+        </div>
+        <ChevronDown size={18} className={`text-zinc-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <div className="fixed inset-0 z-30" onClick={() => setIsOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              className="absolute top-full left-0 right-0 mt-2 bg-white rounded-3xl border border-black/5 shadow-2xl overflow-hidden z-40 py-2 max-h-60 overflow-y-auto"
+            >
+              {options.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => { onChange(opt.value); setIsOpen(false); }}
+                  className={`w-full text-left px-6 py-4 transition-all flex items-center justify-between group ${
+                    value === opt.value ? 'bg-[#FAF5EF]' : 'hover:bg-zinc-50'
+                  }`}
+                >
+                  <div className="flex flex-col">
+                    <span className={`text-sm font-bold ${value === opt.value ? 'text-[#6F7E57]' : 'text-zinc-600'}`}>
+                      {opt.label}
+                    </span>
+                    {opt.price && <span className="text-xs text-[#6F7E57]/70 font-bold">₦{opt.price.toLocaleString()}</span>}
+                  </div>
+                  {opt.badge && (
+                    <span className="px-2 py-0.5 bg-[#FAF5EF] text-[#6F7E57] text-[10px] font-black rounded-full border border-[#6F7E57]/10">
+                      {opt.badge}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const ProductCard: React.FC<{
   product: BoxProduct,
   onSelect: (product: BoxProduct) => any,
@@ -523,6 +586,8 @@ const ProductCard: React.FC<{
     return p.label;
   }))] : [];
 
+  const mainBadge = product.plans?.find(p => p.badge)?.badge;
+
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -536,17 +601,10 @@ const ProductCard: React.FC<{
           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
-        {product.deliveryType === 'weekly_or_monthly' && (
+        {mainBadge && (
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-[#6F7E57] text-white text-xs font-bold rounded-full shadow-md flex items-center gap-1">
-              📦 Weekly or Monthly
-            </span>
-          </div>
-        )}
-        {product.deliveryType !== 'weekly_or_monthly' && (
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-full shadow-sm">
-              {product.category}
+            <span className="px-3 py-1 bg-[#6F7E57] text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-md">
+              {mainBadge}
             </span>
           </div>
         )}
@@ -575,15 +633,15 @@ const ProductCard: React.FC<{
 
         <div className="mt-auto pt-4 border-t border-black/5 flex items-center justify-between gap-3">
           <div>
-            <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider mb-0.5">Starting from</p>
+            <p className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mb-0.5">Starting from</p>
             <span className="text-xl font-black font-sans text-[#6F7E57]">
-              ₦{(lowestPlan?.price ?? product.price).toLocaleString()}
+              ₦{(lowestPlan?.price ?? product.startingFrom ?? product.price).toLocaleString()}
             </span>
             <span className="text-xs text-[#6F7E57]/70 font-bold ml-1">/ {lowestPlan?.frequency ?? 'month'}</span>
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); onSelect(product); }}
-            className="bg-[#6F7E57] text-white px-5 py-2.5 rounded-2xl text-sm font-bold hover:bg-[#575B44] transition-all whitespace-nowrap shadow-sm"
+            className="bg-[#6F7E57] text-white px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-[#575B44] transition-all whitespace-nowrap shadow-sm"
           >
             View Box
           </button>
@@ -786,50 +844,44 @@ const ProductDetail = ({
                 })()}
               </div>
 
-              <div className="space-y-4">
-                {/* Household Toggle */}
+              <div className="space-y-6">
+                {/* Household Selection */}
                 {hasHousehold && (
-                  <div>
-                    <p className="text-sm font-bold text-zinc-700 mb-2">Household Size</p>
-                    <div className="flex gap-2 p-1 bg-zinc-100 rounded-2xl w-fit">
-                      {householdOptions.map(opt => (
-                        <button key={opt} onClick={() => { setSelectedHousehold(opt); setSelectedTier(productPlans.filter(p => !p.householdType || p.householdType === opt)[0]?.tier ?? ''); }}
-                          className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${selectedHousehold === opt ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}>
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  <Dropbox 
+                    label="Household Size"
+                    options={householdOptions.map(opt => ({ value: opt, label: opt }))}
+                    value={selectedHousehold}
+                    onChange={(val) => {
+                      setSelectedHousehold(val);
+                      const firstTier = productPlans.find(p => !p.householdType || p.householdType === val)?.tier;
+                      if (firstTier) setSelectedTier(firstTier);
+                    }}
+                  />
                 )}
 
                 {/* Plan Selector */}
-                <div>
-                  <p className="text-sm font-bold text-zinc-700 mb-2">Select Plan</p>
-                  <select
-                    value={selectedTier}
-                    onChange={e => setSelectedTier(e.target.value)}
-                    className="w-full px-5 py-4 bg-[#FAF5EF] border border-[#6F7E57]/20 rounded-2xl font-bold text-zinc-800 outline-none focus:ring-2 focus:ring-[#6F7E57]/30 appearance-none cursor-pointer"
-                  >
-                    {currentVisiblePlans.map(plan => (
-                      <option key={plan.tier} value={plan.tier}>
-                        {plan.label} — ₦{plan.price.toLocaleString()} / {plan.frequency}{plan.badge ? ` ⭐ ${plan.badge}` : ''}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <Dropbox 
+                  label="Select Plan"
+                  options={currentVisiblePlans.map(plan => ({
+                    value: plan.tier,
+                    label: plan.label,
+                    price: plan.price,
+                    badge: plan.badge
+                  }))}
+                  value={selectedTier}
+                  onChange={setSelectedTier}
+                />
 
                 {/* Frequency */}
-                <div>
-                  <p className="text-sm font-bold text-zinc-700 mb-2">Frequency</p>
-                  <div className="flex gap-2 p-1 bg-zinc-100 rounded-2xl w-fit">
-                    {(['Monthly', 'Quarterly'] as const).map(freq => (
-                      <button key={freq} onClick={() => setSelectedFrequency(freq)}
-                        className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${selectedFrequency === freq ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}>
-                        {freq} {freq === 'Quarterly' ? '(Save 5%)' : ''}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <Dropbox 
+                  label="Delivery Frequency"
+                  options={[
+                    { value: 'Monthly', label: 'Monthly Delivery' },
+                    { value: 'Quarterly', label: 'Quarterly (Every 3 Months)', badge: 'Save 5%' }
+                  ]}
+                  value={selectedFrequency}
+                  onChange={(val) => setSelectedFrequency(val as 'Monthly' | 'Quarterly')}
+                />
 
                 {/* Add-Ons */}
                 {(product.addOns ?? []).length > 0 && (
@@ -954,11 +1006,11 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F8F0E5]">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F8F0E5] relative z-[100]">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md w-full bg-white rounded-[2.5rem] shadow-xl border border-black/5 p-10"
+        className="max-w-md w-full bg-white rounded-[3rem] shadow-2xl border border-black/5 p-10"
       >
         <div className="text-center mb-10">
           <div className="w-16 h-16 bg-brand-alt-2/20 rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6">
@@ -3493,10 +3545,10 @@ const MOCK_BOXES: BoxProduct[] = [
     deliveryType: "monthly",
     householdOptions: ["Single", "Family"],
     plans: [
-      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single", badge: "Single Plans" },
+      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single" },
       { tier: "premium-single", label: "Premium (Single)", price: 240000, frequency: "month", householdType: "Single" },
-      { tier: "essentials-family", label: "Essentials (Family)", price: 65400, frequency: "month", householdType: "Family", badge: "Most Popular" },
-      { tier: "classic-family", label: "Classic (Family)", price: 201000, frequency: "month", householdType: "Family" },
+      { tier: "essentials-family", label: "Essentials (Family)", price: 65400, frequency: "month", householdType: "Family" },
+      { tier: "classic-family", label: "Classic (Family)", price: 201000, frequency: "month", householdType: "Family", badge: "Most Popular" },
       { tier: "premium-family", label: "Premium (Family)", price: 377500, frequency: "month", householdType: "Family" },
     ]
   },
@@ -3532,8 +3584,8 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56000, frequency: "week", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 106500, frequency: "month" },
+      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56000, frequency: "week" },
+      { tier: "classic", label: "Classic", price: 106500, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
     ]
   },
@@ -3552,8 +3604,8 @@ const MOCK_BOXES: BoxProduct[] = [
     plans: [
       { tier: "classic-individual", label: "Classic (Individual)", price: 91700, frequency: "month", householdType: "Individual" },
       { tier: "premium-individual", label: "Premium (Individual)", price: 138200, frequency: "month", householdType: "Individual" },
-      { tier: "essentials-family", label: "Essentials (Family)", price: 56200, frequency: "month", householdType: "Family", badge: "Most Popular" },
-      { tier: "classic-family", label: "Classic (Family)", price: 124700, frequency: "month", householdType: "Family" },
+      { tier: "essentials-family", label: "Essentials (Family)", price: 56200, frequency: "month", householdType: "Family" },
+      { tier: "classic-family", label: "Classic (Family)", price: 124700, frequency: "month", householdType: "Family", badge: "Most Popular" },
       { tier: "premium-family", label: "Premium (Family)", price: 202700, frequency: "month", householdType: "Family" },
     ]
   },
@@ -3569,26 +3621,26 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 73400, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 119900, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 73400, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 119900, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 228000, frequency: "month" },
     ]
   },
   {
     id: 6,
-    name: "LITTLE BUNDLE OF JOY",
-    description: "Baby care essentials. Safe, premium essentials for your little ones, from nutrition to gentle care products.",
-    shortDesc: "Baby care essentials",
-    price: 55000,
-    startingFrom: 55000,
-    image_url: "/images/LITTLE BUNDLE OF JOY.jpeg",
-    category: "Baby & Kids",
-    shopCategory: "Family",
+    name: "RADIANT GLOW KIT",
+    description: "Beauty & skincare essentials. Premium beauty and skincare products for a healthy, radiant glow every day.",
+    shortDesc: "Beauty & skincare essentials",
+    price: 77000,
+    startingFrom: 77000,
+    image_url: "/images/Radiant Glow Kit.jpeg",
+    category: "Beauty & Wellness",
+    shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month" },
-      { tier: "classic", label: "Classic", price: 136000, frequency: "month", badge: "Family Favourite" },
-      { tier: "premium", label: "Premium", price: 266500, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 77000, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 128000, frequency: "month", badge: "Most Popular" },
+      { tier: "premium", label: "Premium", price: 252500, frequency: "month" },
     ]
   },
   {
@@ -3603,7 +3655,7 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "⭐ Best Start" },
+      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "Most Popular" },
       { tier: "classic", label: "Classic", price: 40900, frequency: "month" },
     ]
   },
@@ -3619,12 +3671,29 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "⭐ Best Start" },
+      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "Most Popular" },
       { tier: "classic", label: "Classic", price: 48000, frequency: "month" },
     ]
   },
   {
     id: 9,
+    name: "LITTLE BUNDLE OF JOY",
+    description: "Baby care essentials. Safe, premium essentials for your little ones, from nutrition to gentle care products.",
+    shortDesc: "Baby care essentials",
+    price: 55000,
+    startingFrom: 55000,
+    image_url: "/images/LITTLE BUNDLE OF JOY.jpeg",
+    category: "Baby & Kids",
+    shopCategory: "Family",
+    deliveryType: "monthly",
+    plans: [
+      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 136000, frequency: "month", badge: "Most Popular" },
+      { tier: "premium", label: "Premium", price: 266500, frequency: "month" },
+    ]
+  },
+  {
+    id: 10,
     name: "GOURMET PLEASURE BOX",
     description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
     shortDesc: "Premium dining & curated indulgence",
@@ -3637,23 +3706,6 @@ const MOCK_BOXES: BoxProduct[] = [
     plans: [
       { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
       { tier: "premium", label: "Premium", price: 307000, frequency: "month" },
-    ]
-  },
-  {
-    id: 10,
-    name: "RADIANT GLOW KIT",
-    description: "Beauty & skincare essentials. Premium beauty and skincare products for a healthy, radiant glow every day.",
-    shortDesc: "Beauty & skincare essentials",
-    price: 77000,
-    startingFrom: 77000,
-    image_url: "/images/Radiant Glow Kit.jpeg",
-    category: "Beauty & Wellness",
-    shopCategory: "Lifestyle & Care",
-    deliveryType: "monthly",
-    plans: [
-      { tier: "essentials", label: "Essentials", price: 77000, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 128000, frequency: "month" },
-      { tier: "premium", label: "Premium", price: 252500, frequency: "month" },
     ]
   },
   {
@@ -3701,6 +3753,7 @@ export interface CartItem extends Product {
 function App() {
   const [view, setView] = useState('home');
   const [user, setUser] = useState<UserType | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -3716,6 +3769,22 @@ function App() {
   const [notification, setNotification] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [pendingAction, setPendingAction] = useState<{ type: 'buy' | 'subscribe', payload: any } | null>(null);
+  
+  // Checkout Multi-step State
+  const [checkoutStep, setCheckoutStep] = useState(1);
+  const [checkoutData, setCheckoutData] = useState<any>({
+    items: [],
+    total: 0,
+    address: '',
+    phone: '',
+    email: '',
+    name: '',
+    deliveryTime: 'Morning (8am - 12pm)',
+    householdSize: '1-2 People',
+    frequency: 'Monthly',
+    preferences: [],
+    notes: '',
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -3777,6 +3846,16 @@ function App() {
     }
 
     const finalAmount = amount || product.price;
+
+    setCheckoutData({
+      ...checkoutData,
+      items: product.name === 'Everyday Needs Cart Bundle' ? [...cart] : [{ ...product, quantity: 1 }],
+      total: finalAmount,
+      name: user.name || '',
+      email: user.email || '',
+    });
+    setCheckoutStep(1);
+    setView('checkout');
 
     // @ts-ignore
     const handler = window.PaystackPop.setup({
@@ -4274,17 +4353,14 @@ function App() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {[
-                      { title: 'Convenience', desc: 'No more emergency store runs.', icon: ShoppingCart },
-                      { title: 'Reliability', desc: 'Never run out of essentials.', icon: Calendar },
-                      { title: 'Safety & Quality', desc: 'Trusted sourcing standards.', icon: ShieldCheck },
-                      { title: 'Time Saving', desc: 'Focus on what matters most.', icon: Truck },
-                      { title: 'Cost Efficiency', desc: 'Bundled value and savings.', icon: Wallet },
-                      { title: 'Peace of Mind', desc: 'Your home runs smoothly.', icon: Heart }
+                      { title: 'Convenience', desc: 'No more emergency store runs.' },
+                      { title: 'Reliability', desc: 'Never run out of essentials.' },
+                      { title: 'Safety & Quality', desc: 'Trusted sourcing standards.' },
+                      { title: 'Time Saving', desc: 'Focus on what matters most.' },
+                      { title: 'Cost Efficiency', desc: 'Bundled value and savings.' },
+                      { title: 'Peace of Mind', desc: 'Your home runs smoothly.' }
                     ].map((reason, i) => (
                       <div key={i} className="p-8 bg-white rounded-[2rem] border border-black/5 hover:border-[#6F7E57]/20 transition-all text-center group">
-                        <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm">
-                          <reason.icon size={20} />
-                        </div>
                         <h4 className="font-bold text-zinc-900 mb-2 font-sans">{reason.title}</h4>
                         <p className="text-sm text-zinc-500 leading-relaxed font-sans">{reason.desc}</p>
                       </div>
@@ -4363,29 +4439,36 @@ function App() {
                   <div className="flex flex-wrap gap-2">
                     {[
                       { label: 'All', value: 'All Products' },
-                      { label: '🌾 Food & Pantry', value: 'Food & Pantry' },
-                      { label: '💆 Lifestyle & Care', value: 'Lifestyle & Care' },
-                      { label: '👶 Family', value: 'Family' },
+                      { label: 'Food & Pantry', value: 'Food & Pantry' },
+                      { label: 'Lifestyle & Care', value: 'Lifestyle & Care' },
+                      { label: 'Family', value: 'Family' },
                     ].map(f => (
                       <button key={f.value} onClick={() => setSelectedCategory(f.value)}
                         className={`px-5 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === f.value ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57] hover:text-[#6F7E57]'}`}>
                         {f.label}
                       </button>
                     ))}
-                    <select value={selectedCategory.startsWith('price:') ? selectedCategory : ''}
-                      onChange={e => e.target.value && setSelectedCategory(e.target.value)}
-                      className="px-5 py-3 rounded-full text-sm font-bold border bg-white border-zinc-200 text-zinc-600 outline-none cursor-pointer hover:border-[#6F7E57] transition-all appearance-none">
-                      <option value="">Price Range</option>
-                      <option value="price:0-50000">₦0 – ₦50,000</option>
-                      <option value="price:50000-150000">₦50,000 – ₦150,000</option>
-                      <option value="price:150000+">₦150,000+</option>
-                    </select>
-                    <select onChange={e => e.target.value && setSelectedCategory(e.target.value === 'weekly' ? 'delivery:weekly' : 'delivery:monthly')}
-                      className="px-5 py-3 rounded-full text-sm font-bold border bg-white border-zinc-200 text-zinc-600 outline-none cursor-pointer hover:border-[#6F7E57] transition-all appearance-none">
-                      <option value="">Delivery Type</option>
-                      <option value="weekly">Weekly Available</option>
-                      <option value="monthly">Monthly</option>
-                    </select>
+                    <Dropbox 
+                      label="Price Range"
+                      options={[
+                        { label: '₦0 – ₦50,000', value: 'price:0-50000' },
+                        { label: '₦50,000 – ₦150,000', value: 'price:50000-150000' },
+                        { label: '₦150,000+', value: 'price:150000+' },
+                      ]}
+                      value={selectedCategory.startsWith('price:') ? selectedCategory : ''}
+                      onChange={val => setSelectedCategory(val)}
+                      className="min-w-[150px]"
+                    />
+                    <Dropbox 
+                      label="Delivery Type"
+                      options={[
+                        { label: 'Weekly Available', value: 'weekly' },
+                        { label: 'Monthly', value: 'monthly' },
+                      ]}
+                      value={selectedCategory === 'delivery:weekly' ? 'weekly' : selectedCategory === 'delivery:monthly' ? 'monthly' : ''}
+                      onChange={val => setSelectedCategory(val === 'weekly' ? 'delivery:weekly' : 'delivery:monthly')}
+                      className="min-w-[150px]"
+                    />
                   </div>
                 </div>
 
@@ -4439,9 +4522,9 @@ function App() {
                   const isGrouped = selectedCategory === 'All Products' || selectedCategory === 'All Tiers';
 
                   const shopGroups = [
-                    { label: 'Food & Pantry', emoji: '', cat: 'Food & Pantry' },
-                    { label: 'Lifestyle & Care', emoji: '', cat: 'Lifestyle & Care' },
-                    { label: 'Family', emoji: '', cat: 'Family' },
+                    { label: 'Food & Pantry', cat: 'Food & Pantry' },
+                    { label: 'Lifestyle & Care', cat: 'Lifestyle & Care' },
+                    { label: 'Family', cat: 'Family' },
                   ];
 
                   if (isGrouped) {
@@ -4698,95 +4781,103 @@ function App() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Brand Story - Centered */}
                 <div className="text-center mb-24 max-w-4xl mx-auto">
-                  <h2 className="font-serif text-5xl md:text-7xl font-black tracking-tight text-[#6F7E57] mb-8">Our Story</h2>
-                  <p className="text-xl text-zinc-700 leading-relaxed font-sans">
+                  <h3 className="text-sm font-black text-[#6F7E57] uppercase tracking-[0.3em] mb-4">Founder's Story</h3>
+                  <h2 className="font-serif text-5xl md:text-7xl font-black tracking-tight text-[#693311] mb-8">Why We Exist</h2>
+                  <p className="text-xl text-[#575B44] leading-relaxed font-sans mb-8">
                     Everyday Needs was born from a simple observation: managing a household shouldn't be a source of stress. We saw busy families struggling with inconsistent supplies, poor quality products, and the constant mental load of "running out."
                   </p>
-                  <p className="text-xl text-zinc-700 leading-relaxed font-sans mt-4">
-                    We decided to build a platform that acts as a reliable partner for every Nigerian home.
+                  <p className="text-lg text-zinc-500 leading-relaxed font-medium">
+                    We decided to build a platform that acts as a reliable partner for every household in Nigeria. A system that predicts what you need, before you even realize you're low.
                   </p>
                 </div>
 
                 {/* Main Content Section with Images and Overlays */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
                   <div className="relative">
-                    <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl bg-white border border-black/5">
-                      <img src="/images/FARM FRESH HARVEST N156200.jpeg" alt="Our Sourcing" className="w-full h-full object-cover" />
+                    <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl bg-white border-8 border-white group">
+                      <img 
+                        src="/images/Founder.jpeg" 
+                        alt="Our Founder" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                        onError={(e) => { e.currentTarget.src = "/images/FARM FRESH HARVEST N156200.jpeg" }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#693311]/60 to-transparent" />
                       
-                      {/* Sourcing Model - At the Top */}
-                      <div className="absolute top-10 left-0 right-0 px-8">
-                        <div className="bg-[#575B44]/95 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl">
-                          <h3 className="text-[#f7ebc3] font-bold text-xl mb-2">Our Sourcing Model</h3>
-                          <p className="text-white/90 text-sm leading-relaxed">
-                            We work directly with farmers and trusted manufacturers to ensure every item in your box is fresh, safe, and of the highest quality.
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Why it Matters - At the Center */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%]">
-                        <div className="bg-[#693311]/95 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/20 shadow-2xl text-center">
-                          <h3 className="text-[#f7ebc3] font-bold text-2xl mb-3">Why Everyday Needs Matters</h3>
-                          <p className="text-white/90 text-base leading-relaxed font-medium">
-                            A well-supplied home is a peaceful home. We handle the logistics so you can focus on what truly matters: your family and your life.
-                          </p>
+                      <div className="absolute bottom-10 left-10 right-10">
+                        <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl text-white">
+                          <p className="font-serif text-xl italic mb-1">"A well-supplied home is a peaceful home."</p>
+                          <p className="text-xs font-black uppercase tracking-widest text-[#f7ebc3]">Our Philosophy</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-12">
-                     <div className="p-10 bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-sm">
-                        <h3 className="text-3xl font-bold text-[#6F7E57] mb-6">Built for Reliability</h3>
-                        <p className="text-lg text-zinc-600 leading-relaxed mb-6 font-sans">
-                          Everyday Needs isn't just a delivery service; it's a commitment to your household's stability. Our predictive model ensures you stay stocked without lifting a finger.
+                     <div className="p-12 bg-white rounded-[4rem] border border-[#6F7E57]/10 shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-8 opacity-5">
+                          <LayoutDashboard size={120} />
+                        </div>
+                        <h3 className="text-sm font-black text-[#6F7E57] uppercase tracking-widest mb-6">The Problem</h3>
+                        <h4 className="text-3xl font-black text-zinc-900 mb-6 leading-tight">The invisible burden of household management.</h4>
+                        <p className="text-lg text-zinc-600 leading-relaxed mb-8 font-sans">
+                          Busy families in modern Nigeria face fragmented supply chains and quality inconsistencies. The mental load of managing a home shouldn't compete with your professional or personal growth.
                         </p>
-                        <ul className="space-y-4">
+                        <div className="space-y-4">
                           {[
-                            'Vetted High-Quality Products',
-                            'Direct-from-Source Freshness',
-                            'Safe & Non-Toxic Priority',
-                            'Consistent Delivery Schedule'
+                            { t: 'Fragmented Markets', d: 'No single source for quality pantry and home care.' },
+                            { t: 'Inconsistent Quality', d: 'Direct-from-source vetting is time-consuming.' },
+                            { t: 'Predictive Supply', d: 'Most services react rather than anticipate your needs.' }
                           ].map((item, i) => (
-                            <li key={i} className="flex items-center gap-3 text-zinc-800 font-bold font-sans">
-                              <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center text-white text-xs">✓</div>
-                              {item}
-                            </li>
+                            <div key={i} className="flex gap-4">
+                              <div className="w-10 h-10 bg-[#FAF5EF] rounded-xl flex items-center justify-center text-[#6F7E57] shrink-0 font-bold border border-[#6F7E57]/10">{i+1}</div>
+                              <div>
+                                <p className="font-black text-zinc-900 text-sm mb-1">{item.t}</p>
+                                <p className="text-xs text-zinc-500 font-medium leading-relaxed">{item.d}</p>
+                              </div>
+                            </div>
                           ))}
-                        </ul>
+                        </div>
                      </div>
                      
-                     <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl">
-                        <h3 className="text-2xl font-bold mb-4">The Subscription Advantage</h3>
-                        <p className="opacity-90 mb-8 font-sans">Join thousands of households enjoying the peace of mind that comes with Everyday Needs.</p>
-                        <button onClick={() => setView('subscription')} className="bg-[#f7ebc3] text-[#693311] px-8 py-4 rounded-2xl font-black hover:bg-white transition-all shadow-lg active:scale-95">
-                           Explore Subscription Plans
+                     <div className="bg-[#693311] text-white p-12 rounded-[4rem] shadow-2xl group overflow-hidden relative">
+                        <div className="absolute top-0 right-0 p-12 bg-[#f7ebc3]/10 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-700" />
+                        <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-4">Our Roots</h3>
+                        <p className="text-xl font-medium leading-relaxed mb-10 relative z-10">
+                          We are building more than a company; we are building a standard for modern Nigerian living. Reliability isn't just a goal—it's our foundation.
+                        </p>
+                        <button onClick={() => setView('subscription')} className="bg-[#f7ebc3] text-[#693311] px-10 py-5 rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl active:scale-95 relative z-10">
+                           Join the Movement
                         </button>
                      </div>
                   </div>
                 </div>
 
-                {/* Mission & Core Values - Below main content */}
-                <div className="bg-[#FAF5EF] rounded-[4rem] p-12 lg:p-20 border border-black/5 shadow-inner">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <div>
-                      <h3 className="text-3xl font-bold text-[#575B44] mb-6 font-serif">Our Mission</h3>
-                      <p className="text-xl text-zinc-600 leading-relaxed italic font-sans">
+                {/* Mission & Core Values - Seamless Layout */}
+                <div className="bg-[#575B44] rounded-[5rem] p-16 lg:p-24 text-white relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#f7ebc3]/30 to-transparent" />
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 relative z-10">
+                    <div className="lg:col-span-2">
+                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-[0.2em] mb-8">Our Mission</h3>
+                      <p className="text-3xl md:text-4xl font-serif font-black leading-tight italic">
                         "To empower every Nigerian household through reliable, safe, and convenient essential supply chains, fostering healthier and more productive lives."
                       </p>
                     </div>
-                    <div>
-                      <h3 className="text-3xl font-bold text-[#575B44] mb-6 font-serif">Core Values</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="lg:col-span-1 hidden lg:block border-l border-white/10 mx-auto" />
+                    <div className="lg:col-span-2">
+                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-[0.2em] mb-8">Core Values</h3>
+                      <div className="space-y-8">
                         {[
-                          { title: 'Trust', desc: 'In every product we source.' },
-                          { title: 'Reliability', desc: 'In every delivery we make.' },
-                          { title: 'Responsibility', desc: 'To our community and environment.' },
-                          { title: 'Integrity', desc: 'In our sourcing and business.' }
+                          { title: 'Radical Reliability', desc: 'Predictive delivery systems that never fail.' },
+                          { title: 'Safety Without Compromise', desc: 'Vetting every ingredient and material for your home.' },
+                          { title: 'Uncompromising Quality', desc: 'Direct sourcing to ensure only the best reaches your family.' },
+                          { title: 'Community Impact', desc: 'Supporting local farmers and sustainable practices.' }
                         ].map((v, i) => (
                           <div key={i} className="group">
-                            <p className="font-black text-[#693311] uppercase tracking-widest text-xs mb-1 group-hover:text-[#6F7E57] transition-colors">{v.title}</p>
-                            <p className="text-sm text-zinc-500 font-sans">{v.desc}</p>
+                             <div className="flex items-center gap-4 mb-2">
+                               <div className="w-2 h-2 rounded-full bg-[#f7ebc3]" />
+                               <p className="font-black text-[#f7ebc3] uppercase tracking-widest text-xs">{v.title}</p>
+                             </div>
+                             <p className="text-base text-white/70 font-medium pl-6">{v.desc}</p>
                           </div>
                         ))}
                       </div>
@@ -4797,6 +4888,351 @@ function App() {
             </motion.div>
           )}
 
+          {view === 'checkout' && (
+            <motion.div
+              key="checkout"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="pt-32 pb-24 min-h-screen bg-[#F8F0E5]"
+            >
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Checkout Header & Progress */}
+                <div className="mb-12">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311]">Checkout</h2>
+                    <div className="bg-[#6F7E57]/10 px-4 py-2 rounded-full border border-[#6F7E57]/20">
+                    <span className="text-xs font-black text-[#6F7E57] uppercase tracking-widest">Step {checkoutStep} of 7</span>
+                    </div>
+                  </div>
+                  
+                  {/* Progress Bar */}
+                  <div className="relative h-2 bg-white rounded-full overflow-hidden border border-black/5">
+                    <motion.div 
+                      className="absolute left-0 top-0 h-full bg-[#6F7E57]"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${(checkoutStep / 7) * 100}%` }}
+                      transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+                    />
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-[4rem] border border-black/5 shadow-xl overflow-hidden min-h-[500px] flex flex-col">
+                  {/* Step Content */}
+                  <div className="p-8 md:p-12 flex-grow">
+                    {checkoutStep === 1 && (
+                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                        <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Order Summary</h3>
+                          <p className="text-zinc-500 font-medium">Review the items in your household bundle.</p>
+                        </div>
+                        <div className="space-y-4">
+                          {checkoutData.items.map((item: any, i: number) => (
+                            <div key={i} className="flex items-center gap-6 p-6 bg-[#FAF5EF] rounded-[2rem] border border-black/5">
+                              <div className="w-20 h-20 bg-white rounded-2xl overflow-hidden p-2 border border-black/5 shrink-0">
+                                <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="font-bold text-zinc-900">{item.name}</h4>
+                                <p className="text-xs text-[#6F7E57] font-black uppercase tracking-widest mt-1">
+                                  ₦{item.price.toLocaleString()} {item.quantity > 1 ? `x ${item.quantity}` : ''}
+                                </p>
+                              </div>
+                              <p className="font-black text-zinc-900">₦{(item.price * (item.quantity || 1)).toLocaleString()}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="pt-8 border-t border-black/5">
+                          <div className="flex justify-between items-center bg-[#575B44] text-white p-8 rounded-[2.5rem] shadow-lg">
+                            <div>
+                              <p className="text-xs font-black uppercase tracking-widest opacity-60">Estimated Total</p>
+                              <p className="text-3xl font-black">₦{checkoutData.total.toLocaleString()}</p>
+                            </div>
+                            <button onClick={() => setCheckoutStep(2)} className="bg-[#f7ebc3] text-[#693311] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl">
+                              Next: Delivery Details
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 2 && (
+                      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                         <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Delivery Details</h3>
+                          <p className="text-zinc-500 font-medium">Where should we deliver your home essentials?</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="md:col-span-2">
+                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Full Name</label>
+                             <input 
+                              type="text" 
+                              value={checkoutData.name} 
+                              onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})}
+                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none"
+                              placeholder="John Doe"
+                             />
+                          </div>
+                          <div>
+                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Phone Number</label>
+                             <input 
+                              type="tel" 
+                              value={checkoutData.phone} 
+                              onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})}
+                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none"
+                              placeholder="+234 ..."
+                             />
+                          </div>
+                          <div>
+                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Preferred Time Slot</label>
+                             <Dropbox 
+                                label=""
+                                options={[
+                                  { value: 'Morning (8am - 12pm)', label: 'Morning (8am - 12pm)' },
+                                  { value: 'Afternoon (1pm - 5pm)', label: 'Afternoon (1pm - 5pm)' },
+                                  { value: 'Evening (6pm - 8pm)', label: 'Evening (6pm - 8pm)' }
+                                ]}
+                                value={checkoutData.deliveryTime}
+                                onChange={(val) => setCheckoutData({...checkoutData, deliveryTime: val})}
+                             />
+                          </div>
+                          <div className="md:col-span-2">
+                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Delivery Address (Lagos/PH only)</label>
+                             <textarea 
+                              value={checkoutData.address} 
+                              onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})}
+                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none min-h-[120px]"
+                              placeholder="House number, Street, Area..."
+                             />
+                          </div>
+                        </div>
+                        <div className="flex gap-4 pt-8 border-t border-black/5">
+                          <button onClick={() => setCheckoutStep(1)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
+                            Back
+                          </button>
+                          <button onClick={() => setCheckoutStep(3)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
+                            Next: Personalize Your Box
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 3 && (
+                      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                         <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Personalize Your Box</h3>
+                          <p className="text-zinc-500 font-medium">Tell us about your home to help us optimize your supply.</p>
+                        </div>
+                        <div className="space-y-6">
+                           <div>
+                              <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-4 ml-4">Household Size</label>
+                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                {['1 Person', '1-2 People', 'Family (3-5)', 'Large Family (5+)'].map(size => (
+                                  <button 
+                                    key={size}
+                                    onClick={() => setCheckoutData({...checkoutData, householdSize: size})}
+                                    className={`p-6 rounded-3xl border-2 transition-all text-sm font-bold ${checkoutData.householdSize === size ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-lg' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
+                                  >
+                                    {size}
+                                  </button>
+                                ))}
+                              </div>
+                           </div>
+                           <Dropbox 
+                              label="Special Delivery Notes?"
+                              options={[]}
+                              value={checkoutData.notes}
+                              onChange={(val) => setCheckoutData({...checkoutData, notes: val})}
+                           />
+                           <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5">
+                              <p className="text-sm font-bold text-[#693311] mb-2 leading-relaxed">Why this matters?</p>
+                              <p className="text-xs text-zinc-500 leading-relaxed font-medium">Knowing your household size helps us ensure your automated restocking happens exactly when you're about to run out.</p>
+                           </div>
+                        </div>
+                        <div className="flex gap-4 pt-8 border-t border-black/5">
+                          <button onClick={() => setCheckoutStep(2)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
+                            Back
+                          </button>
+                          <button onClick={() => setCheckoutStep(4)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
+                            Next: Subscription Frequency
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 4 && (
+                      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                         <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Subscription Preferences</h3>
+                          <p className="text-zinc-500 font-medium">Choose how often you want your essentials delivered.</p>
+                        </div>
+                        <div className="space-y-6">
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <button 
+                                onClick={() => setCheckoutStep(4)} // just to keep the state for now
+                                className={`p-10 rounded-[3rem] border-2 text-left transition-all ${checkoutData.frequency === 'Monthly' ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-2xl' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
+                                onClickCapture={() => setCheckoutData({...checkoutData, frequency: 'Monthly', total: checkoutData.items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0)})}
+                              >
+                                <div className="flex justify-between items-start mb-6">
+                                  <div className={`p-3 rounded-2xl ${checkoutData.frequency === 'Monthly' ? 'bg-white/20' : 'bg-[#6F7E57]/10'}`}>
+                                    <Calendar size={24} />
+                                  </div>
+                                  <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Flex</span>
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">Monthly Delivery</h4>
+                                <p className="text-xs opacity-80 leading-relaxed font-medium">Standard monthly replenishment. Pause or skip anytime.</p>
+                              </button>
+
+                              <button 
+                                onClick={() => setCheckoutStep(4)} // just to keep the state for now
+                                className={`p-10 rounded-[3rem] border-2 text-left transition-all relative ${checkoutData.frequency === 'Quarterly' ? 'bg-[#575B44] border-[#575B44] text-white shadow-2xl scale-105' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
+                                onClickCapture={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0) * 3) * 0.95})}
+                              >
+                                <div className="absolute top-6 right-6">
+                                  <span className="bg-[#f7ebc3] text-[#693311] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Save 5%</span>
+                                </div>
+                                <div className="flex justify-between items-start mb-6">
+                                  <div className={`p-3 rounded-2xl ${checkoutData.frequency === 'Quarterly' ? 'bg-white/20' : 'bg-[#6F7E57]/10'}`}>
+                                    <TrendingUp size={24} />
+                                  </div>
+                                </div>
+                                <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
+                                <p className="text-xs opacity-80 leading-relaxed font-medium">Get 3 months supply and save 5% on your total order.</p>
+                              </button>
+                           </div>
+                        </div>
+                        <div className="flex gap-4 pt-8 border-t border-black/5">
+                          <button onClick={() => setCheckoutStep(3)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
+                            Back
+                          </button>
+                          <button onClick={() => setCheckoutStep(5)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
+                            Next: Final Review
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 5 && (
+                      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                         <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Final Review</h3>
+                          <p className="text-zinc-500 font-medium">Verify your details before proceeding to secure payment.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                           <div className="p-8 bg-[#FAF5EF] rounded-[2.5rem] border border-black/5">
+                              <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-6">Delivery info</h4>
+                              <div className="space-y-4">
+                                <div>
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Address</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.address}</p>
+                                </div>
+                                <div className="flex justify-between border-t border-black/5 pt-4">
+                                  <div>
+                                    <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Phone</p>
+                                    <p className="text-sm font-bold text-zinc-800">{checkoutData.phone}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Time</p>
+                                    <p className="text-sm font-bold text-zinc-800">{checkoutData.deliveryTime}</p>
+                                  </div>
+                                </div>
+                              </div>
+                           </div>
+
+                           <div className="p-8 bg-[#FAF5EF] rounded-[2.5rem] border border-black/5">
+                              <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-6">Plan details</h4>
+                              <div className="space-y-4">
+                                <div>
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Frequency</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.frequency}</p>
+                                </div>
+                                <div className="border-t border-black/5 pt-4">
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Household</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.householdSize}</p>
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div className="p-10 bg-[#575B44] rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                           <div className="absolute top-0 right-0 p-8 opacity-5">
+                             <CreditCard size={120} />
+                           </div>
+                           <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+                              <div>
+                                <p className="text-xs font-black uppercase tracking-widest text-[#f7ebc3] mb-2">Total Amount due</p>
+                                <p className="text-4xl font-black">₦{checkoutData.total.toLocaleString()}</p>
+                              </div>
+                              <button 
+                                onClick={() => {
+                                  // Trigger Paystack (Step 6)
+                                  const handler = (window as any).PaystackPop.setup({
+                                    key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx',
+                                    email: checkoutData.email,
+                                    amount: checkoutData.total * 100,
+                                    currency: 'NGN',
+                                    callback: function(response: any) {
+                                      console.log('Payment successful', response);
+                                      setCheckoutStep(7); // Success Step
+                                    }
+                                  });
+                                  handler.openIframe();
+                                }}
+                                className="bg-[#f7ebc3] text-[#693311] px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl active:scale-95"
+                              >
+                                Pay Securely With Paystack
+                              </button>
+                           </div>
+                        </div>
+
+                        <div className="flex gap-4 pt-4">
+                          <button onClick={() => setCheckoutStep(4)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
+                            Back
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 7 && (
+                      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center justify-center py-20 text-center space-y-8">
+                         <div className="w-24 h-24 bg-[#6F7E57] rounded-[2.5rem] flex items-center justify-center text-white shadow-2xl">
+                            <Check size={48} />
+                         </div>
+                         <div>
+                            <h3 className="text-3xl font-black text-zinc-900 mb-3">Order Confirmed!</h3>
+                            <p className="text-zinc-500 font-medium max-w-sm mx-auto">Thank you for trusting Everyday Needs. Your home essentials bundle is being prepared for delivery.</p>
+                         </div>
+                         <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5 max-w-md w-full">
+                            <p className="text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-2">Next delivery</p>
+                            <p className="text-xl font-bold text-zinc-900">Scheduled for Saturday, 21st Mar</p>
+                         </div>
+                         <button onClick={() => setView('dashboard')} className="px-12 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            View Delivery Schedule
+                         </button>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 6 && (
+                       <div className="flex flex-col items-center justify-center py-20 text-center">
+                          <div className="w-16 h-16 bg-[#F8F0E5] rounded-full flex items-center justify-center text-[#6F7E57] mb-6">
+                            <RefreshCw className="animate-spin" />
+                          </div>
+                          <p className="text-zinc-500 font-medium">Processing payment...</p>
+                       </div>
+                    )}
+                  </div>
+
+                  {/* Trust Footer */}
+                  <div className="bg-[#FAF5EF] p-6 border-t border-black/5 flex items-center justify-center gap-8 opacity-40 grayscale pointer-events-none">
+                    <ShieldCheck size={20} />
+                    <Truck size={20} />
+                    <RefreshCw size={20} />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Secure Checkout</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
 
           {view === 'contact' && (
             <motion.div
@@ -4829,23 +5265,41 @@ function App() {
                 </div>
                 <p className="text-center text-zinc-400 text-sm">Response time is usually within 24 hours.</p>
 
-                <div className="mt-16 bg-[#f7ebc3] rounded-[3rem] border border-[#575B44]/20 p-12 shadow-lg">
-                  <form className="space-y-6">
+                <div className="mt-16 bg-[#f7ebc3] rounded-[3rem] border border-[#575B44]/20 p-8 md:p-12 shadow-lg">
+                  <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-zinc-700 mb-2">Name</label>
-                        <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium" placeholder="Your Name" />
+                        <input type="text" className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Name" />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-zinc-700 mb-2">Email</label>
-                        <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium" placeholder="Your Email" />
+                        <input type="email" className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Email" />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-zinc-700 mb-2">Message</label>
-                      <textarea className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40" placeholder="How can we help?"></textarea>
+                      <label className="block text-sm font-bold text-zinc-700 mb-2">Inquiry Type</label>
+                      <Dropbox 
+                        label="Select Subject"
+                        options={[
+                          { label: 'General Inquiry', value: 'general' },
+                          { label: 'Support Request', value: 'support' },
+                          { label: 'Partnership Opportunity', value: 'partnership' },
+                          { label: 'Investment Inquiry', value: 'investment' },
+                          { label: 'Feedback', value: 'feedback' },
+                        ]}
+                        value={selectedSubject}
+                        onChange={setSelectedSubject}
+                        className="w-full"
+                      />
                     </div>
-                    <button className="w-full bg-[#575B44] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl">Send Message</button>
+                    <div>
+                      <label className="block text-sm font-bold text-zinc-700 mb-2">Message</label>
+                      <textarea className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40 text-zinc-900" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button className="w-full bg-[#575B44] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl shadow-black/10">
+                      Send Message
+                    </button>
                   </form>
                 </div>
               </div>
@@ -4859,8 +5313,8 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              {/* Hero Banner */}
-              <div className="relative h-72 md:h-96 overflow-hidden">
+              {/* Hero Banner with z-index safety */}
+              <div className="relative h-72 md:h-96 overflow-hidden z-0">
                 <img
                   src="/images/WHATS INSIDE YOUR BOX.jpeg"
                   alt="Gift a Box Hero"
@@ -4878,7 +5332,7 @@ function App() {
               </div>
 
               {/* Main Content */}
-              <section className="py-20 bg-[#F8F0E5]">
+              <section className="py-20 bg-[#F8F0E5] relative z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
                     {/* Description Text */}
@@ -4900,9 +5354,7 @@ function App() {
                           onClick={() => setView('products')}
                           className="bg-[#6F7E57] text-white px-10 py-4 rounded-2xl font-bold text-base hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2 group"
                         >
-                          <Heart size={18} />
                           Select a Gift Box
-                          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                         <button
                           onClick={() => setView('contact')}
@@ -4945,9 +5397,6 @@ function App() {
                         { title: 'Random Acts of Kindness', desc: 'Spread love in your community with a simple, heartfelt gesture.', icon: ShieldCheck },
                       ].map((occasion, i) => (
                         <div key={i} className="p-8 bg-white rounded-[2rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 hover:shadow-md transition-all text-center group">
-                          <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-5 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors shadow-sm">
-                            <occasion.icon size={24} />
-                          </div>
                           <h4 className="font-bold text-zinc-900 mb-3 text-base">{occasion.title}</h4>
                           <p className="text-sm text-zinc-500 leading-relaxed">{occasion.desc}</p>
                         </div>
@@ -5026,70 +5475,184 @@ function App() {
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Plan</h2>
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Lifestyle</h2>
                   <p className="text-xl text-[#575B44] max-w-2xl mx-auto leading-relaxed">
-                    Select the delivery frequency that best fits your lifestyle and enjoy peace of mind with our automated schedules.
+                    Select a plan that best fits your household needs and lifestyle. Automated home management tailored for you.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-                  <div className="bg-white p-10 rounded-[2.5rem] border border-black/5 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all">
-                    <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center text-[#6F7E57] mb-6">
-                      <Calendar size={28} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
+                  {/* Essential Plan */}
+                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#693311] group-hover:scale-110 transition-transform">
+                        <User size={28} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Individuals / Light</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-zinc-900 mb-4">Monthly Plan</h3>
-                    <p className="text-zinc-600 mb-8 leading-relaxed">Flexible monthly delivery. Manage your home easily every month without long-term commitment.</p>
-                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#6F7E57] text-white rounded-2xl font-bold hover:bg-[#575B44] transition-colors">
-                      Subscribe Now
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Essential Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-black text-zinc-900">₦25k</span>
+                        <span className="text-zinc-400 font-bold text-sm">— ₦120k</span>
+                      </div>
+                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-4 flex-grow">
+                      {[
+                        "Core Pantry Staples",
+                        "Weekly Breakfast Box Option",
+                        "Eco Cleaning Supplies",
+                        "Standard Delivery Slots"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
+                          <Check size={16} className="text-[#6F7E57]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setView('products')} className="w-full py-5 bg-[#6F7E57]/10 text-[#6F7E57] rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
+                      Select Essential
                     </button>
                   </div>
 
-                  <div className="bg-[#575B44] text-white p-10 rounded-[2.5rem] border border-[#575B44] flex flex-col items-center text-center shadow-2xl relative transform hover:-translate-y-2 transition-transform">
-                    <div className="absolute top-0 right-0 p-4">
-                      <span className="bg-[#f7ebc3] text-[#693311] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">Popular</span>
+                  {/* Family Plan */}
+                  <div className="bg-[#575B44] text-white p-10 rounded-[4rem] border-4 border-[#6F7E57]/20 flex flex-col shadow-2xl relative transform hover:-translate-y-2 transition-transform h-full">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <span className="bg-[#f7ebc3] text-[#693311] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border-2 border-white/20">Most Popular</span>
                     </div>
-                    <div className="w-16 h-16 bg-white/10 rounded-3xl flex items-center justify-center text-[#f7ebc3] mb-6">
-                      <TrendingUp size={28} />
+                    <div className="flex items-center justify-between mb-8 mt-4">
+                      <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-[#f7ebc3]">
+                        <Users size={32} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Modern Families</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">Quarterly Plan</h3>
-                    <p className="text-white/80 mb-8 leading-relaxed">Better value and savings. Save 5% when you prepay for 3 months of seamless supply.</p>
-                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#f7ebc3] text-[#693311] rounded-2xl font-bold hover:bg-white transition-colors">
-                      Subscribe Now
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-1">Family Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-5xl font-black text-white">₦120k</span>
+                        <span className="text-white/40 font-bold text-lg">— ₦250k</span>
+                      </div>
+                      <p className="text-[10px] text-[#f7ebc3] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-5 flex-grow">
+                      {[
+                        "Full Household Pantry",
+                        "Farm Harvest & Protein Selection",
+                        "Home Care & Spa Kit",
+                        "Priority Delivery Scheduling",
+                        "Dedicated Home Support"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-4 text-base font-bold text-white/90">
+                          <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center shrink-0">
+                            <Check size={12} className="text-white" />
+                          </div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setView('products')} className="w-full py-6 bg-[#f7ebc3] text-[#693311] rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl hover:shadow-[#f7ebc3]/20">
+                      Select Family Plan
                     </button>
                   </div>
 
-                  <div className="bg-white p-10 rounded-[2.5rem] border border-black/5 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all">
-                    <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center text-[#6F7E57] mb-6">
-                      <ShieldCheck size={28} />
+                  {/* Premium Plan */}
+                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center text-[#6F7E57] group-hover:scale-110 transition-transform">
+                        <Star size={28} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Luxury / Full Concierge</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-zinc-900 mb-4">Annual Plan</h3>
-                    <p className="text-zinc-600 mb-8 leading-relaxed">Maximum convenience and savings. One payment, 12 months of ultimate peace of mind.</p>
-                    <button onClick={() => setView('products')} className="mt-auto w-full py-4 bg-[#6F7E57] text-white rounded-2xl font-bold hover:bg-[#575B44] transition-colors">
-                      Subscribe Now
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Premium Lifestyle Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-black text-zinc-900">₦250k</span>
+                        <span className="text-zinc-400 font-bold text-sm">— ₦400k+</span>
+                      </div>
+                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-4 flex-grow">
+                      {[
+                        "Gourmet & Exclusive Selections",
+                        "Full Founder’s Box Access",
+                        "Unlimited Inventory Sourcing",
+                        "Anytime VIP Delivery",
+                        "Personal Concierge Manager"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
+                          <Check size={16} className="text-[#6F7E57]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setView('products')} className="w-full py-5 bg-[#693311] text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-sm">
+                      Select Premium
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-[#F8F0E5] rounded-[3rem] p-12 lg:p-16">
-                  <div className="max-w-3xl mx-auto">
-                    <h3 className="font-serif text-3xl font-bold text-[#693311] text-center mb-10">Subscription Benefits</h3>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                {/* Plan Comparison Table */}
+                <div className="bg-white rounded-[4rem] border border-black/5 p-8 md:p-16 mb-20 shadow-sm overflow-x-auto">
+                  <h3 className="font-serif text-3xl font-black text-[#693311] text-center mb-12">Plan Comparison</h3>
+                  <table className="w-full text-left min-w-[600px]">
+                    <thead>
+                      <tr className="border-b border-black/5">
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-zinc-400">Feature</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#6F7E57]">Essential</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#575B44]">Family</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#693311]">Premium</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-black/5">
                       {[
-                        "Guaranteed monthly essentials",
-                        "Priority delivery",
-                        "Exclusive subscriber pricing",
-                        "Flexible customization",
-                        "Reliable home supply"
-                      ].map((benefit, i) => (
-                        <li key={i} className="flex items-center gap-4 text-lg text-[#575B44] font-medium">
-                          <div className="w-8 h-8 rounded-full bg-[#6F7E57] flex items-center justify-center text-white shrink-0 shadow-sm">
-                            <Check size={16} />
-                          </div>
-                          {benefit}
-                        </li>
+                        { name: "Pantry Essentials", e: "Basic", f: "Full", p: "Custom" },
+                        { name: "Household Items", e: "Included", f: "Comprehensive", p: "Unlimited" },
+                        { name: "Farm Fresh Produce", e: "Optional", f: "Standard", p: "Gourmet Selection" },
+                        { name: "Personal Concierge", e: "No access", f: "Email Support", p: "Direct Line/VIP" },
+                        { name: "Same-Day Delivery", e: "No access", f: "Priority", p: "Unrestricted" },
+                        { name: "Founders Box Access", e: "No access", f: "No access", p: "Included" }
+                      ].map((row, i) => (
+                        <tr key={i} className="group hover:bg-[#FAF5EF]/50 transition-colors">
+                          <td className="py-6 text-sm font-bold text-zinc-900">{row.name}</td>
+                          <td className="py-6 text-sm font-medium text-zinc-500">{row.e}</td>
+                          <td className="py-6 text-sm font-bold text-[#575B44]">{row.f}</td>
+                          <td className="py-6 text-sm font-bold text-[#693311]">{row.p}</td>
+                        </tr>
                       ))}
-                    </ul>
-                  </div>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div className="bg-[#6F7E57] text-white p-12 rounded-[3.5rem] shadow-xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-125 transition-transform duration-700">
+                        <RefreshCw size={120} />
+                      </div>
+                      <h3 className="text-3xl font-bold mb-6 relative z-10">Total Flexibility</h3>
+                      <p className="text-white/80 text-lg leading-relaxed mb-8 relative z-10">
+                        Life happens. Pause, skip, or cancel your subscription anytime. No long-term contracts, just reliable service when you need it.
+                      </p>
+                      <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#FAF5EF] transition-all relative z-10">
+                        Learn How it Works
+                      </button>
+                   </div>
+
+                   <div className="bg-[#F8F0E5] p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col justify-center">
+                      <div className="flex gap-1 text-amber-500 mb-6">
+                        {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
+                      </div>
+                      <p className="text-xl font-serif font-bold text-[#693311] leading-relaxed mb-8 italic">
+                        "Switching to the Family Plan was the best decision for my home. I no longer worry about groceries or cleaning supplies—it just shows up exactly when I need it."
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sm font-black text-[#6F7E57] border border-[#6F7E57]/10">AO</div>
+                        <div>
+                          <p className="font-bold text-zinc-900">Adebisi O.</p>
+                          <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Lekki, Lagos</p>
+                        </div>
+                      </div>
+                   </div>
                 </div>
               </div>
             </motion.div>
