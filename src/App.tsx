@@ -533,7 +533,7 @@ const ProductCard: React.FC<{
         <img
           src={product.image_url}
           alt={product.name}
-          className="w-full h-full object-contain p-4 transform group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
         {product.deliveryType === 'weekly_or_monthly' && (
@@ -673,7 +673,7 @@ const ProductDetail = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
         <div className="space-y-8">
           <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative group bg-white">
-            <img src={product.image_url} alt={product.name} className="w-full h-full object-contain p-4" referrerPolicy="no-referrer" />
+            <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             <button
               onClick={() => onLike(product)}
               className={`absolute top-6 right-6 p-4 rounded-3xl backdrop-blur-md transition-all shadow-xl ${isLiked ? 'bg-red-500 text-white' : 'bg-white/80 text-zinc-400 hover:text-red-500'
@@ -690,7 +690,7 @@ const ProductDetail = ({
               "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg"
             ].map((src, i) => (
               <div key={i} className="flex-1 aspect-square rounded-2xl overflow-hidden border border-black/5 cursor-pointer hover:border-[#6F7E57] bg-white transition-all">
-                <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-contain p-2" referrerPolicy="no-referrer" />
+                <img src={src} alt={`Product view ${i + 1}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             ))}
           </div>
@@ -4439,9 +4439,9 @@ function App() {
                   const isGrouped = selectedCategory === 'All Products' || selectedCategory === 'All Tiers';
 
                   const shopGroups = [
-                    { label: '🌾 Food & Pantry', emoji: '🌾', cat: 'Food & Pantry' },
-                    { label: '💆 Lifestyle & Care', emoji: '💆', cat: 'Lifestyle & Care' },
-                    { label: '👶 Family', emoji: '👶', cat: 'Family' },
+                    { label: 'Food & Pantry', emoji: '', cat: 'Food & Pantry' },
+                    { label: 'Lifestyle & Care', emoji: '', cat: 'Lifestyle & Care' },
+                    { label: 'Family', emoji: '', cat: 'Family' },
                   ];
 
                   if (isGrouped) {
@@ -5101,47 +5101,64 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 min-h-screen bg-white"
+              className="pt-32 pb-24 min-h-screen bg-[#F8F0E5]"
             >
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div className="inline-block px-5 py-2 bg-[#F8F0E5] text-[#6F7E57] text-sm font-bold uppercase tracking-widest rounded-full mb-8">
-                  Collaborate with Us
-                </div>
-                <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-8 leading-tight">
-                  Partner With Everyday Needs
-                </h2>
-                <p className="text-xl text-[#575B44] leading-relaxed mb-16">
-                  Everyday Needs provides brands and suppliers direct access to thousands of modern households across Nigeria. Reach loyal customers consistently by featuring your highest quality products in our curated boxes.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
-                  <div className="p-10 bg-[#FAF5EF] rounded-[2.5rem] border border-[#F8F0E5] hover:shadow-xl transition-all">
-                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#6F7E57] mb-6 shadow-sm">
-                      <Store size={28} />
-                    </div>
-                    <h4 className="text-2xl font-bold text-[#693311] mb-4">For Brands & Suppliers</h4>
-                    <p className="text-zinc-600 leading-relaxed mb-6">
-                      Join our network of premium, verified suppliers. We prioritize safer, non-toxic, and wellness-aligned products, giving you a platform to showcase your best to a ready market.
-                    </p>
-                    <button className="text-[#6F7E57] font-bold hover:underline">Apply to supply &rarr;</button>
-                  </div>
-
-                  <div className="p-10 bg-[#f7ebc3] rounded-[2.5rem] hover:shadow-xl transition-all">
-                    <div className="w-14 h-14 bg-white/50 rounded-2xl flex items-center justify-center text-[#575B44] mb-6 shadow-sm">
-                      <Handshake size={28} />
-                    </div>
-                    <h4 className="text-2xl font-bold text-[#693311] mb-4">For Corporate Partners</h4>
-                    <p className="text-[#575B44]/90 leading-relaxed mb-6">
-                      Provide ultimate peace of mind for your employees. Bulk subscription plans and custom gifting designed to support modern professionals.
-                    </p>
-                    <button className="text-[#575B44] font-bold hover:underline">Corporate inquiries &rarr;</button>
-                  </div>
+              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#6F7E57] mb-6">Partner With Everyday Needs</h2>
+                  <p className="text-xl text-[#575B44] max-w-3xl mx-auto leading-relaxed">
+                    Everyday Needs provides brands and suppliers direct access to thousands of households. We are building Nigeria’s most trusted household essentials platform.
+                  </p>
                 </div>
 
-                <div className="bg-[#6F7E57] p-12 rounded-[3rem] text-center shadow-2xl">
-                  <h3 className="text-3xl font-bold text-white mb-6">Ready to grow together?</h3>
-                  <button onClick={() => setView('contact')} className="bg-white text-[#693311] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#F8F0E5] transition-colors shadow-lg">
-                    Contact Partnerships Team
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                  <div className="bg-white p-10 rounded-[3rem] border border-[#6F7E57]/10 shadow-sm transition-transform hover:scale-[1.01] duration-300">
+                    <h3 className="text-2xl font-bold mb-8 text-[#6F7E57]">Partner Benefits</h3>
+                    <ul className="space-y-6">
+                      {[
+                        'Direct customer access',
+                        'Product visibility',
+                        'Consistent product demand',
+                        'Brand exposure',
+                        'Reliable distribution'
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-4">
+                          <div className="w-8 h-8 bg-[#6F7E57]/10 rounded-full flex items-center justify-center text-[#6F7E57] shrink-0">
+                            <Check size={18} />
+                          </div>
+                          <span className="text-lg text-zinc-700 font-medium">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl transition-transform hover:scale-[1.01] duration-300">
+                    <h3 className="text-2xl font-bold mb-8">Partnership Model</h3>
+                    <div className="space-y-8">
+                      <div>
+                        <p className="font-bold text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Partners provide:</p>
+                        <ul className="space-y-3 opacity-90">
+                          <li>• Reliable product supply</li>
+                          <li>• Credit note product support</li>
+                          <li>• Consistent inventory availability</li>
+                        </ul>
+                      </div>
+                      <div className="pt-6 border-t border-white/10">
+                        <p className="font-bold text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Everyday Needs provides:</p>
+                        <ul className="space-y-3 opacity-90">
+                          <li>• Customer access</li>
+                          <li>• Distribution</li>
+                          <li>• Brand visibility</li>
+                          <li>• Market reach</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <button onClick={() => setView('contact')} className="bg-white text-[#6F7E57] px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#FAF5EF] transition-all shadow-lg hover:shadow-[#6F7E57]/20 border border-[#6F7E57]/20">
+                    Become a Partner
                   </button>
                 </div>
               </div>
