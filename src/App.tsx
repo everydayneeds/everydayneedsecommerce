@@ -594,7 +594,7 @@ const ProductCard: React.FC<{
       onClick={() => onSelect(product)}
       className="bg-white rounded-[2.5rem] border border-black/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer group"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-white">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={product.image_url}
           alt={product.name}
@@ -2082,7 +2082,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                 {subscriptions.slice(0, 3).map((sub, i) => (
                   <div key={i} className="flex items-center justify-between p-4 hover:bg-zinc-50 transition-colors">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg overflow-hidden border border-zinc-200">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden border border-zinc-200 p-[1mm]">
                         <img src={sub.image_url} alt={sub.box_name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div>
@@ -2119,7 +2119,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                   {subscriptions.map((sub, i) => (
                     <div key={i} className="flex items-center justify-between p-4 bg-zinc-50 rounded-xl border border-zinc-200">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-lg overflow-hidden border border-zinc-200">
+                        <div className="w-14 h-14 rounded-lg overflow-hidden border border-zinc-200 p-[1mm]">
                           <img src={sub.image_url} alt={sub.box_name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                         </div>
                         <div>
@@ -2431,7 +2431,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                 .filter(i => MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map(i => (
                   <div key={i} className="p-3 border border-zinc-200 rounded-xl space-y-3 hover:shadow-md transition-all">
-                    <div className="aspect-video bg-zinc-100 rounded-lg overflow-hidden border border-zinc-100 flex items-center justify-center p-2">
+                    <div className="aspect-video bg-zinc-100 rounded-lg overflow-hidden border border-zinc-100 flex items-center justify-center p-[1mm]">
                       <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} alt="Product" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                     </div>
                     <div>
@@ -3006,7 +3006,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 .filter(i => MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map(i => (
                   <div key={i} className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm hover:shadow-md transition-all">
-                    <div className="aspect-square bg-zinc-100 rounded-lg mb-3 overflow-hidden flex items-center justify-center p-4">
+                    <div className="aspect-square bg-zinc-100 rounded-lg mb-3 overflow-hidden flex items-center justify-center p-[1mm]">
                       <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                     </div>
                     <h4 className="text-sm font-bold text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
@@ -4149,7 +4149,7 @@ function App() {
                     </div>
                     {/* Image column */}
                     <div className="relative flex justify-center lg:justify-end">
-                      <div className="w-full max-w-md rounded-[2.5rem] overflow-hidden shadow-xl bg-white border border-[#6F7E57]/5">
+                      <div className="w-full max-w-md rounded-[2.5rem] overflow-hidden">
                         <img
                           src="/images/Thoughtful Sourcing. Superior Living2.jpeg"
                           alt="Thoughtful sourcing at Everyday Needs"
@@ -4186,8 +4186,8 @@ function App() {
                       </div>
                     </div>
                     <div className="lg:w-1/2 relative">
-                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700 bg-white">
-                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-contain p-6" />
+                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700">
+                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-contain" />
                       </div>
                     </div>
                   </div>
@@ -4281,7 +4281,7 @@ function App() {
                         </h2>
                       </div>
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white flex items-center justify-center p-2">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl flex items-center justify-center">
                           <img
                             src="/images/Thoughtful Sourcing. Superior Living..jpeg"
                             alt="Thoughtful Sourcing"
@@ -4325,7 +4325,7 @@ function App() {
                         </div>
                       </div>
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
-                        <div className="w-full h-[450px] overflow-hidden rounded-[3rem] shadow-2xl bg-white flex items-center justify-center p-4">
+                        <div className="w-full h-[450px] overflow-hidden rounded-[3rem] shadow-2xl flex items-center justify-center">
                           <img
                             src="/images/Our Sourcing Model Is Our Strength.png"
                             alt="Our Sourcing Model Is Our Strength"
@@ -4653,7 +4653,7 @@ function App() {
                       <div className="order-1 lg:order-2">
                         <div className="relative group">
                           <div className="absolute inset-0 bg-[#f7ebc3] rounded-[4rem] rotate-3 group-hover:rotate-1 transition-transform duration-700 blur-sm opacity-50" />
-                          <div className="relative aspect-square rounded-[3.5rem] overflow-hidden shadow-2xl bg-white p-8 transition-transform group-hover:-translate-y-4 duration-700">
+                          <div className="relative aspect-square rounded-[3.5rem] overflow-hidden shadow-2xl transition-transform group-hover:-translate-y-4 duration-700">
                             <img 
                               src="/images/THE FOUNDERS BOX.jpeg" 
                               alt="The Founders Box" 
@@ -4794,7 +4794,7 @@ function App() {
                 {/* Main Content Section with Images and Overlays */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
                   <div className="relative">
-                    <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl bg-white border-8 border-white group">
+                    <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl group">
                       <img 
                         src="/images/Founder.jpeg" 
                         alt="Our Founder" 
