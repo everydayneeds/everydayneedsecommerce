@@ -774,13 +774,13 @@ const ProductDetail = ({
               onClick={() => setActiveTab('details')}
               className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'details' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
-              Details
+              Detail
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
               className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
-              Subscription Plans
+              Subscription
             </button>
             <button
               onClick={() => setActiveTab('reviews')}
@@ -793,57 +793,14 @@ const ProductDetail = ({
           {activeTab === 'details' && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="bg-white rounded-3xl border border-black/5 p-8">
-                <h3 className="font-serif text-xl font-bold mb-6">What's inside this box?</h3>
-                {(() => {
-                  const items = [
-                    { name: 'Organic Tomatoes', quantity: 2 },
-                    { name: 'Fresh Spinach', quantity: 1 },
-                    { name: 'Farm Eggs', quantity: 12 },
-                    { name: 'Local Honey', quantity: 1 }
-                  ];
-                  if (items.length > 2) {
-                    return (
-                      <div className="space-y-4">
-                        <select className="w-full px-6 py-4 bg-[#F8F0E5] border border-zinc-200 rounded-2xl text-sm font-bold font-sans outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all appearance-none cursor-pointer">
-                          <option value="">Select an item to view — {items.length} items included</option>
-                          {items.map((item: any, i: number) => (
-                            <option key={i} value={item.name}>{item.name} (Qty: {item.quantity})</option>
-                          ))}
-                        </select>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                          {items.map((item: any, i: number) => (
-                            <div key={i} className="flex items-center gap-3 p-3 bg-[#F8F0E5] rounded-xl border border-black/5">
-                              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm shrink-0">
-                                <Package size={16} className="text-[#6F7E57]" />
-                              </div>
-                              <div>
-                                <p className="font-bold text-xs text-zinc-900">{item.name}</p>
-                                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Qty: {item.quantity}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  }
-                  return (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {items.map((item: any, i: number) => (
-                        <div key={i} className="flex items-center gap-4 p-4 bg-[#F8F0E5] rounded-2xl border border-black/5">
-                          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                            <Package size={20} className="text-[#6F7E57]" />
-                          </div>
-                          <div>
-                            <p className="font-bold text-sm text-zinc-900">{item.name}</p>
-                            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Qty: {item.quantity}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
+                <h3 className="font-serif text-xl font-bold mb-6">Product Description</h3>
+                <p className="text-zinc-600 leading-relaxed">{product.description}</p>
               </div>
+            </div>
+          )}
 
+          {activeTab === 'subscription' && (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="space-y-6">
                 {/* Household Selection */}
                 {hasHousehold && (
@@ -887,14 +844,29 @@ const ProductDetail = ({
                 {(product.addOns ?? []).length > 0 && (
                   <div>
                     <p className="text-sm font-bold text-zinc-700 mb-2">Optional Add-Ons</p>
-                    <div className="space-y-2">
-                      {(product.addOns ?? []).map(addOn => (
-                        <button key={addOn.name} onClick={() => toggleAddOn(addOn.name)}
-                          className={`flex items-center justify-between w-full p-4 rounded-2xl border-2 transition-all text-left ${selectedAddOns.includes(addOn.name) ? 'border-[#6F7E57] bg-[#6F7E57]/10' : 'border-black/5 bg-white hover:border-[#6F7E57]/30'}`}>
-                          <span className="font-bold text-sm text-zinc-800">{addOn.name}</span>
-                          <span className="text-sm font-bold text-[#6F7E57]">+₦{addOn.price.toLocaleString()}</span>
-                        </button>
-                      ))}
+                    <div className="space-y-3">
+                      {(product.addOns ?? []).map(addOn => {
+                        const isSelected = selectedAddOns.includes(addOn.name);
+                        return (
+                          <div key={addOn.name} 
+                            className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all ${isSelected ? 'border-[#6F7E57] bg-[#6F7E57]/5' : 'border-black/5 bg-white'}`}>
+                            <div className="flex flex-col">
+                              <span className="font-bold text-sm text-zinc-800">{addOn.name}</span>
+                              <span className="text-xs font-bold text-[#6F7E57]">₦{addOn.price.toLocaleString()}</span>
+                            </div>
+                            <button 
+                              onClick={() => toggleAddOn(addOn.name)}
+                              className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                                isSelected 
+                                ? 'bg-[#6F7E57] text-white' 
+                                : 'bg-zinc-100 text-zinc-500 hover:bg-[#6F7E57]/10 hover:text-[#6F7E57]'
+                              }`}
+                            >
+                              {isSelected ? 'Selected' : 'Select'}
+                            </button>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -2193,8 +2165,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#EN-9921', date: 'Feb 12, 2024', items: 'Fresh Farm Box', amount: '₦15,000', status: 'Delivered' },
-                    { id: '#EN-9918', date: 'Jan 12, 2024', items: 'Pantry Essentials', amount: '₦22,500', status: 'Delivered' },
+                    { id: '#EN-9921', date: 'Feb 12, 2024', items: 'Fresh Farm Box', amount: '₦35,000', status: 'Delivered' },
+                    { id: '#EN-9918', date: 'Jan 12, 2024', items: 'Pantry Provision', amount: '₦55,000', status: 'Delivered' },
                   ].map((order, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                       <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -2379,9 +2351,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
                     {[
-                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
-                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
-                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: '₦18,000', status: 'Delivered' },
+                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦35,000', status: 'Pending' },
+                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Provision', amount: '₦55,000', status: 'Shipped' },
+                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Wellness Wonder', amount: '₦55,000', status: 'Delivered' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -2439,7 +2411,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       <p className="text-xs text-zinc-500">8 orders this week</p>
                     </div>
                     <div className="flex items-center justify-between pt-1">
-                      <span className="text-sm font-bold text-[#6F7E57]">₦15,000</span>
+                      <span className="text-sm font-bold text-[#6F7E57]">₦{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price.toLocaleString()}</span>
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
@@ -2842,11 +2814,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
                     {[
-                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
-                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
-                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Baby Care Box', amount: '₦18,000', status: 'Delivered' },
-                      { id: '#ORD-7724', customer: 'David Okoro', product: 'Home Care Box', amount: '₦12,000', status: 'Delivered' },
-                      { id: '#ORD-7725', customer: 'Elena Gilbert', product: 'Fresh Farm Box', amount: '₦15,000', status: 'Pending' },
+                      { id: '#ORD-7721', customer: 'Alice Johnson', product: 'Fresh Farm Box', amount: '₦35,000', status: 'Pending' },
+                      { id: '#ORD-7722', customer: 'Bob Smith', product: 'Pantry Provision', amount: '₦55,000', status: 'Shipped' },
+                      { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Wellness Wonder', amount: '₦55,000', status: 'Delivered' },
+                      { id: '#ORD-7724', customer: 'David Okoro', product: 'Gourmet Pleasure', amount: '₦45,000', status: 'Delivered' },
+                      { id: '#ORD-7725', customer: 'Elena Gilbert', product: 'Fresh Farm Box', amount: '₦35,000', status: 'Pending' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-4 text-sm font-bold text-zinc-900">{order.id}</td>
@@ -2904,10 +2876,10 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
                   {[
-                    { id: '#ORD-001', customer: 'Alice Johnson', date: 'Feb 10, 2024', amount: '₦15,000', status: 'Delivered' },
-                    { id: '#ORD-002', customer: 'Bob Smith', date: 'Feb 11, 2024', amount: '₦22,500', status: 'Pending' },
-                    { id: '#ORD-003', customer: 'Catherine Lee', date: 'Feb 12, 2024', amount: '₦18,000', status: 'On Transit' },
-                    { id: '#ORD-004', customer: 'David Okoro', date: 'Feb 13, 2024', amount: '₦12,000', status: 'Delivered' },
+                    { id: '#ORD-001', customer: 'Alice Johnson', date: 'Feb 10, 2024', amount: '₦35,000', status: 'Delivered' },
+                    { id: '#ORD-002', customer: 'Bob Smith', date: 'Feb 11, 2024', amount: '₦55,000', status: 'Pending' },
+                    { id: '#ORD-003', customer: 'Catherine Lee', date: 'Feb 12, 2024', amount: '₦55,000', status: 'On Transit' },
+                    { id: '#ORD-004', customer: 'David Okoro', date: 'Feb 13, 2024', amount: '₦45,000', status: 'Delivered' },
                   ].map((order, i) => (
                     <tr
                       key={i}
@@ -3557,8 +3529,8 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "FARM FRESH HARVEST BOX",
     description: "Fresh produce delivered weekly or monthly. Seasonal vegetables, fruits, and farm essentials sourced directly from trusted local farmers.",
     shortDesc: "Fresh produce delivered weekly or monthly",
-    price: 40000,
-    startingFrom: 40000,
+    price: 156200,
+    startingFrom: 156200,
     image_url: "/images/FARM FRESH HARVEST N156200.jpeg",
     category: "Fresh Farm",
     shopCategory: "Food & Pantry",
@@ -3568,7 +3540,7 @@ const MOCK_BOXES: BoxProduct[] = [
       { name: "Add Pantry Essentials", price: 65400 },
     ],
     plans: [
-      { tier: "weekly", label: "Weekly Fresh Box", price: 40000, frequency: "week", badge: "Most Flexible" },
+      { tier: "weekly", label: "Weekly Fresh Box", price: 156200, frequency: "week", badge: "Most Flexible" }, // Reconciled to prompt
       { tier: "monthly", label: "Monthly Harvest Box", price: 156200, frequency: "month", badge: "Best Value" },
     ]
   },
@@ -3577,14 +3549,14 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "PROTEIN PRIME CUT",
     description: "Premium protein selection. Quality meats, poultry, and fish handled with the highest safety standards.",
     shortDesc: "Premium protein selection",
-    price: 56000,
-    startingFrom: 56000,
+    price: 56400,
+    startingFrom: 56400,
     image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg",
     category: "Prime Protein",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56000, frequency: "week" },
+      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56400, frequency: "week" },
       { tier: "classic", label: "Classic", price: 106500, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
     ]
@@ -3648,15 +3620,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "SPARKLING SANCTUARY",
     description: "Cleaning & home care. Eco-friendly and non-toxic home cleaning solutions for a safe and sparkling sanctuary.",
     shortDesc: "Cleaning & home care",
-    price: 20900,
-    startingFrom: 20900,
+    price: 27000,
+    startingFrom: 27000,
     image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg",
     category: "Home Care",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 40900, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 27000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 46900, frequency: "month" },
     ]
   },
   {
@@ -3664,15 +3636,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "WELLNESS BOX",
     description: "Health & wellness essentials. Natural supplements, vitamins, and health-boosting products for a balanced lifestyle.",
     shortDesc: "Health & wellness essentials",
-    price: 25000,
-    startingFrom: 25000,
+    price: 55000,
+    startingFrom: 55000,
     image_url: "/images/WELLNESS WONDER.jpeg",
     category: "Beauty & Wellness",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 48000, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 95000, frequency: "month" },
     ]
   },
   {
@@ -3697,15 +3669,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "GOURMET PLEASURE BOX",
     description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
     shortDesc: "Premium dining & curated indulgence",
-    price: 230000,
-    startingFrom: 230000,
+    price: 45000,
+    startingFrom: 45000,
     image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg",
     category: "Gourmet",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
-      { tier: "premium", label: "Premium", price: 307000, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 45000, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 370000, frequency: "month" },
     ]
   },
   {
@@ -3713,17 +3685,18 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "THE FOUNDERS BOX",
     description: "The ultimate curated experience hand-selected by the founders. A masterclass in premium Nigerian home management.",
     shortDesc: "The ultimate curated premium experience",
-    price: 350000,
-    startingFrom: 350000,
+    price: 30000,
+    startingFrom: 30000,
     image_url: "/images/THE FOUNDERS BOX.jpeg",
     category: "Exclusive",
     shopCategory: "Exclusive",
     deliveryType: "monthly",
     plans: [
-      { tier: "exclusive", label: "Exclusive Edition", price: 350000, frequency: "month", badge: "Limited" },
+      { tier: "exclusive", label: "Exclusive Edition", price: 30000, frequency: "month", badge: "Limited" },
     ]
   },
 ];
+
 
 const Storage = {
   getUser: () => {
@@ -3786,16 +3759,62 @@ function App() {
     notes: '',
   });
 
+  // Shop Filters State
+  const [shopFilters, setShopFilters] = useState({
+    category: 'All Products',
+    household: 'All Sizes',
+    budget: 'All Budgets',
+    frequency: 'All Frequencies',
+    lifestyle: 'All Lifestyles',
+    sortBy: 'Most Popular'
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [view, selectedProduct, activeTab]);
 
-  const filteredProducts = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'All Products' || p.category.includes(selectedCategory.split(' ')[0]);
-    return matchesSearch && matchesCategory && p.id !== 11;
-  });
+  const filteredProducts = products
+    .filter(p => {
+      const matchesSearch = !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesCategory = shopFilters.category === 'All Products' || p.shopCategory === shopFilters.category;
+      
+      const matchesHousehold = shopFilters.household === 'All Sizes' || 
+        (p as BoxProduct).householdOptions?.includes(shopFilters.household) ||
+        !(p as BoxProduct).householdOptions;
+      
+      const matchesBudget = shopFilters.budget === 'All Budgets' || (() => {
+        const price = (p as BoxProduct).startingFrom;
+        if (shopFilters.budget === '₦0 – ₦50k') return price <= 50000;
+        if (shopFilters.budget === '₦50k – ₦150k') return price > 50000 && price <= 150000;
+        if (shopFilters.budget === '₦150k – ₦300k') return price > 150000 && price <= 300000;
+        if (shopFilters.budget === '₦300k+') return price > 300000;
+        return true;
+      })();
+      
+      const matchesFrequency = shopFilters.frequency === 'All Frequencies' || (() => {
+        if (shopFilters.frequency === 'Weekly') return (p as BoxProduct).deliveryType === 'weekly_or_monthly';
+        if (shopFilters.frequency === 'Monthly') return true; // Most are monthly
+        return true;
+      })();
+
+      const matchesLifestyle = shopFilters.lifestyle === 'All Lifestyles' || p.category.includes(shopFilters.lifestyle);
+
+      return matchesSearch && matchesCategory && matchesHousehold && matchesBudget && matchesFrequency && matchesLifestyle && p.id !== 11;
+    })
+    .sort((a, b) => {
+      if (shopFilters.sortBy === 'Price: Low → High') {
+        return (a as BoxProduct).startingFrom - (b as BoxProduct).startingFrom;
+      }
+      if (shopFilters.sortBy === 'Price: High → Low') {
+        return (b as BoxProduct).startingFrom - (a as BoxProduct).startingFrom;
+      }
+      if (shopFilters.sortBy === 'New Arrivals') {
+        return b.id - a.id; // Assuming higher ID means newer
+      }
+      return 0; // Default: Most Popular
+    });
 
   const handleAddToCart = (product: Product, quantity: number = 1) => {
     setCart(prevCart => {
@@ -4417,162 +4436,149 @@ function App() {
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="mb-10">
-                  <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#693311] mb-2">Shop Now</h2>
-                  <p className="text-lg text-zinc-500 leading-relaxed">Carefully curated essentials for every Nigerian home. Choose a box that fits your lifestyle.</p>
+                <div className="mb-12 text-center">
+                  <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#693311] mb-4">Everyday Needs – Shop</h2>
+                  <p className="text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed">Premium essentials curated for your home. Choose a box that fits your lifestyle.</p>
                 </div>
 
-                {/* Search + Filters Row */}
-                <div className="flex flex-col lg:flex-row gap-4 mb-8">
-                  <div className="relative flex-grow">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
-                    <input
-                      type="text"
-                      placeholder="Search boxes..."
-                      value={searchQuery}
-                      className="w-full pl-12 pr-6 py-4 bg-white border border-black/5 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all shadow-sm"
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-
-                  {/* Filter Pills */}
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      { label: 'All', value: 'All Products' },
-                      { label: 'Food & Pantry', value: 'Food & Pantry' },
-                      { label: 'Lifestyle & Care', value: 'Lifestyle & Care' },
-                      { label: 'Family', value: 'Family' },
-                    ].map(f => (
-                      <button key={f.value} onClick={() => setSelectedCategory(f.value)}
-                        className={`px-5 py-3 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${selectedCategory === f.value ? 'bg-[#575B44] border-[#575B44] text-white shadow-lg' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57] hover:text-[#6F7E57]'}`}>
-                        {f.label}
-                      </button>
-                    ))}
-                    <Dropbox 
-                      label="Price Range"
-                      options={[
-                        { label: '₦0 – ₦50,000', value: 'price:0-50000' },
-                        { label: '₦50,000 – ₦150,000', value: 'price:50000-150000' },
-                        { label: '₦150,000+', value: 'price:150000+' },
-                      ]}
-                      value={selectedCategory.startsWith('price:') ? selectedCategory : ''}
-                      onChange={val => setSelectedCategory(val)}
-                      className="min-w-[150px]"
-                    />
-                    <Dropbox 
-                      label="Delivery Type"
-                      options={[
-                        { label: 'Weekly Available', value: 'weekly' },
-                        { label: 'Monthly', value: 'monthly' },
-                      ]}
-                      value={selectedCategory === 'delivery:weekly' ? 'weekly' : selectedCategory === 'delivery:monthly' ? 'monthly' : ''}
-                      onChange={val => setSelectedCategory(val === 'weekly' ? 'delivery:weekly' : 'delivery:monthly')}
-                      className="min-w-[150px]"
-                    />
-                  </div>
-                </div>
-
-                {/* Tier Filter Tabs */}
-                <div className="flex gap-2 overflow-x-auto pb-2 mb-10 no-scrollbar">
-                  {['All Tiers', 'Essentials', 'Classic', 'Premium'].map(tier => {
-                    const key = `tier:${tier}`;
-                    const active = selectedCategory === key || (tier === 'All Tiers' && !selectedCategory.startsWith('tier:'));
-                    return (
-                      <button key={tier}
-                        onClick={() => setSelectedCategory(tier === 'All Tiers' ? 'All Products' : key)}
-                        className={`px-6 py-2.5 rounded-full text-sm font-bold border transition-all whitespace-nowrap ${active ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-md' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57] hover:text-[#6F7E57]'}`}>
-                        {tier}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Product Listings */}
-                {(() => {
-                  const allBoxes = MOCK_BOXES.filter(b => b.id !== 11);
-
-                  const filterBox = (box: BoxProduct): boolean => {
-                    const q = searchQuery.toLowerCase();
-                    const matchSearch = !q || box.name.toLowerCase().includes(q) || box.shortDesc.toLowerCase().includes(q);
-                    if (!matchSearch) return false;
-                    if (selectedCategory === 'All Products') return true;
-                    if (selectedCategory === 'Food & Pantry') return box.shopCategory === 'Food & Pantry';
-                    if (selectedCategory === 'Lifestyle & Care') return box.shopCategory === 'Lifestyle & Care';
-                    if (selectedCategory === 'Family') return box.shopCategory === 'Family';
-                    if (selectedCategory.startsWith('price:')) {
-                      const range = selectedCategory.replace('price:', '');
-                      const min = box.startingFrom;
-                      if (range === '0-50000') return min <= 50000;
-                      if (range === '50000-150000') return min > 50000 && min <= 150000;
-                      if (range === '150000+') return min > 150000;
-                    }
-                    if (selectedCategory.startsWith('delivery:')) {
-                      const type = selectedCategory.replace('delivery:', '');
-                      if (type === 'weekly') return box.deliveryType === 'weekly_or_monthly';
-                      if (type === 'monthly') return box.deliveryType === 'monthly';
-                    }
-                    if (selectedCategory.startsWith('tier:')) {
-                      const tier = selectedCategory.replace('tier:', '').toLowerCase();
-                      return box.plans.some(p => p.tier.includes(tier));
-                    }
-                    return true;
-                  };
-
-                  const filtered = allBoxes.filter(filterBox);
-                  const isGrouped = selectedCategory === 'All Products' || selectedCategory === 'All Tiers';
-
-                  const shopGroups = [
-                    { label: 'Food & Pantry', cat: 'Food & Pantry' },
-                    { label: 'Lifestyle & Care', cat: 'Lifestyle & Care' },
-                    { label: 'Family', cat: 'Family' },
-                  ];
-
-                  if (isGrouped) {
-                    return (
-                      <div className="space-y-16">
-                        {shopGroups.map(group => {
-                          const groupBoxes = filtered.filter(b => b.shopCategory === group.cat);
-                          if (groupBoxes.length === 0) return null;
-                          return (
-                            <div key={group.cat}>
-                              <div className="flex items-center gap-3 mb-6">
-                                <h3 className="text-2xl font-bold text-[#575B44]">{group.label}</h3>
-                                <div className="flex-1 h-px bg-[#6F7E57]/20" />
-                              </div>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {groupBoxes.map(box => (
-                                  <ProductCard key={box.id} product={box} onSelect={handleProductSelect}
-                                    onLike={(e) => { e.stopPropagation(); handleLike(box); }}
-                                    isLiked={wishlist.includes(box.id)} />
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  }
-
-                  return (
+                <div className="flex flex-col lg:flex-row gap-12">
+                  {/* Left Sidebar Filters */}
+                  <aside className="lg:w-72 shrink-0 space-y-10">
                     <div>
-                      {filtered.length === 0 ? (
-                        <div className="text-center py-24">
-                          <p className="text-2xl font-bold text-zinc-400 mb-4">No boxes found</p>
-                          <button onClick={() => { setSelectedCategory('All Products'); setSearchQuery(''); }}
-                            className="text-[#6F7E57] font-bold hover:underline">Clear filters</button>
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                          {filtered.map(box => (
-                            <ProductCard key={box.id} product={box} onSelect={handleProductSelect}
-                              onLike={(e) => { e.stopPropagation(); handleLike(box); }}
-                              isLiked={wishlist.includes(box.id)} />
-                          ))}
-                        </div>
-                      )}
+                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Filter by Category</h4>
+                      <div className="space-y-3">
+                        {['All Products', 'Food & Pantry', 'Lifestyle & Care', 'Family'].map(cat => (
+                          <button key={cat} onClick={() => setShopFilters({ ...shopFilters, category: cat })}
+                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.category === cat ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
+                            {cat}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  );
-                })()}
+
+                    <div>
+                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Household Size</h4>
+                      <div className="space-y-3">
+                        {['All Sizes', 'Single', 'Family'].map(size => (
+                          <button key={size} onClick={() => setShopFilters({ ...shopFilters, household: size })}
+                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.household === size ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
+                            {size}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Budget Range</h4>
+                      <div className="space-y-3">
+                        {['All Budgets', '₦0 – ₦50k', '₦50k – ₦150k', '₦150k – ₦300k', '₦300k+'].map(budget => (
+                          <button key={budget} onClick={() => setShopFilters({ ...shopFilters, budget: budget })}
+                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.budget === budget ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
+                            {budget}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Delivery Frequency</h4>
+                      <div className="space-y-3">
+                        {['All Frequencies', 'Weekly', 'Monthly'].map(freq => (
+                          <button key={freq} onClick={() => setShopFilters({ ...shopFilters, frequency: freq })}
+                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.frequency === freq ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
+                            {freq}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Lifestyle</h4>
+                      <div className="space-y-3">
+                        {['All Lifestyles', 'Wellness', 'Baby', 'Gourmet', 'Exclusive'].map(style => (
+                          <button key={style} onClick={() => setShopFilters({ ...shopFilters, lifestyle: style })}
+                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.lifestyle === style ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
+                            {style}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </aside>
+
+                  {/* Main Content Areas */}
+                  <div className="flex-1">
+                    {/* Top Bar Sort & Search */}
+                    <div className="bg-white rounded-[2rem] border border-black/5 p-4 mb-10 flex flex-col md:flex-row gap-4 items-center">
+                      <div className="relative flex-grow">
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                        <input
+                          type="text"
+                          placeholder="Search our collection..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full pl-12 pr-6 py-4 bg-[#F8F0E5]/50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-sans text-sm"
+                        />
+                      </div>
+                      
+                      <div className="flex gap-4 w-full md:w-auto">
+                        <Dropbox 
+                          label="Sort By"
+                          options={[
+                            { label: 'Most Popular ⭐', value: 'Most Popular' },
+                            { label: 'Price: Low → High', value: 'Price: Low → High' },
+                            { label: 'Price: High → Low', value: 'Price: High → Low' },
+                            { label: 'New Arrivals', value: 'New Arrivals' }
+                          ]}
+                          value={shopFilters.sortBy}
+                          onChange={val => setShopFilters({ ...shopFilters, sortBy: val })}
+                          className="min-w-[200px] flex-1 md:flex-initial"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Results Count & Clear */}
+                    <div className="flex justify-between items-center mb-8 px-2">
+                       <p className="text-zinc-500 font-bold text-sm">Showing {filteredProducts.length} boxes</p>
+                       {(shopFilters.category !== 'All Products' || shopFilters.household !== 'All Sizes' || shopFilters.budget !== 'All Budgets' || shopFilters.frequency !== 'All Frequencies' || shopFilters.lifestyle !== 'All Lifestyles' || searchQuery) && (
+                         <button 
+                           onClick={() => {
+                             setShopFilters({
+                               category: 'All Products',
+                               household: 'All Sizes',
+                               budget: 'All Budgets',
+                               frequency: 'All Frequencies',
+                               lifestyle: 'All Lifestyles',
+                               sortBy: 'Most Popular'
+                             });
+                             setSearchQuery('');
+                           }}
+                           className="text-[#6F7E57] text-xs font-black uppercase tracking-widest hover:underline"
+                         >
+                           Clear All
+                         </button>
+                       )}
+                    </div>
+
+                    {/* Product Grid */}
+                    {filteredProducts.length === 0 ? (
+                      <div className="bg-white rounded-[3rem] py-32 text-center border border-dashed border-zinc-200">
+                        <div className="w-20 h-20 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-6 text-zinc-400">
+                          <Search size={40} />
+                        </div>
+                        <h3 className="text-2xl font-bold text-zinc-900 mb-2">No boxes found</h3>
+                        <p className="text-zinc-500">Try adjusting your filters or search terms.</p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-8">
+                        {filteredProducts.map(box => (
+                          <ProductCard key={box.id} product={box} onSelect={handleProductSelect}
+                            onLike={(e) => { e.stopPropagation(); handleLike(box); }}
+                            isLiked={wishlist.includes(box.id)} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* The Founders Box - Repositioned to Bottom of Products */}
@@ -4620,7 +4626,7 @@ function App() {
                         <div className="pt-10 flex flex-col sm:flex-row items-center gap-8 border-t border-white/10 w-full">
                           <div className="text-left w-full sm:w-auto pr-8 border-r border-white/10 hidden sm:block">
                             <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Total Price</p>
-                            <p className="text-2xl font-black text-[#F8F0E5]">₦350,000</p>
+                            <p className="text-2xl font-black text-[#F8F0E5]">₦30,000 — ₦100,000</p>
                           </div>
                           
                           <div className="flex flex-col sm:flex-row gap-6 flex-grow w-full">
@@ -4645,7 +4651,7 @@ function App() {
                           </div>
 
                           <div className="sm:hidden w-full text-center pt-4">
-                             <p className="text-2xl font-black text-[#F8F0E5]">₦350,000</p>
+                             <p className="text-2xl font-black text-[#F8F0E5]">₦30,000 — ₦100,000</p>
                           </div>
                         </div>
                       </div>
@@ -5493,8 +5499,7 @@ function App() {
                     <div className="mb-8">
                       <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Essential Plan</h3>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦25k</span>
-                        <span className="text-zinc-400 font-bold text-sm">— ₦120k</span>
+                        <span className="text-4xl font-black text-zinc-900">₦65,400</span>
                       </div>
                       <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
                     </div>
@@ -5530,8 +5535,7 @@ function App() {
                     <div className="mb-8">
                       <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-1">Family Plan</h3>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-5xl font-black text-white">₦120k</span>
-                        <span className="text-white/40 font-bold text-lg">— ₦250k</span>
+                        <span className="text-5xl font-black text-white">₦201,000</span>
                       </div>
                       <p className="text-[10px] text-[#f7ebc3] font-black uppercase tracking-widest mt-1">Starting per month</p>
                     </div>
@@ -5567,8 +5571,7 @@ function App() {
                     <div className="mb-8">
                       <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Premium Lifestyle Plan</h3>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦250k</span>
-                        <span className="text-zinc-400 font-bold text-sm">— ₦400k+</span>
+                        <span className="text-4xl font-black text-zinc-900">₦377,500</span>
                       </div>
                       <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
                     </div>
