@@ -433,7 +433,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => setView('products')}
+                onClick={() => setView('pricing')}
                 className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
               >
                 Start Your Subscription
@@ -4168,11 +4168,11 @@ function App() {
                     </div>
                     {/* Image column */}
                     <div className="relative flex justify-center lg:justify-end">
-                      <div className="w-full max-w-md rounded-[2.5rem] overflow-hidden">
+                      <div className="w-full max-w-md rounded-[2rem] overflow-hidden border-2 border-[#6F7E57] shadow-xl">
                         <img
                           src="/images/Thoughtful Sourcing. Superior Living2.jpeg"
                           alt="Thoughtful sourcing at Everyday Needs"
-                          className="w-full h-auto block transform hover:scale-105 transition-transform duration-700"
+                          className="w-full h-full object-cover block transform hover:scale-105 transition-transform duration-700"
                         />
                       </div>
                     </div>
@@ -4205,8 +4205,8 @@ function App() {
                       </div>
                     </div>
                     <div className="lg:w-1/2 relative">
-                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform hover:scale-[1.02] duration-700">
-                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-contain" />
+                      <div className="aspect-[4/5] rounded-[2rem] overflow-hidden border-2 border-[#F8F0E5] shadow-2xl transition-transform hover:scale-[1.02] duration-700">
+                        <img src="/images/Built by Women Who Understand Real Homes.png" alt="Woman-driven insight" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </div>
@@ -4237,14 +4237,14 @@ function App() {
                         ))}
                       </div>
                       <button
-                        onClick={() => setView('products')}
+                        onClick={() => setView('pricing')}
                         className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-4 rounded-full font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg"
                       >
                         Subscribe Now
                       </button>
                     </div>
                     <div className="lg:w-1/2 relative">
-                      <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3">
+                      <div className="aspect-square rounded-[2rem] overflow-hidden border-2 border-[#6F7E57] shadow-2xl">
                         <img src="/images/HOW IT WORKS.jpeg" alt="How it Works" className="w-full h-full object-cover" />
                       </div>
                     </div>
@@ -4300,11 +4300,11 @@ function App() {
                         </h2>
                       </div>
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
-                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] shadow-2xl flex items-center justify-center">
+                        <div className="w-full h-[400px] overflow-hidden rounded-[2rem] border-2 border-[#F8F0E5] shadow-2xl flex items-center justify-center">
                           <img
                             src="/images/Thoughtful Sourcing. Superior Living..jpeg"
                             alt="Thoughtful Sourcing"
-                            className="w-full h-full object-contain hover:scale-[1.05] transition-transform duration-700"
+                            className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700"
                           />
                         </div>
                       </div>
@@ -4344,11 +4344,11 @@ function App() {
                         </div>
                       </div>
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
-                        <div className="w-full h-[450px] overflow-hidden rounded-[3rem] shadow-2xl flex items-center justify-center">
+                        <div className="w-full h-[450px] overflow-hidden rounded-[2rem] border-2 border-[#F8F0E5] shadow-2xl flex items-center justify-center">
                           <img
                             src="/images/Our Sourcing Model Is Our Strength.png"
                             alt="Our Sourcing Model Is Our Strength"
-                            className="w-full h-full object-contain hover:scale-110 transition-transform duration-1000"
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                           />
                         </div>
                       </div>
@@ -4416,7 +4416,7 @@ function App() {
                   <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8">Simplify Your Home Today</h2>
                   <p className="text-xl text-zinc-500 mb-10 leading-relaxed font-sans">Join thousands of households using Everyday Needs.</p>
                   <button
-                    onClick={() => setView('products')}
+                    onClick={() => setView('pricing')}
                     className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44]/90 transition-all shadow-xl shadow-black/10"
                   >
                     Start Your Subscription
@@ -4442,96 +4442,75 @@ function App() {
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-12">
-                  {/* Left Sidebar Filters */}
-                  <aside className="lg:w-72 shrink-0 space-y-10">
-                    <div>
-                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Filter by Category</h4>
-                      <div className="space-y-3">
-                        {['All Products', 'Food & Pantry', 'Lifestyle & Care', 'Family'].map(cat => (
-                          <button key={cat} onClick={() => setShopFilters({ ...shopFilters, category: cat })}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.category === cat ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
-                            {cat}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Household Size</h4>
-                      <div className="space-y-3">
-                        {['All Sizes', 'Single', 'Family'].map(size => (
-                          <button key={size} onClick={() => setShopFilters({ ...shopFilters, household: size })}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.household === size ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
-                            {size}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Budget Range</h4>
-                      <div className="space-y-3">
-                        {['All Budgets', '₦0 – ₦50k', '₦50k – ₦150k', '₦150k – ₦300k', '₦300k+'].map(budget => (
-                          <button key={budget} onClick={() => setShopFilters({ ...shopFilters, budget: budget })}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.budget === budget ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
-                            {budget}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Delivery Frequency</h4>
-                      <div className="space-y-3">
-                        {['All Frequencies', 'Weekly', 'Monthly'].map(freq => (
-                          <button key={freq} onClick={() => setShopFilters({ ...shopFilters, frequency: freq })}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.frequency === freq ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
-                            {freq}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-black text-xs uppercase tracking-widest text-[#6F7E57] mb-6">Lifestyle</h4>
-                      <div className="space-y-3">
-                        {['All Lifestyles', 'Wellness', 'Baby', 'Gourmet', 'Exclusive'].map(style => (
-                          <button key={style} onClick={() => setShopFilters({ ...shopFilters, lifestyle: style })}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${shopFilters.lifestyle === style ? 'bg-[#6F7E57] text-white shadow-md' : 'hover:bg-[#6F7E57]/10 text-zinc-600'}`}>
-                            {style}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </aside>
 
                   {/* Main Content Areas */}
                   <div className="flex-1">
                     {/* Top Bar Sort & Search */}
-                    <div className="bg-white rounded-[2rem] border border-black/5 p-4 mb-10 flex flex-col md:flex-row gap-4 items-center">
-                      <div className="relative flex-grow">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
-                        <input
-                          type="text"
-                          placeholder="Search our collection..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full pl-12 pr-6 py-4 bg-[#F8F0E5]/50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-sans text-sm"
-                        />
+                    <div className="bg-white rounded-[2rem] border border-black/5 p-6 mb-10 flex flex-col gap-6">
+                      <div className="flex flex-col md:flex-row gap-4 items-center">
+                        <div className="relative flex-grow">
+                          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                          <input
+                            type="text"
+                            placeholder="Search our collection..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-12 pr-6 py-4 bg-[#F8F0E5]/50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-sans text-sm"
+                          />
+                        </div>
+                        
+                        <div className="flex gap-4 w-full md:w-auto">
+                          <Dropbox 
+                            label="Sort By"
+                            options={[
+                              { label: 'Most Popular ⭐', value: 'Most Popular' },
+                              { label: 'Price: Low → High', value: 'Price: Low → High' },
+                              { label: 'Price: High → Low', value: 'Price: High → Low' },
+                              { label: 'New Arrivals', value: 'New Arrivals' }
+                            ]}
+                            value={shopFilters.sortBy}
+                            onChange={val => setShopFilters({ ...shopFilters, sortBy: val })}
+                            className="min-w-[200px] flex-1 md:flex-initial"
+                          />
+                        </div>
                       </div>
-                      
-                      <div className="flex gap-4 w-full md:w-auto">
+
+                      {/* Filter Bar (Trust Bar Style) */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-4 pt-6 border-t border-zinc-100">
                         <Dropbox 
-                          label="Sort By"
-                          options={[
-                            { label: 'Most Popular ⭐', value: 'Most Popular' },
-                            { label: 'Price: Low → High', value: 'Price: Low → High' },
-                            { label: 'Price: High → Low', value: 'Price: High → Low' },
-                            { label: 'New Arrivals', value: 'New Arrivals' }
-                          ]}
-                          value={shopFilters.sortBy}
-                          onChange={val => setShopFilters({ ...shopFilters, sortBy: val })}
-                          className="min-w-[200px] flex-1 md:flex-initial"
+                          label="Category"
+                          options={['All Products', 'Food & Pantry', 'Lifestyle & Care', 'Family'].map(c => ({ label: c, value: c }))}
+                          value={shopFilters.category}
+                          onChange={val => setShopFilters({ ...shopFilters, category: val })}
+                          className="flex-1 min-w-[160px]"
+                        />
+                        <Dropbox 
+                          label="Household"
+                          options={['All Sizes', 'Single', 'Family'].map(c => ({ label: c, value: c }))}
+                          value={shopFilters.household}
+                          onChange={val => setShopFilters({ ...shopFilters, household: val })}
+                          className="flex-1 min-w-[160px]"
+                        />
+                        <Dropbox 
+                          label="Budget"
+                          options={['All Budgets', '₦0 – ₦50k', '₦50k – ₦150k', '₦150k – ₦300k', '₦300k+'].map(c => ({ label: c, value: c }))}
+                          value={shopFilters.budget}
+                          onChange={val => setShopFilters({ ...shopFilters, budget: val })}
+                          className="flex-1 min-w-[160px]"
+                        />
+                        <Dropbox 
+                          label="Frequency"
+                          options={['All Frequencies', 'Weekly', 'Monthly'].map(c => ({ label: c, value: c }))}
+                          value={shopFilters.frequency}
+                          onChange={val => setShopFilters({ ...shopFilters, frequency: val })}
+                          className="flex-1 min-w-[160px]"
+                        />
+                        <Dropbox 
+                          label="Lifestyle"
+                          options={['All Lifestyles', 'Wellness', 'Baby', 'Gourmet', 'Exclusive'].map(c => ({ label: c, value: c }))}
+                          value={shopFilters.lifestyle}
+                          onChange={val => setShopFilters({ ...shopFilters, lifestyle: val })}
+                          className="flex-1 min-w-[160px]"
                         />
                       </div>
                     </div>
@@ -4658,12 +4637,11 @@ function App() {
 
                       <div className="order-1 lg:order-2">
                         <div className="relative group">
-                          <div className="absolute inset-0 bg-[#f7ebc3] rounded-[4rem] rotate-3 group-hover:rotate-1 transition-transform duration-700 blur-sm opacity-50" />
-                          <div className="relative aspect-square rounded-[3.5rem] overflow-hidden shadow-2xl transition-transform group-hover:-translate-y-4 duration-700">
+                          <div className="relative aspect-square rounded-[2rem] overflow-hidden border-2 border-[#f7ebc3] shadow-2xl transition-transform group-hover:-translate-y-4 duration-700">
                             <img 
                               src="/images/THE FOUNDERS BOX.jpeg" 
                               alt="The Founders Box" 
-                              className="w-full h-full object-contain"
+                              className="w-full h-full object-cover"
                             />
                           </div>
                         </div>
@@ -4800,7 +4778,7 @@ function App() {
                 {/* Main Content Section with Images and Overlays */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
                   <div className="relative">
-                    <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl group">
+                    <div className="aspect-[4/5] rounded-[2rem] overflow-hidden border-2 border-[#6F7E57] shadow-2xl group">
                       <img 
                         src="/images/Founder.jpeg" 
                         alt="Our Founder" 
@@ -5881,7 +5859,7 @@ function App() {
                 <li><button onClick={() => setView('home')} className="hover:text-[#6F7E57]">Home</button></li>
                 <li><button onClick={() => setView('about')} className="hover:text-[#6F7E57]">About Us</button></li>
                 <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Our Boxes</button></li>
-                <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Subscribe</button></li>
+                <li><button onClick={() => setView('pricing')} className="hover:text-[#6F7E57]">Subscribe</button></li>
                 <li><button onClick={() => setView('gift-a-box')} className="hover:text-[#6F7E57]">Gift a Box</button></li>
                 <li><button onClick={() => setView('partners')} className="hover:text-[#6F7E57]">Partners</button></li>
                 <li><button onClick={() => setView('investors')} className="hover:text-[#6F7E57]">Investors</button></li>
