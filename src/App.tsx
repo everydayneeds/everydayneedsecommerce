@@ -86,7 +86,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
     { name: 'Why We Exist', view: 'about' },
     { name: 'Partners', view: 'partners' },
     { name: 'Investors', view: 'investors' },
-    { name: 'Subscription', view: 'subscription' }
+    { name: 'Subscription', view: 'pricing' }
   ];
 
   return (
@@ -502,29 +502,70 @@ const Dropbox: React.FC<{
   options: { value: string, label: string, price?: number, badge?: string }[],
   value: string,
   onChange: (value: string) => void,
-  label?: string
-}> = ({ options, value, onChange, label }) => {
+  label?: string,
+  className?: string,
+  variant?: 'green' | 'brown' | 'gold' | 'cream'
+}> = ({ options, value, onChange, label, className = "", variant = "cream" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = options.find(o => o.value === value) || options[0];
 
+  const variants = {
+    green: {
+      activeBg: 'bg-[#6F7E57]/10',
+      activeText: 'text-[#6F7E57]',
+      activeBorder: 'border-[#6F7E57]/30',
+      badgeBg: 'bg-[#6F7E57]',
+      badgeText: 'text-white',
+      hoverBg: 'hover:bg-[#6F7E57]/5'
+    },
+    brown: {
+      activeBg: 'bg-[#693311]/10',
+      activeText: 'text-[#693311]',
+      activeBorder: 'border-[#693311]/30',
+      badgeBg: 'bg-[#693311]',
+      badgeText: 'text-white',
+      hoverBg: 'hover:bg-[#693311]/5'
+    },
+    gold: {
+      activeBg: 'bg-[#f7ebc3]/40',
+      activeText: 'text-zinc-900',
+      activeBorder: 'border-[#f7ebc3]/60',
+      badgeBg: 'bg-[#693311]', // Contrast is better
+      badgeText: 'text-white',
+      hoverBg: 'hover:bg-[#f7ebc3]/20'
+    },
+    cream: {
+      activeBg: 'bg-[#FAF5EF]',
+      activeText: 'text-[#6F7E57]',
+      activeBorder: 'border-[#6F7E57]/20',
+      badgeBg: 'bg-[#FAF5EF]',
+      badgeText: 'text-[#6F7E57]',
+      hoverBg: 'hover:bg-zinc-50'
+    }
+  };
+
+  const s = variants[variant];
+
   return (
-    <div className="relative">
-      {label && <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">{label}</label>}
+    <div className={`relative ${className}`}>
+      {label && <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2 px-1">{label}</label>}
       <div 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-white border-2 border-black/5 rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:border-[#6F7E57]/30 transition-all shadow-sm group"
+        className={`w-full bg-white border-2 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all shadow-sm group ${
+          isOpen ? s.activeBorder : 'border-black/5 hover:border-zinc-200'
+        }`}
       >
         <div className="flex flex-col text-left">
-          <span className="text-sm font-bold text-zinc-900 flex items-center gap-2">
+          <span className={`text-sm font-bold flex items-center gap-2 ${isOpen ? s.activeText : 'text-zinc-900 group-hover:text-zinc-700'}`}>
             {selectedOption.label}
             {selectedOption.badge && (
-              <span className="px-2 py-0.5 bg-[#FAF5EF] text-[#6F7E57] text-[10px] font-black rounded-full border border-[#6F7E57]/10">
+              <span className={`px-2 py-0.5 text-[10px] font-black rounded-full border border-black/5 ${s.badgeBg} ${s.badgeText}`}>
                 {selectedOption.badge}
               </span>
             )}
           </span>
           {selectedOption.price && (
-            <span className="text-xs text-[#6F7E57] font-bold">₦{selectedOption.price.toLocaleString()}</span>
+            <span className={`text-xs font-bold ${s.activeText}`}>₦{selectedOption.price.toLocaleString()}</span>
           )}
         </div>
         <ChevronDown size={18} className={`text-zinc-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -545,17 +586,17 @@ const Dropbox: React.FC<{
                   key={opt.value}
                   onClick={() => { onChange(opt.value); setIsOpen(false); }}
                   className={`w-full text-left px-6 py-4 transition-all flex items-center justify-between group ${
-                    value === opt.value ? 'bg-[#FAF5EF]' : 'hover:bg-zinc-50'
+                    value === opt.value ? s.activeBg : s.hoverBg
                   }`}
                 >
                   <div className="flex flex-col">
-                    <span className={`text-sm font-bold ${value === opt.value ? 'text-[#6F7E57]' : 'text-zinc-600'}`}>
+                    <span className={`text-sm font-bold ${value === opt.value ? s.activeText : 'text-zinc-600'}`}>
                       {opt.label}
                     </span>
-                    {opt.price && <span className="text-xs text-[#6F7E57]/70 font-bold">₦{opt.price.toLocaleString()}</span>}
+                    {opt.price && <span className={`text-xs font-bold ${s.activeText}`}>₦{opt.price.toLocaleString()}</span>}
                   </div>
                   {opt.badge && (
-                    <span className="px-2 py-0.5 bg-[#FAF5EF] text-[#6F7E57] text-[10px] font-black rounded-full border border-[#6F7E57]/10">
+                    <span className={`px-2 py-0.5 text-[10px] font-black rounded-full border border-black/5 ${s.badgeBg} ${s.badgeText}`}>
                       {opt.badge}
                     </span>
                   )}
@@ -806,6 +847,7 @@ const ProductDetail = ({
                 {hasHousehold && (
                   <Dropbox 
                     label="Household Size"
+                    variant="green"
                     options={householdOptions.map(opt => ({ value: opt, label: opt }))}
                     value={selectedHousehold}
                     onChange={(val) => {
@@ -819,6 +861,7 @@ const ProductDetail = ({
                 {/* Plan Selector */}
                 <Dropbox 
                   label="Select Plan"
+                  variant="brown"
                   options={currentVisiblePlans.map(plan => ({
                     value: plan.tier,
                     label: plan.label,
@@ -832,6 +875,7 @@ const ProductDetail = ({
                 {/* Frequency */}
                 <Dropbox 
                   label="Delivery Frequency"
+                  variant="gold"
                   options={[
                     { value: 'Monthly', label: 'Monthly Delivery' },
                     { value: 'Quarterly', label: 'Quarterly (Every 3 Months)', badge: 'Save 5%' }
@@ -2048,7 +2092,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Activity</h3>
-                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="divide-y divide-zinc-100">
                 {subscriptions.slice(0, 3).map((sub, i) => (
@@ -2336,7 +2380,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -2422,7 +2466,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                         >
                           Edit
                         </button>
-                        <button className="text-xs font-bold text-zinc-400 hover:text-red-600 transition-colors">Delete</button>
+                        <button className="text-xs font-bold text-zinc-400 hover:text-red-600 transition-colors" onClick={() => alert('Product deletion is disabled in this demo.')}>Delete</button>
                       </div>
                     </div>
                   </div>
@@ -2571,7 +2615,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Transactions</h3>
-                <button className="text-xs font-bold text-[#6F7E57] bg-brand-alt-2/20 px-4 py-2 rounded-lg hover:bg-brand-alt-2/30 transition-colors">Withdraw Funds</button>
+                <button onClick={() => alert('Withdrawal request submitted! Processing time: 24-48 hours.')} className="text-xs font-bold text-[#6F7E57] bg-brand-alt-2/20 px-4 py-2 rounded-lg hover:bg-brand-alt-2/30 transition-colors">Withdraw Funds</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -2724,7 +2768,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <div className="col-span-12 lg:col-span-8 bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-sm font-bold text-zinc-900">Revenue Overview</h3>
-                  <button className="text-xs font-bold text-[#6F7E57] hover:underline">Download Report</button>
+                  <button onClick={() => alert('Downloading latest revenue report...') } className="text-xs font-bold text-[#6F7E57] hover:underline">Download Report</button>
                 </div>
                 <div className="h-[320px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
@@ -2798,7 +2842,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button className="text-xs font-bold text-[#6F7E57] hover:underline">View All Orders</button>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All Orders</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -3167,7 +3211,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   {['Daily Sales Summary', 'Monthly Revenue Report', 'Product Performance', 'Category Breakdown'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
                       <span className="text-xs font-bold text-zinc-700">{report}</span>
-                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
+                      <button onClick={() => alert(`Downloading ${report}...`)} className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
                     </div>
@@ -3180,7 +3224,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   {['Stock Level Audit', 'Low Stock Alerts', 'Supplier Performance', 'Inventory Turnover'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
                       <span className="text-xs font-bold text-zinc-700">{report}</span>
-                      <button className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
+                      <button onClick={() => alert(`Downloading ${report}...`)} className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
                     </div>
@@ -3336,7 +3380,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   <span className="text-sm text-zinc-600">Off</span>
                 </div>
               </div>
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57]/90 transition-all">Save Settings</button>
+              <button onClick={() => alert('System settings updated successfully!')} className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57]/90 transition-all">Save Settings</button>
             </div>
           </div>
         );
@@ -3676,7 +3720,7 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "classic", label: "Classic", price: 45000, frequency: "month" },
+      { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
       { tier: "premium", label: "Premium", price: 370000, frequency: "month" },
     ]
   },
@@ -4479,6 +4523,7 @@ function App() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-4 pt-6 border-t border-zinc-100">
                         <Dropbox 
                           label="Category"
+                          variant="brown"
                           options={['All Products', 'Food & Pantry', 'Lifestyle & Care', 'Family'].map(c => ({ label: c, value: c }))}
                           value={shopFilters.category}
                           onChange={val => setShopFilters({ ...shopFilters, category: val })}
@@ -4486,6 +4531,7 @@ function App() {
                         />
                         <Dropbox 
                           label="Household"
+                          variant="green"
                           options={['All Sizes', 'Single', 'Family'].map(c => ({ label: c, value: c }))}
                           value={shopFilters.household}
                           onChange={val => setShopFilters({ ...shopFilters, household: val })}
@@ -4493,6 +4539,7 @@ function App() {
                         />
                         <Dropbox 
                           label="Budget"
+                          variant="gold"
                           options={['All Budgets', '₦0 – ₦50k', '₦50k – ₦150k', '₦150k – ₦300k', '₦300k+'].map(c => ({ label: c, value: c }))}
                           value={shopFilters.budget}
                           onChange={val => setShopFilters({ ...shopFilters, budget: val })}
@@ -4500,6 +4547,7 @@ function App() {
                         />
                         <Dropbox 
                           label="Frequency"
+                          variant="brown"
                           options={['All Frequencies', 'Weekly', 'Monthly'].map(c => ({ label: c, value: c }))}
                           value={shopFilters.frequency}
                           onChange={val => setShopFilters({ ...shopFilters, frequency: val })}
@@ -4507,6 +4555,7 @@ function App() {
                         />
                         <Dropbox 
                           label="Lifestyle"
+                          variant="green"
                           options={['All Lifestyles', 'Wellness', 'Baby', 'Gourmet', 'Exclusive'].map(c => ({ label: c, value: c }))}
                           value={shopFilters.lifestyle}
                           onChange={val => setShopFilters({ ...shopFilters, lifestyle: val })}
