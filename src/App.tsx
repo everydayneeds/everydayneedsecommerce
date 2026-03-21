@@ -940,7 +940,7 @@ const ProductDetail = ({
                 </div>
 
                 <button
-                  onClick={() => onSubscribe(selectedTier)}
+                  onClick={() => setView('pricing')}
                   className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
                 >
                   <Calendar size={20} />
@@ -4282,8 +4282,9 @@ function App() {
                       </div>
                       <button
                         onClick={() => setView('pricing')}
-                        className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-4 rounded-full font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg"
+                        className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-4 rounded-full font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2"
                       >
+                        <Calendar size={20} />
                         Subscribe Now
                       </button>
                     </div>
@@ -4744,8 +4745,188 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              className="pt-32 pb-24 min-h-screen bg-[#FAF5EF]"
             >
-              <Pricing onSelect={() => setView('products')} onBack={() => setView('home')} />
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Lifestyle</h2>
+                  <p className="text-xl text-[#575B44] max-w-2xl mx-auto leading-relaxed">
+                    Select a plan that best fits your household needs and lifestyle. Automated home management tailored for you.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
+                  {/* Essential Plan */}
+                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#693311] group-hover:scale-110 transition-transform">
+                        <User size={28} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Individuals / Light</span>
+                    </div>
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Essential Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-black text-zinc-900">₦65,400</span>
+                      </div>
+                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-4 flex-grow">
+                      {[
+                        "Core Pantry Staples",
+                        "Weekly Breakfast Box Option",
+                        "Eco Cleaning Supplies",
+                        "Standard Delivery Slots"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
+                          <Check size={16} className="text-[#6F7E57]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => handleSubscribe('essential')} className="w-full py-5 bg-[#6F7E57]/10 text-[#6F7E57] rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
+                      Select Essential
+                    </button>
+                  </div>
+
+                  {/* Family Plan */}
+                  <div className="bg-[#575B44] text-white p-10 rounded-[4rem] border-4 border-[#6F7E57]/20 flex flex-col shadow-2xl relative transform hover:-translate-y-2 transition-transform h-full">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <span className="bg-[#f7ebc3] text-[#693311] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border-2 border-white/20">Most Popular</span>
+                    </div>
+                    <div className="flex items-center justify-between mb-8 mt-4">
+                      <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-[#f7ebc3]">
+                        <Users size={32} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Modern Families</span>
+                    </div>
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-1">Family Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-5xl font-black text-white">₦201,000</span>
+                      </div>
+                      <p className="text-[10px] text-[#f7ebc3] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-5 flex-grow">
+                      {[
+                        "Full Household Pantry",
+                        "Farm Harvest & Protein Selection",
+                        "Home Care & Spa Kit",
+                        "Priority Delivery Scheduling",
+                        "Dedicated Home Support"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-4 text-base font-bold text-white/90">
+                          <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center shrink-0">
+                            <Check size={12} className="text-white" />
+                          </div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => handleSubscribe('family')} className="w-full py-6 bg-[#f7ebc3] text-[#693311] rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl hover:shadow-[#f7ebc3]/20">
+                      Select Family Plan
+                    </button>
+                  </div>
+
+                  {/* Premium Plan */}
+                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center text-[#6F7E57] group-hover:scale-110 transition-transform">
+                        <Star size={28} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Luxury / Full Concierge</span>
+                    </div>
+                    <div className="mb-8">
+                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Premium Lifestyle Plan</h3>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-black text-zinc-900">₦377,500</span>
+                      </div>
+                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
+                    </div>
+                    <ul className="mb-10 space-y-4 flex-grow">
+                      {[
+                        "Gourmet & Exclusive Selections",
+                        "Full Founder’s Box Access",
+                        "Unlimited Inventory Sourcing",
+                        "Anytime VIP Delivery",
+                        "Personal Concierge Manager"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
+                          <Check size={16} className="text-[#6F7E57]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => handleSubscribe('premium')} className="w-full py-5 bg-[#693311] text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-sm">
+                      Select Premium
+                    </button>
+                  </div>
+                </div>
+
+                {/* Plan Comparison Table */}
+                <div className="bg-white rounded-[4rem] border border-black/5 p-8 md:p-16 mb-20 shadow-sm overflow-x-auto">
+                  <h3 className="font-serif text-3xl font-black text-[#693311] text-center mb-12">Plan Comparison</h3>
+                  <table className="w-full text-left min-w-[600px]">
+                    <thead>
+                      <tr className="border-b border-black/5">
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-zinc-400">Feature</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#6F7E57]">Essential</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#575B44]">Family</th>
+                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#693311]">Premium</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-black/5">
+                      {[
+                        { name: "Pantry Essentials", e: "Basic", f: "Full", p: "Custom" },
+                        { name: "Household Items", e: "Included", f: "Comprehensive", p: "Unlimited" },
+                        { name: "Farm Fresh Produce", e: "Optional", f: "Standard", p: "Gourmet Selection" },
+                        { name: "Personal Concierge", e: "No access", f: "Email Support", p: "Direct Line/VIP" },
+                        { name: "Same-Day Delivery", e: "No access", f: "Priority", p: "Unrestricted" },
+                        { name: "Founders Box Access", e: "No access", f: "No access", p: "Included" }
+                      ].map((row, i) => (
+                        <tr key={i} className="group hover:bg-[#FAF5EF]/50 transition-colors">
+                          <td className="py-6 text-sm font-bold text-zinc-900">{row.name}</td>
+                          <td className="py-6 text-sm font-medium text-zinc-500">{row.e}</td>
+                          <td className="py-6 text-sm font-bold text-[#575B44]">{row.f}</td>
+                          <td className="py-6 text-sm font-bold text-[#693311]">{row.p}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Terms Component usage could go here if needed, or just these rich blocks below */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div className="bg-[#6F7E57] text-white p-12 rounded-[3.5rem] shadow-xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-125 transition-transform duration-700">
+                        <RefreshCw size={120} />
+                      </div>
+                      <h3 className="text-3xl font-bold mb-6 relative z-10">Total Flexibility</h3>
+                      <p className="text-white/80 text-lg leading-relaxed mb-8 relative z-10">
+                        Life happens. Pause, skip, or cancel your subscription anytime. No long-term contracts, just reliable service when you need it.
+                      </p>
+                      <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#FAF5EF] transition-all relative z-10">
+                        Explore Boxes
+                      </button>
+                   </div>
+
+                   <div className="bg-[#F8F0E5] p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col justify-center">
+                      <div className="flex gap-1 text-amber-500 mb-6">
+                        {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
+                      </div>
+                      <p className="text-xl font-serif font-bold text-[#693311] leading-relaxed mb-8 italic">
+                        "Switching to the Family Plan was the best decision for my home. I no longer worry about groceries or cleaning supplies—it just shows up exactly when I need it."
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sm font-black text-[#6F7E57] border border-[#6F7E57]/10">AO</div>
+                        <div>
+                          <p className="font-bold text-zinc-900">Adebisi O.</p>
+                          <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Lekki, Lagos</p>
+                        </div>
+                      </div>
+                   </div>
+                </div>
+              </div>
             </motion.div>
           )}
 
@@ -5498,195 +5679,6 @@ function App() {
             </motion.div>
           )}
 
-          {view === 'subscription' && (
-            <motion.div
-              key="subscription"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 min-h-screen bg-[#FAF5EF]"
-            >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Lifestyle</h2>
-                  <p className="text-xl text-[#575B44] max-w-2xl mx-auto leading-relaxed">
-                    Select a plan that best fits your household needs and lifestyle. Automated home management tailored for you.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
-                  {/* Essential Plan */}
-                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#693311] group-hover:scale-110 transition-transform">
-                        <User size={28} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Individuals / Light</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Essential Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦65,400</span>
-                      </div>
-                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-4 flex-grow">
-                      {[
-                        "Core Pantry Staples",
-                        "Weekly Breakfast Box Option",
-                        "Eco Cleaning Supplies",
-                        "Standard Delivery Slots"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
-                          <Check size={16} className="text-[#6F7E57]" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => setView('products')} className="w-full py-5 bg-[#6F7E57]/10 text-[#6F7E57] rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
-                      Select Essential
-                    </button>
-                  </div>
-
-                  {/* Family Plan */}
-                  <div className="bg-[#575B44] text-white p-10 rounded-[4rem] border-4 border-[#6F7E57]/20 flex flex-col shadow-2xl relative transform hover:-translate-y-2 transition-transform h-full">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="bg-[#f7ebc3] text-[#693311] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border-2 border-white/20">Most Popular</span>
-                    </div>
-                    <div className="flex items-center justify-between mb-8 mt-4">
-                      <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-[#f7ebc3]">
-                        <Users size={32} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Modern Families</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-1">Family Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-5xl font-black text-white">₦201,000</span>
-                      </div>
-                      <p className="text-[10px] text-[#f7ebc3] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-5 flex-grow">
-                      {[
-                        "Full Household Pantry",
-                        "Farm Harvest & Protein Selection",
-                        "Home Care & Spa Kit",
-                        "Priority Delivery Scheduling",
-                        "Dedicated Home Support"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-4 text-base font-bold text-white/90">
-                          <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center shrink-0">
-                            <Check size={12} className="text-white" />
-                          </div>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => setView('products')} className="w-full py-6 bg-[#f7ebc3] text-[#693311] rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl hover:shadow-[#f7ebc3]/20">
-                      Select Family Plan
-                    </button>
-                  </div>
-
-                  {/* Premium Plan */}
-                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center text-[#6F7E57] group-hover:scale-110 transition-transform">
-                        <Star size={28} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Luxury / Full Concierge</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Premium Lifestyle Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦377,500</span>
-                      </div>
-                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-4 flex-grow">
-                      {[
-                        "Gourmet & Exclusive Selections",
-                        "Full Founder’s Box Access",
-                        "Unlimited Inventory Sourcing",
-                        "Anytime VIP Delivery",
-                        "Personal Concierge Manager"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
-                          <Check size={16} className="text-[#6F7E57]" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => setView('products')} className="w-full py-5 bg-[#693311] text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-sm">
-                      Select Premium
-                    </button>
-                  </div>
-                </div>
-
-                {/* Plan Comparison Table */}
-                <div className="bg-white rounded-[4rem] border border-black/5 p-8 md:p-16 mb-20 shadow-sm overflow-x-auto">
-                  <h3 className="font-serif text-3xl font-black text-[#693311] text-center mb-12">Plan Comparison</h3>
-                  <table className="w-full text-left min-w-[600px]">
-                    <thead>
-                      <tr className="border-b border-black/5">
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-zinc-400">Feature</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#6F7E57]">Essential</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#575B44]">Family</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#693311]">Premium</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-black/5">
-                      {[
-                        { name: "Pantry Essentials", e: "Basic", f: "Full", p: "Custom" },
-                        { name: "Household Items", e: "Included", f: "Comprehensive", p: "Unlimited" },
-                        { name: "Farm Fresh Produce", e: "Optional", f: "Standard", p: "Gourmet Selection" },
-                        { name: "Personal Concierge", e: "No access", f: "Email Support", p: "Direct Line/VIP" },
-                        { name: "Same-Day Delivery", e: "No access", f: "Priority", p: "Unrestricted" },
-                        { name: "Founders Box Access", e: "No access", f: "No access", p: "Included" }
-                      ].map((row, i) => (
-                        <tr key={i} className="group hover:bg-[#FAF5EF]/50 transition-colors">
-                          <td className="py-6 text-sm font-bold text-zinc-900">{row.name}</td>
-                          <td className="py-6 text-sm font-medium text-zinc-500">{row.e}</td>
-                          <td className="py-6 text-sm font-bold text-[#575B44]">{row.f}</td>
-                          <td className="py-6 text-sm font-bold text-[#693311]">{row.p}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <div className="bg-[#6F7E57] text-white p-12 rounded-[3.5rem] shadow-xl relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-125 transition-transform duration-700">
-                        <RefreshCw size={120} />
-                      </div>
-                      <h3 className="text-3xl font-bold mb-6 relative z-10">Total Flexibility</h3>
-                      <p className="text-white/80 text-lg leading-relaxed mb-8 relative z-10">
-                        Life happens. Pause, skip, or cancel your subscription anytime. No long-term contracts, just reliable service when you need it.
-                      </p>
-                      <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#FAF5EF] transition-all relative z-10">
-                        Learn How it Works
-                      </button>
-                   </div>
-
-                   <div className="bg-[#F8F0E5] p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col justify-center">
-                      <div className="flex gap-1 text-amber-500 mb-6">
-                        {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
-                      </div>
-                      <p className="text-xl font-serif font-bold text-[#693311] leading-relaxed mb-8 italic">
-                        "Switching to the Family Plan was the best decision for my home. I no longer worry about groceries or cleaning supplies—it just shows up exactly when I need it."
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sm font-black text-[#6F7E57] border border-[#6F7E57]/10">AO</div>
-                        <div>
-                          <p className="font-bold text-zinc-900">Adebisi O.</p>
-                          <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Lekki, Lagos</p>
-                        </div>
-                      </div>
-                   </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
 
           {view === 'partners' && (
             <motion.div
