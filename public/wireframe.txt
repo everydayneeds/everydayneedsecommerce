@@ -1,0 +1,1294 @@
+🧱 EVERYDAY NEEDS – PRODUCT & PRICING STRUCTURE
+🔹 NAMING STANDARD (IMPORTANT)
+Use ONLY these tiers across all products:
+Essentials (entry level)
+Classic (most popular)
+Premium (high-end)
+Use tags like:
+Single
+Family
+Weekly
+
+🥗 FOOD & PANTRY BOXES
+
+🍽️ GOURMET PLEASURE BOX
+Premium dining & curated indulgence
+Classic — ₦230,000
+Premium — ₦307,000
+
+🍚 PANTRY PROVISION BOX
+Monthly home staple supply
+Single Plans
+Classic (Single) — ₦154,000
+Premium (Single) — ₦240,000
+Family Plans
+Essentials (Family) — ₦65,400
+Classic (Family) — ₦201,000 ⭐ Most Popular
+Premium (Family) — ₦377,500
+
+🌅 SUNRISE ESSENTIALS
+Breakfast & morning routine
+Individual
+Classic — ₦91,700
+Premium — ₦138,200
+Family
+Essentials (Family) — ₦56,200
+Classic (Family) — ₦124,700 ⭐
+Premium (Family) — ₦202,700
+
+🥬 FARM FRESH HARVEST BOX
+Fresh produce delivered weekly or monthly
+
+🔹 PLANS
+Weekly Fresh Box — ₦40,000 / week ⭐ Most Flexible
+Monthly Harvest Box — ₦156,200 / month ⭐ Best Value
+
+
+
+🥩 PROTEIN PRIME CUT
+Premium protein selection
+Essentials (Weekly – 4 items) — ₦56,000
+Classic — ₦106,500 ⭐
+Premium — ₦207,200
+
+🧖🏽‍♀️ LIFESTYLE & CARE BOXES
+
+🛁 PUREBLISS PAMPER KIT
+Self-care & spa experience
+Essentials — ₦73,400
+Classic — ₦119,900 ⭐
+Premium — ₦228,000
+
+✨ RADIANT GLOW KIT
+Beauty & skincare essentials
+Essentials — ₦77,000
+Classic — ₦128,000 ⭐
+Premium — ₦252,500
+
+🧼 SPARKLING SANCTUARY
+Cleaning & home care
+Essentials — ₦20,900 ⭐
+Classic — ₦40,900
+
+🌿 WELLNESS BOX
+Health & wellness essentials
+Essentials — ₦25,000 ⭐
+Classic — ₦48,000
+
+👶 FAMILY & SPECIALTY
+
+👶 LITTLE BUNDLE OF JOY
+Baby care essentials
+Essentials — ₦55,000
+Classic — ₦136,000 ⭐
+Premium — ₦266,500
+
+🔹 DESIGN INSTRUCTIONS FOR WEBSITE
+1. PRODUCT CARD FORMAT
+Each product should appear as:
+[IMAGE]
+
+BOX NAME
+
+Short description (1 line)
+
+Starting from ₦XX,XXX
+
+Tag (optional):
+• Most Popular
+• Family Favourite
+• Premium
+
+[View Box]
+
+2. PRODUCT PAGE STRUCTURE
+Each box page must include:
+Top Section
+Box name
+Starting price
+Short description
+
+Plan Selector
+Example:
+Select Plan
+○ Essentials
+○ Classic ⭐ (default selected)
+○ Premium
+
+Household Toggle (if applicable)
+○ Single
+○ Family
+
+Frequency
+○ Monthly
+○ Quarterly
+
+CTA
+👉 Subscribe Now
+
+3. PRICING DISPLAY RULE
+Always show pricing as:
+✅ ₦201,000 / month
+NOT just ₦201,000
+
+4. TAGGING SYSTEM
+Use these consistently:
+⭐ Most Popular
+Family Favourite
+Premium Pick
+Best Value
+
+5. CATEGORY GROUPING (SHOP PAGE- not product*)
+Food & Pantry
+Pantry Provision
+Sunrise Essentials
+Farm Fresh
+Protein Prime Cut
+Gourmet Pleasure
+Lifestyle & Care
+PureBliss Pamper Kit
+Radiant Glow
+Sparkling Sanctuary
+Wellness Box
+Family
+Little Bundle of Joy
+
+6. FILTER SYSTEM
+Add filters:
+Category
+Price range
+Household size
+Frequency
+Lifestyle
+
+🔥 FINAL IMPROVEMENTS THIS CREATES
+This refined structure:
+✔ Removes confusion in pricing
+✔ Makes UX clean and predictable
+✔ Feels premium and intentional
+✔ Improves conversion rates
+✔ Makes scaling easier
+✔ Helps devs build faster
+
+🔹 DESIGN IMPLEMENTATION
+Product Card (Shop Page)
+[IMAGE]
+
+Farm Fresh Harvest Box
+
+Fresh fruits, vegetables, and essentials sourced directly from trusted farms.
+
+From ₦40,000
+
+[View Options]
+
+🔹 PRODUCT PAGE STRUCTURE
+Top Section
+Farm Fresh Harvest Box
+Fresh, seasonal produce delivered straight to your home.
+
+Select Delivery Plan
+○ Weekly Fresh Box — ₦40,000 / week
+○ Monthly Harvest Box — ₦156,200 / month
+(Default selection: Weekly for accessibility)
+
+Optional Add-On (Very Powerful Upsell)
+Add Protein (₦XX,XXX)
+Add Pantry Essentials (₦XX,XXX)
+
+CTA
+👉 Subscribe Now
+
+🔹 UX NOTES (IMPORTANT)
+Why this works:
+Weekly = low entry price → easier conversion
+Monthly = higher value → increases revenue
+Gives customer control
+
+🔹 SHOP FILTER UPDATE
+Add new filter:
+Delivery Type
+Weekly
+Monthly
+
+🔹 HOMEPAGE PLACEMENT
+For Farm Fresh, show:
+Badge:
+“Weekly or Monthly Delivery”
+This differentiates it from all other boxes.
+
+🛒 EVERYDAY NEEDS – SHOP PAGE (HIGH-CONVERSION DESIGN)
+🔹 1. TOP SECTION (FILTER + CONTROL)
+Left side (filters):
+Category
+Household Size
+Budget range (₦20k – ₦400k)
+Frequency (Weekly / Monthly)
+Lifestyle (Family, Wellness, Baby, etc.)
+Top bar:
+Sort: Most Popular ⭐
+Price: Low → High
+New Arrivals
+
+🔹 2. FEATURED BOXES (VERY IMPORTANT)
+These should appear FIRST:
+⭐ Most Popular
+Pantry Provision (Family Classic)
+Sunrise Essentials (Family Classic)
+Protein Prime Cut (Weekly Essentials)
+👑 Premium Picks
+Gourmet Pleasure Box
+Pantry Premium
+Radiant Glow Premium
+
+🔹 3. PRODUCT GRID (MAIN SECTION)
+Card Design (clean + premium)
+Each card:
+[IMAGE]
+
+BOX NAME
+
+Starting from ₦XX,XXX
+
+Tag (optional):
+• Best Seller
+• Family Favorite
+• Premium
+
+[Select Options]
+
+🔹 4. PRODUCT DETAIL POP-UP (CRITICAL UX)
+When user clicks a box → modal opens:
+
+Example: Pantry Provision
+Pantry Provision Box
+A month’s supply of essential pantry staples for your home.
+
+Select Household Type
+○ Single
+○ Family
+
+Select Plan
+○ Beginner — ₦65,400
+○ Classic — ₦201,000
+○ Premium — ₦377,500
+
+Delivery Frequency
+○ Monthly (Recommended)
+○ Quarterly
+
+CTA
+👉 Subscribe Now
+
+🔹 5. CONVERSION BOOSTERS (ADD THESE)
+Under each product:
+✔ “Delivered Just in Time”
+✔ “Cancel Anytime”
+✔ “Fresh & Curated Weekly”
+
+Do this:
+❌ ₦201,000
+✅ ₦201,000 / month
+
+Highlight:
+Most Popular Plan
+👉 Pantry Provision – Family Classic
+
+🔹 8. FINAL CTA SECTION
+At bottom:
+
+Headline
+Never Run Out of Essentials Again
+
+Text
+From groceries to wellness and home care — everything you need, delivered effortlessly.
+
+CTA
+Start Your Subscription
+
+Right now the business is positioned as:
+👉 “Boxes you can buy”
+But it should be positioned as:
+👉 “A home supply system”
+That’s what makes it scalable and premium.
+
+
+
+💳 EVERYDAY NEEDS – SUBSCRIPTION PAGE
+🔹 1. HERO SECTION
+Visual: Clean lifestyle image (home, kitchen, or box delivery)
+Headline
+Never Run Out of What Matters Most
+Subtext
+Your home essentials — food, care, and wellness — delivered consistently, effortlessly, and just in time.
+CTA
+Start Your Plan
+
+🔹 2. PLAN STRUCTURE (CORE OF THE PAGE)
+Instead of selling boxes individually, we sell lifestyles.
+
+🥉 ESSENTIAL PLAN
+For individuals or light households
+From ₦25,000 – ₦120,000 / month
+Includes access to:
+Sunrise Essentials (Beginner / Classic)
+Wellness Box
+Sparkling Sanctuary (Essentials)
+Protein Weekly Essentials
+✔ Flexible
+✔ Affordable
+✔ Great for starting out
+CTA: Choose Essential
+
+🥈 FAMILY PLAN ⭐ (MOST POPULAR)
+From ₦120,000 – ₦250,000 / month
+Includes:
+Pantry Provision (Classic)
+Sunrise Essentials (Family Classic)
+Protein Prime Cut (Classic)
+Farm Fresh Harvest
+✔ Designed for real homes
+✔ Balanced monthly supply
+✔ Best value
+CTA: Choose Family Plan
+
+🥇 PREMIUM LIFESTYLE PLAN
+From ₦250,000 – ₦400,000+ / month
+Includes:
+Pantry Provision (Premium)
+Gourmet Pleasure Box
+Radiant Glow
+PureBliss Pamper Kit
+Protein Prime Cut (Premium)
+✔ Full lifestyle coverage
+✔ Premium products
+✔ Luxury home experience
+CTA: Choose Premium
+
+🔹 3. PLAN COMPARISON TABLE (VERY IMPORTANT)
+Feature	Essential	Family ⭐	Premium
+Pantry Supply	❌	✔	✔
+Fresh Produce	❌	✔	✔
+Protein	✔ (Basic)	✔	✔ Premium
+Wellness	✔	✔	✔
+Self-Care	❌	Optional	✔
+Luxury Items	❌	❌	✔
+Best For	Individuals	Families	Premium homes
+
+🔹 4. FLEXIBILITY SECTION
+Headline
+Designed Around Your Life
+Features:
+✔ Pause anytime
+✔ Swap boxes anytime
+✔ Upgrade or downgrade
+✔ No long-term commitment
+
+🔹 5. HOW IT WORKS (SHORT VERSION)
+Reuse your steps:
+1.Choose your plan
+2.Customize your boxes
+3.We deliver monthly
+4.Enjoy uninterrupted living
+
+🔹 6. SOCIAL PROOF
+Headline
+Homes Are Switching to Everyday Needs
+Add:
+Testimonials
+Before/after lifestyle
+Family photos
+
+🔹 7. FINAL CTA (VERY STRONG)
+Headline
+Simplify Your Home. Elevate Everyday Living.
+Subtext
+Join hundreds of homes choosing convenience, care, and consistency.
+CTA
+Start Your Subscription
+
+🔥 STRATEGIC IMPACT
+This page changes everything:
+BEFORE
+People buy random boxes
+AFTER
+People subscribe to a lifestyle
+
+💡 IMPORTANT POSITIONING SHIFT
+We are no longer:
+❌ “A box delivery company”
+We are:
+✅ A home essentials system
+✅ A lifestyle infrastructure
+✅ A modern household solution
+
+Checkout Flow
+The goal is to make checkout feel easy, premium, and low-friction. It should feel like the customer is setting up a home system, not filling out a long form.
+Checkout philosophy
+The flow should communicate:
+this is simple
+this is customizable
+this is flexible
+this is trustworthy
+Use a step-by-step checkout instead of a long single page.
+Recommended progress bar:
+Plan → Box Selection → Delivery → Details → Payment → Confirmation
+
+Step 1: Choose Your Plan
+Headline:
+Choose the plan that fits your home
+Show 3 plan cards:
+Essential
+For individuals or lighter households
+Family
+For growing homes and regular monthly needs
+Premium
+For full lifestyle coverage and premium curation
+Each card should show:
+monthly starting price
+who it is for
+included box categories
+button: Select Plan
+Add a small trust line below:
+Pause, skip, upgrade, or cancel anytime
+
+Step 2: Select Your Boxes
+Headline:
+Build your monthly rhythm
+After choosing a plan, the user selects included boxes or preferred categories.
+Example:
+Essential Plan
+Choose up to 2 boxes
+Sunrise Essentials
+Wellness Box
+Sparkling Sanctuary
+Protein Weekly Essentials
+Family Plan
+Choose up to 4 boxes
+Pantry Provision
+Sunrise Essentials
+Farm Fresh Harvest
+Protein Prime Cut
+Sparkling Sanctuary
+Premium Plan
+Choose up to 5 or more curated boxes
+Gourmet Pleasure Box
+Pantry Provision Premium
+PureBliss Pamper Kit
+Radiant Glow Kit
+Protein Prime Cut Premium
+Founders Box
+For each selection card, show:
+image
+box name
+short description
+price impact if any
+small tag like “Most Popular” or “Best for Families”
+CTA at bottom:
+Continue
+
+Step 3: Choose Variant / Tier
+Headline:
+Choose your box options
+For each selected box, user chooses the tier.
+Example:
+Pantry Provision
+Beginner
+Classic
+Premium
+Sunrise Essentials
+Beginner
+Classic
+Premium
+PureBliss Pamper Kit
+Beginner
+Classic
+Premium
+Use pill selectors or horizontal cards.
+Show price updates live on the right side or in a sticky summary.
+
+Step 4: Delivery Preferences
+Headline:
+Set your delivery schedule
+Options:
+Monthly
+Quarterly
+Annual
+Then choose:
+preferred week of delivery
+delivery day if available
+delivery notes
+Optional toggle:
+Send reminders before delivery
+Optional add-on:
+Gift wrap selected boxes
+Trust copy:
+Freshly packed and delivered just in time
+
+Step 5: Customer Details
+Headline:
+Where should we deliver?
+Fields:
+Full name
+Email address
+Phone number
+Delivery address
+City
+State
+Landmark / delivery instruction
+Optional checkbox:
+Save details for faster reordering
+Optional checkbox:
+This is a gift
+If gift is checked, reveal:
+recipient name
+gift note
+delivery surprise preference
+
+Step 6: Payment
+Headline:
+Secure your subscription
+Show order summary clearly:
+Your Plan
+Family Plan
+Selected Boxes
+Pantry Provision — Family Classic
+Sunrise Essentials — Family Classic
+Protein Prime Cut — Classic
+Farm Fresh Harvest
+Delivery
+Monthly
+Total
+₦xxx,xxx / month
+Payment methods:
+Card
+Bank transfer
+Wallet / local supported method if available
+Add reassurance blocks:
+Secure checkout
+Flexible subscription management
+Cancel anytime
+CTA:
+Start Subscription
+
+Step 7: Confirmation Page
+Headline:
+You’re all set
+Subtext:
+Your Everyday Needs plan is now active and your first delivery is being prepared.
+Show:
+selected plan
+selected boxes
+first delivery window
+delivery address
+next steps
+Buttons:
+Manage Subscription
+Explore Add-Ons
+Continue Shopping
+Nice touch:
+A welcome note from the founders
+
+Sticky Cart / Order Summary
+This is very important.
+On desktop, keep a sticky right column showing:
+selected plan
+selected boxes
+delivery frequency
+subtotal
+delivery fee if applicable
+total
+On mobile, this becomes a sticky bottom bar:
+Total: ₦xxx,xxx
+Continue
+Tapping it opens a slide-up summary drawer.
+
+Conversion Enhancements for Checkout
+Add these throughout:
+Microcopy
+Curated for real homes
+Delivered just in time
+Flexible plans, no stress
+Skip or pause whenever you need
+Trust builders
+Secure payment
+Fresh sourcing
+Reliable delivery
+Easy subscription management
+Friction reducers
+autofill address
+progress indicator
+clear edit buttons
+visible support contact
+
+Mobile UX Version
+Most users will likely experience the brand on mobile first, so the mobile version must feel premium, effortless, and visually calm.
+Mobile design principles
+large touch targets
+short sections
+stacked cards
+sticky CTA
+minimal typing
+clean hierarchy
+soft spacing
+quick visual scanning
+
+Mobile Homepage Structure
+1. Mobile Hero
+Use a strong lifestyle image with one clear focus.
+Layout:
+Headline
+Convenience Delivered
+Subheadline
+Curated essentials for real homes
+Buttons stacked:
+Explore Boxes
+Start Subscription
+Below hero, add 3 mini trust badges:
+Fresh
+Curated
+Delivered
+
+2. Category Scroll
+Instead of a full grid, use horizontal swipe cards.
+Each card includes:
+category image
+box name
+starting price
+short descriptor
+Example cards:
+Pantry Provision
+Sunrise Essentials
+Protein Prime Cut
+PureBliss Pamper Kit
+Farm Fresh Harvest
+
+3. Founder Section Mobile
+Since the founder image is already above “How It Works,” this should be simple and elegant.
+Layout:
+portrait founder image
+headline
+2 short paragraphs
+button: Meet the Founders
+Keep text short on mobile.
+
+4. How It Works Mobile
+Do not use a wide side-by-side layout on mobile. Stack it vertically.
+Headline:
+Simple. Reliable. Seamless.
+Then use 4 numbered cards:
+01 Choose Your Box
+Select from curated essential boxes based on your lifestyle and needs.
+02 Subscribe
+Choose monthly, quarterly, or annual delivery plans.
+03 We Deliver
+Your Everyday Needs box arrives at your doorstep.
+04 Live Better
+Enjoy convenience, peace of mind, and uninterrupted home living.
+Place the delivery visual either:
+above the steps, or
+between step 2 and 3 as a soft divider image
+
+5. Product Cards on Mobile
+Each product card should have:
+image
+box name
+starting price
+1-line description
+tag if relevant
+button: View Box
+Avoid too much text.
+
+6. Subscription Plans on Mobile
+Use stacked cards, not tables.
+Each plan should be collapsible.
+Essential Plan
+Short summary
+Starting from ₦xx,xxx
+Button: Choose Essential
+Tap to expand:
+included categories
+who it’s for
+flexibility info
+Same for Family and Premium.
+Mark Family as:
+Most Popular
+
+7. Mobile Product Detail Page
+Structure:
+1.Image carousel
+2.Box name
+3.Starting price
+4.Short description
+5.Tier selector
+6.Frequency selector
+7.What’s inside
+8.Benefits
+9.CTA sticky bottom bar
+Sticky bottom bar:
+₦xx,xxx | Subscribe Now
+
+8. Mobile Checkout Flow
+Each step should be a separate screen or accordion step.
+Recommended mobile flow:
+Screen 1
+Choose plan
+Screen 2
+Choose boxes
+Screen 3
+Choose variants
+Screen 4
+Choose delivery schedule
+Screen 5
+Enter address
+Screen 6
+Payment
+Screen 7
+Confirmation
+Use large next buttons:
+Continue
+Add back navigation clearly at top.
+
+Mobile Navigation
+Use a simple bottom nav or compact hamburger plus sticky CTA.
+Recommended mobile menu items:
+Home
+Boxes
+Subscription
+About
+Account
+Persistent CTA button:
+Subscribe
+
+Mobile UX Notes for Designers
+Spacing
+Use generous white space. The brand should feel calm, not crowded.
+Buttons
+Buttons should be full width on mobile.
+Text
+Keep paragraphs short, 2 to 3 lines max.
+Images
+Use portrait and close-up visuals more than wide scenes.
+Scrolling
+Break long pages into visual sections with image, heading, CTA rhythm.
+
+Best Mobile Section Order
+For homepage mobile, I recommend this exact order:
+1.Hero
+2.Trust badges
+3.Category scroll
+4.Founder section
+5.How it works
+6.Featured boxes
+7.Subscription plans
+8.Why Everyday Needs exists
+9.Testimonials
+10.Final CTA
+This order helps users understand:
+what it is → who it’s for → why trust it → how to buy
+
+Important UI Components Your Designer Should Build
+For both desktop and mobile:
+Hero section
+Category cards
+Product cards
+Plan cards
+Tier selector
+Frequency selector
+Sticky summary
+Testimonial cards
+Founder story block
+CTA banner
+Mobile bottom sticky action bar
+
+Recommended High-Converting CTA Language
+Use these consistently:
+Explore Boxes
+Start Subscription
+Build My Plan
+View Box
+Choose Plan
+Continue
+Subscribe Now
+
+Premium UX Direction
+The site should feel like:
+thoughtful
+warm
+editorial
+organized
+premium but human
+Think:
+soft neutrals, strong imagery, elegant spacing, simple copy, clear actions.
+
+
+🛍️ 2. SHOP PAGE WIREFRAME
+
+🔹 TOP BAR
+Search
+Sort dropdown
+Filter button (mobile drawer)
+
+🔹 LEFT FILTER PANEL (DESKTOP)
+Filters:
+Category
+Price range
+Household size
+Frequency
+
+🔹 PRODUCT GRID
+Desktop: 3–4 columns
+Mobile: 1–2 columns
+
+PRODUCT CARD
+Image
+Box name
+Starting price
+Tag (optional)
+CTA: View Box
+
+🔹 LOAD MORE / PAGINATION
+
+📦 3. PRODUCT DETAIL PAGE
+
+🔹 SECTION 1 — HERO
+Desktop:
+Left: Image gallery
+Right: Info
+Mobile:
+Image slider → info
+
+INFO BLOCK
+Box name
+Starting price
+Short description
+
+🔹 SECTION 2 — SELECT OPTIONS
+Tier Selector
+Beginner
+Classic
+Premium
+Frequency
+Monthly
+Quarterly
+
+🔹 SECTION 3 — WHAT’S INSIDE
+Grid or list
+Icons or images
+
+🔹 SECTION 4 — BENEFITS
+Curated
+Fresh
+Convenient
+
+🔹 SECTION 5 — REVIEWS
+
+🔹 SECTION 6 — CTA
+Sticky:
+👉 Subscribe Now
+
+💳 4. SUBSCRIPTION PAGE WIREFRAME
+
+🔹 HERO
+Headline
+Subtext
+CTA
+
+🔹 PLAN CARDS
+3 columns (desktop) / stacked (mobile)
+Each card:
+Plan name
+Price range
+Features
+CTA
+
+🔹 COMPARISON TABLE
+Desktop only
+Mobile: accordion
+
+🔹 FLEXIBILITY SECTION
+Icons:
+Pause anytime
+Swap anytime
+Cancel anytime
+
+🔹 FINAL CTA
+
+🧾 5. CHECKOUT FLOW WIREFRAME
+
+🔹 STEP BAR
+Plan → Boxes → Options → Delivery → Details → Payment
+
+🔹 STEP SCREENS
+1. Choose Plan
+Cards
+2. Select Boxes
+Grid selection
+3. Choose Variants
+Selectors
+4. Delivery
+Options
+5. Details
+Form
+6. Payment
+Summary + pay
+
+🔹 STICKY SUMMARY
+Desktop: Right sidebar
+Mobile: Bottom bar
+
+📖 6. WHY WE EXIST PAGE
+
+🔹 HERO
+Founder image
+
+🔹 STORY BLOCKS
+1.Problem
+2.Founder insight
+3.Philosophy
+4.Cultural roots
+
+🔹 FINAL CTA
+
+📱 MOBILE UX STRUCTURE (GLOBAL RULES)
+
+🔹 GENERAL RULES
+Max 2–3 lines per paragraph
+Full-width buttons
+Sticky CTA
+Cards instead of grids
+Swipe interactions
+
+🔹 MOBILE COMPONENTS
+Sticky Bottom Bar
+“₦XXX | Subscribe”
+
+Slide-Up Drawer
+For:
+Cart
+Filters
+Plan selection
+
+Accordion Sections
+For:
+Plans
+FAQs
+Details
+
+🎨 DESIGN SYSTEM NOTES
+
+COLORS
+Deep Green: #1F3D34
+Warm Beige: #F5F1E8
+Gold Accent: #C8A96A
+
+SPACING
+Generous white space
+Clean margins
+Soft shadows
+
+IMAGERY STYLE
+Natural lighting
+Real homes
+Warm tones
+Lifestyle-focused
+
+🧩 COMPONENT LIST (FOR FIGMA)
+Your designer should create:
+Hero block
+Category card
+Product card
+Plan card
+Tier selector
+Cart summary
+Testimonial card
+CTA banner
+Mobile nav
+Filter drawer
+
+🚀 FINAL NOTE (IMPORTANT)
+If your designer follows this:
+You will get:
+✔ Premium feel
+✔ Clear navigation
+✔ High conversion
+✔ Scalable system
+
+NEXT STEP (HIGH IMPACT)
+I can now design:
+🔥 FULL FIGMA-STYLE UI (VISUAL MOCKUP)
+OR
+🔥 COPY + UI for landing ads / conversion funnels
+Just tell me 👍
+
+💳 EVERYDAY NEEDS – SUBSCRIPTION PAGE
+🔹 1. HERO SECTION
+Visual: Clean lifestyle image (home, kitchen, or box delivery)
+Headline
+Never Run Out of What Matters Most
+Subtext
+Your home essentials — food, care, and wellness — delivered consistently, effortlessly, and just in time.
+CTA
+Start Your Plan
+
+🔹 2. PLAN STRUCTURE (CORE OF THE PAGE)
+Instead of selling boxes individually, we sell lifestyles.
+
+🥉 ESSENTIAL PLAN
+For individuals or light households
+From ₦25,000 – ₦120,000 / month
+Includes access to:
+Sunrise Essentials (Beginner / Classic)
+Wellness Box
+Sparkling Sanctuary (Essentials)
+Protein Weekly Essentials
+✔ Flexible
+✔ Affordable
+✔ Great for starting out
+CTA: Choose Essential
+
+🥈 FAMILY PLAN ⭐ (MOST POPULAR)
+From ₦120,000 – ₦250,000 / month
+Includes:
+Pantry Provision (Classic)
+Sunrise Essentials (Family Classic)
+Protein Prime Cut (Classic)
+Farm Fresh Harvest(weekly/monthly)
+✔ Designed for real homes
+✔ Balanced monthly supply
+✔ Best value
+CTA: Choose Family Plan
+
+🥇 PREMIUM LIFESTYLE PLAN
+From ₦250,000 – ₦400,000+ / month
+Includes:
+Pantry Provision (Premium)
+Gourmet Pleasure Box
+Radiant Glow
+PureBliss Pamper Kit
+Protein Prime Cut (Premium)
+✔ Full lifestyle coverage
+✔ Premium products
+✔ Luxury home experience
+CTA: Choose Premium
+
+🔹 3. PLAN COMPARISON TABLE (VERY IMPORTANT)
+Feature	Essential	Family ⭐	Premium
+Pantry Supply	❌	✔	✔
+Fresh Produce	❌	✔	✔
+Protein	✔ (Basic)	✔	✔ Premium
+Wellness	✔	✔	✔
+Self-Care	❌	Optional	✔
+Luxury Items	❌	❌	✔
+Best For	Individuals	Families	Premium homes
+
+🔹 4. FLEXIBILITY SECTION
+Headline
+Designed Around Your Life
+Features:
+✔ Pause anytime
+✔ Swap boxes anytime
+✔ Upgrade or downgrade
+✔ No long-term commitment
+
+🔹 5. HOW IT WORKS (SHORT VERSION)
+Reuse your steps:
+1.Choose your plan
+2.Customize your boxes
+3.We deliver monthly
+4.Enjoy uninterrupted living
+
+🔹 6. SOCIAL PROOF
+Headline
+Homes Are Switching to Everyday Needs
+Add:
+Testimonials
+Before/after lifestyle
+Family photos
+
+🔹 7. FINAL CTA (VERY STRONG)
+Headline
+Simplify Your Home. Elevate Everyday Living.
+Subtext
+Join hundreds of homes choosing convenience, care, and consistency.
+CTA
+Start Your Subscription
+🛍️ 2. SHOP PAGE WIREFRAME
+
+🔹 TOP BAR
+Search
+Sort dropdown
+Filter button (mobile drawer)
+
+🔹 LEFT FILTER PANEL (DESKTOP)
+Filters:
+Category
+Price range
+Household size
+Frequency
+
+🔹 PRODUCT GRID
+Desktop: 3–4 columns
+Mobile: 1–2 columns
+
+PRODUCT CARD
+Image
+Box name
+Starting price
+Tag (optional)
+CTA: View Box
+
+🔹 LOAD MORE / PAGINATION
+
+📦 3. PRODUCT DETAIL PAGE
+
+🔹 SECTION 1 — HERO
+Desktop:
+Left: Image gallery
+Right: Info
+Mobile:
+Image slider → info
+
+INFO BLOCK
+Box name
+Starting price
+Short description
+
+🔹 SECTION 2 — SELECT OPTIONS
+Tier Selector
+Beginner
+Classic
+Premium
+Frequency
+Monthly
+Quarterly
+
+🔹 SECTION 3 — WHAT’S INSIDE
+Grid or list
+Icons or images
+
+🔹 SECTION 4 — BENEFITS
+Curated
+Fresh
+Convenient
+
+🔹 SECTION 5 — REVIEWS
+
+🔹 SECTION 6 — CTA
+Sticky:
+👉 Subscribe Now
+
+💳 4. SUBSCRIPTION PAGE WIREFRAME
+
+🔹 HERO
+Headline
+Subtext
+CTA
+
+🔹 PLAN CARDS
+3 columns (desktop) / stacked (mobile)
+Each card:
+Plan name
+Price range
+Features
+CTA
+
+🔹 COMPARISON TABLE
+Desktop only
+Mobile: accordion
+
+🔹 FLEXIBILITY SECTION
+Icons:
+Pause anytime
+Swap anytime
+Cancel anytime
+
+🔹 FINAL CTA
+
+🧾 5. CHECKOUT FLOW WIREFRAME
+
+🔹 STEP BAR
+Plan → Boxes → Options → Delivery → Details → Payment
+
+🔹 STEP SCREENS
+1. Choose Plan
+Cards
+2. Select Boxes
+Grid selection
+3. Choose Variants
+Selectors
+4. Delivery
+Options
+5. Details
+Form
+6. Payment
+Summary + pay
+
+🔹 STICKY SUMMARY
+Desktop: Right sidebar
+Mobile: Bottom bar
+
+📖 6. WHY WE EXIST PAGE
+
+🔹 HERO
+Founder image
+
+🔹 STORY BLOCKS
+1.Problem
+2.Founder insight
+3.Philosophy
+4.Cultural roots
+
+🔹 FINAL CTA
+
+📱 MOBILE UX STRUCTURE (GLOBAL RULES)
+
+🔹 GENERAL RULES
+Max 2–3 lines per paragraph
+Full-width buttons
+Sticky CTA
+Cards instead of grids
+Swipe interactions
+
+🔹 MOBILE COMPONENTS
+Sticky Bottom Bar
+“₦XXX | Subscribe”
+
+Slide-Up Drawer
+For:
+Cart
+Filters
+Plan selection
+
+Accordion Sections
+For:
+Plans
+FAQs
+Details
+
+🎨 DESIGN SYSTEM NOTES
+
+
+SPACING
+Generous white space
+Clean margins
+Soft shadows
+
+IMAGERY STYLE
+Natural lighting
+Real homes
+Warm tones
+Lifestyle-focused
+
+🧩 COMPONENT LIST
+designer should create:
+Hero block
+Category card
+Product card
+Plan card
+Tier selector
+Cart summary
+Testimonial card
+CTA banner
+Mobile nav
+Filter drawer

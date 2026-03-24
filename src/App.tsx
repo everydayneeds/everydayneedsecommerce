@@ -94,7 +94,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer" onClick={() => setView('home')}>
-            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs</span>
+            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs | Home Supply System</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -1628,7 +1628,7 @@ const OrderDetailsModal = ({
 };
 
 const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen: boolean, onClose: () => void, subscription: Subscription | null }) => {
-  const [view, setView] = useState<'main' | 'change-plan' | 'pause' | 'cancel'>('main');
+  const [view, setView] = useState<'main' | 'change-plan' | 'pause' | 'skip' | 'swap' | 'cancel'>('main');
   const [selectedPlan, setSelectedPlan] = useState(subscription?.plan || 'Monthly');
 
   if (!isOpen || !subscription) return null;
@@ -1677,6 +1677,44 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
             </div>
           </div>
         );
+      case 'skip':
+        return (
+          <div className="space-y-6">
+            <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto">
+              <ArrowRight size={32} />
+            </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-zinc-900">Skip Next Delivery</h2>
+              <p className="text-sm text-zinc-500 mt-2">You won't be charged for the next billing cycle, and your subscription will automatically resume afterwards.</p>
+            </div>
+            <div className="flex gap-4 pt-4">
+              <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Cancel</button>
+              <button onClick={() => { alert('Delivery skipped! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700">Confirm Skip</button>
+            </div>
+          </div>
+        );
+      case 'swap':
+        return (
+          <div className="space-y-6">
+            <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto">
+              <RefreshCw size={32} />
+            </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-zinc-900">Swap Box</h2>
+              <p className="text-sm text-zinc-500 mt-2">Choose a different box for your next delivery.</p>
+            </div>
+            <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
+              {['Pantry Provision', 'Sunrise Essentials', 'Farm Fresh Harvest', 'PureBliss Pamper Kit'].map(b => (
+                <button key={b} onClick={() => { alert(`${b} selected! Notification sent to user.`); setView('main'); }} className="w-full text-left p-4 rounded-xl border border-zinc-200 hover:border-[#6F7E57] hover:bg-zinc-50 font-bold text-sm text-zinc-700">
+                  {b}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-4 pt-4">
+              <button onClick={() => setView('main')} className="w-full py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Cancel</button>
+            </div>
+          </div>
+        );
       case 'cancel':
         return (
           <div className="space-y-6">
@@ -1722,6 +1760,26 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                     <Pause size={18} />
                   </div>
                   <span className="text-sm font-bold text-zinc-700">Pause Subscription</span>
+                </div>
+                <ChevronRight size={18} className="text-zinc-400" />
+              </button>
+
+              <button onClick={() => setView('skip')} className="w-full flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-2xl hover:border-blue-500 transition-all group">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <ArrowRight size={18} />
+                  </div>
+                  <span className="text-sm font-bold text-zinc-700">Skip Next Delivery</span>
+                </div>
+                <ChevronRight size={18} className="text-zinc-400" />
+              </button>
+
+              <button onClick={() => setView('swap')} className="w-full flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-2xl hover:border-purple-500 transition-all group">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-50 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <RefreshCw size={18} />
+                  </div>
+                  <span className="text-sm font-bold text-zinc-700">Swap Box</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
@@ -5114,9 +5172,9 @@ function App() {
                 {/* Checkout Header & Progress */}
                 <div className="mb-12">
                   <div className="flex items-center justify-between mb-8">
-                    <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311]">Checkout</h2>
+                    <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311]">System Setup</h2>
                     <div className="bg-[#6F7E57]/10 px-4 py-2 rounded-full border border-[#6F7E57]/20">
-                    <span className="text-xs font-black text-[#6F7E57] uppercase tracking-widest">Step {checkoutStep} of 7</span>
+                      <span className="text-xs font-black text-[#6F7E57] uppercase tracking-widest">Step {checkoutStep} of 7</span>
                     </div>
                   </div>
                   
@@ -5132,100 +5190,72 @@ function App() {
                 </div>
 
                 <div className="bg-white rounded-[4rem] border border-black/5 shadow-xl overflow-hidden min-h-[500px] flex flex-col">
-                  {/* Step Content */}
                   <div className="p-8 md:p-12 flex-grow">
                     {checkoutStep === 1 && (
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
                         <div>
-                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Order Summary</h3>
-                          <p className="text-zinc-500 font-medium">Review the items in your household bundle.</p>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Choose your plan</h3>
+                          <p className="text-zinc-500 font-medium">Choose the plan that fits your home.</p>
                         </div>
-                        <div className="space-y-4">
-                          {checkoutData.items.map((item: any, i: number) => (
-                            <div key={i} className="flex items-center gap-6 p-6 bg-[#FAF5EF] rounded-[2rem] border border-black/5">
-                              <div className="w-20 h-20 bg-white rounded-2xl overflow-hidden p-2 border border-black/5 shrink-0">
-                                <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="font-bold text-zinc-900">{item.name}</h4>
-                                <p className="text-xs text-[#6F7E57] font-black uppercase tracking-widest mt-1">
-                                  ₦{item.price.toLocaleString()} {item.quantity > 1 ? `x ${item.quantity}` : ''}
-                                </p>
-                              </div>
-                              <p className="font-black text-zinc-900">₦{(item.price * (item.quantity || 1)).toLocaleString()}</p>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          {['Essential', 'Family', 'Premium'].map(plan => (
+                            <button 
+                              key={plan}
+                              onClick={() => setCheckoutData({...checkoutData, plan})}
+                              className={`p-6 rounded-3xl border-2 text-left transition-all ${checkoutData.plan === plan ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-xl' : 'bg-white border-zinc-200 text-zinc-800 hover:border-[#6F7E57]/30'}`}
+                            >
+                              <h4 className="font-black text-xl mb-2">{plan}</h4>
+                              <p className="text-sm opacity-80 mb-4">{plan === 'Essential' ? 'For individuals or lighter households' : plan === 'Family' ? 'For growing homes and regular needs' : 'For full lifestyle coverage and curation'}</p>
+                              <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Tap to select</p>
+                            </button>
                           ))}
                         </div>
-                        <div className="pt-8 border-t border-black/5">
-                          <div className="flex justify-between items-center bg-[#575B44] text-white p-8 rounded-[2.5rem] shadow-lg">
-                            <div>
-                              <p className="text-xs font-black uppercase tracking-widest opacity-60">Estimated Total</p>
-                              <p className="text-3xl font-black">₦{checkoutData.total.toLocaleString()}</p>
-                            </div>
-                            <button onClick={() => setCheckoutStep(2)} className="bg-[#f7ebc3] text-[#693311] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl">
-                              Next: Delivery Details
-                            </button>
-                          </div>
+                        <p className="text-center text-zinc-400 text-sm font-medium">Pause, skip, upgrade, or cancel anytime</p>
+                        <div className="flex pt-8 border-t border-black/5">
+                          <button onClick={() => setCheckoutStep(2)} className="w-full py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            Continue
+                          </button>
                         </div>
                       </motion.div>
                     )}
 
                     {checkoutStep === 2 && (
                       <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
-                         <div>
-                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Delivery Details</h3>
-                          <p className="text-zinc-500 font-medium">Where should we deliver your home essentials?</p>
+                        <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Build your monthly rhythm</h3>
+                          <p className="text-zinc-500 font-medium">Select included boxes for your {checkoutData.plan} plan.</p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="md:col-span-2">
-                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Full Name</label>
-                             <input 
-                              type="text" 
-                              value={checkoutData.name} 
-                              onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})}
-                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none"
-                              placeholder="John Doe"
-                             />
-                          </div>
-                          <div>
-                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Phone Number</label>
-                             <input 
-                              type="tel" 
-                              value={checkoutData.phone} 
-                              onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})}
-                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none"
-                              placeholder="+234 ..."
-                             />
-                          </div>
-                          <div>
-                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Preferred Time Slot</label>
-                             <Dropbox 
-                                label=""
-                                options={[
-                                  { value: 'Morning (8am - 12pm)', label: 'Morning (8am - 12pm)' },
-                                  { value: 'Afternoon (1pm - 5pm)', label: 'Afternoon (1pm - 5pm)' },
-                                  { value: 'Evening (6pm - 8pm)', label: 'Evening (6pm - 8pm)' }
-                                ]}
-                                value={checkoutData.deliveryTime}
-                                onChange={(val) => setCheckoutData({...checkoutData, deliveryTime: val})}
-                             />
-                          </div>
-                          <div className="md:col-span-2">
-                             <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 ml-4">Delivery Address (Lagos/PH only)</label>
-                             <textarea 
-                              value={checkoutData.address} 
-                              onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})}
-                              className="w-full px-8 py-5 bg-[#FAF5EF] border border-[#6F7E57]/10 rounded-[2rem] font-bold text-zinc-800 focus:ring-4 focus:ring-[#6F7E57]/10 transition-all outline-none min-h-[120px]"
-                              placeholder="House number, Street, Area..."
-                             />
-                          </div>
+                        <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                          {products.slice(0, 6).map(box => {
+                            const isSelected = checkoutData.items.some((i: any) => i.id === box.id);
+                            return (
+                            <button 
+                              key={box.id}
+                              onClick={() => {
+                                let newItems = [...checkoutData.items];
+                                if (isSelected) newItems = newItems.filter((i: any) => i.id !== box.id);
+                                else newItems.push({...box, quantity: 1, variant: 'Classic', finalPrice: box.price});
+                                setCheckoutData({...checkoutData, items: newItems, total: newItems.reduce((acc: number, curr: any) => acc + (curr.finalPrice || curr.price), 0)});
+                              }}
+                              className={`w-full flex items-center gap-6 p-4 rounded-[2rem] border-2 transition-all ${isSelected ? 'border-[#6F7E57] bg-[#6F7E57]/5' : 'border-black/5 bg-white hover:border-[#6F7E57]/30'}`}
+                            >
+                              <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 border border-black/5">
+                                <img src={box.image_url} alt={box.name} className="w-full h-full object-cover" />
+                              </div>
+                              <div className="flex-1 text-left">
+                                <h4 className="font-bold text-zinc-900">{box.name}</h4>
+                                <p className="text-xs text-zinc-500 mt-1 line-clamp-1">{box.description}</p>
+                              </div>
+                              <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected ? 'bg-[#6F7E57] border-[#6F7E57]' : 'border-zinc-300'}`}>
+                                {isSelected && <Check size={16} className="text-white" />}
+                              </div>
+                            </button>
+                          )})}
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
-                          <button onClick={() => setCheckoutStep(1)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
-                            Back
-                          </button>
-                          <button onClick={() => setCheckoutStep(3)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
-                            Next: Personalize Your Box
+                          <button onClick={() => setCheckoutStep(1)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(3)} className="flex-1 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            Continue
                           </button>
                         </div>
                       </motion.div>
@@ -5233,42 +5263,45 @@ function App() {
 
                     {checkoutStep === 3 && (
                       <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
-                         <div>
-                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Personalize Your Box</h3>
-                          <p className="text-zinc-500 font-medium">Tell us about your home to help us optimize your supply.</p>
+                        <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Choose your box options</h3>
+                          <p className="text-zinc-500 font-medium">Select the tier for each box.</p>
                         </div>
                         <div className="space-y-6">
-                           <div>
-                              <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-4 ml-4">Household Size</label>
-                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                {['1 Person', '1-2 People', 'Family (3-5)', 'Large Family (5+)'].map(size => (
-                                  <button 
-                                    key={size}
-                                    onClick={() => setCheckoutData({...checkoutData, householdSize: size})}
-                                    className={`p-6 rounded-3xl border-2 transition-all text-sm font-bold ${checkoutData.householdSize === size ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-lg' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
-                                  >
-                                    {size}
-                                  </button>
-                                ))}
+                          {checkoutData.items.length === 0 ? (
+                            <p className="text-center py-10 text-zinc-400 font-bold">No boxes selected.</p>
+                          ) : (
+                            checkoutData.items.map((item: any) => (
+                              <div key={item.id} className="p-6 bg-[#FAF5EF] rounded-[2rem] border border-black/5">
+                                <h4 className="font-bold text-zinc-900 mb-4">{item.name}</h4>
+                                <div className="grid grid-cols-3 gap-3">
+                                  {['Essentials', 'Classic', 'Premium'].map(tier => (
+                                    <button 
+                                      key={tier}
+                                      onClick={() => {
+                                        const newItems = checkoutData.items.map((i: any) => {
+                                          if (i.id === item.id) {
+                                            const newPrice = tier === 'Essentials' ? i.price * 0.8 : tier === 'Premium' ? i.price * 1.5 : i.price;
+                                            return {...i, variant: tier, finalPrice: newPrice};
+                                          }
+                                          return i;
+                                        });
+                                        setCheckoutData({...checkoutData, items: newItems, total: newItems.reduce((acc: number, curr: any) => acc + (curr.finalPrice || curr.price), 0)});
+                                      }}
+                                      className={`p-3 rounded-2xl border text-center transition-all ${item.variant === tier || (!item.variant && tier === 'Classic') ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57]/30'}`}
+                                    >
+                                      <span className="text-xs font-bold">{tier}</span>
+                                    </button>
+                                  ))}
+                                </div>
                               </div>
-                           </div>
-                           <Dropbox 
-                              label="Special Delivery Notes?"
-                              options={[]}
-                              value={checkoutData.notes}
-                              onChange={(val) => setCheckoutData({...checkoutData, notes: val})}
-                           />
-                           <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5">
-                              <p className="text-sm font-bold text-[#693311] mb-2 leading-relaxed">Why this matters?</p>
-                              <p className="text-xs text-zinc-500 leading-relaxed font-medium">Knowing your household size helps us ensure your automated restocking happens exactly when you're about to run out.</p>
-                           </div>
+                            ))
+                          )}
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
-                          <button onClick={() => setCheckoutStep(2)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
-                            Back
-                          </button>
-                          <button onClick={() => setCheckoutStep(4)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
-                            Next: Subscription Frequency
+                          <button onClick={() => setCheckoutStep(2)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(4)} className="flex-1 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            Continue
                           </button>
                         </div>
                       </motion.div>
@@ -5276,51 +5309,51 @@ function App() {
 
                     {checkoutStep === 4 && (
                       <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
-                         <div>
-                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Subscription Preferences</h3>
-                          <p className="text-zinc-500 font-medium">Choose how often you want your essentials delivered.</p>
+                        <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Set your delivery schedule</h3>
+                          <p className="text-zinc-500 font-medium">When would you like your {checkoutData.plan} plan delivered?</p>
                         </div>
                         <div className="space-y-6">
                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <button 
-                                onClick={() => setCheckoutStep(4)} // just to keep the state for now
-                                className={`p-10 rounded-[3rem] border-2 text-left transition-all ${checkoutData.frequency === 'Monthly' ? 'bg-[#6F7E57] border-[#6F7E57] text-white shadow-2xl' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
-                                onClickCapture={() => setCheckoutData({...checkoutData, frequency: 'Monthly', total: checkoutData.items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0)})}
+                                className={`p-8 rounded-[2rem] border-2 text-left transition-all ${checkoutData.frequency === 'Monthly' ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
+                                onClick={() => setCheckoutData({...checkoutData, frequency: 'Monthly', total: checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0)})}
                               >
-                                <div className="flex justify-between items-start mb-6">
-                                  <div className={`p-3 rounded-2xl ${checkoutData.frequency === 'Monthly' ? 'bg-white/20' : 'bg-[#6F7E57]/10'}`}>
-                                    <Calendar size={24} />
-                                  </div>
-                                  <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Flex</span>
-                                </div>
                                 <h4 className="text-xl font-bold mb-2">Monthly Delivery</h4>
-                                <p className="text-xs opacity-80 leading-relaxed font-medium">Standard monthly replenishment. Pause or skip anytime.</p>
+                                <p className="text-xs opacity-80 font-medium">Standard monthly replenishment.</p>
                               </button>
-
                               <button 
-                                onClick={() => setCheckoutStep(4)} // just to keep the state for now
-                                className={`p-10 rounded-[3rem] border-2 text-left transition-all relative ${checkoutData.frequency === 'Quarterly' ? 'bg-[#575B44] border-[#575B44] text-white shadow-2xl scale-105' : 'bg-[#FAF5EF] border-black/5 text-[#575B44] hover:border-[#6F7E57]/30'}`}
-                                onClickCapture={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0) * 3) * 0.95})}
+                                className={`p-8 rounded-[2rem] border-2 text-left transition-all relative ${checkoutData.frequency === 'Quarterly' ? 'bg-[#575B44] border-[#575B44] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
+                                onClick={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
-                                <div className="absolute top-6 right-6">
-                                  <span className="bg-[#f7ebc3] text-[#693311] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Save 5%</span>
-                                </div>
-                                <div className="flex justify-between items-start mb-6">
-                                  <div className={`p-3 rounded-2xl ${checkoutData.frequency === 'Quarterly' ? 'bg-white/20' : 'bg-[#6F7E57]/10'}`}>
-                                    <TrendingUp size={24} />
-                                  </div>
-                                </div>
+                                <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
                                 <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
-                                <p className="text-xs opacity-80 leading-relaxed font-medium">Get 3 months supply and save 5% on your total order.</p>
+                                <p className="text-xs opacity-80 font-medium">Get 3 months supply & save.</p>
                               </button>
                            </div>
+                           <Dropbox 
+                              label="Preferred week of delivery"
+                              options={[
+                                { value: 'First Week', label: 'First Week' },
+                                { value: 'Second Week', label: 'Second Week' },
+                                { value: 'Third Week', label: 'Third Week' },
+                                { value: 'Fourth Week', label: 'Fourth Week' }
+                              ]}
+                              value={checkoutData.deliveryTime}
+                              onChange={(val) => setCheckoutData({...checkoutData, deliveryTime: val})}
+                           />
+                           <Dropbox 
+                              label="Special Delivery Notes?"
+                              options={[]}
+                              value={checkoutData.notes}
+                              onChange={(val) => setCheckoutData({...checkoutData, notes: val})}
+                           />
+                           <p className="text-xs text-center font-bold text-[#6F7E57] uppercase tracking-widest mt-4">Freshly packed and delivered just in time</p>
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
-                          <button onClick={() => setCheckoutStep(3)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
-                            Back
-                          </button>
-                          <button onClick={() => setCheckoutStep(5)} className="flex-1 py-5 bg-[#6F7E57] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-[#575B44] transition-all shadow-xl">
-                            Next: Final Review
+                          <button onClick={() => setCheckoutStep(3)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(5)} className="flex-1 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            Continue
                           </button>
                         </div>
                       </motion.div>
@@ -5329,80 +5362,84 @@ function App() {
                     {checkoutStep === 5 && (
                       <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
                          <div>
-                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Final Review</h3>
-                          <p className="text-zinc-500 font-medium">Verify your details before proceeding to secure payment.</p>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Where should we deliver?</h3>
+                          <p className="text-zinc-500 font-medium">Enter your customer details below.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="md:col-span-2">
+                             <input type="text" value={checkoutData.name} onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Full Name" />
+                          </div>
+                          <div>
+                             <input type="email" value={checkoutData.email} onChange={(e) => setCheckoutData({...checkoutData, email: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Email Address" />
+                          </div>
+                          <div>
+                             <input type="tel" value={checkoutData.phone} onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Phone Number" />
+                          </div>
+                          <div className="md:col-span-2">
+                             <textarea value={checkoutData.address} onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none min-h-[120px]" placeholder="Full Delivery Address & City" />
+                          </div>
+                        </div>
+                        <div className="flex gap-4 pt-8 border-t border-black/5">
+                          <button onClick={() => setCheckoutStep(4)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(6)} className="flex-1 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                            Continue
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {checkoutStep === 6 && (
+                      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                         <div>
+                          <h3 className="text-2xl font-black text-zinc-900 mb-2">Secure your subscription</h3>
+                          <p className="text-zinc-500 font-medium">Review your system setup and complete payment.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                            <div className="p-8 bg-[#FAF5EF] rounded-[2.5rem] border border-black/5">
-                              <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-6">Delivery info</h4>
+                              <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-6">Order Summary</h4>
                               <div className="space-y-4">
                                 <div>
-                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Address</p>
-                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.address}</p>
-                                </div>
-                                <div className="flex justify-between border-t border-black/5 pt-4">
-                                  <div>
-                                    <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Phone</p>
-                                    <p className="text-sm font-bold text-zinc-800">{checkoutData.phone}</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Time</p>
-                                    <p className="text-sm font-bold text-zinc-800">{checkoutData.deliveryTime}</p>
-                                  </div>
-                                </div>
-                              </div>
-                           </div>
-
-                           <div className="p-8 bg-[#FAF5EF] rounded-[2.5rem] border border-black/5">
-                              <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-6">Plan details</h4>
-                              <div className="space-y-4">
-                                <div>
-                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Frequency</p>
-                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.frequency}</p>
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Your Plan</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.plan} Plan</p>
                                 </div>
                                 <div className="border-t border-black/5 pt-4">
-                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Household</p>
-                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.householdSize}</p>
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Selected Boxes</p>
+                                  <ul className="text-sm font-bold text-zinc-800 list-disc pl-4 space-y-1">
+                                    {checkoutData.items.map((i:any) => <li key={i.id}>{i.name} — {i.variant || 'Classic'}</li>)}
+                                  </ul>
+                                </div>
+                                <div className="border-t border-black/5 pt-4">
+                                  <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Delivery</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.frequency}</p>
                                 </div>
                               </div>
                            </div>
-                        </div>
-
-                        <div className="p-10 bg-[#575B44] rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
-                           <div className="absolute top-0 right-0 p-8 opacity-5">
-                             <CreditCard size={120} />
-                           </div>
-                           <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
-                              <div>
-                                <p className="text-xs font-black uppercase tracking-widest text-[#f7ebc3] mb-2">Total Amount due</p>
-                                <p className="text-4xl font-black">₦{checkoutData.total.toLocaleString()}</p>
-                              </div>
+                           <div className="p-8 bg-zinc-900 text-white rounded-[2.5rem] flex flex-col justify-center text-center group relative overflow-hidden">
+                              <ShieldCheck size={120} className="absolute right-0 top-0 opacity-5" />
+                              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2 z-10">Total Amount</p>
+                              <p className="text-4xl font-black z-10 mb-8">₦{checkoutData.total.toLocaleString()} / {checkoutData.frequency === 'Monthly' ? 'mo' : 'qtr'}</p>
                               <button 
                                 onClick={() => {
-                                  // Trigger Paystack (Step 6)
+                                  // Trigger Paystack
                                   const handler = (window as any).PaystackPop.setup({
                                     key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx',
-                                    email: checkoutData.email,
+                                    email: checkoutData.email || 'guest@example.com',
                                     amount: checkoutData.total * 100,
                                     currency: 'NGN',
                                     callback: function(response: any) {
-                                      console.log('Payment successful', response);
                                       setCheckoutStep(7); // Success Step
                                     }
                                   });
                                   handler.openIframe();
                                 }}
-                                className="bg-[#f7ebc3] text-[#693311] px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl active:scale-95"
+                                className="w-full bg-[#f7ebc3] text-[#693311] py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all z-10 shadow-xl"
                               >
-                                Pay Securely With Paystack
+                                Start Subscription
                               </button>
                            </div>
                         </div>
-
                         <div className="flex gap-4 pt-4">
-                          <button onClick={() => setCheckoutStep(4)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">
-                            Back
-                          </button>
+                          <button onClick={() => setCheckoutStep(5)} className="px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
                         </div>
                       </motion.div>
                     )}
@@ -5413,40 +5450,32 @@ function App() {
                             <Check size={48} />
                          </div>
                          <div>
-                            <h3 className="text-3xl font-black text-zinc-900 mb-3">Order Confirmed!</h3>
-                            <p className="text-zinc-500 font-medium max-w-sm mx-auto">Thank you for trusting Everyday Needs. Your home essentials bundle is being prepared for delivery.</p>
+                            <h3 className="text-4xl font-black text-zinc-900 mb-3">You're all set</h3>
+                            <p className="text-zinc-500 font-medium max-w-sm mx-auto">Your Everyday Needs plan is now active and your first delivery is being prepared.</p>
                          </div>
-                         <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5 max-w-md w-full">
-                            <p className="text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-2">Next delivery</p>
-                            <p className="text-xl font-bold text-zinc-900">Scheduled for Saturday, 21st Mar</p>
+                         <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5 max-w-md w-full text-left">
+                            <p className="text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-2 border-b border-black/5 pb-2">Plan summary</p>
+                            <p className="text-lg font-bold text-zinc-900 mt-2">{checkoutData.plan} Plan</p>
+                            <p className="text-zinc-500 text-sm">{checkoutData.items.length} boxes • {checkoutData.frequency}</p>
+                            <p className="text-sm font-bold text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
+                            <p className="text-sm font-bold text-zinc-900">{checkoutData.address}</p>
                          </div>
-                         <button onClick={() => setView('dashboard')} className="px-12 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
-                            View Delivery Schedule
-                         </button>
+                         <div className="flex gap-4">
+                           <button onClick={() => setView('dashboard')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                              Manage Subscription
+                           </button>
+                           <button onClick={() => setView('products')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-bold uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
+                              Explore Add-Ons
+                           </button>
+                         </div>
                       </motion.div>
                     )}
-
-                    {checkoutStep === 6 && (
-                       <div className="flex flex-col items-center justify-center py-20 text-center">
-                          <div className="w-16 h-16 bg-[#F8F0E5] rounded-full flex items-center justify-center text-[#6F7E57] mb-6">
-                            <RefreshCw className="animate-spin" />
-                          </div>
-                          <p className="text-zinc-500 font-medium">Processing payment...</p>
-                       </div>
-                    )}
-                  </div>
-
-                  {/* Trust Footer */}
-                  <div className="bg-[#FAF5EF] p-6 border-t border-black/5 flex items-center justify-center gap-8 opacity-40 grayscale pointer-events-none">
-                    <ShieldCheck size={20} />
-                    <Truck size={20} />
-                    <RefreshCw size={20} />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Secure Checkout</span>
                   </div>
                 </div>
               </div>
             </motion.div>
           )}
+
 
           {view === 'contact' && (
             <motion.div
