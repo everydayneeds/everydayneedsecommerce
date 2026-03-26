@@ -94,11 +94,12 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer" onClick={() => setView('home')}>
-            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs</span>
+            <span className="text-2xl font-black tracking-tighter text-[#6F7E57]">Everyday Needs</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
+            <button onClick={() => setView('pricing')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
+            
             <div 
               className="relative group"
               onMouseEnter={() => setShowAboutDropdown(true)}
@@ -144,7 +145,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             >
               <ShoppingCart size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
                   {cartCount}
                 </span>
               )}
@@ -177,7 +178,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             >
               <ShoppingCart size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 bg-[#6F7E57] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               )}
@@ -199,11 +200,11 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             className="md:hidden bg-[#FAF5EF] border-t border-[#6F7E57]/10 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Products</button>
+              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Products</button>
               <div className="space-y-1">
                 <button 
                   onClick={() => setShowAboutDropdown(!showAboutDropdown)}
-                  className="flex items-center justify-between w-full px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors"
+                  className="flex items-center justify-between w-full px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors"
                 >
                   About
                   <ChevronDown size={18} className={`transition-transform duration-200 ${showAboutDropdown ? 'rotate-180' : ''}`} />
@@ -220,7 +221,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
                         <button
                           key={link.view}
                           onClick={() => { setView(link.view); setIsOpen(false); }}
-                          className="block w-full text-left px-4 py-2 text-sm font-bold text-zinc-600 hover:text-[#6F7E57] transition-colors"
+                          className="block w-full text-left px-4 py-2 text-sm font-black text-zinc-600 hover:text-[#6F7E57] transition-colors"
                         >
                           {link.name}
                         </button>
@@ -229,10 +230,10 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
                   )}
                 </AnimatePresence>
               </div>
-              <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Gift a Box</button>
-              <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-bold text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Contact Us</button>
+              <button onClick={() => { setView('gift-a-box'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Gift a Box</button>
+              <button onClick={() => { setView('contact'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Contact Us</button>
               {!user && (
-                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-6 block w-full text-center bg-[#6F7E57] text-white px-3 py-4 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-md">Login / Register</button>
+                <button onClick={() => { setView('auth'); setIsOpen(false); }} className="mt-6 block w-full text-center bg-[#6F7E57] text-white px-3 py-5 rounded-xl font-black hover:bg-[#6F7E57]/90 transition-all shadow-md">Login / Register</button>
               )}
             </div>
           </motion.div>
@@ -282,7 +283,7 @@ const CartDrawer = ({
               <div className="p-2 bg-white/20 text-white rounded-xl">
                 <ShoppingCart size={20} />
               </div>
-              <h3 className="text-xl font-bold text-white">Your Cart</h3>
+              <h3 className="text-xl font-black text-white">Your Cart</h3>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg text-white/80 transition-colors">
               <X size={24} />
@@ -297,12 +298,12 @@ const CartDrawer = ({
                     <ShoppingBag size={40} />
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-zinc-900">Your cart is empty</p>
+                    <p className="text-lg font-black text-zinc-900">Your cart is empty</p>
                     <p className="text-zinc-500">Looks like you haven't added anything yet.</p>
                   </div>
                   <button
                     onClick={onClose}
-                    className="bg-[#6F7E57] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6F7E57]/90 transition-all"
+                    className="bg-[#6F7E57] text-white px-8 py-3 rounded-xl font-black hover:bg-[#6F7E57]/90 transition-all"
                   >
                     Start Shopping
                   </button>
@@ -315,7 +316,7 @@ const CartDrawer = ({
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start mb-1">
-                        <h4 className="font-bold text-zinc-900 truncate pr-4">{item.name}</h4>
+                        <h4 className="font-black text-zinc-900 truncate pr-4">{item.name}</h4>
                         <button
                           onClick={() => onRemove(item.id)}
                           className="text-zinc-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
@@ -332,7 +333,7 @@ const CartDrawer = ({
                           >
                             <X size={14} className="rotate-45" />
                           </button>
-                          <span className="w-8 text-center text-xs font-bold text-zinc-900">{item.quantity}</span>
+                          <span className="w-8 text-center text-xs font-black text-zinc-900">{item.quantity}</span>
                           <button
                             onClick={() => onUpdateQuantity(item.id, 1)}
                             className="p-1 hover:text-[#6F7E57] transition-colors"
@@ -340,7 +341,7 @@ const CartDrawer = ({
                             <Plus size={14} />
                           </button>
                         </div>
-                        <p className="font-bold text-zinc-900">₦{(item.price * item.quantity).toLocaleString()}</p>
+                        <p className="font-black text-zinc-900">₦{(item.price * item.quantity).toLocaleString()}</p>
                       </div>
                     </div>
                   </div>
@@ -352,12 +353,12 @@ const CartDrawer = ({
           {items.length > 0 && (
             <div className="p-6 border-t border-[#6F7E57]/10 bg-[#FAF5EF] space-y-4 rounded-b-2xl">
               <div className="flex justify-between items-center text-zinc-600">
-                <span className="text-sm font-bold">Subtotal</span>
+                <span className="text-sm font-black">Subtotal</span>
                 <span className="text-xl font-black text-zinc-900">₦{total.toLocaleString()}</span>
               </div>
               <button
                 onClick={onCheckout}
-                className="w-full bg-[#6F7E57] text-white py-4 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/10 flex items-center justify-center gap-2 group"
+                className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/10 flex items-center justify-center gap-2 group"
               >
                 Checkout Now
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -415,7 +416,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-[#6F7E57]/10 text-[#6F7E57] px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <div className="inline-flex items-center space-x-2 bg-[#6F7E57]/10 text-[#6F7E57] px-4 py-2 rounded-full text-sm font-black mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6F7E57]/40 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6F7E57]"></span>
@@ -434,14 +435,14 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setView('pricing')}
-                className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
+                className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-[#6F7E57]/90 transition-all shadow-xl shadow-brand-primary/10 flex items-center justify-center gap-2 group"
               >
                 Start Your Subscription
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </button>
               <button
-                onClick={() => setView('products')}
-                className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
+                onClick={() => setView('pricing')}
+                className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-black text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
               >
                 Explore Our Boxes
               </button>
@@ -465,7 +466,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
                       }`}
                   >
                     <div className="flex-grow text-left">
-                      <p className="text-sm font-bold tracking-tight">{item.label}</p>
+                      <p className="text-sm font-black tracking-tight">{item.label}</p>
                     </div>
                     <ChevronDown size={18} className={`transition-transform duration-300 ${expandedTrustIdx === i ? 'rotate-180' : ''}`} />
                   </button>
@@ -548,7 +549,7 @@ const Dropbox: React.FC<{
 
   return (
     <div className={`relative ${className}`}>
-      {label && <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2 px-1">{label}</label>}
+      {label && <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-2 px-1">{label}</label>}
       <div 
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full bg-white border-2 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all shadow-sm group ${
@@ -556,7 +557,7 @@ const Dropbox: React.FC<{
         }`}
       >
         <div className="flex flex-col text-left">
-          <span className={`text-sm font-bold flex items-center gap-2 ${isOpen ? s.activeText : 'text-zinc-900 group-hover:text-zinc-700'}`}>
+          <span className={`text-sm font-black flex items-center gap-2 ${isOpen ? s.activeText : 'text-zinc-900 group-hover:text-zinc-700'}`}>
             {selectedOption.label}
             {selectedOption.badge && (
               <span className={`px-2 py-0.5 text-[10px] font-black rounded-full border border-black/5 ${s.badgeBg} ${s.badgeText}`}>
@@ -565,7 +566,7 @@ const Dropbox: React.FC<{
             )}
           </span>
           {selectedOption.price && (
-            <span className={`text-xs font-bold ${s.activeText}`}>₦{selectedOption.price.toLocaleString()}</span>
+            <span className={`text-xs font-black ${s.activeText}`}>₦{selectedOption.price.toLocaleString()}</span>
           )}
         </div>
         <ChevronDown size={18} className={`text-zinc-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -585,15 +586,15 @@ const Dropbox: React.FC<{
                 <button
                   key={opt.value}
                   onClick={() => { onChange(opt.value); setIsOpen(false); }}
-                  className={`w-full text-left px-6 py-4 transition-all flex items-center justify-between group ${
+                  className={`w-full text-left px-6 py-5 transition-all flex items-center justify-between group ${
                     value === opt.value ? s.activeBg : s.hoverBg
                   }`}
                 >
                   <div className="flex flex-col">
-                    <span className={`text-sm font-bold ${value === opt.value ? s.activeText : 'text-zinc-600'}`}>
+                    <span className={`text-sm font-black ${value === opt.value ? s.activeText : 'text-zinc-600'}`}>
                       {opt.label}
                     </span>
-                    {opt.price && <span className={`text-xs font-bold ${s.activeText}`}>₦{opt.price.toLocaleString()}</span>}
+                    {opt.price && <span className={`text-xs font-black ${s.activeText}`}>₦{opt.price.toLocaleString()}</span>}
                   </div>
                   {opt.badge && (
                     <span className={`px-2 py-0.5 text-[10px] font-black rounded-full border border-black/5 ${s.badgeBg} ${s.badgeText}`}>
@@ -658,14 +659,14 @@ const ProductCard: React.FC<{
       </div>
 
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="font-serif text-lg font-bold text-zinc-900 mb-1 leading-tight">{product.name}</h3>
+        <h3 className="font-serif text-lg font-black text-zinc-900 mb-1 leading-tight">{product.name}</h3>
         <p className="text-sm text-[#575B44] font-medium mb-3 line-clamp-1 leading-relaxed">{product.shortDesc}</p>
 
         {/* Tier tags */}
         {tiers.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
             {tiers.map((tier, i) => (
-              <span key={i} className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-[#6F7E57]/30 text-[#575B44] bg-[#FAF5EF]">
+              <span key={i} className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-full border border-[#6F7E57]/30 text-[#575B44] bg-[#FAF5EF]">
                 {tier}
               </span>
             ))}
@@ -678,7 +679,7 @@ const ProductCard: React.FC<{
             <span className="text-xl font-black font-sans text-[#6F7E57]">
               ₦{(lowestPlan?.price ?? product.startingFrom ?? product.price).toLocaleString()}
             </span>
-            <span className="text-xs text-[#6F7E57]/70 font-bold ml-1">/ {lowestPlan?.frequency ?? 'month'}</span>
+            <span className="text-xs text-[#6F7E57]/70 font-black ml-1">/ {lowestPlan?.frequency ?? 'month'}</span>
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); onSelect(product); }}
@@ -766,7 +767,7 @@ const ProductDetail = ({
     <div className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <button onClick={onBack} className="flex items-center space-x-2 text-zinc-500 hover:text-zinc-900 mb-8 transition-colors group">
         <ArrowRight size={20} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
-        <span className="text-sm font-bold">Back to Products</span>
+        <span className="text-sm font-black">Back to Products</span>
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
@@ -798,12 +799,12 @@ const ProductDetail = ({
         <div className="space-y-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-bold uppercase tracking-widest rounded-full">
+              <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-black uppercase tracking-widest rounded-full">
                 {product.category}
               </span>
               <div className="flex items-center gap-1 text-amber-400">
                 <Star size={14} fill="currentColor" />
-                <span className="text-xs font-bold text-zinc-900">4.8 (124 Reviews)</span>
+                <span className="text-xs font-black text-zinc-900">4.8 (124 Reviews)</span>
               </div>
             </div>
             <h3 className="text-4xl md:text-5xl font-extrabold text-zinc-900 mb-4 leading-tight">{product.name}</h3>
@@ -813,19 +814,19 @@ const ProductDetail = ({
           <div className="flex items-center gap-4 p-1 bg-zinc-100 rounded-2xl w-fit">
             <button
               onClick={() => setActiveTab('details')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'details' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'details' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Detail
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Subscription
             </button>
             <button
               onClick={() => setActiveTab('reviews')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Reviews
             </button>
@@ -834,7 +835,7 @@ const ProductDetail = ({
           {activeTab === 'details' && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="bg-white rounded-3xl border border-black/5 p-8">
-                <h3 className="font-serif text-xl font-bold mb-6">Product Description</h3>
+                <h3 className="font-serif text-xl font-black mb-6">Product Description</h3>
                 <p className="text-zinc-600 leading-relaxed">{product.description}</p>
               </div>
             </div>
@@ -887,7 +888,7 @@ const ProductDetail = ({
                 {/* Add-Ons */}
                 {(product.addOns ?? []).length > 0 && (
                   <div>
-                    <p className="text-sm font-bold text-zinc-700 mb-2">Optional Add-Ons</p>
+                    <p className="text-sm font-black text-zinc-700 mb-2">Optional Add-Ons</p>
                     <div className="space-y-3">
                       {(product.addOns ?? []).map(addOn => {
                         const isSelected = selectedAddOns.includes(addOn.name);
@@ -895,8 +896,8 @@ const ProductDetail = ({
                           <div key={addOn.name} 
                             className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all ${isSelected ? 'border-[#6F7E57] bg-[#6F7E57]/5' : 'border-black/5 bg-white'}`}>
                             <div className="flex flex-col">
-                              <span className="font-bold text-sm text-zinc-800">{addOn.name}</span>
-                              <span className="text-xs font-bold text-[#6F7E57]">₦{addOn.price.toLocaleString()}</span>
+                              <span className="font-black text-sm text-zinc-800">{addOn.name}</span>
+                              <span className="text-xs font-black text-[#6F7E57]">₦{addOn.price.toLocaleString()}</span>
                             </div>
                             <button 
                               onClick={() => toggleAddOn(addOn.name)}
@@ -939,19 +940,13 @@ const ProductDetail = ({
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setView('pricing')}
-                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
-                >
-                  <Calendar size={20} />
-                  Subscribe Now
-                </button>
+                
                 <button
                   onClick={() => onAddToCart(product, quantity)}
-                  className="w-full bg-[#F8F0E5] text-[#575B44] py-4 rounded-2xl font-bold hover:bg-[#f7ebc3] transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
                 >
                   <ShoppingCart size={18} />
-                  Subscribe Now
+                  Select Box
                 </button>
               </div>
             </div>
@@ -960,23 +955,23 @@ const ProductDetail = ({
           {activeTab === 'reviews' && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-900">Customer Reviews</h3>
-                <button className="text-sm font-bold text-[#6F7E57] hover:underline">Write a Review</button>
+                <h3 className="text-xl font-black text-zinc-900">Customer Reviews</h3>
+                <button className="text-sm font-black text-[#6F7E57] hover:underline">Write a Review</button>
               </div>
               <div className="space-y-4">
                 {reviews.map((rev, i) => (
                   <div key={i} className="p-6 bg-white rounded-3xl border border-black/5">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center text-xs font-bold">{rev.user[0]}</div>
-                        <p className="font-bold text-sm text-zinc-900">{rev.user}</p>
+                        <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center text-xs font-black">{rev.user[0]}</div>
+                        <p className="font-black text-sm text-zinc-900">{rev.user}</p>
                       </div>
                       <div className="flex items-center gap-1 text-amber-400">
                         {[...Array(rev.rating)].map((_, j) => <Star key={j} size={12} fill="currentColor" />)}
                       </div>
                     </div>
                     <p className="text-sm text-zinc-600 leading-relaxed mb-2">{rev.comment}</p>
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{rev.date}</p>
+                    <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">{rev.date}</p>
                   </div>
                 ))}
               </div>
@@ -1032,58 +1027,58 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
           <div className="w-16 h-16 bg-brand-alt-2/20 rounded-2xl flex items-center justify-center text-[#6F7E57] mx-auto mb-6">
             <ShoppingBag size={32} />
           </div>
-          <h2 className="text-3xl font-bold text-zinc-900">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
+          <h2 className="text-3xl font-black text-zinc-900">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
           <p className="text-zinc-500 mt-2">Join Nigeria's most trusted essentials platform</p>
         </div>
 
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-zinc-700 mb-2">Email Address</label>
+            <label className="block text-sm font-black text-zinc-700 mb-2">Email Address</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
+              className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
               placeholder="name@example.com"
             />
           </div>
           {!isLogin && (
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Full Name</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Full Name</label>
               <input
                 type="text"
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
                 placeholder="John Doe"
               />
             </div>
           )}
           <div>
-            <label className="block text-sm font-bold text-zinc-700 mb-2">Password</label>
+            <label className="block text-sm font-black text-zinc-700 mb-2">Password</label>
             <input
               type="password"
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
+              className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl focus:ring-2 focus:ring-[#6F7E57] focus:border-transparent transition-all outline-none"
               placeholder="••••••••"
             />
           </div>
 
           <button
             onClick={() => onLogin(email || 'user@example.com')}
-            className="w-full bg-[#693311] text-white py-4 rounded-2xl font-bold hover:bg-[#693311]/90 transition-all shadow-lg"
+            className="w-full bg-[#693311] text-white py-5 rounded-2xl font-black hover:bg-[#693311]/90 transition-all shadow-lg"
           >
             {isLogin ? 'Sign In' : 'Create Account'}
           </button>
 
-          <div className="relative py-4">
+          <div className="relative py-5">
             <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-zinc-100"></div></div>
-            <div className="relative flex justify-center text-xs uppercase tracking-widest font-bold text-zinc-400 bg-white px-4">Or continue with</div>
+            <div className="relative flex justify-center text-xs uppercase tracking-widest font-black text-zinc-400 bg-white px-4">Or continue with</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <button className="flex items-center justify-center gap-2 py-3 border border-zinc-200 rounded-xl hover:bg-zinc-50 transition-colors">
-              <span className="text-sm font-bold">Google</span>
+              <span className="text-sm font-black">Google</span>
             </button>
             <button className="flex items-center justify-center gap-2 py-3 border border-zinc-200 rounded-xl hover:bg-zinc-50 transition-colors">
-              <span className="text-sm font-bold">Apple</span>
+              <span className="text-sm font-black">Apple</span>
             </button>
           </div>
         </div>
@@ -1091,7 +1086,7 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
         <div className="mt-10 text-center">
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm font-bold text-[#693311] hover:underline"
+            className="text-sm font-black text-[#693311] hover:underline"
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
@@ -1102,94 +1097,274 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
 };
 
 
+
 const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBack: () => void }) => {
+  const planSectionRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollToPlans = () => {
+    planSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const plans = [
     {
       name: 'Essential Plan',
-      price: '₦65,400',
-      desc: 'For individuals or lighter households looking for the core supply system.',
-      features: ['Core Pantry Supply', 'Standard Delivery', 'Basic Household Support', 'Monthly Replenishment'],
+      price: '₦25,000 – ₦120,000',
+      desc: 'For individuals or light households looking for the core supply system.',
+      features: ['Sunrise Essentials', 'Wellness', 'Sparkling Sanctuary', 'Protein Weekly Essentials'],
+      benefits: ['Flexible', 'Affordable', 'Great for starting out'],
       id: 'Essential',
       color: 'bg-white'
     },
     {
       name: 'Family Plan',
-      price: '₦124,700',
-      desc: 'For growing homes that need a consistent, reliable monthly rhythm.',
-      features: ['Full Pantry & Home Care', 'Priority Delivery', 'Advanced Household Support', 'Customizable Box Variants', '3 Month Prep Options'],
+      price: '₦120,000 – ₦250,000',
+      desc: 'Designed for real homes that need a consistent, reliable monthly rhythm.',
+      features: ['Pantry Provision', 'Sunrise Essentials', 'Protein Prime Cut', 'Farm Fresh Harvest'],
+      benefits: ['Designed for real homes', 'Balanced monthly supply', 'Best value'],
       id: 'Family',
       popular: true,
       color: 'bg-[#6F7E57]/10'
     },
     {
-      name: 'Premium Plan',
-      price: '₦202,700',
-      desc: 'For complete lifestyle coverage, gourmet curation, and white-glove support.',
-      features: ['Gourmet & Premium Selection', 'Express VIP Delivery', '24/7 Home Concierge', 'Exclusive Add-on Access', 'Annual Bonus Box'],
+      name: 'Premium Lifestyle Plan',
+      price: '₦250,000 – ₦400,000+',
+      desc: 'For complete lifestyle coverage, gourmet curation, and luxury home living.',
+      features: ['Pantry Provision (Premium)', 'Gourmet Pleasure', 'Radiant Glow', 'PureBliss Pamper Kit', 'Protein Prime Cut (Premium)'],
+      benefits: ['Full lifestyle coverage', 'Premium products', 'Luxury home experience'],
       id: 'Premium',
       color: 'bg-zinc-900 text-white'
     }
   ];
 
   return (
-    <div className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h3 className="text-[10px] font-black text-[#6F7E57] uppercase tracking-[0.4em] mb-4">Choose Your Lifestyle</h3>
-        <h2 className="font-serif text-5xl md:text-7xl font-black tracking-tight text-[#693311] mb-8">Home Supply Plans</h2>
-        <p className="text-xl text-[#575B44] max-w-2xl mx-auto font-light leading-relaxed">
-          Select the subscription level that fits your home's unique rhythm. Each plan is designed to remove the burden of management from your life.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {plans.map((plan, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ y: -10 }}
-            className={`p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col h-full relative transition-shadow hover:shadow-2xl ${plan.color}`}
-          >
-            {plan.popular && (
-              <span className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#6F7E57] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
-                Most Popular
-              </span>
-            )}
-            <h3 className="text-3xl font-serif font-bold mb-4">{plan.name}</h3>
-            <div className="mb-8">
-              <span className="text-5xl font-black italic">from {plan.price}</span>
-              <span className="text-xs opacity-60 ml-2 uppercase tracking-widest font-bold">/ month</span>
-            </div>
-            <p className={`text-lg mb-12 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
-
-            <ul className="space-y-6 mb-12 flex-grow">
-              {plan.features.map((f, j) => (
-                <li key={j} className="flex items-center gap-4 text-base font-medium">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center ${plan.id === 'Premium' ? 'bg-white/10' : 'bg-[#6F7E57]/10'}`}>
-                    <Check size={12} className={plan.id === 'Premium' ? 'text-white' : 'text-[#6F7E57]'} />
-                  </div>
-                  <span className="opacity-90">{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => onSelect(plan.id)}
-              className={`w-full py-6 rounded-3xl font-black uppercase tracking-widest text-xs transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
-                ? 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
-                : 'bg-[#693311] text-white hover:bg-black'
-                }`}
+    <div className="bg-[#F8F0E5] min-h-screen">
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="font-serif text-5xl md:text-8xl font-black text-[#693311] leading-tight mb-8"
             >
-              Start {plan.name}
+              Never Run Out of<br />What Matters Most
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-light mb-12 max-w-2xl"
+            >
+              Your home essentials — food, care, and wellness — delivered consistently, effortlessly, and just in time.
+            </motion.p>
+            <motion.button 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              onClick={scrollToPlans}
+              className="bg-[#693311] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-black transition-all shadow-2xl active:scale-95"
+            >
+              Start Your Plan
+            </motion.button>
+          </div>
+        </div>
+        
+        {/* Subtle Background Elements */}
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+          <img src="/images/THE CONVENIENT WAY TO STOCK HOME.jpeg" alt="" className="w-full h-full object-cover grayscale" />
+        </div>
+      </section>
+
+      {/* 2. PLAN STRUCTURE */}
+      <section ref={planSectionRef} className="py-24 bg-white rounded-[5rem] shadow-2xl relative z-10 -mt-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="font-serif text-4xl md:text-6xl font-black text-[#693311] mb-6">Choose the plan that fits your rhythm</h2>
+            <p className="text-xl text-[#575B44] font-light">From everyday essentials to fully curated home living.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {plans.map((plan, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -12 }}
+                className={`p-12 rounded-[4rem] border border-[#6F7E57]/10 flex flex-col h-full relative transition-all duration-500 hover:shadow-2xl ${plan.color}`}
+              >
+                {plan.popular && (
+                  <span className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#693311] text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-xl">
+                    Most Popular
+                  </span>
+                )}
+                <h3 className="text-3xl font-serif font-black mb-4">{plan.name}</h3>
+                <div className="mb-8">
+                  <span className="text-4xl font-black italic">{plan.price}</span>
+                  <span className="text-xs opacity-60 ml-2 uppercase tracking-widest font-black">/ month</span>
+                </div>
+                <p className={`text-lg mb-10 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
+
+                <div className="space-y-8 mb-12 flex-grow">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-40">Includes</p>
+                    <ul className="space-y-4">
+                      {plan.features.map((f, j) => (
+                        <li key={j} className="flex items-center gap-4 text-sm font-medium">
+                          <Check size={16} className={plan.id === 'Premium' ? 'text-[#f7ebc3]' : 'text-[#6F7E57]'} />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-40">Benefits</p>
+                    <div className="flex flex-wrap gap-2">
+                       {plan.benefits.map((b, j) => (
+                         <span key={j} className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tight ${plan.id === 'Premium' ? 'bg-white/10 text-white' : 'bg-[#6F7E57]/10 text-[#6F7E57]'}`}>{b}</span>
+                       ))}
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => onSelect(plan.id)}
+                  className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
+                    ? 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
+                    : 'bg-[#693311] text-white hover:bg-black'
+                    }`}
+                >
+                  Choose {plan.id === 'Premium' ? 'Premium' : plan.id === 'Family' ? 'Family Plan' : 'Essential'}
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. PLAN COMPARISON TABLE */}
+      <section className="py-24 bg-[#FAF5EF]">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311] text-center mb-16">Compare the Experience</h2>
+          <div className="bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-xl overflow-hidden overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-[#6F7E57]/5">
+                  <th className="p-8 text-xs font-black uppercase tracking-widest opacity-40">Feature</th>
+                  <th className="p-8 text-xs font-black uppercase tracking-widest text-center">Essential</th>
+                  <th className="p-8 text-xs font-black uppercase tracking-widest text-center bg-[#6F7E57]/10 text-[#693311]">Family</th>
+                  <th className="p-8 text-xs font-black uppercase tracking-widest text-center">Premium</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-black/5">
+                {[
+                  { f: 'Pantry Supply', e: 'No', fam: 'Yes', p: 'Yes' },
+                  { f: 'Fresh Produce', e: 'No', fam: 'Yes', p: 'Yes' },
+                  { f: 'Protein', e: 'Basic', fam: 'Yes', p: 'Premium' },
+                  { f: 'Wellness', e: 'Yes', fam: 'Yes', p: 'Yes' },
+                  { f: 'Self-Care', e: 'No', fam: 'Optional', p: 'Yes' },
+                  { f: 'Luxury Items', e: 'No', fam: 'No', p: 'Yes' },
+                  { f: 'Best For', e: 'Individuals', fam: 'Families', p: 'Premium Homes' }
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-zinc-50 transition-colors">
+                    <td className="p-8 font-serif text-lg text-[#693311]">{row.f}</td>
+                    <td className="p-8 text-center text-sm font-medium text-zinc-500">{row.e}</td>
+                    <td className="p-8 text-center text-sm font-black text-[#693311] bg-[#6F7E57]/5">{row.fam}</td>
+                    <td className="p-8 text-center text-sm font-medium text-zinc-500">{row.p}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. FLEXIBILITY SECTION */}
+      <section className="py-24 bg-white border-y border-black/5">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="font-serif text-4xl md:text-6xl font-black text-[#693311] mb-16">Designed Around Your Life</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { t: 'Pause anytime', d: 'Your rhythm, your schedule.', icon: Pause },
+              { t: 'Swap boxes anytime', d: 'Change your contents monthly.', icon: RefreshCw },
+              { t: 'Upgrade or downgrade', d: 'Flow between plan levels.', icon: TrendingUp },
+              { t: 'No long-term commitment', d: 'Freedom to come and go.', icon: ShieldCheck }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4 group">
+                <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center mx-auto group-hover:bg-[#6F7E57] group-hover:text-white transition-all duration-500">
+                  <item.icon size={24} />
+                </div>
+                <h4 className="font-black text-[#693311]">{item.t}</h4>
+                <p className="text-sm text-zinc-500 font-medium">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. HOW IT WORKS */}
+      <section className="py-24 bg-[#F8F0E5]">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="font-serif text-3xl font-black uppercase tracking-[0.2em] text-[#6F7E57] mb-20">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            {[
+              { s: '01', t: 'Choose your plan', d: 'Select Essential, Family, or Premium.' },
+              { s: '02', t: 'Customize your boxes', d: 'Tailor your monthly selection.' },
+              { s: '03', t: 'We deliver monthly', d: 'Consistent supplies at your door.' },
+              { s: '04', t: 'Enjoy uninterrupted living', d: 'Focus on what truly matters.' }
+            ].map((step, i) => (
+              <div key={i} className="relative">
+                <span className="text-7xl font-serif font-black text-[#6F7E57]/10 absolute -top-10 left-1/2 -translate-x-1/2">{step.s}</span>
+                <h4 className="font-black text-[#693311] mb-4 text-xl relative z-10">{step.t}</h4>
+                <p className="text-zinc-500 font-medium">{step.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. SOCIAL PROOF */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="font-serif text-4xl md:text-5xl font-black text-[#693311] text-center mb-16 underline decoration-[#f7ebc3] underline-offset-8">Homes Are Switching to Everyday Needs</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { n: 'Ngozi A.', q: 'Everyday Needs has restored my weekends. I no longer spend Saturday mornings chasing stock.' },
+              { n: 'Tope S.', q: 'The quality of the Farm Fresh harvest is exceptional. My family hasn’t missed a healthy meal since we joined.' },
+              { n: 'Yemi O.', q: 'Complete luxury. The Premium Plan curation feels like having a personal household concierge.' }
+            ].map((t, i) => (
+              <div key={i} className="p-10 bg-[#FAF5EF]/50 rounded-[3rem] border border-black/5 italic font-medium text-[#575B44]">
+                <p className="mb-6 leading-relaxed">"{t.q}"</p>
+                <p className="text-xs font-black uppercase tracking-widest text-[#6F7E57]">— {t.n}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. FINAL CTA */}
+      <section className="py-32 bg-[#693311] text-white text-center relative overflow-hidden group">
+         <div className="absolute inset-0 opacity-5 pointer-events-none">
+            <img src="/images/SELECT SUBSCRIBE SIMPLIFY.jpeg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[10000ms]" />
+         </div>
+         <div className="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 className="font-serif text-4xl md:text-7xl font-black mb-8">Simplify Your Home.<br />Elevate Everyday Living.</h2>
+            <p className="text-xl md:text-2xl opacity-80 mb-12 font-light">Join hundreds of homes choosing convenience, care, and consistency.</p>
+            <button 
+              onClick={scrollToPlans}
+              className="bg-[#f7ebc3] text-[#693311] px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl active:scale-95"
+            >
+              Start Your Subscription
             </button>
-          </motion.div>
-        ))}
-      </div>
-      
-      <div className="mt-20 text-center">
-        <p className="text-[#575B44]/60 text-sm font-medium">Looking for individual boxes? <button onClick={onBack} className="text-[#6F7E57] font-bold underline decoration-dotted underline-offset-4">Browse the Shop</button></p>
+         </div>
+      </section>
+
+      <div className="mt-12 text-center pb-20">
+         <button onClick={onBack} className="text-zinc-400 font-black uppercase tracking-widest text-xs hover:text-[#6F7E57] transition-all flex items-center justify-center gap-2 mx-auto">
+            <ArrowLeft size={16} /> Return to Shop
+         </button>
       </div>
     </div>
   );
 };
+
 
 
 const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () => void, onSubmit: (data: any) => void }) => {
@@ -1220,8 +1395,8 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
 
         <div className="mb-10">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-3xl font-bold text-zinc-900">Seller Verification</h3>
-            <span className="text-sm font-bold text-[#6F7E57]">Step {step} of 2</span>
+            <h3 className="text-3xl font-black text-zinc-900">Seller Verification</h3>
+            <span className="text-sm font-black text-[#6F7E57]">Step {step} of 2</span>
           </div>
           <div className="w-full bg-zinc-100 h-2 rounded-full overflow-hidden">
             <div className={`h-full bg-[#6F7E57] transition-all duration-500 ${step === 1 ? 'w-1/2' : 'w-full'}`} />
@@ -1231,21 +1406,21 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
         {step === 1 ? (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Business / Farm Name</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Business / Farm Name</label>
               <input
                 type="text"
                 value={formData.businessName}
                 onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="Everyday Farms"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Business Category</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Business Category</label>
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
               >
                 <option>Farmer</option>
                 <option>Manufacturer</option>
@@ -1256,13 +1431,13 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
             <div className="flex gap-4 mt-8">
               <button
                 onClick={onClose}
-                className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all"
+                className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all"
               >
                 Cancel
               </button>
               <button
                 onClick={() => setStep(2)}
-                className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all"
+                className="flex-[2] bg-zinc-900 text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57] transition-all"
               >
                 Continue
               </button>
@@ -1271,34 +1446,34 @@ const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () 
         ) : (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">CAC Registration Number (Optional)</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">CAC Registration Number (Optional)</label>
               <input
                 type="text"
                 value={formData.cacNumber}
                 onChange={(e) => setFormData({ ...formData, cacNumber: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="RC1234567"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Business Address</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Business Address</label>
               <textarea
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
                 placeholder="123 Farm Road, Lagos"
               />
             </div>
             <div className="flex gap-4 mt-8">
               <button
                 onClick={() => setStep(1)}
-                className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all"
+                className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all"
               >
                 Back
               </button>
               <button
                 onClick={() => onSubmit(formData)}
-                className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20"
+                className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20"
               >
                 Submit Verification
               </button>
@@ -1336,7 +1511,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
                 onFilterChange(f.id);
               }
             }}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeFilter === f.id
+            className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${activeFilter === f.id
               ? 'bg-white text-[#6F7E57] shadow-sm'
               : 'text-zinc-500 hover:text-zinc-900'
               }`}
@@ -1348,7 +1523,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
 
       {showDatePicker && (
         <div className="absolute top-full right-0 mt-2 p-4 bg-white rounded-2xl shadow-xl border border-zinc-100 z-[60] w-64">
-          <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">Custom Range</h4>
+          <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Custom Range</h4>
           <div className="space-y-3">
             <div>
               <label className="block text-xs text-zinc-500 mb-1">Start Date</label>
@@ -1373,7 +1548,7 @@ const DashboardFilter = ({ onFilterChange }: { onFilterChange: (filter: string, 
                 onFilterChange('custom', customDates);
                 setShowDatePicker(false);
               }}
-              className="w-full py-2 bg-[#6F7E57] text-white rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all"
+              className="w-full py-2 bg-[#6F7E57] text-white rounded-lg text-xs font-black hover:bg-[#6F7E57]/90 transition-all"
             >
               Apply Range
             </button>
@@ -1417,27 +1592,27 @@ const ProductFormModal = ({
           <X size={24} />
         </button>
 
-        <h2 className="text-3xl font-bold text-zinc-900 mb-8">{initialData ? 'Edit Product' : 'Add New Product'}</h2>
+        <h2 className="text-3xl font-black text-zinc-900 mb-8">{initialData ? 'Edit Product' : 'Add New Product'}</h2>
 
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Product Name</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Product Name</label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="Organic Tomato Box"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Price (₦)</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Price (₦)</label>
               <input
                 type="number"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="15000"
               />
             </div>
@@ -1445,11 +1620,11 @@ const ProductFormModal = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Category</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Category</label>
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
               >
                 <option>Fresh Farm</option>
                 <option>Pantry Essentials</option>
@@ -1458,33 +1633,33 @@ const ProductFormModal = ({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-bold text-zinc-700 mb-2">Stock Level</label>
+              <label className="block text-sm font-black text-zinc-700 mb-2">Stock Level</label>
               <input
                 type="number"
                 value={formData.stock}
                 onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
+                className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]"
                 placeholder="100"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-zinc-700 mb-2">Description</label>
+            <label className="block text-sm font-black text-zinc-700 mb-2">Description</label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
+              className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57] h-32"
               placeholder="Describe your product..."
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-zinc-700 mb-2">Product Images</label>
+            <label className="block text-sm font-black text-zinc-700 mb-2">Product Images</label>
             <div className="grid grid-cols-4 gap-4">
               <button className="aspect-square bg-zinc-50 border-2 border-dashed border-zinc-200 rounded-2xl flex flex-col items-center justify-center text-zinc-400 hover:border-[#6F7E57]/50 hover:text-[#6F7E57] transition-all">
                 <Plus size={24} />
-                <span className="text-xs font-bold mt-1 uppercase tracking-widest">Add Image</span>
+                <span className="text-xs font-black mt-1 uppercase tracking-widest">Add Image</span>
               </button>
               {initialData?.image_url && (
                 <div className="aspect-square rounded-2xl overflow-hidden border border-zinc-100">
@@ -1495,8 +1670,8 @@ const ProductFormModal = ({
           </div>
 
           <div className="flex gap-4 pt-4">
-            <button onClick={onClose} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Cancel</button>
-            <button onClick={() => onSubmit(formData)} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20">
+            <button onClick={onClose} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all">Cancel</button>
+            <button onClick={() => onSubmit(formData)} className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all shadow-lg shadow-brand-primary/20">
               {initialData ? 'Save Changes' : 'Add Product'}
             </button>
           </div>
@@ -1542,43 +1717,43 @@ const OrderDetailsModal = ({
             <ClipboardList size={24} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-zinc-900">Order {order.id}</h2>
+            <h2 className="text-2xl font-black text-zinc-900">Order {order.id}</h2>
             <p className="text-sm text-zinc-500">Placed on Feb 24, 2024</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Customer Details</h3>
+            <h3 className="text-xs font-black text-zinc-400 uppercase tracking-widest">Customer Details</h3>
             <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
-              <p className="text-sm font-bold text-zinc-900">{order.customer}</p>
+              <p className="text-sm font-black text-zinc-900">{order.customer}</p>
               <p className="text-xs text-zinc-500">customer@example.com</p>
               <p className="text-xs text-zinc-500 mt-2">123 Victoria Island, Lagos</p>
             </div>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Order Summary</h3>
+            <h3 className="text-xs font-black text-zinc-400 uppercase tracking-widest">Order Summary</h3>
             <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-zinc-500">{order.product}</span>
-                <span className="font-bold text-zinc-900">{order.amount}</span>
+                <span className="font-black text-zinc-900">{order.amount}</span>
               </div>
               <div className="flex justify-between text-sm pt-2 border-t border-zinc-200">
-                <span className="font-bold text-zinc-900">Total</span>
-                <span className="font-bold text-[#6F7E57]">{order.amount}</span>
+                <span className="font-black text-zinc-900">Total</span>
+                <span className="font-black text-[#6F7E57]">{order.amount}</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="space-y-6">
-          <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Manage Status</h3>
+          <h3 className="text-xs font-black text-zinc-400 uppercase tracking-widest">Manage Status</h3>
           <div className="flex flex-wrap gap-2">
             {['Pending', 'Accepted', 'On Transit', 'Delivered', 'Rejected'].map((s) => (
               <button
                 key={s}
                 onClick={() => setStatus(s)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${status === s
+                className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${status === s
                   ? (s === 'Rejected' ? 'bg-red-600 text-white' : 'bg-[#6F7E57] text-white')
                   : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
                   }`}
@@ -1591,7 +1766,7 @@ const OrderDetailsModal = ({
           {status === 'On Transit' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-[#6F7E57]/10 rounded-2xl border border-[#6F7E57]/20 animate-in fade-in slide-in-from-top-2">
               <div>
-                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Tracking Code</label>
+                <label className="block text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-1.5">Tracking Code</label>
                 <input
                   type="text"
                   value={transitDetails.trackingCode}
@@ -1601,7 +1776,7 @@ const OrderDetailsModal = ({
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Courier Phone</label>
+                <label className="block text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-1.5">Courier Phone</label>
                 <input
                   type="text"
                   value={transitDetails.phone}
@@ -1611,7 +1786,7 @@ const OrderDetailsModal = ({
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#6F7E57] uppercase tracking-widest mb-1.5">Company Name</label>
+                <label className="block text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-1.5">Company Name</label>
                 <input
                   type="text"
                   value={transitDetails.company}
@@ -1624,10 +1799,10 @@ const OrderDetailsModal = ({
           )}
 
           <div className="flex gap-4 pt-4">
-            <button onClick={onClose} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Close</button>
+            <button onClick={onClose} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all">Close</button>
             <button
               onClick={() => onUpdateStatus(order.id, status, status === 'On Transit' ? transitDetails : null)}
-              className="flex-[2] bg-zinc-900 text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all"
+              className="flex-[2] bg-zinc-900 text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57] transition-all"
             >
               Update Order
             </button>
@@ -1649,7 +1824,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
       case 'change-plan':
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-zinc-900">Change Plan</h2>
+            <h2 className="text-2xl font-black text-zinc-900">Change Plan</h2>
             <p className="text-sm text-zinc-500">Select a new billing cycle for your subscription.</p>
             <div className="space-y-3">
               {['Monthly', '3 Month (Monthly Delivery)', 'Annual'].map((plan) => (
@@ -1661,14 +1836,14 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                     : 'border-zinc-200 hover:border-[#6F7E57]/20'
                     }`}
                 >
-                  <span className="text-sm font-bold text-zinc-900">{plan} Plan</span>
+                  <span className="text-sm font-black text-zinc-900">{plan} Plan</span>
                   {selectedPlan === plan && <div className="w-4 h-4 bg-[#6F7E57]/100 rounded-full flex items-center justify-center"><Check size={10} className="text-white" /></div>}
                 </button>
               ))}
             </div>
             <div className="flex gap-4 pt-4">
-              <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Back</button>
-              <button onClick={() => { alert('Plan updated! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Update Plan</button>
+              <button onClick={() => setView('main')} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50">Back</button>
+              <button onClick={() => { alert('Plan updated! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all">Update Plan</button>
             </div>
           </div>
         );
@@ -1679,12 +1854,12 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
               <Pause size={32} />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900">Pause Subscription</h2>
+              <h2 className="text-2xl font-black text-zinc-900">Pause Subscription</h2>
               <p className="text-sm text-zinc-500 mt-2">Are you sure you want to pause this subscription? Deliveries will stop until you resume.</p>
             </div>
             <div className="flex gap-4 pt-4">
-              <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Cancel</button>
-              <button onClick={() => { alert('Subscription paused! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-amber-600 text-white py-4 rounded-2xl font-bold hover:bg-amber-700">Confirm Pause</button>
+              <button onClick={() => setView('main')} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50">Cancel</button>
+              <button onClick={() => { alert('Subscription paused! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-amber-600 text-white py-5 rounded-2xl font-black hover:bg-amber-700">Confirm Pause</button>
             </div>
           </div>
         );
@@ -1695,12 +1870,12 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
               <ArrowRight size={32} />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900">Skip Next Delivery</h2>
+              <h2 className="text-2xl font-black text-zinc-900">Skip Next Delivery</h2>
               <p className="text-sm text-zinc-500 mt-2">You won't be charged for the next billing cycle, and your subscription will automatically resume afterwards.</p>
             </div>
             <div className="flex gap-4 pt-4">
-              <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Cancel</button>
-              <button onClick={() => { alert('Delivery skipped! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700">Confirm Skip</button>
+              <button onClick={() => setView('main')} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50">Cancel</button>
+              <button onClick={() => { alert('Delivery skipped! Notification sent to user.'); setView('main'); }} className="flex-[2] bg-blue-600 text-white py-5 rounded-2xl font-black hover:bg-blue-700">Confirm Skip</button>
             </div>
           </div>
         );
@@ -1711,18 +1886,18 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
               <RefreshCw size={32} />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900">Swap Box</h2>
+              <h2 className="text-2xl font-black text-zinc-900">Swap Box</h2>
               <p className="text-sm text-zinc-500 mt-2">Choose a different box for your next delivery.</p>
             </div>
             <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
               {['Pantry Provision', 'Sunrise Essentials', 'Farm Fresh Harvest', 'PureBliss Pamper Kit'].map(b => (
-                <button key={b} onClick={() => { alert(`${b} selected! Notification sent to user.`); setView('main'); }} className="w-full text-left p-4 rounded-xl border border-zinc-200 hover:border-[#6F7E57] hover:bg-zinc-50 font-bold text-sm text-zinc-700">
+                <button key={b} onClick={() => { alert(`${b} selected! Notification sent to user.`); setView('main'); }} className="w-full text-left p-4 rounded-xl border border-zinc-200 hover:border-[#6F7E57] hover:bg-zinc-50 font-black text-sm text-zinc-700">
                   {b}
                 </button>
               ))}
             </div>
             <div className="flex gap-4 pt-4">
-              <button onClick={() => setView('main')} className="w-full py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50">Cancel</button>
+              <button onClick={() => setView('main')} className="w-full py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50">Cancel</button>
             </div>
           </div>
         );
@@ -1733,24 +1908,24 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
               <AlertCircle size={32} />
             </div>
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-zinc-900 text-red-600">Cancel Subscription</h2>
+              <h2 className="text-2xl font-black text-zinc-900 text-red-600">Cancel Subscription</h2>
               <p className="text-sm text-zinc-500 mt-2">This action cannot be undone. All future deliveries and benefits will be terminated immediately.</p>
             </div>
             <div className="flex gap-4 pt-4">
-              <button onClick={() => setView('main')} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Go Back</button>
-              <button onClick={() => { alert('Subscription cancelled! Notification sent to user.'); setView('main'); onClose(); }} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Confirm Cancellation</button>
+              <button onClick={() => setView('main')} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all">Go Back</button>
+              <button onClick={() => { alert('Subscription cancelled! Notification sent to user.'); setView('main'); onClose(); }} className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all">Confirm Cancellation</button>
             </div>
           </div>
         );
       default:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-zinc-900">Manage Subscription</h2>
+            <h2 className="text-2xl font-black text-zinc-900">Manage Subscription</h2>
             <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
-              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Current Status</p>
+              <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-2">Current Status</p>
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-bold rounded-full uppercase tracking-wider">Active</span>
-                <span className="text-sm font-bold text-zinc-900">{subscription.plan || 'Monthly'} Plan</span>
+                <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-black rounded-full uppercase tracking-wider">Active</span>
+                <span className="text-sm font-black text-zinc-900">{subscription.plan || 'Monthly'} Plan</span>
               </div>
             </div>
 
@@ -1760,7 +1935,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   <div className="p-2 bg-brand-alt-2/20 text-[#6F7E57] rounded-lg group-hover:bg-[#6F7E57] group-hover:text-white transition-colors">
                     <Calendar size={18} />
                   </div>
-                  <span className="text-sm font-bold text-zinc-700">Change Billing Plan</span>
+                  <span className="text-sm font-black text-zinc-700">Change Billing Plan</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
@@ -1770,7 +1945,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   <div className="p-2 bg-amber-50 text-amber-600 rounded-lg group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     <Pause size={18} />
                   </div>
-                  <span className="text-sm font-bold text-zinc-700">Pause Subscription</span>
+                  <span className="text-sm font-black text-zinc-700">Pause Subscription</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
@@ -1780,7 +1955,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   <div className="p-2 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <ArrowRight size={18} />
                   </div>
-                  <span className="text-sm font-bold text-zinc-700">Skip Next Delivery</span>
+                  <span className="text-sm font-black text-zinc-700">Skip Next Delivery</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
@@ -1790,7 +1965,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   <div className="p-2 bg-purple-50 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition-colors">
                     <RefreshCw size={18} />
                   </div>
-                  <span className="text-sm font-bold text-zinc-700">Swap Box</span>
+                  <span className="text-sm font-black text-zinc-700">Swap Box</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
@@ -1800,12 +1975,12 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
                   <div className="p-2 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-600 group-hover:text-white transition-colors">
                     <Trash2 size={18} />
                   </div>
-                  <span className="text-sm font-bold text-zinc-700">Cancel Subscription</span>
+                  <span className="text-sm font-black text-zinc-700">Cancel Subscription</span>
                 </div>
                 <ChevronRight size={18} className="text-zinc-400" />
               </button>
             </div>
-            <button onClick={onClose} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-[#6F7E57] transition-all mt-4">Done</button>
+            <button onClick={onClose} className="w-full py-5 bg-zinc-900 text-white rounded-2xl font-black hover:bg-[#6F7E57] transition-all mt-4">Done</button>
           </div>
         );
     }
@@ -1948,12 +2123,12 @@ const DashboardLayout = ({
         <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-100 shrink-0">
           {!isSidebarCollapsed && (
             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('home')}>
-              <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-bold">E</div>
-              <span className="text-lg font-bold tracking-tight text-zinc-900">Everyday</span>
+              <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-black">E</div>
+              <span className="text-lg font-black tracking-tight text-zinc-900">Everyday</span>
             </div>
           )}
           {isSidebarCollapsed && (
-            <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-bold mx-auto">E</div>
+            <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center text-white font-black mx-auto">E</div>
           )}
           <button
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
@@ -1967,7 +2142,7 @@ const DashboardLayout = ({
           {sidebarGroups.map((group, gIdx) => (
             <div key={group.title} className={gIdx !== 0 ? 'mt-6' : ''}>
               {!isSidebarCollapsed && (
-                <p className="px-6 text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">
+                <p className="px-6 text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">
                   {group.title}
                 </p>
               )}
@@ -2041,10 +2216,10 @@ const DashboardLayout = ({
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 >
                   <div className="text-right hidden lg:block">
-                    <p className="text-xs font-bold text-zinc-900 group-hover:text-[#6F7E57] transition-colors">{user.name}</p>
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{user.role}</p>
+                    <p className="text-xs font-black text-zinc-900 group-hover:text-[#6F7E57] transition-colors">{user.name}</p>
+                    <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">{user.role}</p>
                   </div>
-                  <div className="w-9 h-9 bg-brand-alt-2/20 rounded-xl flex items-center justify-center text-[#6F7E57] font-bold text-sm hover:bg-brand-alt-2/30 transition-colors">
+                  <div className="w-9 h-9 bg-brand-alt-2/20 rounded-xl flex items-center justify-center text-[#6F7E57] font-black text-sm hover:bg-brand-alt-2/30 transition-colors">
                     {user.name[0]}
                   </div>
                 </div>
@@ -2052,28 +2227,28 @@ const DashboardLayout = ({
                 {isUserMenuOpen && (
                   <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-zinc-100 py-2 z-50">
                     <div className="px-4 py-3 border-b border-zinc-50 mb-2">
-                      <p className="text-xs font-bold text-zinc-900">{user.name}</p>
+                      <p className="text-xs font-black text-zinc-900">{user.name}</p>
                       <p className="text-xs text-zinc-500">{user.email}</p>
                     </div>
 
                     <div className="px-2 space-y-1">
                       <button
                         onClick={() => { onSwitchRole('buyer'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'buyer' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-black transition-colors ${user.role === 'buyer' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <Users size={14} />
                         Buyer Mode
                       </button>
                       <button
                         onClick={() => { onSwitchRole('seller'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'seller' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-black transition-colors ${user.role === 'seller' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <ShoppingBag size={14} />
                         Seller Mode
                       </button>
                       <button
                         onClick={() => { onSwitchRole('admin'); setIsUserMenuOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors ${user.role === 'admin' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-black transition-colors ${user.role === 'admin' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'text-zinc-600 hover:bg-zinc-50'}`}
                       >
                         <Shield size={14} />
                         Admin Mode
@@ -2083,7 +2258,7 @@ const DashboardLayout = ({
                     <div className="mt-2 pt-2 border-t border-zinc-50 px-2">
                       <button
                         onClick={onLogout}
-                        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold text-red-500 hover:bg-red-50 transition-colors"
+                        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-black text-red-500 hover:bg-red-50 transition-colors"
                       >
                         <LogOut size={14} />
                         Logout
@@ -2151,8 +2326,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                     <stat.icon size={20} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">{stat.label}</p>
-                    <p className={`text-xl font-bold text-zinc-900`}>{stat.value}</p>
+                    <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-0.5">{stat.label}</p>
+                    <p className={`text-xl font-black text-zinc-900`}>{stat.value}</p>
                   </div>
                 </div>
               ))}
@@ -2160,8 +2335,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
 
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-900">Recent Activity</h3>
-                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
+                <h3 className="text-sm font-black text-zinc-900">Recent Activity</h3>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-black text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="divide-y divide-zinc-100">
                 {subscriptions.slice(0, 3).map((sub, i) => (
@@ -2171,11 +2346,11 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                         <img src={sub.image_url} alt={sub.box_name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-zinc-900">{sub.box_name}</p>
+                        <p className="text-sm font-black text-zinc-900">{sub.box_name}</p>
                         <p className="text-xs text-zinc-500">Subscription renewed successfully</p>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-zinc-400">2 days ago</span>
+                    <span className="text-xs font-black text-zinc-400">2 days ago</span>
                   </div>
                 ))}
                 {subscriptions.length === 0 && (
@@ -2191,8 +2366,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">My Subscriptions</h3>
-              <button onClick={() => setView('products')} className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all">Add New</button>
+              <h3 className="text-sm font-black text-zinc-900">My Subscriptions</h3>
+              <button onClick={() => setView('pricing')} className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-black hover:bg-[#6F7E57]/90 transition-all">Add New</button>
             </div>
             <div className="p-5">
               {loading ? (
@@ -2208,13 +2383,13 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                           <img src={sub.image_url} alt={sub.box_name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-zinc-900">{sub.box_name}</p>
+                          <p className="text-sm font-black text-zinc-900">{sub.box_name}</p>
                           <div className="flex items-center gap-3 mt-1">
                             <span className="text-xs text-zinc-500 flex items-center gap-1">
                               <Calendar size={12} />
                               Next: {new Date(sub.next_delivery_date).toLocaleDateString()}
                             </span>
-                            <span className="text-xs font-bold text-[#6F7E57] uppercase tracking-widest">
+                            <span className="text-xs font-black text-[#6F7E57] uppercase tracking-widest">
                               {sub.plan}
                             </span>
                           </div>
@@ -2226,11 +2401,11 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                             setSelectedSub(sub);
                             setIsSubModalOpen(true);
                           }}
-                          className="px-3 py-1.5 bg-white border border-zinc-200 rounded-lg text-xs font-bold hover:bg-zinc-100 transition-all"
+                          className="px-3 py-1.5 bg-white border border-zinc-200 rounded-lg text-xs font-black hover:bg-zinc-100 transition-all"
                         >
                           Manage
                         </button>
-                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
+                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-black uppercase tracking-wider text-[#6F7E57] rounded-lg">
                           {sub.status}
                         </span>
                       </div>
@@ -2242,11 +2417,11 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                   <div className="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center mx-auto mb-4 text-zinc-300">
                     <Package size={32} />
                   </div>
-                  <h3 className="text-sm font-bold text-zinc-900 mb-1">No Subscriptions Yet</h3>
+                  <h3 className="text-sm font-black text-zinc-900 mb-1">No Subscriptions Yet</h3>
                   <p className="text-xs text-zinc-500 mb-6 max-w-[240px] mx-auto">Start your journey by choosing one of our curated essential products.</p>
                   <button
-                    onClick={() => setView('products')}
-                    className="bg-[#6F7E57] text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-[#6F7E57]/90 transition-all"
+                    onClick={() => setView('pricing')}
+                    className="bg-[#6F7E57] text-white px-6 py-2.5 rounded-xl text-xs font-black hover:bg-[#6F7E57]/90 transition-all"
                   >
                     Browse Products
                   </button>
@@ -2259,7 +2434,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Order History</h3>
+              <h3 className="text-sm font-black text-zinc-900">Order History</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                 <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
@@ -2269,11 +2444,11 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Order ID</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Date</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Items</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Order ID</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Date</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Items</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -2282,12 +2457,12 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                     { id: '#EN-9918', date: 'Jan 12, 2024', items: 'Pantry Provision', amount: '₦55,000', status: 'Delivered' },
                   ].map((order, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                      <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
+                      <td className="px-6 text-sm font-black text-zinc-900">{order.id}</td>
                       <td className="px-6 text-sm text-zinc-600">{order.date}</td>
                       <td className="px-6 text-sm text-zinc-600">{order.items}</td>
-                      <td className="px-6 text-sm font-bold text-zinc-900">{order.amount}</td>
+                      <td className="px-6 text-sm font-black text-zinc-900">{order.amount}</td>
                       <td className="px-6">
-                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
+                        <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-black uppercase tracking-wider text-[#6F7E57] rounded-lg">
                           {order.status}
                         </span>
                       </td>
@@ -2302,7 +2477,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
         return (
           <div className="max-w-2xl bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-6 border-b border-zinc-100">
-              <h3 className="text-sm font-bold text-zinc-900">Account Settings</h3>
+              <h3 className="text-sm font-black text-zinc-900">Account Settings</h3>
             </div>
             <div className="p-6 space-y-6">
               <div className="flex items-center gap-6 pb-6 border-b border-zinc-100">
@@ -2313,40 +2488,40 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-zinc-900">Profile Picture</h4>
+                  <h4 className="text-sm font-black text-zinc-900">Profile Picture</h4>
                   <p className="text-xs text-zinc-500 mt-1">PNG, JPG up to 5MB</p>
-                  <button className="mt-2 text-xs font-bold text-[#6F7E57] hover:underline">Upload New</button>
+                  <button className="mt-2 text-xs font-black text-[#6F7E57] hover:underline">Upload New</button>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Full Name</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Full Name</label>
                   <input type="text" defaultValue={user.name} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Email Address</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Email Address</label>
                   <input type="email" defaultValue={user.email} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Delivery Address</label>
+                <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Delivery Address</label>
                 <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20 h-24" placeholder="Enter your delivery address..."></textarea>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Phone Number</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Phone Number</label>
                   <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="+234..." />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">City</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">City</label>
                   <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="Lagos" />
                 </div>
               </div>
 
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57] transition-all">Save Changes</button>
+              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-black hover:bg-[#6F7E57] transition-all">Save Changes</button>
             </div>
           </div>
         );
@@ -2354,8 +2529,8 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
         return (
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
+              <h3 className="text-sm font-black text-zinc-900">Notifications</h3>
+              <button className="text-xs font-black text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
@@ -2367,9 +2542,9 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
                     <n.icon size={20} />
                   </div>
                   <div className="flex-grow">
-                    <p className="text-sm font-bold text-zinc-900">{n.title}</p>
+                    <p className="text-sm font-black text-zinc-900">{n.title}</p>
                     <p className="text-xs text-zinc-500">You have a new notification regarding your account.</p>
-                    <p className="text-xs font-bold text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
+                    <p className="text-xs font-black text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
                   </div>
                 </div>
               ))}
@@ -2396,7 +2571,7 @@ const Dashboard = ({ user, setView, onSwitchRole, onLogout, activeTab, setActive
         subscription={selectedSub}
       />
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-zinc-900 capitalize">
+        <h2 className="text-2xl font-black text-zinc-900 capitalize">
           {activeTab.replace('-', ' ')}
         </h2>
         {['overview', 'orders'].includes(activeTab) && (
@@ -2438,28 +2613,28 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     <div className={`p-2 ${stat.bg} ${stat.color} rounded-lg`}>
                       <stat.icon size={20} />
                     </div>
-                    <div className="text-xs font-bold text-[#6F7E57]">{stat.trend}</div>
+                    <div className="text-xs font-black text-[#6F7E57]">{stat.trend}</div>
                   </div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">{stat.label}</p>
-                  <p className="text-xl font-bold text-zinc-900">{stat.value}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-0.5">{stat.label}</p>
+                  <p className="text-xl font-black text-zinc-900">{stat.value}</p>
                 </div>
               ))}
             </div>
 
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All</button>
+                <h3 className="text-sm font-black text-zinc-900">Recent Orders</h3>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-black text-[#6F7E57] hover:underline">View All</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-zinc-50 border-b border-zinc-100">
-                      <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Order ID</th>
-                      <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Customer</th>
-                      <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Product</th>
-                      <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                      <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                      <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Order ID</th>
+                      <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Customer</th>
+                      <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Product</th>
+                      <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                      <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
@@ -2469,12 +2644,12 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       { id: '#ORD-7723', customer: 'Catherine Lee', product: 'Wellness Wonder', amount: '₦55,000', status: 'Delivered' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                        <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
+                        <td className="px-6 text-sm font-black text-zinc-900">{order.id}</td>
                         <td className="px-6 text-sm text-zinc-600">{order.customer}</td>
                         <td className="px-6 text-sm text-zinc-600">{order.product}</td>
-                        <td className="px-6 text-sm font-bold text-zinc-900">{order.amount}</td>
+                        <td className="px-6 text-sm font-black text-zinc-900">{order.amount}</td>
                         <td className="px-6">
-                          <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                          <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
                               'bg-brand-alt-2/20 text-[#6F7E57]'
                             }`}>
@@ -2494,7 +2669,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <h3 className="text-sm font-bold text-zinc-900">My Products</h3>
+                <h3 className="text-sm font-black text-zinc-900">My Products</h3>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                   <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search my products..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
@@ -2505,7 +2680,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   setEditingProduct(null);
                   setIsProductModalOpen(true);
                 }}
-                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
+                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-black hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <Plus size={14} />
                 Add Product
@@ -2520,22 +2695,22 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} alt="Product" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
+                      <h4 className="text-sm font-black text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
                       <p className="text-xs text-zinc-500">8 orders this week</p>
                     </div>
                     <div className="flex items-center justify-between pt-1">
-                      <span className="text-sm font-bold text-[#6F7E57]">₦{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price.toLocaleString()}</span>
+                      <span className="text-sm font-black text-[#6F7E57]">₦{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price.toLocaleString()}</span>
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
                             setEditingProduct({ id: i, name: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name, price: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price, category: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category, image_url: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url });
                             setIsProductModalOpen(true);
                           }}
-                          className="text-xs font-bold text-zinc-400 hover:text-[#6F7E57] transition-colors"
+                          className="text-xs font-black text-zinc-400 hover:text-[#6F7E57] transition-colors"
                         >
                           Edit
                         </button>
-                        <button className="text-xs font-bold text-zinc-400 hover:text-red-600 transition-colors" onClick={() => alert('Product deletion is disabled in this demo.')}>Delete</button>
+                        <button className="text-xs font-black text-zinc-400 hover:text-red-600 transition-colors" onClick={() => alert('Product deletion is disabled in this demo.')}>Delete</button>
                       </div>
                     </div>
                   </div>
@@ -2547,47 +2722,47 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
         return (
           <div className="max-w-2xl bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-6 border-b border-zinc-100">
-              <h3 className="text-sm font-bold text-zinc-900">Store Settings</h3>
+              <h3 className="text-sm font-black text-zinc-900">Store Settings</h3>
             </div>
             <div className="p-6 space-y-6">
               <div className="flex items-center gap-6 pb-6 border-b border-zinc-100">
                 <div className="w-20 h-20 bg-zinc-100 rounded-full flex items-center justify-center text-zinc-400 relative group cursor-pointer overflow-hidden">
                   <Camera size={32} />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-xs text-white font-bold uppercase">Change</span>
+                    <span className="text-xs text-white font-black uppercase">Change</span>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-zinc-900">Store Logo</h4>
+                  <h4 className="text-sm font-black text-zinc-900">Store Logo</h4>
                   <p className="text-xs text-zinc-500 mt-1">Recommended size: 512x512px</p>
-                  <button className="mt-2 text-xs font-bold text-[#6F7E57] hover:underline">Upload Logo</button>
+                  <button className="mt-2 text-xs font-black text-[#6F7E57] hover:underline">Upload Logo</button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Store Name</label>
+                <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Store Name</label>
                 <input type="text" defaultValue={`${user.name}'s Farm`} className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
               </div>
               <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Store Description</label>
+                <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Store Description</label>
                 <textarea className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20 h-24" placeholder="Tell customers about your store..."></textarea>
               </div>
 
               <div className="pt-4 border-t border-zinc-100">
-                <h4 className="text-xs font-bold text-zinc-900 mb-4">Pickup Location</h4>
+                <h4 className="text-xs font-black text-zinc-900 mb-4">Pickup Location</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Address</label>
+                    <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Address</label>
                     <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="Farm Address" />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Contact Phone</label>
+                    <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Contact Phone</label>
                     <input type="text" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" placeholder="+234..." />
                   </div>
                 </div>
               </div>
 
-              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57] transition-all">Save Store Info</button>
+              <button className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-black hover:bg-[#6F7E57] transition-all">Save Store Info</button>
             </div>
           </div>
         );
@@ -2595,8 +2770,8 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
         return (
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
+              <h3 className="text-sm font-black text-zinc-900">Notifications</h3>
+              <button className="text-xs font-black text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
@@ -2608,9 +2783,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     <n.icon size={20} />
                   </div>
                   <div className="flex-grow">
-                    <p className="text-sm font-bold text-zinc-900">{n.title}</p>
+                    <p className="text-sm font-black text-zinc-900">{n.title}</p>
                     <p className="text-xs text-zinc-500">You have a new notification regarding your store.</p>
-                    <p className="text-xs font-bold text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
+                    <p className="text-xs font-black text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
                   </div>
                 </div>
               ))}
@@ -2621,7 +2796,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Manage Orders</h3>
+              <h3 className="text-sm font-black text-zinc-900">Manage Orders</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                 <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
@@ -2631,11 +2806,11 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Order ID</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Date</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Product</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                    <th className="px-6 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Order ID</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Date</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Product</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                    <th className="px-6 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -2644,12 +2819,12 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                     { id: '#ORD-7722', date: 'Jan 12, 2024', product: 'Pantry Essentials', amount: '₦22,500', status: 'Shipped' },
                   ].map((order, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                      <td className="px-6 text-sm font-bold text-zinc-900">{order.id}</td>
+                      <td className="px-6 text-sm font-black text-zinc-900">{order.id}</td>
                       <td className="px-6 text-sm text-zinc-600">{order.date}</td>
                       <td className="px-6 text-sm text-zinc-600">{order.product}</td>
-                      <td className="px-6 text-sm font-bold text-zinc-900">{order.amount}</td>
+                      <td className="px-6 text-sm font-black text-zinc-900">{order.amount}</td>
                       <td className="px-6">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                           order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
                             'bg-brand-alt-2/20 text-[#6F7E57]'
                           }`}>
@@ -2676,24 +2851,24 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                   <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-xl flex items-center justify-center mb-4`}>
                     <stat.icon size={24} />
                   </div>
-                  <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">{stat.label}</h4>
-                  <p className="text-2xl font-bold text-zinc-900">{stat.value}</p>
+                  <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">{stat.label}</h4>
+                  <p className="text-2xl font-black text-zinc-900">{stat.value}</p>
                 </div>
               ))}
             </div>
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-sm font-bold text-zinc-900">Recent Transactions</h3>
-                <button onClick={() => alert('Withdrawal request submitted! Processing time: 24-48 hours.')} className="text-xs font-bold text-[#6F7E57] bg-brand-alt-2/20 px-4 py-2 rounded-lg hover:bg-brand-alt-2/30 transition-colors">Withdraw Funds</button>
+                <h3 className="text-sm font-black text-zinc-900">Recent Transactions</h3>
+                <button onClick={() => alert('Withdrawal request submitted! Processing time: 24-48 hours.')} className="text-xs font-black text-[#6F7E57] bg-brand-alt-2/20 px-4 py-2 rounded-lg hover:bg-brand-alt-2/30 transition-colors">Withdraw Funds</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-zinc-50 border-b border-zinc-100">
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Date</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Description</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Date</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Description</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
@@ -2705,9 +2880,9 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
                         <td className="px-4 text-sm text-zinc-600">{tx.date}</td>
                         <td className="px-4 text-sm text-zinc-900">{tx.desc}</td>
-                        <td className={`px-4 text-sm font-bold ${tx.type === 'credit' ? 'text-[#6F7E57]' : 'text-zinc-900'}`}>{tx.amount}</td>
+                        <td className={`px-4 text-sm font-black ${tx.type === 'credit' ? 'text-[#6F7E57]' : 'text-zinc-900'}`}>{tx.amount}</td>
                         <td className="px-4">
-                          <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-bold uppercase tracking-wider text-[#6F7E57] rounded-lg">
+                          <span className="px-2 py-1 bg-brand-alt-2/20 text-xs font-black uppercase tracking-wider text-[#6F7E57] rounded-lg">
                             {tx.status}
                           </span>
                         </td>
@@ -2723,7 +2898,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
         return (
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-              <h3 className="text-sm font-bold text-zinc-900 mb-6">Store Performance</h3>
+              <h3 className="text-sm font-black text-zinc-900 mb-6">Store Performance</h3>
               <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 ">
                 Seller Analytics Chart Visualization
               </div>
@@ -2754,7 +2929,7 @@ const SellerDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab
         }}
       />
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-zinc-900 capitalize">
+        <h2 className="text-2xl font-black text-zinc-900 capitalize">
           {activeTab.replace('-', ' ')}
         </h2>
         {['overview', 'orders', 'earnings', 'analytics'].includes(activeTab) && (
@@ -2821,13 +2996,13 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     <div className={`p-2 ${stat.bg} ${stat.color} rounded-lg`}>
                       <stat.icon size={20} />
                     </div>
-                    <div className={`flex items-center gap-1 text-xs font-bold ${stat.trend.startsWith('+') ? 'text-[#6F7E57]' : 'text-red-500'}`}>
+                    <div className={`flex items-center gap-1 text-xs font-black ${stat.trend.startsWith('+') ? 'text-[#6F7E57]' : 'text-red-500'}`}>
                       {stat.trend.startsWith('+') ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
                       {stat.trend}
                     </div>
                   </div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">{stat.label}</p>
-                  <p className="text-2xl font-bold text-zinc-900">{stat.value}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                  <p className="text-2xl font-black text-zinc-900">{stat.value}</p>
                 </div>
               ))}
             </div>
@@ -2836,8 +3011,8 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-12 lg:col-span-8 bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-sm font-bold text-zinc-900">Revenue Overview</h3>
-                  <button onClick={() => alert('Downloading latest revenue report...') } className="text-xs font-bold text-[#6F7E57] hover:underline">Download Report</button>
+                  <h3 className="text-sm font-black text-zinc-900">Revenue Overview</h3>
+                  <button onClick={() => alert('Downloading latest revenue report...') } className="text-xs font-black text-[#6F7E57] hover:underline">Download Report</button>
                 </div>
                 <div className="h-[320px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
@@ -2872,7 +3047,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               </div>
 
               <div className="col-span-12 lg:col-span-4 bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h3 className="text-sm font-bold text-zinc-900 mb-6">Subscription Breakdown</h3>
+                <h3 className="text-sm font-black text-zinc-900 mb-6">Subscription Breakdown</h3>
                 <div className="h-[320px] w-full flex flex-col">
                   <div className="flex-grow">
                     <ResponsiveContainer width="100%" height="100%">
@@ -2899,7 +3074,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                           <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[i] }} />
                           <span className="text-zinc-500">{item.name}</span>
                         </div>
-                        <span className="font-bold text-zinc-900">{item.value} users</span>
+                        <span className="font-black text-zinc-900">{item.value} users</span>
                       </div>
                     ))}
                   </div>
@@ -2910,19 +3085,19 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             {/* Recent Orders Table */}
             <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-900">Recent Orders</h3>
-                <button onClick={() => setActiveTab('orders')} className="text-xs font-bold text-[#6F7E57] hover:underline">View All Orders</button>
+                <h3 className="text-sm font-black text-zinc-900">Recent Orders</h3>
+                <button onClick={() => setActiveTab('orders')} className="text-xs font-black text-[#6F7E57] hover:underline">View All Orders</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-zinc-50 border-b border-zinc-100">
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Order ID</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Customer</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Product</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
-                      <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest w-20">Action</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Order ID</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Customer</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Product</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
+                      <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest w-20">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-zinc-100">
@@ -2934,12 +3109,12 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                       { id: '#ORD-7725', customer: 'Elena Gilbert', product: 'Fresh Farm Box', amount: '₦35,000', status: 'Pending' },
                     ].map((order, i) => (
                       <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                        <td className="px-4 text-sm font-bold text-zinc-900">{order.id}</td>
+                        <td className="px-4 text-sm font-black text-zinc-900">{order.id}</td>
                         <td className="px-4 text-sm text-zinc-600">{order.customer}</td>
                         <td className="px-4 text-sm text-zinc-600">{order.product}</td>
-                        <td className="px-4 text-sm font-bold text-zinc-900">{order.amount}</td>
+                        <td className="px-4 text-sm font-black text-zinc-900">{order.amount}</td>
                         <td className="px-4">
-                          <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                          <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
                               'bg-brand-alt-2/20 text-[#6F7E57]'
                             }`}>
@@ -2963,28 +3138,28 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">All Orders</h3>
+              <h3 className="text-sm font-black text-zinc-900">All Orders</h3>
               <div className="flex gap-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                   <input type="text" placeholder="Search orders..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
                 </div>
-                <button className="px-3 py-1.5 bg-zinc-100 rounded-lg text-xs font-bold text-zinc-600 flex items-center gap-2 hover:bg-zinc-200 transition-all">
+                <button className="px-3 py-1.5 bg-zinc-100 rounded-lg text-xs font-black text-zinc-600 flex items-center gap-2 hover:bg-zinc-200 transition-all">
                   <Filter size={14} />
                   Filter
                 </button>
-                <button className="px-3 py-1.5 bg-[#6F7E57] rounded-lg text-xs font-bold text-white hover:bg-[#6F7E57]/90 transition-all">Export</button>
+                <button className="px-3 py-1.5 bg-[#6F7E57] rounded-lg text-xs font-black text-white hover:bg-[#6F7E57]/90 transition-all">Export</button>
               </div>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Order ID</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Customer</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Date</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Order ID</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Customer</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Date</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -3002,12 +3177,12 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         setIsOrderModalOpen(true);
                       }}
                     >
-                      <td className="px-4 text-sm font-bold text-zinc-900">{order.id}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{order.id}</td>
                       <td className="px-4 text-sm text-zinc-600">{order.customer}</td>
                       <td className="px-4 text-sm text-zinc-600">{order.date}</td>
-                      <td className="px-4 text-sm font-bold text-zinc-900">{order.amount}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{order.amount}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${order.status === 'Delivered' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${order.status === 'Delivered' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           order.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             order.status === 'On Transit' ? 'bg-blue-100 text-blue-700' :
                               'bg-red-100 text-red-700'
@@ -3031,22 +3206,22 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               { name: 'Annual Plan', users: 180, growth: '+20%', color: 'border-brand-alt-2' },
             ].map((plan, i) => (
               <div key={i} className={`p-6 bg-white rounded-xl border-l-4 ${plan.color} shadow-sm`}>
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">{plan.name}</h4>
-                <p className="text-2xl font-bold text-zinc-900">{plan.users}</p>
-                <p className="text-xs text-[#6F7E57] font-bold mt-2">{plan.growth} growth</p>
+                <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">{plan.name}</h4>
+                <p className="text-2xl font-black text-zinc-900">{plan.users}</p>
+                <p className="text-xs text-[#6F7E57] font-black mt-2">{plan.growth} growth</p>
               </div>
             ))}
             <div className="md:col-span-3 bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
               <div className="p-5 border-b border-zinc-100">
-                <h3 className="text-sm font-bold text-zinc-900">Active Subscriptions</h3>
+                <h3 className="text-sm font-black text-zinc-900">Active Subscriptions</h3>
               </div>
               <div className="p-5 space-y-4">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="flex items-center justify-between p-4 bg-zinc-50 rounded-xl border border-zinc-100">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-brand-alt-2/20 rounded-lg flex items-center justify-center text-[#6F7E57] font-bold">U</div>
+                      <div className="w-10 h-10 bg-brand-alt-2/20 rounded-lg flex items-center justify-center text-[#6F7E57] font-black">U</div>
                       <div>
-                        <p className="text-sm font-bold text-zinc-900">User {i}</p>
+                        <p className="text-sm font-black text-zinc-900">User {i}</p>
                         <p className="text-xs text-zinc-500">Monthly Plan • Next delivery: Mar 1{i}</p>
                       </div>
                     </div>
@@ -3055,7 +3230,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         setSelectedSub({ id: i, user: `User ${i}` });
                         setIsSubModalOpen(true);
                       }}
-                      className="text-xs font-bold text-[#6F7E57] hover:underline"
+                      className="text-xs font-black text-[#6F7E57] hover:underline"
                     >
                       Manage
                     </button>
@@ -3080,7 +3255,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   setEditingProduct(null);
                   setIsProductModalOpen(true);
                 }}
-                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
+                className="bg-[#6F7E57] text-white px-4 py-2 rounded-lg text-xs font-black hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <Plus size={14} />
                 Add New Product
@@ -3094,7 +3269,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     <div className="aspect-square bg-zinc-100 rounded-lg mb-3 overflow-hidden flex items-center justify-center p-[1mm]">
                       <img src={MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                     </div>
-                    <h4 className="text-sm font-bold text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
+                    <h4 className="text-sm font-black text-zinc-900 truncate">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name}</h4>
                     <p className="text-xs text-zinc-500 mb-2">{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category} • ₦{MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price.toLocaleString()}</p>
                     <div className="flex gap-2">
                       <button
@@ -3102,11 +3277,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                           setEditingProduct({ id: i, name: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].name, price: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].price, category: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].category, image_url: MOCK_BOXES[(i - 1) % MOCK_BOXES.length].image_url });
                           setIsProductModalOpen(true);
                         }}
-                        className="flex-1 py-1.5 bg-zinc-100 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all"
+                        className="flex-1 py-1.5 bg-zinc-100 rounded-lg text-xs font-black hover:bg-zinc-200 transition-all"
                       >
                         Edit
                       </button>
-                      <button className="flex-1 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold hover:bg-red-100 transition-all">Delete</button>
+                      <button className="flex-1 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-black hover:bg-red-100 transition-all">Delete</button>
                     </div>
                   </div>
                 ))}
@@ -3117,17 +3292,17 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Inventory Status</h3>
-              <span className="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-lg">5 Low Stock Items</span>
+              <h3 className="text-sm font-black text-zinc-900">Inventory Status</h3>
+              <span className="px-2 py-1 bg-red-100 text-red-600 text-xs font-black rounded-lg">5 Low Stock Items</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Item</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Stock Level</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Last Restocked</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Item</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Stock Level</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Last Restocked</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -3137,10 +3312,10 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     { name: 'Cooking Oil', stock: 4, status: 'Critical' },
                   ].map((item, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                      <td className="px-4 text-sm font-bold text-zinc-900">{item.name}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{item.name}</td>
                       <td className="px-4 text-sm text-zinc-600">{item.stock} units</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${item.status === 'Healthy' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${item.status === 'Healthy' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           item.status === 'Low' ? 'bg-amber-100 text-amber-700' :
                             'bg-red-100 text-red-700'
                           }`}>
@@ -3164,14 +3339,14 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   <Truck size={32} />
                 </div>
                 <div className="flex-grow">
-                  <h4 className="text-sm font-bold text-zinc-900">Supplier Name {i}</h4>
+                  <h4 className="text-sm font-black text-zinc-900">Supplier Name {i}</h4>
                   <p className="text-xs text-zinc-500 mb-2">Fresh Produce • Lagos, Nigeria</p>
                   <div className="flex gap-4">
-                    <span className="text-xs font-bold text-[#6F7E57]">4.9 Rating</span>
-                    <span className="text-xs font-bold text-zinc-400">124 Deliveries</span>
+                    <span className="text-xs font-black text-[#6F7E57]">4.9 Rating</span>
+                    <span className="text-xs font-black text-zinc-400">124 Deliveries</span>
                   </div>
                 </div>
-                <button className="px-4 py-2 bg-zinc-900 text-white rounded-lg text-xs font-bold">Contact</button>
+                <button className="px-4 py-2 bg-zinc-900 text-white rounded-lg text-xs font-black">Contact</button>
               </div>
             ))}
           </div>
@@ -3180,7 +3355,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Payment Transactions</h3>
+              <h3 className="text-sm font-black text-zinc-900">Payment Transactions</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                 <input type="text" placeholder="Search payments..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-48" />
@@ -3190,11 +3365,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Transaction ID</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Customer</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Amount</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Method</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Transaction ID</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Customer</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Amount</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Method</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -3213,12 +3388,12 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                         setIsPaymentModalOpen(true);
                       }}
                     >
-                      <td className="px-4 text-sm font-bold text-zinc-900">{trx.id}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{trx.id}</td>
                       <td className="px-4 text-sm text-zinc-600">{trx.customer}</td>
-                      <td className="px-4 text-sm font-bold text-zinc-900">{trx.amount}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{trx.amount}</td>
                       <td className="px-4 text-sm text-zinc-500">{trx.method}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${trx.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
+                        <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${trx.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                           trx.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                             'bg-red-100 text-red-700'
                           }`}>
@@ -3236,7 +3411,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Customer Directory</h3>
+              <h3 className="text-sm font-black text-zinc-900">Customer Directory</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                 <input type="text" placeholder="Search customers..." className="pl-9 pr-4 py-1.5 bg-zinc-100 rounded-lg text-xs outline-none focus:ring-2 focus:ring-[#6F7E57]/20 w-64" />
@@ -3246,25 +3421,25 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               {[1, 2, 3, 4, 5, 6].map(i => (
                 <div key={i} className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center text-zinc-400 font-bold text-lg">
+                    <div className="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center text-zinc-400 font-black text-lg">
                       {String.fromCharCode(64 + i)}
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-zinc-900">Customer Name {i}</h4>
+                      <h4 className="text-sm font-black text-zinc-900">Customer Name {i}</h4>
                       <p className="text-xs text-zinc-500">customer{i}@example.com</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 py-4 border-y border-zinc-100 mb-4">
+                  <div className="grid grid-cols-2 gap-4 py-5 border-y border-zinc-100 mb-4">
                     <div>
-                      <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Total Orders</p>
-                      <p className="text-sm font-bold text-zinc-900">{10 + i}</p>
+                      <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">Total Orders</p>
+                      <p className="text-sm font-black text-zinc-900">{10 + i}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Total Spent</p>
-                      <p className="text-sm font-bold text-[#6F7E57]">₦{150 + i * 20},000</p>
+                      <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">Total Spent</p>
+                      <p className="text-sm font-black text-[#6F7E57]">₦{150 + i * 20},000</p>
                     </div>
                   </div>
-                  <button className="w-full py-2 bg-zinc-100 text-zinc-900 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-all">View Profile</button>
+                  <button className="w-full py-2 bg-zinc-100 text-zinc-900 rounded-lg text-xs font-black hover:bg-zinc-200 transition-all">View Profile</button>
                 </div>
               ))}
             </div>
@@ -3275,11 +3450,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h3 className="text-sm font-bold text-zinc-900 mb-4">Sales Reports</h3>
+                <h3 className="text-sm font-black text-zinc-900 mb-4">Sales Reports</h3>
                 <div className="space-y-3">
                   {['Daily Sales Summary', 'Monthly Revenue Report', 'Product Performance', 'Category Breakdown'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
-                      <span className="text-xs font-bold text-zinc-700">{report}</span>
+                      <span className="text-xs font-black text-zinc-700">{report}</span>
                       <button onClick={() => alert(`Downloading ${report}...`)} className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
@@ -3288,11 +3463,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 </div>
               </div>
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h3 className="text-sm font-bold text-zinc-900 mb-4">Inventory Reports</h3>
+                <h3 className="text-sm font-black text-zinc-900 mb-4">Inventory Reports</h3>
                 <div className="space-y-3">
                   {['Stock Level Audit', 'Low Stock Alerts', 'Supplier Performance', 'Inventory Turnover'].map((report, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg border border-zinc-100">
-                      <span className="text-xs font-bold text-zinc-700">{report}</span>
+                      <span className="text-xs font-black text-zinc-700">{report}</span>
                       <button onClick={() => alert(`Downloading ${report}...`)} className="p-1.5 bg-white border border-zinc-200 rounded-lg text-zinc-500 hover:text-[#6F7E57] transition-colors">
                         <Download size={14} />
                       </button>
@@ -3308,32 +3483,32 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Conversion Rate</h4>
-                <p className="text-2xl font-bold text-zinc-900">3.4%</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-[#6F7E57] mt-1">
+                <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Conversion Rate</h4>
+                <p className="text-2xl font-black text-zinc-900">3.4%</p>
+                <div className="flex items-center gap-1 text-xs font-black text-[#6F7E57] mt-1">
                   <TrendingUp size={12} />
                   +0.5% from last month
                 </div>
               </div>
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Average Order Value</h4>
-                <p className="text-2xl font-bold text-zinc-900">₦18,500</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-[#6F7E57] mt-1">
+                <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Average Order Value</h4>
+                <p className="text-2xl font-black text-zinc-900">₦18,500</p>
+                <div className="flex items-center gap-1 text-xs font-black text-[#6F7E57] mt-1">
                   <TrendingUp size={12} />
                   +₦1,200 from last month
                 </div>
               </div>
               <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Customer Retention</h4>
-                <p className="text-2xl font-bold text-zinc-900">68%</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-red-500 mt-1">
+                <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Customer Retention</h4>
+                <p className="text-2xl font-black text-zinc-900">68%</p>
+                <div className="flex items-center gap-1 text-xs font-black text-red-500 mt-1">
                   <TrendingDown size={12} />
                   -2% from last month
                 </div>
               </div>
             </div>
             <div className="bg-white p-6 rounded-xl border border-zinc-200 shadow-sm">
-              <h3 className="text-sm font-bold text-zinc-900 mb-6">User Traffic Analytics</h3>
+              <h3 className="text-sm font-black text-zinc-900 mb-6">User Traffic Analytics</h3>
               <div className="h-[300px] w-full bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-400 ">
                 Traffic Chart Visualization
               </div>
@@ -3344,13 +3519,13 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Admin Team</h3>
+              <h3 className="text-sm font-black text-zinc-900">Admin Team</h3>
               <button
                 onClick={() => {
                   setEditingAdminUser(null);
                   setIsAdminUserModalOpen(true);
                 }}
-                className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
+                className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-black hover:bg-[#6F7E57]/90 transition-all flex items-center gap-2"
               >
                 <UserPlus size={14} />
                 Add Admin User
@@ -3360,11 +3535,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-100">
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Name</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Email</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Role</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</th>
-                    <th className="px-4 py-3 text-xs font-bold text-zinc-400 uppercase tracking-widest w-20">Action</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Name</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Email</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Role</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest">Status</th>
+                    <th className="px-4 py-3 text-xs font-black text-zinc-400 uppercase tracking-widest w-20">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
@@ -3374,11 +3549,11 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     { name: 'Admin User 3', email: 'admin3@farmly.com', role: 'Support', status: 'Inactive' },
                   ].map((admin, i) => (
                     <tr key={i} className="h-12 hover:bg-zinc-50 transition-colors">
-                      <td className="px-4 text-sm font-bold text-zinc-900">{admin.name}</td>
+                      <td className="px-4 text-sm font-black text-zinc-900">{admin.name}</td>
                       <td className="px-4 text-sm text-zinc-600">{admin.email}</td>
                       <td className="px-4 text-sm text-zinc-600">{admin.role}</td>
                       <td className="px-4">
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${admin.status === 'Active' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'bg-zinc-100 text-zinc-500'
+                        <span className={`px-2 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${admin.status === 'Active' ? 'bg-brand-alt-2/20 text-[#6F7E57]' : 'bg-zinc-100 text-zinc-500'
                           }`}>
                           {admin.status}
                         </span>
@@ -3399,8 +3574,8 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="max-w-2xl mx-auto bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-5 border-b border-zinc-100 flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-900">Notifications</h3>
-              <button className="text-xs font-bold text-[#6F7E57]">Mark all as read</button>
+              <h3 className="text-sm font-black text-zinc-900">Notifications</h3>
+              <button className="text-xs font-black text-[#6F7E57]">Mark all as read</button>
             </div>
             <div className="divide-y divide-zinc-100">
               {[
@@ -3414,9 +3589,9 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                     <n.icon size={20} />
                   </div>
                   <div className="flex-grow">
-                    <p className="text-sm font-bold text-zinc-900">{n.title}</p>
+                    <p className="text-sm font-black text-zinc-900">{n.title}</p>
                     <p className="text-xs text-zinc-500">You have a new notification regarding your business operations.</p>
-                    <p className="text-xs font-bold text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
+                    <p className="text-xs font-black text-zinc-400 mt-1 uppercase tracking-widest">{n.time}</p>
                   </div>
                 </div>
               ))}
@@ -3427,21 +3602,21 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
         return (
           <div className="max-w-2xl bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
             <div className="p-6 border-b border-zinc-100">
-              <h3 className="text-sm font-bold text-zinc-900">System Settings</h3>
+              <h3 className="text-sm font-black text-zinc-900">System Settings</h3>
             </div>
             <div className="p-6 space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Platform Name</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Platform Name</label>
                   <input type="text" defaultValue="Everyday Needs" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Support Email</label>
+                  <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Support Email</label>
                   <input type="email" defaultValue="support@everydayneeds.ng" className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#6F7E57]/20" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1.5">Platform Maintenance Mode</label>
+                <label className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-1.5">Platform Maintenance Mode</label>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-6 bg-zinc-200 rounded-full relative cursor-pointer group">
                     <div className="w-4 h-4 bg-white rounded-full absolute left-1 top-1 group-hover:scale-110 transition-transform"></div>
@@ -3449,7 +3624,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                   <span className="text-sm text-zinc-600">Off</span>
                 </div>
               </div>
-              <button onClick={() => alert('System settings updated successfully!')} className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#6F7E57]/90 transition-all">Save Settings</button>
+              <button onClick={() => alert('System settings updated successfully!')} className="bg-zinc-900 text-white px-6 py-2.5 rounded-xl text-sm font-black hover:bg-[#6F7E57]/90 transition-all">Save Settings</button>
             </div>
           </div>
         );
@@ -3507,39 +3682,39 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
                 <CreditCard size={24} />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-zinc-900">Payment Details</h2>
+                <h2 className="text-2xl font-black text-zinc-900">Payment Details</h2>
                 <p className="text-sm text-zinc-500">{selectedPayment.id}</p>
               </div>
             </div>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Customer</p>
-                  <p className="text-sm font-bold text-zinc-900">{selectedPayment.customer}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Customer</p>
+                  <p className="text-sm font-black text-zinc-900">{selectedPayment.customer}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Amount</p>
-                  <p className="text-sm font-bold text-[#6F7E57]">{selectedPayment.amount}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Amount</p>
+                  <p className="text-sm font-black text-[#6F7E57]">{selectedPayment.amount}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Date & Time</p>
-                  <p className="text-sm font-bold text-zinc-900">{selectedPayment.date} • {selectedPayment.time}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Date & Time</p>
+                  <p className="text-sm font-black text-zinc-900">{selectedPayment.date} • {selectedPayment.time}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Method</p>
-                  <p className="text-sm font-bold text-zinc-900">{selectedPayment.method}</p>
+                  <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Method</p>
+                  <p className="text-sm font-black text-zinc-900">{selectedPayment.method}</p>
                 </div>
               </div>
               <div className="p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
-                <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Status</p>
-                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${selectedPayment.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
+                <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-2">Status</p>
+                <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${selectedPayment.status === 'Successful' ? 'bg-brand-alt-2/20 text-[#6F7E57]' :
                   selectedPayment.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                     'bg-red-100 text-red-700'
                   }`}>
                   {selectedPayment.status}
                 </span>
               </div>
-              <button onClick={() => setIsPaymentModalOpen(false)} className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">Close</button>
+              <button onClick={() => setIsPaymentModalOpen(false)} className="w-full py-5 bg-zinc-900 text-white rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all">Close</button>
             </div>
           </motion.div>
         </div>
@@ -3555,27 +3730,27 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
             <button onClick={() => setIsAdminUserModalOpen(false)} className="absolute top-8 right-8 p-2 text-zinc-400 hover:text-zinc-900 transition-colors">
               <X size={24} />
             </button>
-            <h2 className="text-2xl font-bold text-zinc-900 mb-8">{editingAdminUser ? 'Edit Admin User' : 'Add Admin User'}</h2>
+            <h2 className="text-2xl font-black text-zinc-900 mb-8">{editingAdminUser ? 'Edit Admin User' : 'Add Admin User'}</h2>
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-bold text-zinc-700 mb-2">Full Name</label>
-                <input type="text" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="John Doe" />
+                <label className="block text-sm font-black text-zinc-700 mb-2">Full Name</label>
+                <input type="text" className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="John Doe" />
               </div>
               <div>
-                <label className="block text-sm font-bold text-zinc-700 mb-2">Email Address</label>
-                <input type="email" className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="admin@everydayneeds.ng" />
+                <label className="block text-sm font-black text-zinc-700 mb-2">Email Address</label>
+                <input type="email" className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]" placeholder="admin@everydayneeds.ng" />
               </div>
               <div>
-                <label className="block text-sm font-bold text-zinc-700 mb-2">Role</label>
-                <select className="w-full px-6 py-4 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]">
+                <label className="block text-sm font-black text-zinc-700 mb-2">Role</label>
+                <select className="w-full px-6 py-5 bg-zinc-50 border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]">
                   <option>Super Admin</option>
                   <option>Editor</option>
                   <option>Support</option>
                 </select>
               </div>
               <div className="flex gap-4 pt-4">
-                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-1 py-4 border border-zinc-200 rounded-2xl font-bold hover:bg-zinc-50 transition-all">Cancel</button>
-                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-[2] bg-[#6F7E57] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all">
+                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-1 py-5 border border-zinc-200 rounded-2xl font-black hover:bg-zinc-50 transition-all">Cancel</button>
+                <button onClick={() => setIsAdminUserModalOpen(false)} className="flex-[2] bg-[#6F7E57] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all">
                   {editingAdminUser ? 'Save Changes' : 'Create User'}
                 </button>
               </div>
@@ -3585,7 +3760,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
       )}
 
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-zinc-900 capitalize">
+        <h2 className="text-2xl font-black text-zinc-900 capitalize">
           {activeTab.replace('-', ' ')}
         </h2>
         {['overview', 'orders', 'subscriptions', 'payments', 'analytics'].includes(activeTab) && (
@@ -3619,7 +3794,7 @@ interface BoxProduct extends Product {
 const MOCK_BOXES: BoxProduct[] = [
   {
     id: 1,
-    name: "PANTRY PROVISION BOX",
+    name: "PANTRY PROVISION",
     description: "Monthly home staple supply. Core pantry essentials including rice, cereals, pasta, canned goods, and cooking basics.",
     shortDesc: "Monthly home staple supply",
     price: 65400,
@@ -3630,16 +3805,16 @@ const MOCK_BOXES: BoxProduct[] = [
     deliveryType: "monthly",
     householdOptions: ["Single", "Family"],
     plans: [
-      { tier: "essentials-family", label: "Essentials (Family)", price: 65400, frequency: "month", householdType: "Family" },
-      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single" },
-      { tier: "classic-family", label: "Classic (Family)", price: 201000, frequency: "month", householdType: "Family", badge: "Most Popular" },
-      { tier: "premium-single", label: "Premium (Single)", price: 240000, frequency: "month", householdType: "Single" },
-      { tier: "premium-family", label: "Premium (Family)", price: 377500, frequency: "month", householdType: "Family" },
+      { tier: "essentials-family", label: "Essentials", price: 65400, frequency: "month", householdType: "Family" },
+      { tier: "classic-single", label: "Classic", price: 154000, frequency: "month", householdType: "Single" },
+      { tier: "classic-family", label: "Classic", price: 201000, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "premium-single", label: "Premium", price: 240000, frequency: "month", householdType: "Single" },
+      { tier: "premium-family", label: "Premium", price: 377500, frequency: "month", householdType: "Family" },
     ]
   },
   {
     id: 2,
-    name: "FARM FRESH HARVEST BOX",
+    name: "FARM FRESH HARVEST",
     description: "Fresh produce delivered weekly or monthly. Seasonal vegetables, fruits, and farm essentials sourced directly from trusted local farmers.",
     shortDesc: "Fresh produce delivered weekly or monthly",
     price: 156200,
@@ -3653,8 +3828,9 @@ const MOCK_BOXES: BoxProduct[] = [
       { name: "Add Pantry Essentials", price: 65400 },
     ],
     plans: [
-      { tier: "weekly", label: "Weekly Fresh Box", price: 156200, frequency: "week", badge: "Most Flexible" }, // Reconciled to prompt
-      { tier: "monthly", label: "Monthly Harvest Box", price: 156200, frequency: "month", badge: "Best Value" },
+      { tier: "essentials", label: "Essentials", price: 156200, frequency: "week", badge: "Most Flexible" },
+      { tier: "classic", label: "Classic", price: 156200, frequency: "month", badge: "Best Value" },
+      { tier: "premium", label: "Premium", price: 195000, frequency: "month" },
     ]
   },
   {
@@ -3669,7 +3845,7 @@ const MOCK_BOXES: BoxProduct[] = [
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials (Weekly – 4 items)", price: 56400, frequency: "week" },
+      { tier: "essentials", label: "Essentials", price: 56400, frequency: "week" },
       { tier: "classic", label: "Classic", price: 106500, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
     ]
@@ -3687,11 +3863,11 @@ const MOCK_BOXES: BoxProduct[] = [
     deliveryType: "monthly",
     householdOptions: ["Individual", "Family"],
     plans: [
-      { tier: "essentials-family", label: "Essentials (Family)", price: 56200, frequency: "month", householdType: "Family" },
-      { tier: "classic-individual", label: "Classic (Individual)", price: 91700, frequency: "month", householdType: "Individual" },
-      { tier: "classic-family", label: "Classic (Family)", price: 124700, frequency: "month", householdType: "Family", badge: "Most Popular" },
-      { tier: "premium-individual", label: "Premium (Individual)", price: 138200, frequency: "month", householdType: "Individual" },
-      { tier: "premium-family", label: "Premium (Family)", price: 202700, frequency: "month", householdType: "Family" },
+      { tier: "essentials-family", label: "Essentials", price: 56200, frequency: "month", householdType: "Family" },
+      { tier: "classic-individual", label: "Classic", price: 91700, frequency: "month", householdType: "Individual" },
+      { tier: "classic-family", label: "Classic", price: 124700, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "premium-individual", label: "Premium", price: 138200, frequency: "month", householdType: "Individual" },
+      { tier: "premium-family", label: "Premium", price: 202700, frequency: "month", householdType: "Family" },
     ]
   },
   {
@@ -3746,7 +3922,7 @@ const MOCK_BOXES: BoxProduct[] = [
   },
   {
     id: 8,
-    name: "WELLNESS BOX",
+    name: "WELLNESS",
     description: "Health & wellness essentials. Natural supplements, vitamins, and health-boosting products for a balanced lifestyle.",
     shortDesc: "Health & wellness essentials",
     price: 55000,
@@ -3779,7 +3955,7 @@ const MOCK_BOXES: BoxProduct[] = [
   },
   {
     id: 10,
-    name: "GOURMET PLEASURE BOX",
+    name: "GOURMET PLEASURE",
     description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
     shortDesc: "Premium dining & curated indulgence",
     price: 45000,
@@ -3795,7 +3971,7 @@ const MOCK_BOXES: BoxProduct[] = [
   },
   {
     id: 11,
-    name: "THE FOUNDERS BOX",
+    name: "THE FOUNDERS",
     description: "The ultimate curated experience hand-selected by the founders. A masterclass in premium Nigerian home management.",
     shortDesc: "The ultimate curated premium experience",
     price: 30000,
@@ -4201,12 +4377,12 @@ function App() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
+            className="fixed bottom-8 right-8 z-[100] bg-zinc-900 text-white px-6 py-5 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10"
           >
             <div className="w-8 h-8 bg-[#6F7E57] rounded-lg flex items-center justify-center">
               <Check size={18} />
             </div>
-            <p className="font-bold">{notification}</p>
+            <p className="font-black">{notification}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -4247,7 +4423,7 @@ function App() {
                         <div className="w-14 h-14 bg-[#6F7E57]/15 rounded-2xl flex items-center justify-center text-[#6F7E57] shadow-sm mb-6 group-hover:bg-[#6F7E57] group-hover:text-white transition-colors">
                           <feature.icon size={28} />
                         </div>
-                        <h3 className="text-xl font-bold mb-3 text-[#6F7E57]">{feature.title}</h3>
+                        <h3 className="text-xl font-black mb-3 text-[#6F7E57]">{feature.title}</h3>
                         <p className="text-sm text-zinc-600 leading-relaxed font-sans">{feature.desc}</p>
                       </div>
                     ))}
@@ -4257,7 +4433,7 @@ function App() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-sm p-10 lg:p-16">
                     {/* Text column */}
                     <div className="space-y-6">
-                      <h3 className="font-serif text-2xl font-bold text-[#6F7E57]">Everyday Needs is built differently.</h3>
+                      <h3 className="font-serif text-2xl font-black text-[#6F7E57]">Everyday Needs is built differently.</h3>
                       <p className="font-sans text-base text-zinc-700 leading-relaxed text-justify">
                         We partner directly with farmers, trusted manufacturers, and quality suppliers to deliver superior, safer, and fresher essentials into your home.
                       </p>
@@ -4270,7 +4446,7 @@ function App() {
                           'High-quality pantry and household essentials',
                         ].map((item, i) => (
                           <li key={i} className="flex items-start gap-3">
-                            <span className="text-[#6F7E57] text-lg font-bold shrink-0">✓</span>
+                            <span className="text-[#6F7E57] text-lg font-black shrink-0">✓</span>
                             <span className="font-sans text-base text-zinc-700 leading-relaxed text-justify">{item}</span>
                           </li>
                         ))}
@@ -4296,22 +4472,22 @@ function App() {
               {/* Female-Driven Insight Section */}
               <section className="py-24 bg-brand-secondary overflow-hidden relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                  <span className="text-[#F8F0E5]/60 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">Female-Driven Insight</span>
+                  <span className="text-[#F8F0E5]/60 font-black uppercase tracking-[0.3em] text-sm mb-12 block">Female-Driven Insight</span>
                   <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2">
-                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8 text-[#F8F0E5]">Built by Women Who Understand Real Homes</h2>
+                      <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-8 text-[#F8F0E5]">Built by Women Who Understand Real Homes</h2>
                       <div className="space-y-6 text-lg text-[#F8F0E5]/80 leading-relaxed">
                         <p className="text-[#F8F0E5]">Everyday Needs is proudly woman-driven.</p>
                         <p className="text-[#F8F0E5]/80">Created from real household experience, Everyday Needs understands the daily realities of running homes, managing families, balancing careers, and caring for loved ones.</p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
                           <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <p className="text-[#F8F0E5] font-bold">We know what runs out.</p>
+                            <p className="text-[#F8F0E5] font-black">We know what runs out.</p>
                           </div>
                           <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <p className="text-[#F8F0E5] font-bold">We know what gets forgotten.</p>
+                            <p className="text-[#F8F0E5] font-black">We know what gets forgotten.</p>
                           </div>
                           <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <p className="text-[#F8F0E5] font-bold">We know what homes truly need.</p>
+                            <p className="text-[#F8F0E5] font-black">We know what homes truly need.</p>
                           </div>
                         </div>
                         <p className="pt-6 font-medium text-[#F8F0E5]">This insight shapes everything we deliver. Not guesswork. Real understanding.</p>
@@ -4329,10 +4505,10 @@ function App() {
               {/* How It Works */}
               <section className="py-24 bg-[#FAF5EF] overflow-hidden relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                  <span className="text-zinc-600 font-bold uppercase tracking-[0.3em] text-sm mb-12 block">How It Works</span>
+                  <span className="text-zinc-600 font-black uppercase tracking-[0.3em] text-sm mb-12 block">How It Works</span>
                   <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2">
-                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900">Simple. Reliable. Seamless.</h2>
+                      <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-8 text-zinc-900">Simple. Reliable. Seamless.</h2>
                       <div className="space-y-12">
                         {[
                           { step: '01', title: 'Choose Your Box', desc: 'Select from our curated essential boxes based on your lifestyle and needs.' },
@@ -4341,9 +4517,9 @@ function App() {
                           { step: '04', title: 'Live Better', desc: 'Enjoy convenience, peace of mind, and uninterrupted home living.' },
                         ].map((step, i) => (
                           <div key={i} className="flex gap-6">
-                            <span className="text-4xl font-bold text-[#6F7E57] opacity-60 font-mono">{step.step}</span>
+                            <span className="text-4xl font-black text-[#6F7E57] opacity-60 font-mono">{step.step}</span>
                             <div>
-                              <h3 className="text-xl font-bold mb-2 text-zinc-900">{step.title}</h3>
+                              <h3 className="text-xl font-black mb-2 text-zinc-900">{step.title}</h3>
                               <p className="text-zinc-700 leading-relaxed">{step.desc}</p>
                             </div>
                           </div>
@@ -4351,10 +4527,10 @@ function App() {
                       </div>
                       <button
                         onClick={() => setView('pricing')}
-                        className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-4 rounded-full font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2"
+                        className="mt-12 bg-[#6F7E57] text-[#F8F0E5] px-8 py-5 rounded-full font-black hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2"
                       >
                         <Calendar size={20} />
-                        Subscribe Now
+                        Select Box
                       </button>
                     </div>
                     <div className="lg:w-1/2 relative">
@@ -4375,8 +4551,8 @@ function App() {
                       <p className="text-lg text-zinc-500">Quality, reliability, and peace of mind delivered in every box.</p>
                     </div>
                     <button
-                      onClick={() => setView('products')}
-                      className="bg-[#6F7E57] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#6F7E57]/90 transition-all shadow-lg"
+                      onClick={() => setView('pricing')}
+                      className="bg-[#6F7E57] text-white px-8 py-5 rounded-2xl font-black hover:bg-[#6F7E57]/90 transition-all shadow-lg"
                     >
                       View All Boxes
                     </button>
@@ -4406,7 +4582,7 @@ function App() {
                     {/* Row 1 */}
                     <div className="flex flex-col lg:flex-row items-center gap-10">
                       <div className="lg:w-1/2 space-y-4">
-                        <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-2">
+                        <h3 className="font-serif text-3xl md:text-4xl font-black tracking-tight text-[#F8F0E5] leading-tight pb-2">
                           Our Sourcing Promise
                         </h3>
                         <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
@@ -4429,14 +4605,14 @@ function App() {
                     {/* Row 2 - Image Left / Text Right */}
                     <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
                       <div className="lg:w-1/2 space-y-8">
-                        <h3 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
+                        <h3 className="font-serif text-3xl md:text-4xl font-black tracking-tight text-[#F8F0E5] leading-tight pb-6 border-b border-[#F8F0E5]/20">
                           Our Sourcing Model Is Our Strength
                         </h3>
 
                         <div className="grid sm:grid-cols-1 gap-8 pt-2">
                           <div className="space-y-4">
                             <p className="font-black text-[#f7ebc3] uppercase tracking-[0.2em] text-xs">Direct Partnerships</p>
-                            <p className="text-[#F8F0E5] font-bold text-xl font-sans">We work directly with:</p>
+                            <p className="text-[#F8F0E5] font-black text-xl font-sans">We work directly with:</p>
                             <ul className="space-y-2 text-[#F8F0E5]/90 font-sans font-medium text-lg">
                               <li>• Farmers & Smallholders</li>
                               <li>• Trusted Manufacturers</li>
@@ -4447,7 +4623,7 @@ function App() {
 
                           <div className="space-y-4 pt-4 border-t border-[#F8F0E5]/10">
                             <p className="font-black text-[#f7ebc3] uppercase tracking-[0.2em] text-xs">The Everyday Advantage</p>
-                            <p className="text-[#F8F0E5] font-bold text-xl font-sans">This ensures:</p>
+                            <p className="text-[#F8F0E5] font-black text-xl font-sans">This ensures:</p>
                             <ul className="space-y-2 text-[#F8F0E5]/90 font-sans font-medium text-lg">
                               <li>• Peak Freshness & Quality</li>
                               <li>• Non-Toxic & Safer Standards</li>
@@ -4494,7 +4670,7 @@ function App() {
                       { title: 'Peace of Mind', desc: 'Your home runs smoothly.' }
                     ].map((reason, i) => (
                       <div key={i} className="p-8 bg-white rounded-[2rem] border border-black/5 hover:border-[#6F7E57]/20 transition-all text-center group">
-                        <h4 className="font-bold text-zinc-900 mb-2 font-sans">{reason.title}</h4>
+                        <h4 className="font-black text-zinc-900 mb-2 font-sans">{reason.title}</h4>
                         <p className="text-sm text-zinc-500 leading-relaxed font-sans">{reason.desc}</p>
                       </div>
                     ))}
@@ -4517,7 +4693,7 @@ function App() {
                           {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-amber-400 text-amber-400" />)}
                         </div>
                         <p className="text-xl font-medium leading-relaxed mb-8 text-[#F8F0E5] font-sans">"{t.quote}"</p>
-                        <p className="text-[#f7ebc3] font-bold uppercase tracking-widest text-sm font-sans">— {t.author}</p>
+                        <p className="text-[#f7ebc3] font-black uppercase tracking-widest text-sm font-sans">— {t.author}</p>
                       </div>
                     ))}
                   </div>
@@ -4527,11 +4703,11 @@ function App() {
               {/* Call to Action Section */}
               <section className="py-24 bg-[#F8F0E5]">
                 <div className="max-w-4xl mx-auto text-center px-4">
-                  <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight mb-8">Simplify Your Home Today</h2>
+                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight mb-8">Simplify Your Home Today</h2>
                   <p className="text-xl text-zinc-500 mb-10 leading-relaxed font-sans">Join thousands of households using Everyday Needs.</p>
                   <button
                     onClick={() => setView('pricing')}
-                    className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-[#575B44]/90 transition-all shadow-xl shadow-black/10"
+                    className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-black text-lg hover:bg-[#575B44]/90 transition-all shadow-xl shadow-black/10"
                   >
                     Start Your Subscription
                   </button>
@@ -4569,7 +4745,7 @@ function App() {
                             placeholder="Search our collection..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-6 py-4 bg-[#F8F0E5]/50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-sans text-sm"
+                            className="w-full pl-12 pr-6 py-5 bg-[#F8F0E5]/50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-sans text-sm"
                           />
                         </div>
                         
@@ -4636,7 +4812,7 @@ function App() {
 
                     {/* Results Count & Clear */}
                     <div className="flex justify-between items-center mb-8 px-2">
-                       <p className="text-zinc-500 font-bold text-sm">Showing {filteredProducts.length} boxes</p>
+                       <p className="text-zinc-500 font-black text-sm">Showing {filteredProducts.length} boxes</p>
                        {(shopFilters.category !== 'All Products' || shopFilters.household !== 'All Sizes' || shopFilters.budget !== 'All Budgets' || shopFilters.frequency !== 'All Frequencies' || shopFilters.lifestyle !== 'All Lifestyles' || searchQuery) && (
                          <button 
                            onClick={() => {
@@ -4663,7 +4839,7 @@ function App() {
                         <div className="w-20 h-20 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-6 text-zinc-400">
                           <Search size={40} />
                         </div>
-                        <h3 className="text-2xl font-bold text-zinc-900 mb-2">No boxes found</h3>
+                        <h3 className="text-2xl font-black text-zinc-900 mb-2">No boxes found</h3>
                         <p className="text-zinc-500">Try adjusting your filters or search terms.</p>
                       </div>
                     ) : (
@@ -4689,10 +4865,10 @@ function App() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                       <div className="space-y-10 order-2 lg:order-1">
                         <div>
-                          <span className="inline-block px-5 py-2 bg-[#6F7E57] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-8">
+                          <span className="inline-block px-5 py-2 bg-[#6F7E57] text-white text-xs font-black uppercase tracking-widest rounded-full mb-8">
                             Exclusive Edition
                           </span>
-                          <h2 className="font-serif text-4xl md:text-7xl font-bold text-[#F8F0E5] mb-8 leading-tight">
+                          <h2 className="font-serif text-4xl md:text-7xl font-black text-[#F8F0E5] mb-8 leading-tight">
                             The Founders Box
                           </h2>
                           <p className="text-xl md:text-2xl text-[#F8F0E5]/80 leading-relaxed font-sans max-w-2xl">
@@ -4706,7 +4882,7 @@ function App() {
                               <Star size={28} className="text-[#f7ebc3]" />
                             </div>
                             <div>
-                              <p className="font-bold text-lg">Premium Selection</p>
+                              <p className="font-black text-lg">Premium Selection</p>
                               <p className="text-sm text-[#F8F0E5]/60">Only our vetted top-tier products.</p>
                             </div>
                           </div>
@@ -4715,7 +4891,7 @@ function App() {
                               <ShieldCheck size={28} className="text-[#f7ebc3]" />
                             </div>
                             <div>
-                              <p className="font-bold text-lg">Founder Verified</p>
+                              <p className="font-black text-lg">Founder Verified</p>
                               <p className="text-sm text-[#F8F0E5]/60">Hand-picked for quality.</p>
                             </div>
                           </div>
@@ -4723,7 +4899,7 @@ function App() {
 
                         <div className="pt-10 flex flex-col sm:flex-row items-center gap-8 border-t border-white/10 w-full">
                           <div className="text-left w-full sm:w-auto pr-8 border-r border-white/10 hidden sm:block">
-                            <p className="text-[#F8F0E5]/60 text-sm font-bold uppercase tracking-widest mb-2">Total Price</p>
+                            <p className="text-[#F8F0E5]/60 text-sm font-black uppercase tracking-widest mb-2">Total Price</p>
                             <p className="text-2xl font-black text-[#F8F0E5]">₦30,000 — ₦100,000</p>
                           </div>
                           
@@ -4735,7 +4911,7 @@ function App() {
                               <div className="p-4 bg-[#693311]/5 rounded-2xl group-hover:bg-[#693311]/10 transition-colors">
                                 <ShoppingCart size={40} />
                               </div>
-                              <span className="block">Subscribe Now</span>
+                              <span className="block">Select Box</span>
                             </button>
                             <button 
                               onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
@@ -4808,196 +4984,24 @@ function App() {
             </motion.div>
           )}
 
-          {view === 'pricing' && (
+                    {view === 'pricing' && (
             <motion.div
               key="pricing"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="pt-32 pb-24 min-h-screen bg-[#FAF5EF]"
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                  <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#693311] mb-6">Choose Your Lifestyle</h2>
-                  <p className="text-xl text-[#575B44] max-w-2xl mx-auto leading-relaxed">
-                    Select a plan that best fits your household needs and lifestyle. Automated home management tailored for you.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
-                  {/* Essential Plan */}
-                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="w-14 h-14 bg-[#F8F0E5] rounded-2xl flex items-center justify-center text-[#693311] group-hover:scale-110 transition-transform">
-                        <User size={28} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Individuals / Light</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Essential Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦65,400</span>
-                      </div>
-                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-4 flex-grow">
-                      {[
-                        "Core Pantry Staples",
-                        "Weekly Breakfast Box Option",
-                        "Eco Cleaning Supplies",
-                        "Standard Delivery Slots"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
-                          <Check size={16} className="text-[#6F7E57]" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => handleSubscribe('essential')} className="w-full py-5 bg-[#6F7E57]/10 text-[#6F7E57] rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-[#6F7E57] hover:text-white transition-all shadow-sm">
-                      Select Essential
-                    </button>
-                  </div>
-
-                  {/* Family Plan */}
-                  <div className="bg-[#575B44] text-white p-10 rounded-[4rem] border-4 border-[#6F7E57]/20 flex flex-col shadow-2xl relative transform hover:-translate-y-2 transition-transform h-full">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="bg-[#f7ebc3] text-[#693311] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border-2 border-white/20">Most Popular</span>
-                    </div>
-                    <div className="flex items-center justify-between mb-8 mt-4">
-                      <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-[#f7ebc3]">
-                        <Users size={32} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Modern Families</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-widest mb-1">Family Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-5xl font-black text-white">₦201,000</span>
-                      </div>
-                      <p className="text-[10px] text-[#f7ebc3] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-5 flex-grow">
-                      {[
-                        "Full Household Pantry",
-                        "Farm Harvest & Protein Selection",
-                        "Home Care & Spa Kit",
-                        "Priority Delivery Scheduling",
-                        "Dedicated Home Support"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-4 text-base font-bold text-white/90">
-                          <div className="w-6 h-6 bg-[#6F7E57] rounded-full flex items-center justify-center shrink-0">
-                            <Check size={12} className="text-white" />
-                          </div>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => handleSubscribe('family')} className="w-full py-6 bg-[#f7ebc3] text-[#693311] rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-xl hover:shadow-[#f7ebc3]/20">
-                      Select Family Plan
-                    </button>
-                  </div>
-
-                  {/* Premium Plan */}
-                  <div className="bg-white p-10 rounded-[3rem] border border-black/5 flex flex-col shadow-sm hover:shadow-xl hover:border-[#6F7E57]/30 transition-all group">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="w-14 h-14 bg-[#FAF5EF] rounded-2xl flex items-center justify-center text-[#6F7E57] group-hover:scale-110 transition-transform">
-                        <Star size={28} />
-                      </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Luxury / Full Concierge</span>
-                    </div>
-                    <div className="mb-8">
-                      <h3 className="text-sm font-black text-[#693311] uppercase tracking-widest mb-1">Premium Lifestyle Plan</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-black text-zinc-900">₦377,500</span>
-                      </div>
-                      <p className="text-[10px] text-[#6F7E57] font-black uppercase tracking-widest mt-1">Starting per month</p>
-                    </div>
-                    <ul className="mb-10 space-y-4 flex-grow">
-                      {[
-                        "Gourmet & Exclusive Selections",
-                        "Full Founder’s Box Access",
-                        "Unlimited Inventory Sourcing",
-                        "Anytime VIP Delivery",
-                        "Personal Concierge Manager"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-zinc-600">
-                          <Check size={16} className="text-[#6F7E57]" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => handleSubscribe('premium')} className="w-full py-5 bg-[#693311] text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-sm">
-                      Select Premium
-                    </button>
-                  </div>
-                </div>
-
-                {/* Plan Comparison Table */}
-                <div className="bg-white rounded-[4rem] border border-black/5 p-8 md:p-16 mb-20 shadow-sm overflow-x-auto">
-                  <h3 className="font-serif text-3xl font-black text-[#693311] text-center mb-12">Plan Comparison</h3>
-                  <table className="w-full text-left min-w-[600px]">
-                    <thead>
-                      <tr className="border-b border-black/5">
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-zinc-400">Feature</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#6F7E57]">Essential</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#575B44]">Family</th>
-                        <th className="pb-8 text-xs font-black uppercase tracking-[0.2em] text-[#693311]">Premium</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-black/5">
-                      {[
-                        { name: "Pantry Essentials", e: "Basic", f: "Full", p: "Custom" },
-                        { name: "Household Items", e: "Included", f: "Comprehensive", p: "Unlimited" },
-                        { name: "Farm Fresh Produce", e: "Optional", f: "Standard", p: "Gourmet Selection" },
-                        { name: "Personal Concierge", e: "No access", f: "Email Support", p: "Direct Line/VIP" },
-                        { name: "Same-Day Delivery", e: "No access", f: "Priority", p: "Unrestricted" },
-                        { name: "Founders Box Access", e: "No access", f: "No access", p: "Included" }
-                      ].map((row, i) => (
-                        <tr key={i} className="group hover:bg-[#FAF5EF]/50 transition-colors">
-                          <td className="py-6 text-sm font-bold text-zinc-900">{row.name}</td>
-                          <td className="py-6 text-sm font-medium text-zinc-500">{row.e}</td>
-                          <td className="py-6 text-sm font-bold text-[#575B44]">{row.f}</td>
-                          <td className="py-6 text-sm font-bold text-[#693311]">{row.p}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Terms Component usage could go here if needed, or just these rich blocks below */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <div className="bg-[#6F7E57] text-white p-12 rounded-[3.5rem] shadow-xl relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-125 transition-transform duration-700">
-                        <RefreshCw size={120} />
-                      </div>
-                      <h3 className="text-3xl font-bold mb-6 relative z-10">Total Flexibility</h3>
-                      <p className="text-white/80 text-lg leading-relaxed mb-8 relative z-10">
-                        Life happens. Pause, skip, or cancel your subscription anytime. No long-term contracts, just reliable service when you need it.
-                      </p>
-                      <button onClick={() => setView('products')} className="bg-white text-[#6F7E57] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#FAF5EF] transition-all relative z-10">
-                        Explore Boxes
-                      </button>
-                   </div>
-
-                   <div className="bg-[#F8F0E5] p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col justify-center">
-                      <div className="flex gap-1 text-amber-500 mb-6">
-                        {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
-                      </div>
-                      <p className="text-xl font-serif font-bold text-[#693311] leading-relaxed mb-8 italic">
-                        "Switching to the Family Plan was the best decision for my home. I no longer worry about groceries or cleaning supplies—it just shows up exactly when I need it."
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sm font-black text-[#6F7E57] border border-[#6F7E57]/10">AO</div>
-                        <div>
-                          <p className="font-bold text-zinc-900">Adebisi O.</p>
-                          <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Lekki, Lagos</p>
-                        </div>
-                      </div>
-                   </div>
-                </div>
-              </div>
+              <Pricing 
+                onSelect={(planId) => {
+                  setCheckoutData({ ...checkoutData, items: [], plan: planId });
+                  setCheckoutStep(2);
+                  setView('checkout');
+                }} 
+                onBack={() => setView('home')} 
+              />
             </motion.div>
           )}
+
 
           {view === 'dashboard' && user && (
             <motion.div
@@ -5157,7 +5161,7 @@ function App() {
                   <div className="max-w-4xl mx-auto px-8 relative z-10">
                     <div className="text-center mb-16">
                       <span className="text-[10px] font-black text-[#f7ebc3] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
-                      <h2 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">What We Believe</h2>
+                      <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-white mb-8">What We Believe</h2>
                     </div>
                     
                     <div className="space-y-12 text-center">
@@ -5193,7 +5197,7 @@ function App() {
 
                       <div className="space-y-4">
                         <p className="text-sm font-black uppercase tracking-widest text-[#f7ebc3] opacity-60">Supporting those who carry the most</p>
-                        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-xl font-bold">
+                        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-xl font-black">
                           <span>Mothers</span>
                           <span>Families</span>
                           <span>Planners</span>
@@ -5218,7 +5222,7 @@ function App() {
                         </div>
                         <div className="pt-12 border-t border-white/10 max-w-md mx-auto">
                           <p className="text-sm font-black uppercase tracking-[0.3em] mb-4 text-[#f7ebc3]">This is not just delivery.</p>
-                          <p className="text-2xl font-serif font-bold">This is a new rhythm of living.</p>
+                          <p className="text-2xl font-serif font-black">This is a new rhythm of living.</p>
                         </div>
                       </div>
                     </div>
@@ -5345,7 +5349,7 @@ function App() {
                                 <img src={box.image_url} alt={box.name} className="w-full h-full object-cover" />
                               </div>
                               <div className="flex-1 text-left">
-                                <h4 className="font-bold text-zinc-900">{box.name}</h4>
+                                <h4 className="font-black text-zinc-900">{box.name}</h4>
                                 <p className="text-xs text-zinc-500 mt-1 line-clamp-1">{box.description}</p>
                               </div>
                               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected ? 'bg-[#6F7E57] border-[#6F7E57]' : 'border-zinc-300'}`}>
@@ -5371,11 +5375,11 @@ function App() {
                         </div>
                         <div className="space-y-6">
                           {checkoutData.items.length === 0 ? (
-                            <p className="text-center py-10 text-zinc-400 font-bold">No boxes selected.</p>
+                            <p className="text-center py-10 text-zinc-400 font-black">No boxes selected.</p>
                           ) : (
                             checkoutData.items.map((item: any) => (
                               <div key={item.id} className="p-6 bg-[#FAF5EF] rounded-[2rem] border border-black/5">
-                                <h4 className="font-bold text-zinc-900 mb-4">{item.name}</h4>
+                                <h4 className="font-black text-zinc-900 mb-4">{item.name}</h4>
                                 <div className="grid grid-cols-3 gap-3">
                                   {['Essentials', 'Classic', 'Premium'].map(tier => (
                                     <button 
@@ -5392,7 +5396,7 @@ function App() {
                                       }}
                                       className={`p-3 rounded-2xl border text-center transition-all ${item.variant === tier || (!item.variant && tier === 'Classic') ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57]/30'}`}
                                     >
-                                      <span className="text-xs font-bold">{tier}</span>
+                                      <span className="text-xs font-black">{tier}</span>
                                     </button>
                                   ))}
                                 </div>
@@ -5421,7 +5425,7 @@ function App() {
                                 className={`p-8 rounded-[2rem] border-2 text-left transition-all ${checkoutData.frequency === 'Monthly' ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
                                 onClick={() => setCheckoutData({...checkoutData, frequency: 'Monthly', total: checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0)})}
                               >
-                                <h4 className="text-xl font-bold mb-2">Monthly Delivery</h4>
+                                <h4 className="text-xl font-black mb-2">Monthly Delivery</h4>
                                 <p className="text-xs opacity-80 font-medium">Standard monthly replenishment.</p>
                               </button>
                               <button 
@@ -5429,7 +5433,7 @@ function App() {
                                 onClick={() => setCheckoutData({...checkoutData, frequency: '3 Month (Monthly Delivery)', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
                                 <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
-                                <h4 className="text-xl font-bold mb-2">3 Month (Monthly Delivery)</h4>
+                                <h4 className="text-xl font-black mb-2">3 Month (Monthly Delivery)</h4>
                                 <p className="text-xs opacity-80 font-medium">Get 3 months supply & save.</p>
                               </button>
                            </div>
@@ -5450,7 +5454,7 @@ function App() {
                               value={checkoutData.notes}
                               onChange={(val) => setCheckoutData({...checkoutData, notes: val})}
                            />
-                           <p className="text-xs text-center font-bold text-[#6F7E57] uppercase tracking-widest mt-4">Freshly packed and delivered just in time</p>
+                           <p className="text-xs text-center font-black text-[#6F7E57] uppercase tracking-widest mt-4">Freshly packed and delivered just in time</p>
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
                           <button onClick={() => setCheckoutStep(3)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
@@ -5469,16 +5473,16 @@ function App() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="md:col-span-2">
-                             <input type="text" value={checkoutData.name} onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Full Name" />
+                             <input type="text" value={checkoutData.name} onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Full Name" />
                           </div>
                           <div>
-                             <input type="email" value={checkoutData.email} onChange={(e) => setCheckoutData({...checkoutData, email: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Email Address" />
+                             <input type="email" value={checkoutData.email} onChange={(e) => setCheckoutData({...checkoutData, email: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Email Address" />
                           </div>
                           <div>
-                             <input type="tel" value={checkoutData.phone} onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Phone Number" />
+                             <input type="tel" value={checkoutData.phone} onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Phone Number" />
                           </div>
                           <div className="md:col-span-2">
-                             <textarea value={checkoutData.address} onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none min-h-[120px]" placeholder="Full Delivery Address & City" />
+                             <textarea value={checkoutData.address} onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none min-h-[120px]" placeholder="Full Delivery Address & City" />
                           </div>
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
@@ -5502,17 +5506,17 @@ function App() {
                               <div className="space-y-4">
                                 <div>
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Your Plan</p>
-                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.plan} Plan</p>
+                                  <p className="text-sm font-black text-zinc-800">{checkoutData.plan} Plan</p>
                                 </div>
                                 <div className="border-t border-black/5 pt-4">
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Selected Boxes</p>
-                                  <ul className="text-sm font-bold text-zinc-800 list-disc pl-4 space-y-1">
+                                  <ul className="text-sm font-black text-zinc-800 list-disc pl-4 space-y-1">
                                     {checkoutData.items.map((i:any) => <li key={i.id}>{i.name} — {i.variant || 'Classic'}</li>)}
                                   </ul>
                                 </div>
                                 <div className="border-t border-black/5 pt-4">
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Delivery</p>
-                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.frequency}</p>
+                                  <p className="text-sm font-black text-zinc-800">{checkoutData.frequency}</p>
                                 </div>
                               </div>
                            </div>
@@ -5541,7 +5545,7 @@ function App() {
                            </div>
                         </div>
                         <div className="flex gap-4 pt-4">
-                          <button onClick={() => setCheckoutStep(5)} className="px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(5)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
                         </div>
                       </motion.div>
                     )}
@@ -5557,16 +5561,16 @@ function App() {
                          </div>
                          <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5 max-w-md w-full text-left">
                             <p className="text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-2 border-b border-black/5 pb-2">Plan summary</p>
-                            <p className="text-lg font-bold text-zinc-900 mt-2">{checkoutData.plan} Plan</p>
+                            <p className="text-lg font-black text-zinc-900 mt-2">{checkoutData.plan} Plan</p>
                             <p className="text-zinc-500 text-sm">{checkoutData.items.length} boxes • {checkoutData.frequency}</p>
-                            <p className="text-sm font-bold text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
-                            <p className="text-sm font-bold text-zinc-900">{checkoutData.address}</p>
+                            <p className="text-sm font-black text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
+                            <p className="text-sm font-black text-zinc-900">{checkoutData.address}</p>
                          </div>
                          <div className="flex gap-4">
                            <button onClick={() => setView('dashboard')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
                               Manage Subscription
                            </button>
-                           <button onClick={() => setView('products')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-bold uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
+                           <button onClick={() => setView('pricing')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
                               Explore Add-Ons
                            </button>
                          </div>
@@ -5589,7 +5593,7 @@ function App() {
             >
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
-                  <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Get In Touch</h3>
+                  <h3 className="text-4xl md:text-6xl font-black tracking-tight mb-4 text-zinc-900">Get In Touch</h3>
                   <p className="text-zinc-500 ">We're here to support your home management journey.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
@@ -5603,7 +5607,7 @@ function App() {
                       <div className="w-12 h-12 bg-[#F8F0E5] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white group-hover:text-[#6F7E57] transition-colors shadow-sm" style={{ color: '#6F7E57' }}>
                         <item.icon size={20} />
                       </div>
-                      <h4 className="font-bold mb-2">{item.title}</h4>
+                      <h4 className="font-black mb-2">{item.title}</h4>
                       <p className="text-sm opacity-80 break-words font-medium">{item.value}</p>
                     </div>
                   ))}
@@ -5614,16 +5618,16 @@ function App() {
                   <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-bold text-zinc-700 mb-2">Name</label>
-                        <input type="text" className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Name" />
+                        <label className="block text-sm font-black text-zinc-700 mb-2">Name</label>
+                        <input type="text" className="w-full px-6 py-5 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Name" />
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-zinc-700 mb-2">Email</label>
-                        <input type="email" className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Email" />
+                        <label className="block text-sm font-black text-zinc-700 mb-2">Email</label>
+                        <input type="email" className="w-full px-6 py-5 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium text-zinc-900" placeholder="Your Email" />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-zinc-700 mb-2">Inquiry Type</label>
+                      <label className="block text-sm font-black text-zinc-700 mb-2">Inquiry Type</label>
                       <Dropbox 
                         label="Select Subject"
                         options={[
@@ -5639,10 +5643,10 @@ function App() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-zinc-700 mb-2">Message</label>
-                      <textarea className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40 text-zinc-900" placeholder="How can we help?"></textarea>
+                      <label className="block text-sm font-black text-zinc-700 mb-2">Message</label>
+                      <textarea className="w-full px-6 py-5 bg-white border border-zinc-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#6F7E57]/20 transition-all font-medium h-40 text-zinc-900" placeholder="How can we help?"></textarea>
                     </div>
-                    <button className="w-full bg-[#575B44] text-white py-4 rounded-2xl font-bold hover:bg-[#6F7E57] transition-all shadow-xl shadow-black/10">
+                    <button className="w-full bg-[#575B44] text-white py-5 rounded-2xl font-black hover:bg-[#6F7E57] transition-all shadow-xl shadow-black/10">
                       Send Message
                     </button>
                   </form>
@@ -5682,10 +5686,10 @@ function App() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
                     {/* Description Text */}
                     <div className="space-y-6">
-                      <span className="inline-block text-[#6F7E57] font-bold uppercase tracking-[0.3em] text-sm">
+                      <span className="inline-block text-[#6F7E57] font-black uppercase tracking-[0.3em] text-sm">
                         The Joy of Giving
                       </span>
-                      <h3 className="font-serif text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
+                      <h3 className="font-serif text-3xl md:text-4xl font-black text-zinc-900 leading-tight">
                         Make Someone's Day Extraordinary
                       </h3>
                       <p className="font-sans text-lg text-zinc-700 leading-relaxed text-justify">
@@ -5696,14 +5700,14 @@ function App() {
                       </p>
                       <div className="pt-4 flex flex-col sm:flex-row gap-4">
                         <button
-                          onClick={() => setView('products')}
-                          className="bg-[#6F7E57] text-white px-10 py-4 rounded-2xl font-bold text-base hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2 group"
+                          onClick={() => setView('pricing')}
+                          className="bg-[#6F7E57] text-white px-10 py-5 rounded-2xl font-black text-base hover:bg-[#6F7E57]/90 transition-all shadow-lg flex items-center justify-center gap-2 group"
                         >
                           Select a Gift Box
                         </button>
                         <button
                           onClick={() => setView('contact')}
-                          className="bg-white text-[#6F7E57] border-2 border-[#6F7E57]/30 px-10 py-4 rounded-2xl font-bold text-base hover:border-[#6F7E57] transition-all"
+                          className="bg-white text-[#6F7E57] border-2 border-[#6F7E57]/30 px-10 py-5 rounded-2xl font-black text-base hover:border-[#6F7E57] transition-all"
                         >
                           Custom Gifting Enquiry
                         </button>
@@ -5731,7 +5735,7 @@ function App() {
 
                   {/* Occasions Grid */}
                   <div className="mb-20">
-                    <h3 className="font-serif text-3xl font-bold text-center text-zinc-900 mb-12">
+                    <h3 className="font-serif text-3xl font-black text-center text-zinc-900 mb-12">
                       Perfect for Every Occasion
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -5742,7 +5746,7 @@ function App() {
                         { title: 'Random Acts of Kindness', desc: 'Spread love in your community with a simple, heartfelt gesture.', icon: ShieldCheck },
                       ].map((occasion, i) => (
                         <div key={i} className="p-8 bg-white rounded-[2rem] border border-[#6F7E57]/10 hover:border-[#6F7E57]/30 hover:shadow-md transition-all text-center group">
-                          <h4 className="font-bold text-zinc-900 mb-3 text-base">{occasion.title}</h4>
+                          <h4 className="font-black text-zinc-900 mb-3 text-base">{occasion.title}</h4>
                           <p className="text-sm text-zinc-500 leading-relaxed">{occasion.desc}</p>
                         </div>
                       ))}
@@ -5751,7 +5755,7 @@ function App() {
 
                   {/* 3 Gallery Images */}
                   <div className="mb-16">
-                    <h3 className="font-serif text-3xl font-bold text-center text-zinc-900 mb-12">
+                    <h3 className="font-serif text-3xl font-black text-center text-zinc-900 mb-12">
                       Inside Every Gift Box
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -5769,11 +5773,11 @@ function App() {
                             />
                           </div>
                           <div className="flex flex-col flex-grow">
-                            <h4 className="font-bold text-zinc-900 text-center text-xl mb-2">{img.caption}</h4>
+                            <h4 className="font-black text-zinc-900 text-center text-xl mb-2">{img.caption}</h4>
                             <p className="text-sm text-zinc-500 text-center mb-6 leading-relaxed flex-grow">{img.desc}</p>
                             <button
-                              onClick={() => setView('products')}
-                              className="w-full bg-[#F8F0E5] text-[#6F7E57] py-4 rounded-2xl font-bold hover:bg-[#6F7E57] hover:text-white transition-all flex items-center justify-center gap-2 mt-auto"
+                              onClick={() => setView('pricing')}
+                              className="w-full bg-[#F8F0E5] text-[#6F7E57] py-5 rounded-2xl font-black hover:bg-[#6F7E57] hover:text-white transition-all flex items-center justify-center gap-2 mt-auto"
                             >
                               <ShoppingCart size={18} />
                               Select Box
@@ -5786,20 +5790,20 @@ function App() {
 
                   {/* CTA Banner */}
                   <div className="bg-[#6F7E57] rounded-[3rem] p-12 lg:p-16 text-center">
-                    <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">Ready to Gift a Box?</h3>
+                    <h3 className="font-serif text-3xl md:text-4xl font-black text-white mb-6">Ready to Gift a Box?</h3>
                     <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
                       Choose from our curated boxes or contact us for a fully customised gifting experience tailored to your occasion.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <button
-                        onClick={() => setView('products')}
-                        className="bg-white text-[#6F7E57] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#F8F0E5] transition-all shadow-lg"
+                        onClick={() => setView('pricing')}
+                        className="bg-white text-[#6F7E57] px-10 py-5 rounded-2xl font-black text-lg hover:bg-[#F8F0E5] transition-all shadow-lg"
                       >
                         Browse Gift Boxes
                       </button>
                       <button
                         onClick={() => setView('contact')}
-                        className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all"
+                        className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/10 transition-all"
                       >
                         Contact Us
                       </button>
@@ -5829,7 +5833,7 @@ function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
                   <div className="bg-white p-10 rounded-[3rem] border border-[#6F7E57]/10 shadow-sm transition-transform hover:scale-[1.01] duration-300">
-                    <h3 className="text-2xl font-bold mb-8 text-[#6F7E57]">Partner Benefits</h3>
+                    <h3 className="text-2xl font-black mb-8 text-[#6F7E57]">Partner Benefits</h3>
                     <ul className="space-y-6">
                       {[
                         'Direct customer access',
@@ -5849,10 +5853,10 @@ function App() {
                   </div>
 
                   <div className="bg-[#6F7E57] text-white p-10 rounded-[3rem] shadow-xl transition-transform hover:scale-[1.01] duration-300">
-                    <h3 className="text-2xl font-bold mb-8">Partnership Model</h3>
+                    <h3 className="text-2xl font-black mb-8">Partnership Model</h3>
                     <div className="space-y-8">
                       <div>
-                        <p className="font-bold text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Partners provide:</p>
+                        <p className="font-black text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Partners provide:</p>
                         <ul className="space-y-3 opacity-90">
                           <li>• Reliable product supply</li>
                           <li>• Credit note product support</li>
@@ -5860,7 +5864,7 @@ function App() {
                         </ul>
                       </div>
                       <div className="pt-6 border-t border-white/10">
-                        <p className="font-bold text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Everyday Needs provides:</p>
+                        <p className="font-black text-[#f7ebc3] mb-4 uppercase tracking-wider text-sm">Everyday Needs provides:</p>
                         <ul className="space-y-3 opacity-90">
                           <li>• Customer access</li>
                           <li>• Distribution</li>
@@ -5873,7 +5877,7 @@ function App() {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() => setView('contact')} className="bg-white text-[#6F7E57] px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#FAF5EF] transition-all shadow-lg hover:shadow-[#6F7E57]/20 border border-[#6F7E57]/20">
+                  <button onClick={() => setView('contact')} className="bg-white text-[#6F7E57] px-12 py-5 rounded-2xl font-black text-xl hover:bg-[#FAF5EF] transition-all shadow-lg hover:shadow-[#6F7E57]/20 border border-[#6F7E57]/20">
                     Become a Partner
                   </button>
                 </div>
@@ -5907,7 +5911,7 @@ function App() {
                       <div className="w-14 h-14 bg-[#f7ebc3] rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#575B44] shadow-sm group-hover:bg-[#575B44] group-hover:text-white transition-colors">
                         <item.icon size={28} />
                       </div>
-                      <h4 className="text-xl font-bold text-zinc-900 mb-4">{item.title}</h4>
+                      <h4 className="text-xl font-black text-zinc-900 mb-4">{item.title}</h4>
                       <p className="text-zinc-600 leading-relaxed text-sm">{item.desc}</p>
                     </div>
                   ))}
@@ -5915,19 +5919,19 @@ function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
                   <div className="bg-[#575B44] text-[#FAF5EF] p-10 rounded-[3rem] shadow-xl transition-transform hover:scale-[1.01] duration-300">
-                    <h3 className="text-2xl font-bold mb-6">Strategic Advantages</h3>
+                    <h3 className="text-2xl font-black mb-6">Strategic Advantages</h3>
                     <ul className="space-y-6">
                       <li className="flex gap-4">
                         <Star className="text-brand-alt-2 shrink-0" />
                         <div>
-                          <p className="font-bold text-lg">First-Mover Advantage</p>
+                          <p className="font-black text-lg">First-Mover Advantage</p>
                           <p className="opacity-80 text-zinc-200">Category-defining platform.</p>
                         </div>
                       </li>
                       <li className="flex gap-4">
                         <Layout className="text-brand-alt-2 shrink-0" />
                         <div>
-                          <p className="font-bold text-lg">Scalable Infrastructure</p>
+                          <p className="font-black text-lg">Scalable Infrastructure</p>
                           <p className="opacity-80 text-zinc-200">Technology-enabled growth.</p>
                         </div>
                       </li>
@@ -5935,7 +5939,7 @@ function App() {
                   </div>
 
                   <div className="bg-white p-10 rounded-[3rem] border border-[#575B44]/10 shadow-sm flex flex-col justify-center transition-transform hover:scale-[1.01] duration-300">
-                    <h3 className="text-2xl font-bold mb-4 text-[#575B44]">Growth Vision</h3>
+                    <h3 className="text-2xl font-black mb-4 text-[#575B44]">Growth Vision</h3>
                     <p className="text-lg text-zinc-600 leading-relaxed">
                       Scaling across Nigeria’s major cities, serving millions of homes. We are building the future of household retail in Africa.
                     </p>
@@ -5943,7 +5947,7 @@ function App() {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() => setView('contact')} className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-[#434636] transition-all shadow-xl hover:shadow-[#575B44]/20">
+                  <button onClick={() => setView('contact')} className="bg-[#575B44] text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-[#434636] transition-all shadow-xl hover:shadow-[#575B44]/20">
                     Contact Investor Relations
                   </button>
                 </div>
@@ -5959,14 +5963,14 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               className="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
             >
-              <h3 className="text-4xl font-bold tracking-tight mb-8 text-zinc-900">Privacy Policy</h3>
+              <h3 className="text-4xl font-black tracking-tight mb-8 text-zinc-900">Privacy Policy</h3>
               <div className="prose prose-zinc max-w-none text-zinc-600 space-y-6">
                 <p>Last updated: October 2024</p>
-                <h4 className="text-xl font-bold text-zinc-900">1. Information We Collect</h4>
+                <h4 className="text-xl font-black text-zinc-900">1. Information We Collect</h4>
                 <p>We collect information you provide directly to us, such as when you create an account, subscribe to our boxes, or contact customer support. This may include your name, email, phone number, delivery address, and payment information.</p>
-                <h4 className="text-xl font-bold text-zinc-900">2. How We Use Your Information</h4>
+                <h4 className="text-xl font-black text-zinc-900">2. How We Use Your Information</h4>
                 <p>We use the information we collect to operate, maintain, and provide the features and functionality of Everyday Needs, as well as to communicate directly with you, such as to send you email messages regarding your subscriptions.</p>
-                <h4 className="text-xl font-bold text-zinc-900">3. Data Security</h4>
+                <h4 className="text-xl font-black text-zinc-900">3. Data Security</h4>
                 <p>We care about the security of your information and use commercially reasonable safeguards to preserve the integrity and security of all information collected through our service.</p>
               </div>
             </motion.div>
@@ -5980,14 +5984,14 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               className="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
             >
-              <h3 className="text-4xl font-bold tracking-tight mb-8 text-zinc-900">Terms of Service</h3>
+              <h3 className="text-4xl font-black tracking-tight mb-8 text-zinc-900">Terms of Service</h3>
               <div className="prose prose-zinc max-w-none text-zinc-600 space-y-6">
                 <p>Last updated: October 2024</p>
-                <h4 className="text-xl font-bold text-zinc-900">1. Acceptance of Terms</h4>
+                <h4 className="text-xl font-black text-zinc-900">1. Acceptance of Terms</h4>
                 <p>By accessing or using the Everyday Needs platform, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
-                <h4 className="text-xl font-bold text-zinc-900">2. Subscriptions and Payments</h4>
+                <h4 className="text-xl font-black text-zinc-900">2. Subscriptions and Payments</h4>
                 <p>By subscribing to our service, you agree to pay the recurring subscription fees at the then-current rate. You may cancel your subscription at any time, subject to our cancellation policy.</p>
-                <h4 className="text-xl font-bold text-zinc-900">3. Delivery and Returns</h4>
+                <h4 className="text-xl font-black text-zinc-900">3. Delivery and Returns</h4>
                 <p>We strive to deliver all boxes on your chosen schedule. If you receive damaged items, please contact us within 24 hours of delivery for a replacement or refund.</p>
               </div>
             </motion.div>
@@ -6001,13 +6005,13 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               className="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
             >
-              <h3 className="text-4xl font-bold tracking-tight mb-8 text-zinc-900">Delivery Policy</h3>
+              <h3 className="text-4xl font-black tracking-tight mb-8 text-zinc-900">Delivery Policy</h3>
               <div className="prose prose-zinc max-w-none text-zinc-600 space-y-6">
-                <h4 className="text-xl font-bold text-zinc-900">Delivery Areas</h4>
+                <h4 className="text-xl font-black text-zinc-900">Delivery Areas</h4>
                 <p>We currently deliver directly to households within Lagos and Abuja. We are actively expanding to other major cities in Nigeria.</p>
-                <h4 className="text-xl font-bold text-zinc-900">Delivery Schedules</h4>
+                <h4 className="text-xl font-black text-zinc-900">Delivery Schedules</h4>
                 <p>Deliveries are made on standard business days between 8:00 AM and 6:00 PM. Weekend deliveries can be arranged for specific subscription tiers.</p>
-                <h4 className="text-xl font-bold text-zinc-900">Tracking and Receiving</h4>
+                <h4 className="text-xl font-black text-zinc-900">Tracking and Receiving</h4>
                 <p>You will receive a notification when your box is out for delivery. Please ensure someone is available at the address to receive perishable items.</p>
               </div>
             </motion.div>
@@ -6019,18 +6023,18 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="col-span-1 md:col-span-2">
-              <span className="text-2xl font-bold tracking-tighter text-[#6F7E57] mb-2 block">Everyday Needs</span>
+              <span className="text-2xl font-black tracking-tighter text-[#6F7E57] mb-2 block">Everyday Needs</span>
               <p className="text-zinc-600 font-serif  text-lg mb-6">Everything Your Home Needs. Delivered.</p>
               <p className="text-zinc-500 max-w-sm leading-relaxed">
                 Nigeria's most trusted essentials subscription platform. Delivering quality, reliability, and peace of mind to your doorstep.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-zinc-400 uppercase tracking-widest text-xs mb-6">Company</h4>
+              <h4 className="font-black text-zinc-400 uppercase tracking-widest text-xs mb-6">Company</h4>
               <ul className="space-y-4 text-sm font-medium text-zinc-600">
                 <li><button onClick={() => setView('home')} className="hover:text-[#6F7E57]">Home</button></li>
                 <li><button onClick={() => setView('about')} className="hover:text-[#6F7E57]">About Us</button></li>
-                <li><button onClick={() => setView('products')} className="hover:text-[#6F7E57]">Our Boxes</button></li>
+                <li><button onClick={() => setView('pricing')} className="hover:text-[#6F7E57]">Our Boxes</button></li>
                 <li><button onClick={() => setView('pricing')} className="hover:text-[#6F7E57]">Subscribe</button></li>
                 <li><button onClick={() => setView('gift-a-box')} className="hover:text-[#6F7E57]">Gift a Box</button></li>
                 <li><button onClick={() => setView('partners')} className="hover:text-[#6F7E57]">Partners</button></li>
@@ -6039,7 +6043,7 @@ function App() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-zinc-400 uppercase tracking-widest text-xs mb-6">Legal</h4>
+              <h4 className="font-black text-zinc-400 uppercase tracking-widest text-xs mb-6">Legal</h4>
               <ul className="space-y-4 text-sm font-medium text-zinc-600">
                 <li><button onClick={() => setView('privacy')} className="hover:text-[#6F7E57]">Privacy Policy</button></li>
                 <li><button onClick={() => setView('terms')} className="hover:text-[#6F7E57]">Terms of Service</button></li>
