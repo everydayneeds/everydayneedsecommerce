@@ -94,7 +94,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer" onClick={() => setView('home')}>
-            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs | Home Supply System</span>
+            <span className="text-2xl font-bold tracking-tighter text-[#6F7E57]">Everyday Needs</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -423,13 +423,13 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
               <span>Just In Time — Serving Lagos & Port Harcourt</span>
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
-              Everything Your <span className="text-[#6F7E57]">Home Needs</span>. Delivered.
+              Your Home. <span className="text-[#6F7E57]">Fully Supplied.</span> Always.
             </h1>
             <p className="font-sans text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl">
-              From fresh farm produce to pantry essentials, baby care to home supplies — Everyday Needs delivers curated boxes of trusted essentials directly to your doorstep.
+              Everyday Needs is not just a box delivery service — it’s a complete home supply system. We curate, schedule, and deliver every essential your household needs: food, pantry, baby care, wellness, and home supplies — on autopilot.
             </p>
             <p className="font-sans text-lg font-semibold mb-10 text-[#6F7E57]">
-              No stress. No last-minute shopping. Just reliable living.
+              Set it. Stock it. Live better.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
