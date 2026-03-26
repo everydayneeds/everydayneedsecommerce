@@ -943,9 +943,9 @@ const ProductDetail = ({
                 
                 <button
                   onClick={() => onAddToCart(product, quantity)}
-                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
+                  className="w-full bg-[#575B44] text-white py-6 rounded-2xl font-black text-xl hover:bg-[#4a4e3a] transition-all shadow-2xl flex items-center justify-center gap-3 active:scale-[0.98]"
                 >
-                  <ShoppingCart size={18} />
+                  <Calendar size={22} />
                   Select Box
                 </button>
               </div>
@@ -3838,14 +3838,14 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "PROTEIN PRIME CUT",
     description: "Premium protein selection. Quality meats, poultry, and fish handled with the highest safety standards.",
     shortDesc: "Premium protein selection",
-    price: 56400,
-    startingFrom: 56400,
+    price: 56000,
+    startingFrom: 56000,
     image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg",
     category: "Prime Protein",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 56400, frequency: "week" },
+      { tier: "essentials", label: "Essentials", price: 56000, frequency: "week" },
       { tier: "classic", label: "Classic", price: 106500, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
     ]
@@ -3909,15 +3909,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "SPARKLING SANCTUARY",
     description: "Cleaning & home care. Eco-friendly and non-toxic home cleaning solutions for a safe and sparkling sanctuary.",
     shortDesc: "Cleaning & home care",
-    price: 27000,
-    startingFrom: 27000,
+    price: 20900,
+    startingFrom: 20900,
     image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg",
     category: "Home Care",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 27000, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 46900, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 40900, frequency: "month" },
     ]
   },
   {
@@ -3925,15 +3925,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "WELLNESS",
     description: "Health & wellness essentials. Natural supplements, vitamins, and health-boosting products for a balanced lifestyle.",
     shortDesc: "Health & wellness essentials",
-    price: 55000,
-    startingFrom: 55000,
+    price: 25000,
+    startingFrom: 25000,
     image_url: "/images/WELLNESS WONDER.jpeg",
     category: "Beauty & Wellness",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 95000, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 48000, frequency: "month" },
     ]
   },
   {
@@ -3958,15 +3958,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "GOURMET PLEASURE",
     description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
     shortDesc: "Premium dining & curated indulgence",
-    price: 45000,
-    startingFrom: 45000,
+    price: 230000,
+    startingFrom: 230000,
     image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg",
     category: "Gourmet",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
       { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
-      { tier: "premium", label: "Premium", price: 370000, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 307000, frequency: "month" },
     ]
   },
   {
