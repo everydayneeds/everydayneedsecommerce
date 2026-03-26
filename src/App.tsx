@@ -929,7 +929,7 @@ const ProductDetail = ({
                   )}
                   {selectedFrequency === '3 Month (Monthly Delivery)' && (
                     <div className="flex justify-between text-sm font-medium text-[#6F7E57]">
-                      <span>Quarterly discount (5%)</span>
+                      <span>3 Month discount (5%)</span>
                       <span>–₦{Math.round(basePrice * 3 * 0.05).toLocaleString()}</span>
                     </div>
                   )}
@@ -3027,7 +3027,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { name: 'Monthly Plan', users: 450, growth: '+12%', color: 'border-[#6F7E57]' },
-              { name: 'Quarterly Plan', users: 320, growth: '+5%', color: 'border-brand-alt-1' },
+              { name: '3 Month Plan', users: 320, growth: '+5%', color: 'border-brand-alt-1' },
               { name: 'Annual Plan', users: 180, growth: '+20%', color: 'border-brand-alt-2' },
             ].map((plan, i) => (
               <div key={i} className={`p-6 bg-white rounded-xl border-l-4 ${plan.color} shadow-sm`}>
@@ -4336,7 +4336,7 @@ function App() {
                       <div className="space-y-12">
                         {[
                           { step: '01', title: 'Choose Your Box', desc: 'Select from our curated essential boxes based on your lifestyle and needs.' },
-                          { step: '02', title: 'Subscribe', desc: 'Choose monthly, quarterly, or annual delivery plans.' },
+                          { step: '02', title: 'Subscribe', desc: 'Choose monthly, 3-monthly, or annual delivery plans.' },
                           { step: '03', title: 'We Deliver', desc: 'Your Everyday Needs box arrives at your doorstep.' },
                           { step: '04', title: 'Live Better', desc: 'Enjoy convenience, peace of mind, and uninterrupted home living.' },
                         ].map((step, i) => (
@@ -5429,7 +5429,7 @@ function App() {
                                 onClick={() => setCheckoutData({...checkoutData, frequency: '3 Month (Monthly Delivery)', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
                                 <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
-                                <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
+                                <h4 className="text-xl font-bold mb-2">3 Month (Monthly Delivery)</h4>
                                 <p className="text-xs opacity-80 font-medium">Get 3 months supply & save.</p>
                               </button>
                            </div>
