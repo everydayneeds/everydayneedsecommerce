@@ -4405,7 +4405,7 @@ function App() {
                       <div className="lg:w-1/2 w-full flex items-center justify-center">
                         <div className="w-full h-[400px] overflow-hidden rounded-[2rem] border-2 border-[#F8F0E5] shadow-2xl flex items-center justify-center">
                           <img
-                            src="/images/Thoughtful Sourcing. Superior Living..jpeg"
+                            src="/images/Thoughtful Sourcing. Superior Living.jpeg"
                             alt="Thoughtful Sourcing"
                             className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700"
                           />
