@@ -717,7 +717,7 @@ const ProductDetail = ({
   const householdOptions = product.householdOptions ?? [];
   const hasHousehold = householdOptions.length > 0;
   const [selectedHousehold, setSelectedHousehold] = useState(householdOptions[0] ?? '');
-  const [selectedFrequency, setSelectedFrequency] = useState<'Monthly' | 'Quarterly'>('Monthly');
+  const [selectedFrequency, setSelectedFrequency] = useState<'Monthly' | '3 Month (Monthly Delivery)'>('Monthly');
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState('details');
   const [quantity, setQuantity] = useState(1);
@@ -745,8 +745,8 @@ const ProductDetail = ({
   const basePrice = activePlan?.price ?? product.price;
   
   // For quarterly, multiply the monthly baseline by 3
-  const frequencyMultiplier = selectedFrequency === 'Quarterly' ? (periodMultiplier * 3) : periodMultiplier;
-  const discountMultiplier = selectedFrequency === 'Quarterly' ? 0.95 : 1;
+  const frequencyMultiplier = selectedFrequency === '3 Month (Monthly Delivery)' ? (periodMultiplier * 3) : periodMultiplier;
+  const discountMultiplier = selectedFrequency === '3 Month (Monthly Delivery)' ? 0.95 : 1;
   
   // Total price applies the multiplier to both base and add-ons
   const subtotal = (basePrice + addOnTotal) * frequencyMultiplier;
@@ -878,10 +878,10 @@ const ProductDetail = ({
                   variant="gold"
                   options={[
                     { value: 'Monthly', label: 'Monthly Delivery' },
-                    { value: 'Quarterly', label: 'Quarterly (Every 3 Months)', badge: 'Save 5%' }
+                    { value: '3 Month (Monthly Delivery)', label: '3 Month (Monthly Delivery)', badge: 'Save 5%' }
                   ]}
                   value={selectedFrequency}
-                  onChange={(val) => setSelectedFrequency(val as 'Monthly' | 'Quarterly')}
+                  onChange={(val) => setSelectedFrequency(val as 'Monthly' | '3 Month (Monthly Delivery)')}
                 />
 
                 {/* Add-Ons */}
@@ -927,7 +927,7 @@ const ProductDetail = ({
                       <span>+₦{addOnTotal.toLocaleString()}</span>
                     </div>
                   )}
-                  {selectedFrequency === 'Quarterly' && (
+                  {selectedFrequency === '3 Month (Monthly Delivery)' && (
                     <div className="flex justify-between text-sm font-medium text-[#6F7E57]">
                       <span>Quarterly discount (5%)</span>
                       <span>–₦{Math.round(basePrice * 3 * 0.05).toLocaleString()}</span>
@@ -935,7 +935,7 @@ const ProductDetail = ({
                   )}
                   <div className="flex justify-between font-black text-zinc-900 text-lg border-t border-black/5 pt-2">
                     <span>Total</span>
-                    <span>₦{totalPrice.toLocaleString()} / {selectedFrequency === 'Quarterly' ? 'quarter' : 'month'}</span>
+                    <span>₦{totalPrice.toLocaleString()} / {selectedFrequency === '3 Month (Monthly Delivery)' ? 'quarter' : 'month'}</span>
                   </div>
                 </div>
 
@@ -951,7 +951,7 @@ const ProductDetail = ({
                   className="w-full bg-[#F8F0E5] text-[#575B44] py-4 rounded-2xl font-bold hover:bg-[#f7ebc3] transition-all flex items-center justify-center gap-2"
                 >
                   <ShoppingCart size={18} />
-                  Add to Cart
+                  Subscribe Now
                 </button>
               </div>
             </div>
@@ -1101,31 +1101,32 @@ const Auth = ({ onLogin, onBack }: { onLogin: (email: string) => void, onBack: (
   );
 };
 
+
 const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBack: () => void }) => {
   const plans = [
     {
-      name: 'Monthly',
-      price: '₦0',
-      desc: 'Pay as you go. No long-term commitment.',
-      features: ['Standard delivery', 'Basic support', 'Cancel anytime'],
-      id: 'monthly',
-      color: 'bg-zinc-50'
+      name: 'Essential Plan',
+      price: '₦65,400',
+      desc: 'For individuals or lighter households looking for the core supply system.',
+      features: ['Core Pantry Supply', 'Standard Delivery', 'Basic Household Support', 'Monthly Replenishment'],
+      id: 'Essential',
+      color: 'bg-white'
     },
     {
-      name: 'Quarterly',
-      price: '5% OFF',
-      desc: 'Save more with a 3-month commitment.',
-      features: ['Priority delivery', 'Standard support', 'Flexible pausing', '5% discount'],
-      id: 'quarterly',
+      name: 'Family Plan',
+      price: '₦124,700',
+      desc: 'For growing homes that need a consistent, reliable monthly rhythm.',
+      features: ['Full Pantry & Home Care', 'Priority Delivery', 'Advanced Household Support', 'Customizable Box Variants', '3 Month Prep Options'],
+      id: 'Family',
       popular: true,
       color: 'bg-[#6F7E57]/10'
     },
     {
-      name: 'Annual',
-      price: '15% OFF',
-      desc: 'The best value for serious households.',
-      features: ['Free express delivery', '24/7 VIP support', 'Annual gift box', '15% discount'],
-      id: 'annual',
+      name: 'Premium Plan',
+      price: '₦202,700',
+      desc: 'For complete lifestyle coverage, gourmet curation, and white-glove support.',
+      features: ['Gourmet & Premium Selection', 'Express VIP Delivery', '24/7 Home Concierge', 'Exclusive Add-on Access', 'Annual Bonus Box'],
+      id: 'Premium',
       color: 'bg-zinc-900 text-white'
     }
   ];
@@ -1133,53 +1134,63 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
   return (
     <div className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-zinc-900">Simple, Transparent Pricing</h3>
-        <p className="text-zinc-500 max-w-2xl mx-auto">Choose the plan that fits your household needs. Save more with longer commitments.</p>
+        <h3 className="text-[10px] font-black text-[#6F7E57] uppercase tracking-[0.4em] mb-4">Choose Your Lifestyle</h3>
+        <h2 className="font-serif text-5xl md:text-7xl font-black tracking-tight text-[#693311] mb-8">Home Supply Plans</h2>
+        <p className="text-xl text-[#575B44] max-w-2xl mx-auto font-light leading-relaxed">
+          Select the subscription level that fits your home's unique rhythm. Each plan is designed to remove the burden of management from your life.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {plans.map((plan, i) => (
           <motion.div
             key={i}
             whileHover={{ y: -10 }}
-            className={`p-10 rounded-[3rem] border border-black/5 flex flex-col h-full relative ${plan.color}`}
+            className={`p-12 rounded-[3.5rem] border border-[#6F7E57]/10 flex flex-col h-full relative transition-shadow hover:shadow-2xl ${plan.color}`}
           >
             {plan.popular && (
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#6F7E57] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+              <span className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#6F7E57] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
                 Most Popular
               </span>
             )}
-            <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-bold">{plan.price}</span>
-              {plan.id === 'monthly' && <span className="text-zinc-500 text-sm ml-2">base price</span>}
+            <h3 className="text-3xl font-serif font-bold mb-4">{plan.name}</h3>
+            <div className="mb-8">
+              <span className="text-5xl font-black italic">from {plan.price}</span>
+              <span className="text-xs opacity-60 ml-2 uppercase tracking-widest font-bold">/ month</span>
             </div>
-            <p className={`text-sm mb-8 ${plan.id === 'annual' ? 'text-zinc-400' : 'text-zinc-500'}`}>{plan.desc}</p>
+            <p className={`text-lg mb-12 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
 
-            <ul className="space-y-4 mb-10 flex-grow">
+            <ul className="space-y-6 mb-12 flex-grow">
               {plan.features.map((f, j) => (
-                <li key={j} className="flex items-center gap-3 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#6F7E57]" />
-                  <span>{f}</span>
+                <li key={j} className="flex items-center gap-4 text-base font-medium">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center ${plan.id === 'Premium' ? 'bg-white/10' : 'bg-[#6F7E57]/10'}`}>
+                    <Check size={12} className={plan.id === 'Premium' ? 'text-white' : 'text-[#6F7E57]'} />
+                  </div>
+                  <span className="opacity-90">{f}</span>
                 </li>
               ))}
             </ul>
 
             <button
               onClick={() => onSelect(plan.id)}
-              className={`w-full py-4 rounded-2xl font-bold transition-all ${plan.id === 'annual'
-                ? 'bg-[#6F7E57] text-white hover:bg-[#6F7E57]/90'
-                : 'bg-zinc-900 text-white hover:bg-[#6F7E57]'
+              className={`w-full py-6 rounded-3xl font-black uppercase tracking-widest text-xs transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
+                ? 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
+                : 'bg-[#693311] text-white hover:bg-black'
                 }`}
             >
-              Select {plan.name}
+              Start {plan.name}
             </button>
           </motion.div>
         ))}
       </div>
+      
+      <div className="mt-20 text-center">
+        <p className="text-[#575B44]/60 text-sm font-medium">Looking for individual boxes? <button onClick={onBack} className="text-[#6F7E57] font-bold underline decoration-dotted underline-offset-4">Browse the Shop</button></p>
+      </div>
     </div>
   );
 };
+
 
 const KYCModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean, onClose: () => void, onSubmit: (data: any) => void }) => {
   const [step, setStep] = useState(1);
@@ -1641,7 +1652,7 @@ const SubscriptionManagementModal = ({ isOpen, onClose, subscription }: { isOpen
             <h2 className="text-2xl font-bold text-zinc-900">Change Plan</h2>
             <p className="text-sm text-zinc-500">Select a new billing cycle for your subscription.</p>
             <div className="space-y-3">
-              {['Monthly', 'Quarterly', 'Annual'].map((plan) => (
+              {['Monthly', '3 Month (Monthly Delivery)', 'Annual'].map((plan) => (
                 <button
                   key={plan}
                   onClick={() => setSelectedPlan(plan)}
@@ -2787,7 +2798,7 @@ const AdminDashboard = ({ user, onSwitchRole, onLogout, activeTab, setActiveTab,
 
   const pieData = [
     { name: 'Monthly', value: 400 },
-    { name: 'Quarterly', value: 300 },
+    { name: '3 Month (Monthly Delivery)', value: 300 },
     { name: 'Annual', value: 300 },
   ];
   const COLORS = ['#704723', '#283d45', '#7495ad'];
@@ -3619,10 +3630,10 @@ const MOCK_BOXES: BoxProduct[] = [
     deliveryType: "monthly",
     householdOptions: ["Single", "Family"],
     plans: [
-      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single" },
-      { tier: "premium-single", label: "Premium (Single)", price: 240000, frequency: "month", householdType: "Single" },
       { tier: "essentials-family", label: "Essentials (Family)", price: 65400, frequency: "month", householdType: "Family" },
+      { tier: "classic-single", label: "Classic (Single)", price: 154000, frequency: "month", householdType: "Single" },
       { tier: "classic-family", label: "Classic (Family)", price: 201000, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "premium-single", label: "Premium (Single)", price: 240000, frequency: "month", householdType: "Single" },
       { tier: "premium-family", label: "Premium (Family)", price: 377500, frequency: "month", householdType: "Family" },
     ]
   },
@@ -3676,10 +3687,10 @@ const MOCK_BOXES: BoxProduct[] = [
     deliveryType: "monthly",
     householdOptions: ["Individual", "Family"],
     plans: [
-      { tier: "classic-individual", label: "Classic (Individual)", price: 91700, frequency: "month", householdType: "Individual" },
-      { tier: "premium-individual", label: "Premium (Individual)", price: 138200, frequency: "month", householdType: "Individual" },
       { tier: "essentials-family", label: "Essentials (Family)", price: 56200, frequency: "month", householdType: "Family" },
+      { tier: "classic-individual", label: "Classic (Individual)", price: 91700, frequency: "month", householdType: "Individual" },
       { tier: "classic-family", label: "Classic (Family)", price: 124700, frequency: "month", householdType: "Family", badge: "Most Popular" },
+      { tier: "premium-individual", label: "Premium (Individual)", price: 138200, frequency: "month", householdType: "Individual" },
       { tier: "premium-family", label: "Premium (Family)", price: 202700, frequency: "month", householdType: "Family" },
     ]
   },
@@ -4724,7 +4735,7 @@ function App() {
                               <div className="p-4 bg-[#693311]/5 rounded-2xl group-hover:bg-[#693311]/10 transition-colors">
                                 <ShoppingCart size={40} />
                               </div>
-                              <span className="block">Add to Cart</span>
+                              <span className="block">Subscribe Now</span>
                             </button>
                             <button 
                               onClick={() => handleBuyNow(MOCK_BOXES.find(b => b.id === 11) || MOCK_BOXES[10])}
@@ -5202,7 +5213,7 @@ function App() {
                         </div>
                         <div className="pt-12">
                           <p className="text-xl font-medium text-[#f7ebc3] mb-2">So that what matters most —</p>
-                          <p className="text-4xl md:text-5xl font-serif font-black italic mb-6">your time, your energy, your home —</p>
+                          <p className="text-4xl md:text-6xl font-serif font-black italic mb-8">your time, your energy, your home —</p>
                           <p className="text-xl font-medium">is protected.</p>
                         </div>
                         <div className="pt-12 border-t border-white/10 max-w-md mx-auto">
@@ -5221,7 +5232,7 @@ function App() {
                   <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 relative z-10">
                     <div className="lg:col-span-2">
                       <h3 className="text-sm font-black text-[#f7ebc3] uppercase tracking-[0.2em] mb-8">Our Mission</h3>
-                      <p className="text-3xl md:text-4xl font-serif font-black leading-tight italic">
+                      <p className="text-4xl md:text-6xl font-serif font-black leading-tight italic">
                         "To empower every Nigerian household through reliable, safe, and convenient essential supply chains, fostering healthier and more productive lives."
                       </p>
                     </div>
@@ -5414,8 +5425,8 @@ function App() {
                                 <p className="text-xs opacity-80 font-medium">Standard monthly replenishment.</p>
                               </button>
                               <button 
-                                className={`p-8 rounded-[2rem] border-2 text-left transition-all relative ${checkoutData.frequency === 'Quarterly' ? 'bg-[#575B44] border-[#575B44] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
-                                onClick={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
+                                className={`p-8 rounded-[2rem] border-2 text-left transition-all relative ${checkoutData.frequency === '3 Month (Monthly Delivery)' ? 'bg-[#575B44] border-[#575B44] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
+                                onClick={() => setCheckoutData({...checkoutData, frequency: '3 Month (Monthly Delivery)', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
                                 <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
                                 <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
