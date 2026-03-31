@@ -50,7 +50,8 @@ import {
   Facebook,
   Instagram,
   Twitter,
-  Linkedin
+  Linkedin,
+  ArrowLeft
 } from 'lucide-react';
 import {
   AreaChart,
@@ -98,7 +99,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('pricing')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
+            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
             
             <div 
               className="relative group"
@@ -200,7 +201,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             className="md:hidden bg-[#FAF5EF] border-t border-[#6F7E57]/10 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Products</button>
+              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Shop Now</button>
               <div className="space-y-1">
                 <button 
                   onClick={() => setShowAboutDropdown(!showAboutDropdown)}
@@ -441,7 +442,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </button>
               <button
-                onClick={() => setView('pricing')}
+                onClick={() => setView('products')}
                 className="bg-white/80 backdrop-blur-sm text-zinc-900 border-2 border-zinc-200 px-10 py-5 rounded-2xl font-black text-lg hover:bg-white transition-all flex items-center justify-center gap-2"
               >
                 Explore Our Boxes
@@ -943,9 +944,9 @@ const ProductDetail = ({
                 
                 <button
                   onClick={() => onAddToCart(product, quantity)}
-                  className="w-full bg-[#575B44] text-white py-6 rounded-2xl font-black text-xl hover:bg-[#4a4e3a] transition-all shadow-2xl flex items-center justify-center gap-3 active:scale-[0.98]"
+                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
                 >
-                  <Calendar size={22} />
+                  <ShoppingCart size={18} />
                   Select Box
                 </button>
               </div>
@@ -3838,14 +3839,14 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "PROTEIN PRIME CUT",
     description: "Premium protein selection. Quality meats, poultry, and fish handled with the highest safety standards.",
     shortDesc: "Premium protein selection",
-    price: 56000,
-    startingFrom: 56000,
+    price: 56400,
+    startingFrom: 56400,
     image_url: "/images/PROTEIN PRIME CUT N56400 - N207200.jpeg",
     category: "Prime Protein",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 56000, frequency: "week" },
+      { tier: "essentials", label: "Essentials", price: 56400, frequency: "week" },
       { tier: "classic", label: "Classic", price: 106500, frequency: "month", badge: "Most Popular" },
       { tier: "premium", label: "Premium", price: 207200, frequency: "month" },
     ]
@@ -3909,15 +3910,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "SPARKLING SANCTUARY",
     description: "Cleaning & home care. Eco-friendly and non-toxic home cleaning solutions for a safe and sparkling sanctuary.",
     shortDesc: "Cleaning & home care",
-    price: 20900,
-    startingFrom: 20900,
+    price: 27000,
+    startingFrom: 27000,
     image_url: "/images/SPARKLING SANCTUARY N27000 -N46900.jpeg",
     category: "Home Care",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 20900, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 40900, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 27000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 46900, frequency: "month" },
     ]
   },
   {
@@ -3925,15 +3926,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "WELLNESS",
     description: "Health & wellness essentials. Natural supplements, vitamins, and health-boosting products for a balanced lifestyle.",
     shortDesc: "Health & wellness essentials",
-    price: 25000,
-    startingFrom: 25000,
+    price: 55000,
+    startingFrom: 55000,
     image_url: "/images/WELLNESS WONDER.jpeg",
     category: "Beauty & Wellness",
     shopCategory: "Lifestyle & Care",
     deliveryType: "monthly",
     plans: [
-      { tier: "essentials", label: "Essentials", price: 25000, frequency: "month", badge: "Most Popular" },
-      { tier: "classic", label: "Classic", price: 48000, frequency: "month" },
+      { tier: "essentials", label: "Essentials", price: 55000, frequency: "month", badge: "Most Popular" },
+      { tier: "classic", label: "Classic", price: 95000, frequency: "month" },
     ]
   },
   {
@@ -3958,15 +3959,15 @@ const MOCK_BOXES: BoxProduct[] = [
     name: "GOURMET PLEASURE",
     description: "Premium dining & curated indulgence. Exclusive selection of gourmet delights and premium treats.",
     shortDesc: "Premium dining & curated indulgence",
-    price: 230000,
-    startingFrom: 230000,
+    price: 45000,
+    startingFrom: 45000,
     image_url: "/images/Gourmet Pleasure Box N230K -N370k.jpeg",
     category: "Gourmet",
     shopCategory: "Food & Pantry",
     deliveryType: "monthly",
     plans: [
       { tier: "classic", label: "Classic", price: 230000, frequency: "month" },
-      { tier: "premium", label: "Premium", price: 307000, frequency: "month" },
+      { tier: "premium", label: "Premium", price: 370000, frequency: "month" },
     ]
   },
   {
@@ -4984,7 +4985,7 @@ function App() {
             </motion.div>
           )}
 
-                    {view === 'pricing' && (
+          {view === 'pricing' && (
             <motion.div
               key="pricing"
               initial={{ opacity: 0, y: 20 }}
@@ -4997,7 +4998,7 @@ function App() {
                   setCheckoutStep(2);
                   setView('checkout');
                 }} 
-                onBack={() => setView('home')} 
+                onBack={() => setView('products')} 
               />
             </motion.div>
           )}
@@ -6075,3 +6076,5 @@ function App() {
 }
 
 export default App;
+
+
