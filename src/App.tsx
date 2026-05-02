@@ -5071,26 +5071,25 @@ function App() {
               <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
                 
                 {/* 1. OUR VISION */}
-                <div className="text-center max-w-3xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Our Vision</h2>
-                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
+                <div className="text-center max-w-4xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Our Vision</h2>
+                  <p className="text-lg md:text-xl text-[#575B44] leading-loose font-sans font-medium tracking-wide">
                     To become the leading home essentials delivery platform in Africa, serving over 1 million households with reliable, curated, and subscription-based everyday needs by 2030.
                   </p>
                 </div>
 
                 {/* 2. OUR MISSION */}
-                <div className="text-center max-w-3xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Our Mission</h2>
-                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
+                <div className="text-center max-w-4xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Our Mission</h2>
+                  <p className="text-lg md:text-xl text-[#575B44] leading-loose font-sans font-medium tracking-wide">
                     Our mission is to build a reliable home supply system that delivers essential items — from food and pantry staples to wellness and home care — directly to households, using a subscription model designed to save time, reduce waste, and bring consistency and ease to everyday living.
                   </p>
                 </div>
 
                 {/* 3. WHY WE EXIST */}
-                <div className="text-center max-w-3xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Why We Exist</h2>
-                  <p className="text-sm font-black text-[#6F7E57] uppercase tracking-[0.3em] mb-4 block">PURPOSE</p>
-                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
+                <div className="text-center max-w-4xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Why We Exist</h2>
+                  <p className="text-lg md:text-xl text-[#575B44] leading-loose font-sans font-medium tracking-wide">
                     To remove the everyday friction of running a home, so people can focus on what truly matters.
                   </p>
                 </div>
@@ -5109,14 +5108,14 @@ function App() {
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         It started with something small.<br/>
                         Bread.<br/>
                         Chicken.<br/>
                         The kind of things you assume will always be there —<br/>
                         until they aren’t.
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         They had a way of running out<br/>
                         at the most inconvenient moments.<br/>
                         Late evenings.<br/>
@@ -5137,7 +5136,7 @@ function App() {
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         A simple errand that was never simple.<br/>
                         You go for one thing…<br/>
                         and return with ten.<br/>
@@ -5147,7 +5146,7 @@ function App() {
                         Energy drains.<br/>
                         And somehow, the essentials still feel out of reach.
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         I remember thinking—<br/>
                         Why does something so basic feel so difficult?<br/>
                         Why should keeping a home running<br/>
@@ -5165,14 +5164,14 @@ function App() {
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         Then came a conversation.<br/>
                         I shared this frustration with my sister.<br/>
                         She said something I couldn’t ignore:<br/>
                         “Maybe this problem feels so heavy<br/>
                         because you’re meant to solve it.”
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         And slowly, something shifted.<br/>
                         I began to see it differently.<br/>
                         This wasn’t just about bread.<br/>
@@ -5182,7 +5181,7 @@ function App() {
                         the things that return, week after week,<br/>
                         asking to be remembered, prepared for, managed.
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         Everyday needs.<br/>
                         Not always daily.<br/>
                         But always there.
@@ -5198,7 +5197,7 @@ function App() {
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         And then the question became clear—<br/>
                         What if these needs didn’t interrupt life?<br/>
                         What if they moved with it?<br/>
@@ -5209,10 +5208,10 @@ function App() {
                         without stress,<br/>
                         without excess?
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed font-bold">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed font-bold">
                         What if home could simply be… supported?
                       </p>
-                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                      <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         That idea became Everyday Needs.<br/>
                         Not just a business.<br/>
                         But a system.<br/>
@@ -5224,14 +5223,14 @@ function App() {
 
                   {/* Closing thought centered */}
                   <div className="text-center max-w-2xl mx-auto pt-16 border-t border-[#6F7E57]/20 space-y-8">
-                     <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                     <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         We curate what matters.<br/>
                         We deliver what’s needed.<br/>
                         We remove what’s unnecessary.<br/>
                         So you don’t have to think about it —<br/>
                         until you realize everything is already there.
                      </p>
-                     <p className="font-serif text-2xl text-[#693311] leading-relaxed">
+                     <p className="font-serif text-lg md:text-xl text-[#693311] leading-relaxed">
                         This is for the homes that carry so much.<br/>
                         For the mothers.<br/>
                         The families.<br/>
@@ -5240,66 +5239,73 @@ function App() {
                         For anyone who has ever paused and thought:<br/>
                         There has to be an easier way to live.
                      </p>
-                     <p className="font-serif text-2xl text-[#693311] font-bold">
+                     <p className="font-serif text-lg md:text-xl text-[#693311] font-bold">
                         There is.
                      </p>
-                     <p className="font-serif text-3xl text-[#6F7E57] font-bold mt-8">
+                     <p className="font-serif text-2xl md:text-3xl text-[#6F7E57] font-bold mt-8">
                         And it begins here.
                      </p>
                   </div>
                 </div>
 
-                {/* EVERYDAY NEEDS MANIFESTO - Simplified per requirements */}
-                <div className="py-24 bg-[#693311] rounded-[4rem] text-white overflow-hidden relative group mt-32">
+                {/* EVERYDAY NEEDS MANIFESTO - Redesigned per requirements */}
+                <div className="py-32 bg-[#575B44] rounded-[5rem] text-white overflow-hidden relative group mt-32 border-[20px] border-[#693311]/10">
                   <div className="absolute inset-0 opacity-10 pointer-events-none">
                     <img src="/images/THE CONVENIENT WAY TO STOCK HOME.jpeg" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[10000ms]" />
                   </div>
-                  <div className="max-w-4xl mx-auto px-8 relative z-10 text-center space-y-16">
-                    <div>
-                      <span className="text-xs font-bold text-[#f7ebc3] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
-                      <h2 className="font-serif text-4xl font-bold tracking-tight text-white mb-8">What We Believe</h2>
+                  <div className="max-w-5xl mx-auto px-8 md:px-16 relative z-10 space-y-24">
+                    <div className="text-center">
+                      <span className="text-xs font-black text-[#f7ebc3] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
+                      <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-white mb-8">What We Believe</h2>
                     </div>
                     
-                    <div className="space-y-12">
-                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">We believe the essentials of life should not feel like a burden.</p>
-                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">We believe a home should be supported — not constantly managed.<br/><br/>We believe time is too valuable to be spent chasing what should already be there.</p>
-                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                      <div className="space-y-8 p-12 bg-[#693311]/30 rounded-[3rem] border border-white/10 backdrop-blur-sm">
+                        <h3 className="font-sans text-[30px] md:text-[34px] font-black text-[#f7ebc3] leading-tight">We believe the essentials of life should not feel like a burden.</h3>
+                        <p className="text-[20px] md:text-[24px] font-sans opacity-90 leading-relaxed">
+                          We believe a home should be supported — not constantly managed.
+                          <br /><br />
+                          We believe time is too valuable to be spent chasing what should already be there.
+                        </p>
+                      </div>
 
-                    <div className="py-8">
-                      <p className="text-3xl font-serif font-bold text-[#f7ebc3] mb-4">We believe in rhythm.</p>
-                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">In the quiet, repeating needs of everyday living.<br/>The things that return week after week — food, care, comfort, preparation.</p>
-                    </div>
+                      <div className="space-y-8 p-12 bg-white/5 rounded-[3rem] border border-white/10 backdrop-blur-sm">
+                        <h3 className="font-sans text-[30px] md:text-[34px] font-black text-[#f7ebc3] leading-tight">We believe in rhythm.</h3>
+                        <p className="text-[20px] md:text-[24px] font-sans opacity-90 leading-relaxed">
+                          In the quiet, repeating needs of everyday living.<br/>
+                          The things that return week after week — food, care, comfort, preparation.
+                        </p>
+                      </div>
 
-                    <div className="space-y-6">
-                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">We believe in removing friction from the ordinary.</p>
-                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">Because when the ordinary is taken care of, life becomes extraordinary.<br/><br/>We believe in thoughtful curation over excess.<br/><br/>In having what you need — not everything you don’t.</p>
-                    </div>
+                      <div className="space-y-8 p-12 bg-white/5 rounded-[3rem] border border-white/10 backdrop-blur-sm">
+                        <h3 className="font-sans text-[30px] md:text-[34px] font-black text-[#f7ebc3] leading-tight">We believe in removing friction from the ordinary.</h3>
+                        <p className="text-[20px] md:text-[24px] font-sans opacity-90 leading-relaxed">
+                          Because when the ordinary is taken care of, life becomes extraordinary.
+                          <br /><br />
+                          We believe in thoughtful curation over excess.
+                        </p>
+                      </div>
 
-                    <div className="py-12 border-t border-white/20">
-                      <p className="text-2xl font-serif text-white font-bold mb-8">We believe in homes that feel calm, prepared, and cared for.</p>
-                      <div className="flex justify-center gap-6 text-sm font-bold uppercase tracking-widest text-[#f7ebc3]">
-                        <span>Not rushed</span>
-                        <span className="opacity-40">•</span>
-                        <span>Not reactive</span>
-                        <span className="opacity-40">•</span>
-                        <span>Not overwhelmed</span>
+                      <div className="space-y-8 p-12 bg-[#693311]/30 rounded-[3rem] border border-white/10 backdrop-blur-sm">
+                        <h3 className="font-sans text-[30px] md:text-[34px] font-black text-[#f7ebc3] leading-tight">We believe in homes that feel calm and prepared.</h3>
+                        <div className="flex flex-wrap gap-4 pt-4">
+                          {['Not rushed', 'Not reactive', 'Not overwhelmed'].map((tag) => (
+                            <span key={tag} className="px-6 py-2 rounded-full border border-[#f7ebc3]/30 text-[#f7ebc3] text-sm font-black uppercase tracking-widest">{tag}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="pt-8 space-y-8">
-                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">
-                        And we believe there is a better way to live.<br/><br/>
-                        Everyday Needs exists to deliver that way.
-                      </p>
-                      <p className="text-lg font-sans opacity-90">
-                         To replace stress with ease.<br/>
-                         To replace effort with intention.<br/>
-                         To replace constant errands with quiet reliability.
-                      </p>
-                      <p className="text-2xl font-serif font-bold text-white mt-12 px-6">
-                         So that what matters most — your time, your energy, your home — is protected.
-                      </p>
-                      <p className="text-3xl font-serif font-bold text-[#f7ebc3] pt-12">
+                    <div className="pt-16 border-t border-white/10 text-center space-y-12">
+                      <h3 className="text-[30px] md:text-[40px] font-sans font-black text-[#f7ebc3] max-w-3xl mx-auto leading-tight">
+                        And we believe there is a better way to live.
+                      </h3>
+                      <div className="space-y-6 text-[20px] md:text-[24px] font-sans opacity-90 max-w-2xl mx-auto">
+                         <p>To replace stress with ease.</p>
+                         <p>To replace effort with intention.</p>
+                         <p>To replace constant errands with quiet reliability.</p>
+                      </div>
+                      <p className="text-[24px] md:text-[34px] font-sans font-black text-white mt-12 bg-[#6F7E57]/20 py-8 rounded-3xl inline-block px-12 border border-[#6F7E57]/30">
                         This is a new rhythm of living.
                       </p>
                     </div>
