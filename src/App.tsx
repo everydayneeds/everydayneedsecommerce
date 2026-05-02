@@ -1114,7 +1114,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       features: ['Sunrise Essentials', 'Wellness', 'Sparkling Sanctuary', 'Protein Weekly Essentials'],
       benefits: ['Flexible', 'Affordable', 'Great for starting out'],
       id: 'Essential',
-      color: 'bg-white'
+      color: 'bg-[#f7ebc3] text-[#693311]'
     },
     {
       name: 'Family Plan',
@@ -1124,7 +1124,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       benefits: ['Designed for real homes', 'Balanced monthly supply', 'Best value'],
       id: 'Family',
       popular: true,
-      color: 'bg-[#6F7E57]/10'
+      color: 'bg-[#6F7E57] text-white'
     },
     {
       name: 'Premium Lifestyle Plan',
@@ -1133,7 +1133,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       features: ['Pantry Provision (Premium)', 'Gourmet Pleasure', 'Radiant Glow', 'PureBliss Pamper Kit', 'Protein Prime Cut (Premium)'],
       benefits: ['Full lifestyle coverage', 'Premium products', 'Luxury home experience'],
       id: 'Premium',
-      color: 'bg-zinc-900 text-white'
+      color: 'bg-[#575B44] text-white'
     }
   ];
 
@@ -1203,25 +1203,25 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
                   <span className="text-[36px] md:text-[40px] font-black">{plan.price}</span>
                   <span className="text-[13px] md:text-[14px] opacity-60 ml-2 uppercase tracking-widest font-black">/ month</span>
                 </div>
-                <p className={`text-[20px] md:text-[22px] mb-10 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
+                <p className={`text-[20px] md:text-[22px] mb-10 font-light leading-relaxed ${plan.id === 'Essential' ? 'text-[#693311]/70' : 'opacity-80'}`}>{plan.desc}</p>
 
                 <div className="space-y-8 mb-12 flex-grow">
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-40">Includes</p>
+                    <p className={`text-[10px] font-black uppercase tracking-widest mb-4 ${plan.id === 'Essential' ? 'text-[#693311]/40' : 'text-white/40'}`}>Includes</p>
                     <ul className="space-y-4">
                       {plan.features.map((f, j) => (
                         <li key={j} className="flex items-center gap-4 text-sm font-medium">
-                          <Check size={16} className={plan.id === 'Premium' ? 'text-[#f7ebc3]' : 'text-[#6F7E57]'} />
+                          <Check size={16} className={plan.id === 'Essential' ? 'text-[#6F7E57]' : 'text-[#f7ebc3]'} />
                           <span>{f}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-40">Benefits</p>
+                    <p className={`text-[10px] font-black uppercase tracking-widest mb-4 ${plan.id === 'Essential' ? 'text-[#693311]/40' : 'text-white/40'}`}>Benefits</p>
                     <div className="flex flex-wrap gap-2">
                        {plan.benefits.map((b, j) => (
-                         <span key={j} className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tight ${plan.id === 'Premium' ? 'bg-white/10 text-white' : 'bg-[#6F7E57]/10 text-[#6F7E57]'}`}>{b}</span>
+                         <span key={j} className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tight ${plan.id === 'Essential' ? 'bg-[#6F7E57]/10 text-[#6F7E57]' : 'bg-white/10 text-white'}`}>{b}</span>
                        ))}
                     </div>
                   </div>
@@ -1229,9 +1229,9 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
 
                 <button
                   onClick={() => onSelect(plan.id)}
-                  className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-[13px] transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
-                    ? 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
-                    : 'bg-[#693311] text-white hover:bg-black'
+                  className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-[13px] transition-all shadow-xl active:scale-95 ${plan.id === 'Essential'
+                    ? 'bg-[#693311] text-white hover:bg-black'
+                    : 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
                     }`}
                 >
                   START YOUR PLAN
@@ -1243,9 +1243,9 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       </section>
 
       {/* 6. PLAN COMPARISON TABLE */}
-      <section className="py-24 bg-[#FAF5EF]">
+      <section className="py-24 bg-[#F8F0E5] border-t-8 border-[#6F7E57]">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] text-center mb-16">Compare the Experience</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#6F7E57] text-center mb-16">Compare the Experience</h2>
           <div className="bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
@@ -1280,9 +1280,9 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       </section>
 
       {/* 7. FLEXIBILITY SECTION */}
-      <section className="py-24 bg-white border-y border-black/5">
+      <section className="py-24 bg-[#FAF5EF] border-y border-[#6F7E57]/10">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] mb-16">Designed Around Your Life</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#6F7E57] mb-16">Designed Around Your Life</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { t: 'Pause anytime', d: 'Your rhythm, your schedule.', icon: Pause },
@@ -1291,7 +1291,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
               { t: 'No long-term commitment', d: 'Freedom to come and go.', icon: ShieldCheck }
             ].map((item, i) => (
               <div key={i} className="space-y-4 group">
-                <div className="w-16 h-16 bg-[#F8F0E5] rounded-3xl flex items-center justify-center mx-auto group-hover:bg-[#6F7E57] group-hover:text-white transition-all duration-500">
+                <div className="w-16 h-16 bg-[#6F7E57] text-white rounded-3xl flex items-center justify-center mx-auto group-hover:bg-[#575B44] transition-all duration-500 shadow-lg shadow-[#6F7E57]/20">
                   <item.icon size={24} />
                 </div>
                 <h4 className="font-black text-[#693311]">{item.t}</h4>
