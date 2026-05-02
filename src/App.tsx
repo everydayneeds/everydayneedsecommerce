@@ -1146,7 +1146,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-serif text-5xl md:text-8xl font-black text-[#693311] leading-tight mb-8"
+              className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] leading-tight mb-8"
             >
               Never Run Out of<br />What Matters Most
             </motion.h1>
@@ -1154,7 +1154,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-light mb-12 max-w-2xl"
+              className="text-[20px] md:text-[22px] text-[#575B44] leading-relaxed font-light mb-12 max-w-2xl"
             >
               Your home essentials — food, care, and wellness — delivered consistently, effortlessly, and just in time.
             </motion.p>
@@ -1163,9 +1163,9 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               onClick={scrollToPlans}
-              className="bg-[#693311] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-black transition-all shadow-2xl active:scale-95"
+              className="bg-[#693311] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-[0.2em] text-[13px] hover:bg-black transition-all shadow-2xl active:scale-95"
             >
-              Start Your Plan
+              START YOUR PLAN
             </motion.button>
           </div>
         </div>
@@ -1180,8 +1180,8 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       <section ref={planSectionRef} className="py-24 bg-white rounded-[5rem] shadow-2xl relative z-10 -mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="font-serif text-4xl md:text-6xl font-black text-[#693311] mb-6">Choose the plan that fits your rhythm</h2>
-            <p className="text-xl text-[#575B44] font-light">From everyday essentials to fully curated home living.</p>
+            <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] mb-6">Choose the plan that fits your rhythm</h2>
+            <p className="text-[20px] md:text-[22px] text-[#575B44] font-light">From everyday essentials to fully curated home living.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -1196,12 +1196,14 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
                     Most Popular
                   </span>
                 )}
-                <h3 className="text-3xl font-serif font-black mb-4">{plan.name}</h3>
+                <h3 className="text-[18px] md:text-[20px] font-serif font-black mb-4 uppercase tracking-widest">
+                  {plan.name === 'Essential Plan' ? 'ESSENTIAL' : plan.name === 'Family Plan' ? 'FAMILY' : 'PREMIUM'}
+                </h3>
                 <div className="mb-8">
-                  <span className="text-4xl font-black italic">{plan.price}</span>
-                  <span className="text-xs opacity-60 ml-2 uppercase tracking-widest font-black">/ month</span>
+                  <span className="text-[36px] md:text-[40px] font-black">{plan.price}</span>
+                  <span className="text-[13px] md:text-[14px] opacity-60 ml-2 uppercase tracking-widest font-black">/ month</span>
                 </div>
-                <p className={`text-lg mb-10 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
+                <p className={`text-[20px] md:text-[22px] mb-10 font-light leading-relaxed ${plan.id === 'Premium' ? 'text-zinc-400' : 'text-[#575B44]'}`}>{plan.desc}</p>
 
                 <div className="space-y-8 mb-12 flex-grow">
                   <div>
@@ -1227,12 +1229,12 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
 
                 <button
                   onClick={() => onSelect(plan.id)}
-                  className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
+                  className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-[13px] transition-all shadow-xl active:scale-95 ${plan.id === 'Premium'
                     ? 'bg-[#f7ebc3] text-[#693311] hover:bg-white'
                     : 'bg-[#693311] text-white hover:bg-black'
                     }`}
                 >
-                  Choose {plan.id === 'Premium' ? 'Premium' : plan.id === 'Family' ? 'Family Plan' : 'Essential'}
+                  START YOUR PLAN
                 </button>
               </motion.div>
             ))}
@@ -1243,7 +1245,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       {/* 6. PLAN COMPARISON TABLE */}
       <section className="py-24 bg-[#FAF5EF]">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311] text-center mb-16">Compare the Experience</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] text-center mb-16">Compare the Experience</h2>
           <div className="bg-white rounded-[3rem] border border-[#6F7E57]/10 shadow-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
@@ -1280,7 +1282,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       {/* 7. FLEXIBILITY SECTION */}
       <section className="py-24 bg-white border-y border-black/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-serif text-4xl md:text-6xl font-black text-[#693311] mb-16">Designed Around Your Life</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] mb-16">Designed Around Your Life</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { t: 'Pause anytime', d: 'Your rhythm, your schedule.', icon: Pause },
@@ -1303,7 +1305,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       {/* 8. HOW IT WORKS */}
       <section className="py-24 bg-[#F8F0E5]">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-serif text-3xl font-black uppercase tracking-[0.2em] text-[#6F7E57] mb-20">How It Works</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black uppercase tracking-[0.2em] text-[#6F7E57] mb-20">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             {[
               { s: '01', t: 'Choose your plan', d: 'Select Essential, Family, or Premium.' },
@@ -1324,7 +1326,7 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
       {/* 9. SOCIAL PROOF */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="font-serif text-4xl md:text-5xl font-black text-[#693311] text-center mb-16 underline decoration-[#f7ebc3] underline-offset-8">Homes Are Switching to Everyday Needs</h2>
+          <h2 className="font-serif text-[36px] md:text-[40px] font-black text-[#693311] text-center mb-16 underline decoration-[#f7ebc3] underline-offset-8">Homes Are Switching to Everyday Needs</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { n: 'Ngozi A.', q: 'Everyday Needs has restored my weekends. I no longer spend Saturday mornings chasing stock.' },
@@ -1346,13 +1348,13 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
             <img src="/images/SELECT SUBSCRIBE SIMPLIFY.jpeg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[10000ms]" />
          </div>
          <div className="max-w-4xl mx-auto px-4 relative z-10">
-            <h2 className="font-serif text-4xl md:text-7xl font-black mb-8">Simplify Your Home.<br />Elevate Everyday Living.</h2>
-            <p className="text-xl md:text-2xl opacity-80 mb-12 font-light">Join hundreds of homes choosing convenience, care, and consistency.</p>
+            <h2 className="font-serif text-[36px] md:text-[40px] lg:text-[48px] font-black mb-8">Simplify Your Home.<br />Elevate Everyday Living.</h2>
+            <p className="text-[20px] md:text-[22px] opacity-80 mb-12 font-light">Join hundreds of homes choosing convenience, care, and consistency.</p>
             <button 
               onClick={scrollToPlans}
-              className="bg-[#f7ebc3] text-[#693311] px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl active:scale-95"
+              className="bg-[#f7ebc3] text-[#693311] px-12 py-6 rounded-3xl font-black uppercase tracking-[0.2em] text-[13px] hover:bg-white transition-all shadow-2xl active:scale-95"
             >
-              Start Your Subscription
+              START YOUR PLAN
             </button>
          </div>
       </section>
