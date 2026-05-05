@@ -99,7 +99,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
+            <button onClick={() => setView('pricing')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
             
             <div 
               className="relative group"
@@ -201,7 +201,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             className="md:hidden bg-[#FAF5EF] border-t border-[#6F7E57]/10 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Shop Now</button>
+              <button onClick={() => { setView('pricing'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Shop Now</button>
               <div className="space-y-1">
                 <button 
                   onClick={() => setShowAboutDropdown(!showAboutDropdown)}
