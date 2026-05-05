@@ -5474,7 +5474,7 @@ function App() {
                                 onClick={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
                                 <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
-                                <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
+                                <h4 className="text-xl font-bold mb-2">3 Month (Monthly Delivery)</h4>
                                 <p className="text-xs opacity-80 font-medium">Get 3 months supply & save.</p>
                               </button>
                            </div>
