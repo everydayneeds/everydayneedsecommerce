@@ -99,7 +99,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Shop Now</button>
+            <button onClick={() => setView('products')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-all nav-link-highlight">Shop Now</button>
             
             <div 
               className="relative group"
@@ -135,8 +135,8 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
                 )}
               </AnimatePresence>
             </div>
-            <button onClick={() => setView('gift-a-box')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Gift a Box</button>
-            <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-colors">Contact Us</button>
+            <button onClick={() => setView('gift-a-box')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-all nav-link-highlight">Gift a Box</button>
+            <button onClick={() => setView('contact')} className="text-sm font-medium text-zinc-600 hover:text-[#6F7E57] transition-all nav-link-highlight">Contact Us</button>
 
             <div className="h-6 w-px bg-zinc-200 mx-2" />
 
@@ -4498,7 +4498,7 @@ function App() {
               </section>
 
               {/* Female-Driven Insight Section */}
-              <section className="py-24 bg-brand-secondary overflow-hidden relative">
+              <section className="py-24 bg-brand-secondary overflow-hidden relative dark-bg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                   <span className="text-[#F8F0E5]/60 font-black uppercase tracking-[0.3em] text-sm mb-12 block">Female-Driven Insight</span>
                   <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -4603,7 +4603,7 @@ function App() {
               </section>
 
               {/* Our Sourcing Promise Section */}
-              <section className="py-16 bg-[#6F7E57] relative">
+              <section className="py-16 bg-[#6F7E57] relative dark-bg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                   <div className="flex flex-col gap-y-16">

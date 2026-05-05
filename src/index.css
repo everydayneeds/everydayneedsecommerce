@@ -65,15 +65,33 @@ h1:hover, h2:hover, h3:hover {
 h1.active-highlight, h2.active-highlight, h3.active-highlight {
   color: #575B44;
   text-shadow: 0 2px 32px rgba(111, 126, 87, 0.4);
-  background-color: rgba(247, 235, 195, 0.85);
+  background-color: rgba(247, 235, 195, 0.9);
   /* Border removed as requested */
 }
 
 .dark-bg h1.active-highlight, .dark-bg h2.active-highlight, .dark-bg h3.active-highlight,
 .text-white h1.active-highlight, .text-white h2.active-highlight, .text-white h3.active-highlight {
-  color: #f7ebc3;
-  background-color: rgba(255, 255, 255, 0.15);
-  text-shadow: 0 2px 32px rgba(247, 235, 195, 0.3);
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.dark-bg h1:hover, .dark-bg h2:hover, .dark-bg h3:hover,
+.text-white h1:hover, .text-white h2:hover, .text-white h3:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.nav-link-highlight:hover {
+  color: #6F7E57 !important;
+  background-color: rgba(111, 126, 87, 0.08);
+  text-shadow: 0 0 12px rgba(111, 126, 87, 0.2);
+  border-radius: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
 }
 
 /* Section highlight refinement */
