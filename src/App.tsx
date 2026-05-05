@@ -424,7 +424,7 @@ const Hero = ({ onStart, setView }: { onStart: () => void, setView: (v: string) 
               </span>
               <span>Just In Time — Serving Lagos & Port Harcourt</span>
             </div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.1] mb-8 tracking-tight active-highlight">
               Your Home. <span className="text-[#6F7E57]">Fully Supplied.</span> Always.
             </h1>
             <p className="font-sans text-xl text-zinc-600 mb-3 leading-relaxed max-w-xl">
@@ -5251,7 +5251,7 @@ function App() {
                   <div className="max-w-4xl mx-auto px-8 relative z-10 text-center space-y-16">
                     <div>
                       <span className="text-xs font-bold text-[#f7ebc3] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
-                      <h2 className="font-serif text-4xl font-bold tracking-tight text-white mb-8">What We Believe</h2>
+                      <h2 className="font-serif text-4xl font-bold tracking-tight text-white mb-8 active-highlight">What We Believe</h2>
                     </div>
                     
                     <div className="space-y-12">
@@ -5316,7 +5316,10 @@ function App() {
                 {/* Checkout Header & Progress */}
                 <div className="mb-12">
                   <div className="flex items-center justify-between mb-8">
-                    <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311]">System Setup</h2>
+                    <div className="flex items-center gap-4">
+                      <button onClick={() => setView('products')} className="p-2 rounded-full hover:bg-black/5 transition-colors text-zinc-500"><X size={24} /></button>
+                      <h2 className="font-serif text-3xl md:text-5xl font-black text-[#693311]">System Setup</h2>
+                    </div>
                     <div className="bg-[#6F7E57]/10 px-4 py-2 rounded-full border border-[#6F7E57]/20">
                       <span className="text-xs font-black text-[#6F7E57] uppercase tracking-widest">Step {checkoutStep} of 7</span>
                     </div>
@@ -5567,6 +5570,9 @@ function App() {
                                   // Trigger Paystack
                                   const handler = (window as any).PaystackPop.setup({
                                     key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx',
+                                    onClose: function() {
+                                      setView('products');
+                                    },
                                     email: checkoutData.email || 'guest@example.com',
                                     amount: checkoutData.total * 100,
                                     currency: 'NGN',
@@ -5609,7 +5615,7 @@ function App() {
                               Manage Subscription
                            </button>
                            <button onClick={() => setView('products')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-bold uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
-                              Explore Add-Ons
+                              Shop Now
                            </button>
                          </div>
                       </motion.div>
