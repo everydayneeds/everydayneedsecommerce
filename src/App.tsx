@@ -821,34 +821,6 @@ const ProductDetail = ({
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
-            >
-              Subscription
-            </button>
-            <button
-              onClick={() => setActiveTab('reviews')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
-            >
-              Reviews
-            </button>
-          </div>
-
-          {activeTab === 'details' && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="bg-white rounded-3xl border border-black/5 p-8">
-                <h3 className="font-serif text-xl font-black mb-6">Product Description</h3>
-                <p className="text-zinc-600 leading-relaxed">{product.description}</p>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'subscription' && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="space-y-6">
-                {/* Household Selection */}
-                {hasHousehold && (
-                  <Dropbox 
-                    label="Household Size"
                     variant="green"
                     options={householdOptions.map(opt => ({ value: opt, label: opt }))}
                     value={selectedHousehold}
@@ -1367,6 +1339,28 @@ const Pricing = ({ onSelect, onBack }: { onSelect: (plan: string) => void, onBac
     </div>
   );
 };
+
+const ErrorPage = ({ onReturn }: { onReturn: () => void }) => (
+  <div className="error-page-container overflow-hidden relative">
+    <div className="error-page-code">404</div>
+    <div className="error-page-content error-page-animate space-y-8">
+      <div className="w-32 h-32 bg-[#6F7E57]/10 rounded-[3rem] flex items-center justify-center mx-auto text-[#6F7E57] mb-8">
+        <AlertCircle size={64} />
+      </div>
+      <h2 className="font-serif text-5xl md:text-7xl font-black text-zinc-900 leading-tight">Oops! <br/><span className="text-[#6F7E57]">System Error.</span></h2>
+      <p className="text-xl text-zinc-500 max-w-md mx-auto font-medium">Something went wrong with the system setup. Don't worry, your home essentials are still safe.</p>
+      <div className="pt-8">
+        <button 
+          onClick={onReturn}
+          className="bg-[#6F7E57] text-white px-12 py-5 rounded-[2.5rem] font-black text-xl hover:bg-[#575B44] transition-all shadow-2xl hover:shadow-[#6F7E57]/40 flex items-center gap-3 mx-auto group"
+        >
+          <ArrowLeft size={24} className="group-hover:-translate-x-2 transition-transform" />
+          Return to Main Landing Page
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 
 
@@ -5586,6 +5580,9 @@ function App() {
                                     currency: 'NGN',
                                     callback: function(response: any) {
                                       setCheckoutStep(7); // Success Step
+                                    },
+                                    onClose: function() {
+                                      setView('products'); // Return to Shop Now
                                     }
                                   });
                                   handler.openIframe();
@@ -5618,14 +5615,14 @@ function App() {
                             <p className="text-sm font-black text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
                             <p className="text-sm font-black text-zinc-900">{checkoutData.address}</p>
                          </div>
-                         <div className="flex gap-4">
-                           <button onClick={() => setView('dashboard')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
-                              Manage Subscription
-                           </button>
-                           <button onClick={() => setView('pricing')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
-                              Explore Add-Ons
-                           </button>
-                         </div>
+                          <div className="flex gap-4">
+                            <button onClick={() => setView('products')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                               Shop Now
+                            </button>
+                            <button onClick={() => setView('pricing')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
+                               Explore Add-Ons
+                            </button>
+                          </div>
                       </motion.div>
                     )}
                   </div>

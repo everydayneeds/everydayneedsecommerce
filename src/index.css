@@ -32,3 +32,81 @@
 .tracking-tight {
   letter-spacing: -0.025em;
 }
+
+/* =============================================
+   HEADING HIGHLIGHT EFFECTS
+   Significant hover/active highlight using brand colours
+   ============================================= */
+
+h1, h2, h3 {
+  transition: color 0.25s ease, text-shadow 0.25s ease, background-color 0.25s ease;
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: default;
+}
+
+h1:hover, h2:hover, h3:hover {
+  color: #6F7E57;
+  text-shadow: 0 2px 24px rgba(111, 126, 87, 0.35);
+  background-color: rgba(111, 126, 87, 0.07);
+}
+
+h1.active-highlight, h2.active-highlight, h3.active-highlight {
+  color: #575B44;
+  text-shadow: 0 2px 32px rgba(111, 126, 87, 0.5);
+  background-color: rgba(247, 235, 195, 0.6);
+  outline: 2px solid #6F7E57;
+  outline-offset: 4px;
+}
+
+/* Section highlight on hover */
+section {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  background-color: rgba(111, 126, 87, 0.025);
+  box-shadow: 0 0 0 2px rgba(111, 126, 87, 0.1);
+}
+
+/* =============================================
+   ERROR / 404 PAGE STYLES
+   ============================================= */
+
+.error-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8F0E5;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-page-code {
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 900;
+  color: #6F7E57;
+  line-height: 1;
+  opacity: 0.15;
+  letter-spacing: -0.05em;
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  user-select: none;
+  position: absolute;
+}
+
+.error-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.error-page-animate {
+  animation: float-up 0.7s ease both;
+}
