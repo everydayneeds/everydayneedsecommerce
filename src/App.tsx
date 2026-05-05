@@ -5065,36 +5065,32 @@ function App() {
               <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
                 
                 {/* 1. OUR VISION */}
-                <div className="text-center max-w-4xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Our Vision</h2>
-                  <p className="text-base md:text-lg text-[#575B44] leading-[2.5] font-sans font-medium tracking-widest text-justify md:text-center">
+                <div className="text-center max-w-3xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Our Vision</h2>
+                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
                     To become the leading home essentials delivery platform in Africa, serving over 1 million households with reliable, curated, and subscription-based everyday needs by 2030.
                   </p>
                 </div>
 
                 {/* 2. OUR MISSION */}
-                <div className="text-center max-w-4xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Our Mission</h2>
-                  <p className="text-base md:text-lg text-[#575B44] leading-[2.5] font-sans font-medium tracking-widest text-justify md:text-center">
+                <div className="text-center max-w-3xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Our Mission</h2>
+                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
                     Our mission is to build a reliable home supply system that delivers essential items — from food and pantry staples to wellness and home care — directly to households, using a subscription model designed to save time, reduce waste, and bring consistency and ease to everyday living.
                   </p>
                 </div>
 
-                {/* 3. OUR PURPOSE */}
-                <div className="text-center max-w-4xl mx-auto">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-8">Our Purpose</h2>
-                  <p className="text-base md:text-lg text-[#575B44] leading-[2.5] font-sans font-medium tracking-widest text-justify md:text-center">
+                {/* 3. WHY WE EXIST */}
+                <div className="text-center max-w-3xl mx-auto">
+                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#693311] mb-6">Why We Exist</h2>
+                  <p className="text-sm font-black text-[#6F7E57] uppercase tracking-[0.3em] mb-4 block">PURPOSE</p>
+                  <p className="text-xl md:text-2xl text-[#575B44] leading-relaxed font-sans font-medium">
                     To remove the everyday friction of running a home, so people can focus on what truly matters.
                   </p>
                 </div>
 
-                {/* 4. WHY WE EXIST */}
-                <div className="text-center max-w-4xl mx-auto mt-32">
-                  <h2 className="font-serif text-4xl md:text-5xl font-black tracking-tight text-[#6F7E57] mb-8 uppercase tracking-widest">Why We Exist</h2>
-                </div>
-
-                {/* 5. FOUNDER'S NOTE - 4 Block Editorial rhythm */}
-                <div className="mt-16 space-y-32">
+                {/* 4. FOUNDER'S NOTE - 4 Block Editorial rhythm */}
+                <div className="mt-32 space-y-32">
                   <div className="text-center mb-16">
                     <span className="text-sm font-black text-[#6F7E57] uppercase tracking-[0.4em] block">A Founder's Note</span>
                   </div>
@@ -5103,18 +5099,18 @@ function App() {
                   <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Founders Note Section1.jpeg" alt="Founder" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Founder.jpeg" alt="Founder" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         It started with something small.<br/>
                         Bread.<br/>
                         Chicken.<br/>
                         The kind of things you assume will always be there —<br/>
                         until they aren’t.
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         They had a way of running out<br/>
                         at the most inconvenient moments.<br/>
                         Late evenings.<br/>
@@ -5131,11 +5127,11 @@ function App() {
                   <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Founders Note Section2.jpeg" alt="Errand" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Everyday essentials in organized boxes.png" alt="Errand" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         A simple errand that was never simple.<br/>
                         You go for one thing…<br/>
                         and return with ten.<br/>
@@ -5145,7 +5141,7 @@ function App() {
                         Energy drains.<br/>
                         And somehow, the essentials still feel out of reach.
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         I remember thinking—<br/>
                         Why does something so basic feel so difficult?<br/>
                         Why should keeping a home running<br/>
@@ -5159,18 +5155,18 @@ function App() {
                   <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-square rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Founders Note Section3.jpeg" alt="Conversation" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Women in the kitchen.JPG" alt="Conversation" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         Then came a conversation.<br/>
                         I shared this frustration with my sister.<br/>
                         She said something I couldn’t ignore:<br/>
                         “Maybe this problem feels so heavy<br/>
                         because you’re meant to solve it.”
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         And slowly, something shifted.<br/>
                         I began to see it differently.<br/>
                         This wasn’t just about bread.<br/>
@@ -5180,7 +5176,7 @@ function App() {
                         the things that return, week after week,<br/>
                         asking to be remembered, prepared for, managed.
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         Everyday needs.<br/>
                         Not always daily.<br/>
                         But always there.
@@ -5192,11 +5188,11 @@ function App() {
                   <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Founders Note Section4.jpeg" alt="Solution" className="w-full h-full object-cover object-center" />
+                        <img src="/images/front page Main.jpg" alt="Solution" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         And then the question became clear—<br/>
                         What if these needs didn’t interrupt life?<br/>
                         What if they moved with it?<br/>
@@ -5207,10 +5203,10 @@ function App() {
                         without stress,<br/>
                         without excess?
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed font-bold">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed font-bold">
                         What if home could simply be… supported?
                       </p>
-                      <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                      <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         That idea became Everyday Needs.<br/>
                         Not just a business.<br/>
                         But a system.<br/>
@@ -5222,14 +5218,14 @@ function App() {
 
                   {/* Closing thought centered */}
                   <div className="text-center max-w-2xl mx-auto pt-16 border-t border-[#6F7E57]/20 space-y-8">
-                     <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                     <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         We curate what matters.<br/>
                         We deliver what’s needed.<br/>
                         We remove what’s unnecessary.<br/>
                         So you don’t have to think about it —<br/>
                         until you realize everything is already there.
                      </p>
-                     <p className="font-serif text-base md:text-lg text-[#693311] leading-relaxed">
+                     <p className="font-serif text-2xl text-[#693311] leading-relaxed">
                         This is for the homes that carry so much.<br/>
                         For the mothers.<br/>
                         The families.<br/>
@@ -5238,70 +5234,66 @@ function App() {
                         For anyone who has ever paused and thought:<br/>
                         There has to be an easier way to live.
                      </p>
-                     <p className="font-serif text-base md:text-lg text-[#693311] font-bold">
+                     <p className="font-serif text-2xl text-[#693311] font-bold">
                         There is.
                      </p>
-                     <p className="font-serif text-xl md:text-2xl text-[#6F7E57] font-bold mt-8">
+                     <p className="font-serif text-3xl text-[#6F7E57] font-bold mt-8">
                         And it begins here.
                      </p>
                   </div>
                 </div>
 
-                {/* EVERYDAY NEEDS MANIFESTO - Redesigned per requirements */}
-                <div className="py-32 bg-[#FAF5EF] rounded-[5rem] overflow-hidden relative group mt-32 border-t-[20px] border-[#6F7E57]">
-                  <div className="max-w-5xl mx-auto px-8 md:px-16 relative z-10 space-y-24">
-                    <div className="text-center">
-                      <span className="text-xs font-black text-[#693311] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
-                      <h2 className="font-serif text-4xl md:text-6xl font-black tracking-tight text-[#6F7E57] mb-8">What We Believe</h2>
+                {/* EVERYDAY NEEDS MANIFESTO - Simplified per requirements */}
+                <div className="py-24 bg-[#693311] rounded-[4rem] text-white overflow-hidden relative group mt-32">
+                  <div className="absolute inset-0 opacity-10 pointer-events-none">
+                    <img src="/images/THE CONVENIENT WAY TO STOCK HOME.jpeg" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[10000ms]" />
+                  </div>
+                  <div className="max-w-4xl mx-auto px-8 relative z-10 text-center space-y-16">
+                    <div>
+                      <span className="text-xs font-bold text-[#f7ebc3] uppercase tracking-[0.5em] mb-4 block">The Everyday Needs Manifesto</span>
+                      <h2 className="font-serif text-4xl font-bold tracking-tight text-white mb-8">What We Believe</h2>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-                      <div className="space-y-8 p-12 bg-white rounded-[3rem] border border-[#6F7E57]/30 shadow-2xl">
-                        <h3 className="font-sans text-[20px] md:text-[24px] font-black text-[#575B44] leading-tight">We believe the essentials of life should not feel like a burden.</h3>
-                        <p className="text-[16px] md:text-[18px] font-sans text-[#693311] leading-relaxed">
-                          We believe a home should be supported — not constantly managed.
-                          <br /><br />
-                          We believe time is too valuable to be spent chasing what should already be there.
-                        </p>
-                      </div>
+                    <div className="space-y-12">
+                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">We believe the essentials of life should not feel like a burden.</p>
+                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">We believe a home should be supported — not constantly managed.<br/><br/>We believe time is too valuable to be spent chasing what should already be there.</p>
+                    </div>
 
-                      <div className="space-y-8 p-12 bg-white rounded-[3rem] border border-[#6F7E57]/30 shadow-2xl">
-                        <h3 className="font-sans text-[20px] md:text-[24px] font-black text-[#575B44] leading-tight">We believe in rhythm.</h3>
-                        <p className="text-[16px] md:text-[18px] font-sans text-[#693311] leading-relaxed">
-                          In the quiet, repeating needs of everyday living.<br/>
-                          The things that return week after week — food, care, comfort, preparation.
-                        </p>
-                      </div>
+                    <div className="py-8">
+                      <p className="text-3xl font-serif font-bold text-[#f7ebc3] mb-4">We believe in rhythm.</p>
+                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">In the quiet, repeating needs of everyday living.<br/>The things that return week after week — food, care, comfort, preparation.</p>
+                    </div>
 
-                      <div className="space-y-8 p-12 bg-white rounded-[3rem] border border-[#6F7E57]/30 shadow-2xl">
-                        <h3 className="font-sans text-[20px] md:text-[24px] font-black text-[#575B44] leading-tight">We believe in removing friction from the ordinary.</h3>
-                        <p className="text-[16px] md:text-[18px] font-sans text-[#693311] leading-relaxed">
-                          Because when the ordinary is taken care of, life becomes extraordinary.
-                          <br /><br />
-                          We believe in thoughtful curation over excess.
-                        </p>
-                      </div>
+                    <div className="space-y-6">
+                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">We believe in removing friction from the ordinary.</p>
+                      <p className="text-lg font-sans max-w-2xl mx-auto opacity-90">Because when the ordinary is taken care of, life becomes extraordinary.<br/><br/>We believe in thoughtful curation over excess.<br/><br/>In having what you need — not everything you don’t.</p>
+                    </div>
 
-                      <div className="space-y-8 p-12 bg-white rounded-[3rem] border border-[#6F7E57]/30 shadow-2xl">
-                        <h3 className="font-sans text-[20px] md:text-[24px] font-black text-[#575B44] leading-tight">We believe in homes that feel calm and prepared.</h3>
-                        <div className="flex flex-wrap gap-4 pt-4">
-                          {['Not rushed', 'Not reactive', 'Not overwhelmed'].map((tag) => (
-                            <span key={tag} className="px-6 py-2 rounded-full border border-[#6F7E57] text-[#6F7E57] text-sm font-black uppercase tracking-widest">{tag}</span>
-                          ))}
-                        </div>
+                    <div className="py-12 border-t border-white/20">
+                      <p className="text-2xl font-serif text-white font-bold mb-8">We believe in homes that feel calm, prepared, and cared for.</p>
+                      <div className="flex justify-center gap-6 text-sm font-bold uppercase tracking-widest text-[#f7ebc3]">
+                        <span>Not rushed</span>
+                        <span className="opacity-40">•</span>
+                        <span>Not reactive</span>
+                        <span className="opacity-40">•</span>
+                        <span>Not overwhelmed</span>
                       </div>
                     </div>
 
-                    <div className="pt-16 border-t border-[#6F7E57]/20 text-center space-y-12">
-                      <h3 className="text-[20px] md:text-[24px] font-sans font-black text-[#575B44] max-w-3xl mx-auto leading-tight">
-                        And we believe there is a better way to live.
-                      </h3>
-                      <div className="space-y-6 text-[16px] md:text-[18px] font-sans text-[#693311] max-w-2xl mx-auto">
-                         <p>To replace stress with ease.</p>
-                         <p>To replace effort with intention.</p>
-                         <p>To replace constant errands with quiet reliability.</p>
-                      </div>
-                      <p className="text-[20px] md:text-[24px] font-sans font-black text-white mt-12 bg-[#6F7E57] py-8 rounded-3xl inline-block px-12 shadow-xl">
+                    <div className="pt-8 space-y-8">
+                      <p className="text-2xl font-serif text-[#f7ebc3] font-bold max-w-2xl mx-auto">
+                        And we believe there is a better way to live.<br/><br/>
+                        Everyday Needs exists to deliver that way.
+                      </p>
+                      <p className="text-lg font-sans opacity-90">
+                         To replace stress with ease.<br/>
+                         To replace effort with intention.<br/>
+                         To replace constant errands with quiet reliability.
+                      </p>
+                      <p className="text-2xl font-serif font-bold text-white mt-12 px-6">
+                         So that what matters most — your time, your energy, your home — is protected.
+                      </p>
+                      <p className="text-3xl font-serif font-bold text-[#f7ebc3] pt-12">
                         This is a new rhythm of living.
                       </p>
                     </div>
@@ -5395,7 +5387,7 @@ function App() {
                                 <img src={box.image_url} alt={box.name} className="w-full h-full object-cover" />
                               </div>
                               <div className="flex-1 text-left">
-                                <h4 className="font-black text-zinc-900">{box.name}</h4>
+                                <h4 className="font-bold text-zinc-900">{box.name}</h4>
                                 <p className="text-xs text-zinc-500 mt-1 line-clamp-1">{box.description}</p>
                               </div>
                               <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected ? 'bg-[#6F7E57] border-[#6F7E57]' : 'border-zinc-300'}`}>
@@ -5421,11 +5413,11 @@ function App() {
                         </div>
                         <div className="space-y-6">
                           {checkoutData.items.length === 0 ? (
-                            <p className="text-center py-10 text-zinc-400 font-black">No boxes selected.</p>
+                            <p className="text-center py-10 text-zinc-400 font-bold">No boxes selected.</p>
                           ) : (
                             checkoutData.items.map((item: any) => (
                               <div key={item.id} className="p-6 bg-[#FAF5EF] rounded-[2rem] border border-black/5">
-                                <h4 className="font-black text-zinc-900 mb-4">{item.name}</h4>
+                                <h4 className="font-bold text-zinc-900 mb-4">{item.name}</h4>
                                 <div className="grid grid-cols-3 gap-3">
                                   {['Essentials', 'Classic', 'Premium'].map(tier => (
                                     <button 
@@ -5442,7 +5434,7 @@ function App() {
                                       }}
                                       className={`p-3 rounded-2xl border text-center transition-all ${item.variant === tier || (!item.variant && tier === 'Classic') ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-white border-zinc-200 text-zinc-600 hover:border-[#6F7E57]/30'}`}
                                     >
-                                      <span className="text-xs font-black">{tier}</span>
+                                      <span className="text-xs font-bold">{tier}</span>
                                     </button>
                                   ))}
                                 </div>
@@ -5471,15 +5463,15 @@ function App() {
                                 className={`p-8 rounded-[2rem] border-2 text-left transition-all ${checkoutData.frequency === 'Monthly' ? 'bg-[#6F7E57] border-[#6F7E57] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
                                 onClick={() => setCheckoutData({...checkoutData, frequency: 'Monthly', total: checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0)})}
                               >
-                                <h4 className="text-xl font-black mb-2">Monthly Delivery</h4>
+                                <h4 className="text-xl font-bold mb-2">Monthly Delivery</h4>
                                 <p className="text-xs opacity-80 font-medium">Standard monthly replenishment.</p>
                               </button>
                               <button 
-                                className={`p-8 rounded-[2rem] border-2 text-left transition-all relative ${checkoutData.frequency === '3 Month (Monthly Delivery)' ? 'bg-[#575B44] border-[#575B44] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
-                                onClick={() => setCheckoutData({...checkoutData, frequency: '3 Month (Monthly Delivery)', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
+                                className={`p-8 rounded-[2rem] border-2 text-left transition-all relative ${checkoutData.frequency === 'Quarterly' ? 'bg-[#575B44] border-[#575B44] text-white' : 'bg-[#FAF5EF] border-black/5 text-[#575B44]'}`}
+                                onClick={() => setCheckoutData({...checkoutData, frequency: 'Quarterly', total: (checkoutData.items.reduce((acc: number, item: any) => acc + (item.finalPrice || item.price), 0) * 3) * 0.95})}
                               >
                                 <div className="absolute top-4 right-4 bg-[#f7ebc3] text-[#693311] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Save 5%</div>
-                                <h4 className="text-xl font-black mb-2">3 Month (Monthly Delivery)</h4>
+                                <h4 className="text-xl font-bold mb-2">Quarterly Pre-pay</h4>
                                 <p className="text-xs opacity-80 font-medium">Get 3 months supply & save.</p>
                               </button>
                            </div>
@@ -5500,7 +5492,7 @@ function App() {
                               value={checkoutData.notes}
                               onChange={(val) => setCheckoutData({...checkoutData, notes: val})}
                            />
-                           <p className="text-xs text-center font-black text-[#6F7E57] uppercase tracking-widest mt-4">Freshly packed and delivered just in time</p>
+                           <p className="text-xs text-center font-bold text-[#6F7E57] uppercase tracking-widest mt-4">Freshly packed and delivered just in time</p>
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
                           <button onClick={() => setCheckoutStep(3)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
@@ -5519,16 +5511,16 @@ function App() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="md:col-span-2">
-                             <input type="text" value={checkoutData.name} onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Full Name" />
+                             <input type="text" value={checkoutData.name} onChange={(e) => setCheckoutData({...checkoutData, name: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Full Name" />
                           </div>
                           <div>
-                             <input type="email" value={checkoutData.email} onChange={(e) => setCheckoutData({...checkoutData, email: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Email Address" />
+                             <input type="email" value={checkoutData.email} onChange={(e) => setCheckoutData({...checkoutData, email: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Email Address" />
                           </div>
                           <div>
-                             <input type="tel" value={checkoutData.phone} onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none" placeholder="Phone Number" />
+                             <input type="tel" value={checkoutData.phone} onChange={(e) => setCheckoutData({...checkoutData, phone: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none" placeholder="Phone Number" />
                           </div>
                           <div className="md:col-span-2">
-                             <textarea value={checkoutData.address} onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-black outline-none min-h-[120px]" placeholder="Full Delivery Address & City" />
+                             <textarea value={checkoutData.address} onChange={(e) => setCheckoutData({...checkoutData, address: e.target.value})} className="w-full px-8 py-5 bg-[#FAF5EF] border border-black/5 rounded-[2rem] font-bold outline-none min-h-[120px]" placeholder="Full Delivery Address & City" />
                           </div>
                         </div>
                         <div className="flex gap-4 pt-8 border-t border-black/5">
@@ -5552,17 +5544,17 @@ function App() {
                               <div className="space-y-4">
                                 <div>
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Your Plan</p>
-                                  <p className="text-sm font-black text-zinc-800">{checkoutData.plan} Plan</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.plan} Plan</p>
                                 </div>
                                 <div className="border-t border-black/5 pt-4">
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Selected Boxes</p>
-                                  <ul className="text-sm font-black text-zinc-800 list-disc pl-4 space-y-1">
+                                  <ul className="text-sm font-bold text-zinc-800 list-disc pl-4 space-y-1">
                                     {checkoutData.items.map((i:any) => <li key={i.id}>{i.name} — {i.variant || 'Classic'}</li>)}
                                   </ul>
                                 </div>
                                 <div className="border-t border-black/5 pt-4">
                                   <p className="text-[10px] font-black text-[#6F7E57] uppercase tracking-widest mb-1">Delivery</p>
-                                  <p className="text-sm font-black text-zinc-800">{checkoutData.frequency}</p>
+                                  <p className="text-sm font-bold text-zinc-800">{checkoutData.frequency}</p>
                                 </div>
                               </div>
                            </div>
@@ -5580,9 +5572,6 @@ function App() {
                                     currency: 'NGN',
                                     callback: function(response: any) {
                                       setCheckoutStep(7); // Success Step
-                                    },
-                                    onClose: function() {
-                                      setView('products'); // Return to Shop Now
                                     }
                                   });
                                   handler.openIframe();
@@ -5594,7 +5583,7 @@ function App() {
                            </div>
                         </div>
                         <div className="flex gap-4 pt-4">
-                          <button onClick={() => setCheckoutStep(5)} className="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
+                          <button onClick={() => setCheckoutStep(5)} className="px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs text-zinc-400 hover:text-zinc-600 transition-all">Back</button>
                         </div>
                       </motion.div>
                     )}
@@ -5610,19 +5599,19 @@ function App() {
                          </div>
                          <div className="bg-[#FAF5EF] p-8 rounded-[3rem] border border-black/5 max-w-md w-full text-left">
                             <p className="text-xs font-black text-[#6F7E57] uppercase tracking-widest mb-2 border-b border-black/5 pb-2">Plan summary</p>
-                            <p className="text-lg font-black text-zinc-900 mt-2">{checkoutData.plan} Plan</p>
+                            <p className="text-lg font-bold text-zinc-900 mt-2">{checkoutData.plan} Plan</p>
                             <p className="text-zinc-500 text-sm">{checkoutData.items.length} boxes • {checkoutData.frequency}</p>
-                            <p className="text-sm font-black text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
-                            <p className="text-sm font-black text-zinc-900">{checkoutData.address}</p>
+                            <p className="text-sm font-bold text-zinc-900 mt-4">Delivery: {checkoutData.deliveryTime}</p>
+                            <p className="text-sm font-bold text-zinc-900">{checkoutData.address}</p>
                          </div>
-                          <div className="flex gap-4">
-                            <button onClick={() => setView('products')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
-                               Shop Now
-                            </button>
-                            <button onClick={() => setView('pricing')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
-                               Explore Add-Ons
-                            </button>
-                          </div>
+                         <div className="flex gap-4">
+                           <button onClick={() => setView('dashboard')} className="px-10 py-5 bg-[#693311] text-white rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl">
+                              Manage Subscription
+                           </button>
+                           <button onClick={() => setView('products')} className="px-10 py-5 bg-[#FAF5EF] text-zinc-800 border border-zinc-200 rounded-[2rem] font-bold uppercase tracking-widest text-xs hover:bg-zinc-100 transition-all">
+                              Explore Add-Ons
+                           </button>
+                         </div>
                       </motion.div>
                     )}
                   </div>
