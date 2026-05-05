@@ -4707,7 +4707,7 @@ function App() {
               </section>
 
               {/* Testimonial Section */}
-              <section className="py-24 bg-[#693311] overflow-hidden">
+              <section className="py-24 bg-[#693311] overflow-hidden dark-bg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <h2 className="font-serif text-3xl md:text-5xl font-black text-center mb-16 text-[#F8F0E5] tracking-tight">Trusted by Modern Households</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
