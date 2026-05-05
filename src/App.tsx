@@ -201,11 +201,11 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
             className="md:hidden bg-[#FAF5EF] border-t border-[#6F7E57]/10 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors">Shop Now</button>
+              <button onClick={() => { setView('products'); setIsOpen(false); }} className="block w-full text-left px-4 py-3 text-base font-black text-zinc-800 transition-all nav-link-highlight">Shop Now</button>
               <div className="space-y-1">
                 <button 
                   onClick={() => setShowAboutDropdown(!showAboutDropdown)}
-                  className="flex items-center justify-between w-full px-4 py-3 text-base font-black text-zinc-800 hover:bg-[#F8F0E5] rounded-xl transition-colors"
+                  className="flex items-center justify-between w-full px-4 py-3 text-base font-black text-zinc-800 transition-all nav-link-highlight"
                 >
                   About
                   <ChevronDown size={18} className={`transition-transform duration-200 ${showAboutDropdown ? 'rotate-180' : ''}`} />
@@ -222,7 +222,7 @@ const Navbar = ({ user, onLogin, onLogout, setView, currentView, cartCount, onOp
                         <button
                           key={link.view}
                           onClick={() => { setView(link.view); setIsOpen(false); }}
-                          className="block w-full text-left px-4 py-2 text-sm font-black text-zinc-600 hover:text-[#6F7E57] transition-colors"
+                          className="block w-full text-left px-4 py-2 text-sm font-black text-zinc-600 transition-all nav-link-highlight"
                         >
                           {link.name}
                         </button>

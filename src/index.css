@@ -83,15 +83,15 @@ h1.active-highlight, h2.active-highlight, h3.active-highlight {
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
+.nav-link-highlight {
+  padding: 8px 16px;
+  border-radius: 9999px; /* Pill shape */
+  transition: all 0.2s ease;
+}
+
 .nav-link-highlight:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Matching Dashboard button's subtle gray */
   color: #6F7E57 !important;
-  background-color: rgba(111, 126, 87, 0.08);
-  text-shadow: 0 0 12px rgba(111, 126, 87, 0.2);
-  border-radius: 6px;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin-left: -8px;
-  margin-right: -8px;
 }
 
 /* Section highlight refinement */
