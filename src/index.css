@@ -50,16 +50,13 @@ h1, h2, h3 {
 
 h1:hover, h2:hover, h3:hover {
   color: #6F7E57;
-  text-shadow: 0 4px 24px rgba(111, 126, 87, 0.2);
-  background-color: rgba(111, 126, 87, 0.08);
 }
 
 /* For dark backgrounds or contexts where contrast is needed */
 .dark-bg h1:hover, .dark-bg h2:hover, .dark-bg h3:hover,
 .text-white h1:hover, .text-white h2:hover, .text-white h3:hover {
-  color: #f7ebc3;
-  background-color: rgba(247, 235, 195, 0.15);
-  text-shadow: 0 4px 24px rgba(247, 235, 195, 0.3);
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 h1.active-highlight, h2.active-highlight, h3.active-highlight {
@@ -74,13 +71,6 @@ h1.active-highlight, h2.active-highlight, h3.active-highlight {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.2);
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-}
-
-.dark-bg h1:hover, .dark-bg h2:hover, .dark-bg h3:hover,
-.text-white h1:hover, .text-white h2:hover, .text-white h3:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .nav-link-highlight {
@@ -100,7 +90,7 @@ section {
 }
 
 section:hover {
-  background-color: rgba(111, 126, 87, 0.015);
+  /* Hover background removed as requested */
 }
 
 /* =============================================
