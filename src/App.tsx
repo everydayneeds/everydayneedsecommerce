@@ -821,6 +821,37 @@ const ProductDetail = ({
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
+            >
+              Subscription
+            </button>
+          </div>
+
+          {activeTab === 'details' && (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="p-8 bg-white rounded-[2.5rem] border border-black/5">
+                <h3 className="font-serif text-2xl font-bold text-zinc-900 mb-6">Product Description</h3>
+                <div className="space-y-4 text-sm text-zinc-600 leading-relaxed">
+                  <p>{product.description}</p>
+                  <div className="mt-6 pt-6 border-t border-black/5">
+                    <button 
+                      onClick={() => onAddToCart(product, quantity)}
+                      className="w-full bg-[#6F7E57] text-white py-4 rounded-2xl font-black text-sm hover:bg-[#6F7E57]/90 transition-all shadow-md"
+                    >
+                      Checkout Here
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'subscription' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="space-y-6">
+                {hasHousehold && (
+                  <Dropbox 
+                    label="Household Type"
                     variant="green"
                     options={householdOptions.map(opt => ({ value: opt, label: opt }))}
                     value={selectedHousehold}
