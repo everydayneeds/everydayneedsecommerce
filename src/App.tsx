@@ -871,7 +871,7 @@ const ProductDetail = ({
                   label="Delivery Frequency"
                   options={[
                     { value: 'Monthly', label: 'Monthly' },
-                    { value: '3 Month (Monthly Delivery)', label: '3 Months (5% Discount)', badge: 'Save 5%' }
+                    { value: '3 Month (Monthly Delivery)', label: '3 Month(Monthly Delivery)', badge: 'Save 5%' }
                   ]}
                   value={selectedFrequency}
                   onChange={(v: any) => setSelectedFrequency(v)}
