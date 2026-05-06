@@ -798,6 +798,7 @@ const ProductDetail = ({
         </div>
 
         <div className="space-y-10">
+
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="px-3 py-1 bg-brand-alt-2/20 text-[#6F7E57] text-xs font-black uppercase tracking-widest rounded-full">
@@ -824,6 +825,12 @@ const ProductDetail = ({
               className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'subscription' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
             >
               Subscription
+            </button>
+            <button
+              onClick={() => setActiveTab('reviews')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-black transition-all ${activeTab === 'reviews' ? 'bg-white shadow-sm text-[#6F7E57]' : 'text-zinc-500 hover:text-zinc-900'}`}
+            >
+              Reviews
             </button>
           </div>
 
@@ -852,135 +859,6 @@ const ProductDetail = ({
                 {hasHousehold && (
                   <Dropbox 
                     label="Household Type"
-                    variant="green"
-                    options={householdOptions.map(opt => ({ value: opt, label: opt }))}
-                    value={selectedHousehold}
-                    onChange={(val) => {
-                      setSelectedHousehold(val);
-                      const firstTier = productPlans.find(p => !p.householdType || p.householdType === val)?.tier;
-                      if (firstTier) setSelectedTier(firstTier);
-                    }}
-                  />
-                )}
-
-                {/* Plan Selector */}
-                <Dropbox 
-                  label="Select Plan"
-                  variant="brown"
-                  options={currentVisiblePlans.map(plan => ({
-                    value: plan.tier,
-                    label: plan.label,
-                    price: plan.price,
-                    badge: plan.badge
-                  }))}
-                  value={selectedTier}
-                  onChange={setSelectedTier}
-                />
-
-                {/* Frequency */}
-                <Dropbox 
-                  label="Delivery Frequency"
-                  variant="gold"
-                  options={[
-                    { value: 'Monthly', label: 'Monthly Delivery' },
-                    { value: '3 Month (Monthly Delivery)', label: '3 Month (Monthly Delivery)', badge: 'Save 5%' }
-                  ]}
-                  value={selectedFrequency}
-                  onChange={(val) => setSelectedFrequency(val as 'Monthly' | '3 Month (Monthly Delivery)')}
-                />
-
-                {/* Add-Ons */}
-                {(product.addOns ?? []).length > 0 && (
-                  <div>
-                    <p className="text-sm font-black text-zinc-700 mb-2">Optional Add-Ons</p>
-                    <div className="space-y-3">
-                      {(product.addOns ?? []).map(addOn => {
-                        const isSelected = selectedAddOns.includes(addOn.name);
-                        return (
-                          <div key={addOn.name} 
-                            className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all ${isSelected ? 'border-[#6F7E57] bg-[#6F7E57]/5' : 'border-black/5 bg-white'}`}>
-                            <div className="flex flex-col">
-                              <span className="font-black text-sm text-zinc-800">{addOn.name}</span>
-                              <span className="text-xs font-black text-[#6F7E57]">₦{addOn.price.toLocaleString()}</span>
-                            </div>
-                            <button 
-                              onClick={() => toggleAddOn(addOn.name)}
-                              className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                                isSelected 
-                                ? 'bg-[#6F7E57] text-white' 
-                                : 'bg-zinc-100 text-zinc-500 hover:bg-[#6F7E57]/10 hover:text-[#6F7E57]'
-                              }`}
-                            >
-                              {isSelected ? 'Selected' : 'Select'}
-                            </button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Price Summary */}
-                <div className="bg-[#F8F0E5] rounded-2xl p-5 space-y-2">
-                  <div className="flex justify-between text-sm font-medium text-zinc-600">
-                    <span>Selected plan</span>
-                    <span>₦{(activePlan?.price ?? product.price).toLocaleString()} / {activePlan?.frequency ?? 'month'}</span>
-                  </div>
-                  {selectedAddOns.length > 0 && (
-                    <div className="flex justify-between text-sm font-medium text-zinc-600">
-                      <span>Add-ons</span>
-                      <span>+₦{addOnTotal.toLocaleString()}</span>
-                    </div>
-                  )}
-                  {selectedFrequency === '3 Month (Monthly Delivery)' && (
-                    <div className="flex justify-between text-sm font-medium text-[#6F7E57]">
-                      <span>3 Month discount (5%)</span>
-                      <span>–₦{Math.round(basePrice * 3 * 0.05).toLocaleString()}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between font-black text-zinc-900 text-lg border-t border-black/5 pt-2">
-                    <span>Total</span>
-                    <span>₦{totalPrice.toLocaleString()} / {selectedFrequency === '3 Month (Monthly Delivery)' ? 'quarter' : 'month'}</span>
-                  </div>
-                </div>
-
-                
-                <button
-                  onClick={() => onAddToCart(product, quantity)}
-                  className="w-full bg-[#6F7E57] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#575B44] transition-all shadow-xl flex items-center justify-center gap-2"
-                >
-                  <ShoppingCart size={18} />
-                  Select Box
-                </button>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'reviews' && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-black text-zinc-900">Customer Reviews</h3>
-                <button className="text-sm font-black text-[#6F7E57] hover:underline">Write a Review</button>
-              </div>
-              <div className="space-y-4">
-                {reviews.map((rev, i) => (
-                  <div key={i} className="p-6 bg-white rounded-3xl border border-black/5">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center text-xs font-black">{rev.user[0]}</div>
-                        <p className="font-black text-sm text-zinc-900">{rev.user}</p>
-                      </div>
-                      <div className="flex items-center gap-1 text-amber-400">
-                        {[...Array(rev.rating)].map((_, j) => <Star key={j} size={12} fill="currentColor" />)}
-                      </div>
-                    </div>
-                    <p className="text-sm text-zinc-600 leading-relaxed mb-2">{rev.comment}</p>
-                    <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">{rev.date}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -5130,7 +5008,7 @@ function App() {
                   <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Founder.jpeg" alt="Founder" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Founders Note Section1.jpeg" alt="Founder" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
@@ -5158,7 +5036,7 @@ function App() {
                   <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Everyday essentials in organized boxes.png" alt="Errand" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Founders Note Section2.jpeg" alt="Errand" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
@@ -5186,7 +5064,7 @@ function App() {
                   <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-square rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/Women in the kitchen.JPG" alt="Conversation" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Founders Note Section3.jpeg" alt="Conversation" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
@@ -5219,7 +5097,7 @@ function App() {
                   <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2">
                       <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl">
-                        <img src="/images/front page Main.jpg" alt="Solution" className="w-full h-full object-cover object-center" />
+                        <img src="/images/Founders Note Section4.jpeg" alt="Solution" className="w-full h-full object-cover object-center" />
                       </div>
                     </div>
                     <div className="w-full md:w-1/2 max-w-lg space-y-6">
