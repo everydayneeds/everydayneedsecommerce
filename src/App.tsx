@@ -43,6 +43,7 @@ import {
   Mail,
   Check,
   Pause,
+  Minus,
   Trash2,
   Camera,
   Download,
@@ -859,6 +860,131 @@ const ProductDetail = ({
                 {hasHousehold && (
                   <Dropbox 
                     label="Household Type"
+                    options={householdOptions.map(opt => ({ value: opt, label: opt }))}
+                    value={selectedHousehold}
+                    onChange={setSelectedHousehold}
+                    variant="green"
+                  />
+                )}
+                
+                <Dropbox 
+                  label="Delivery Frequency"
+                  options={[
+                    { value: 'Monthly', label: 'Monthly' },
+                    { value: '3 Month (Monthly Delivery)', label: '3 Months (5% Discount)', badge: 'Save 5%' }
+                  ]}
+                  value={selectedFrequency}
+                  onChange={(v: any) => setSelectedFrequency(v)}
+                  variant="green"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {visiblePlans.map((plan) => (
+                    <button
+                      key={plan.tier}
+                      onClick={() => setSelectedTier(plan.tier)}
+                      className={`p-6 rounded-3xl border-2 text-left transition-all ${
+                        selectedTier === plan.tier 
+                        ? 'border-[#6F7E57] bg-[#6F7E57]/5' 
+                        : 'border-black/5 hover:border-zinc-200 bg-white'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-sm font-black uppercase tracking-widest text-[#6F7E57]">{plan.label}</span>
+                        {plan.badge && <span className="px-2 py-0.5 bg-[#6F7E57] text-white text-[10px] font-black rounded-full">{plan.badge}</span>}
+                      </div>
+                      <div className="text-2xl font-black text-zinc-900 mb-1">₦{plan.price.toLocaleString()}</div>
+                      <p className="text-xs text-zinc-400 font-medium">{plan.frequency === 'week' ? 'Billed weekly' : 'Billed monthly'}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {product.addOns && product.addOns.length > 0 && (
+                <div className="p-8 bg-zinc-50 rounded-[2.5rem] border border-black/5">
+                  <h4 className="text-sm font-black uppercase tracking-widest text-zinc-400 mb-6">Optional Add-ons</h4>
+                  <div className="space-y-3">
+                    {product.addOns.map((addon) => (
+                      <button
+                        key={addon.name}
+                        onClick={() => toggleAddOn(addon.name)}
+                        className={`w-full p-4 rounded-2xl border flex items-center justify-between transition-all ${
+                          selectedAddOns.includes(addon.name)
+                          ? 'border-[#6F7E57] bg-white shadow-sm'
+                          : 'border-transparent bg-white/50 hover:bg-white'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all ${
+                            selectedAddOns.includes(addon.name) ? 'bg-[#6F7E57] border-[#6F7E57]' : 'border-zinc-300'
+                          }`}>
+                            {selectedAddOns.includes(addon.name) && <Check size={12} className="text-white" />}
+                          </div>
+                          <span className="text-sm font-bold text-zinc-700">{addon.name}</span>
+                        </div>
+                        <span className="text-sm font-black text-[#6F7E57]">₦{addon.price.toLocaleString()}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-8 border-t border-black/5">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <p className="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Total Subscription</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-black text-[#6F7E57]">₦{totalPrice.toLocaleString()}</span>
+                      <span className="text-sm text-zinc-400 font-medium">/ {selectedFrequency === 'Monthly' ? 'mo' : '3 mo'}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 bg-zinc-100 p-1.5 rounded-2xl">
+                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white transition-all"><Minus size={16} /></button>
+                    <span className="w-8 text-center font-black">{quantity}</span>
+                    <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white transition-all"><Plus size={16} /></button>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => onBuyNow(product, totalPrice)}
+                  className="w-full bg-[#693311] text-white py-5 rounded-[2rem] font-black hover:bg-black transition-all shadow-xl active:scale-[0.98]"
+                >
+                  Confirm Subscription
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'reviews' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="p-8 bg-white rounded-[2.5rem] border border-black/5">
+                <div className="flex items-center justify-between mb-8">
+                  <h3 className="font-serif text-2xl font-bold text-zinc-900">Customer Reviews</h3>
+                  <div className="flex items-center gap-1 text-amber-400">
+                    <Star size={18} fill="currentColor" />
+                    <span className="text-lg font-black text-zinc-900">4.8</span>
+                  </div>
+                </div>
+                <div className="space-y-8">
+                  {reviews.map((review, i) => (
+                    <div key={i} className="pb-8 border-b border-black/5 last:border-0 last:pb-0">
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <p className="font-black text-zinc-900">{review.user}</p>
+                          <div className="flex gap-0.5 text-amber-400 mt-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star key={i} size={12} fill={i < review.rating ? "currentColor" : "none"} stroke="currentColor" />
+                            ))}
+                          </div>
+                        </div>
+                        <span className="text-xs text-zinc-400 font-medium">{review.date}</span>
+                      </div>
+                      <p className="text-zinc-600 text-sm leading-relaxed">{review.comment}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
